@@ -1,0 +1,79 @@
+a{color:inherit; text-decoration:none;}
+img{border:0;}
+input:focus {outline: none;}
+button{cursor:pointer;outline:none;}
+.mt0{margin-top:0 !important;}
+.h32{height:32px !important; line-height:32px !important;}
+.h24{height:36px !important; line-height:28px !important;}
+.h72{height:72px !important;line-height:72px !important; font-weight:700;}
+.stillcut_wrapper{width:100%; height:100%; margin:0 auto; padding:0; background:#fff;}
+.gnp_wrap{height:100%; width:100%;font-size:12px;font-weight:700; }
+.top_date{width:100%; background:#f2f2f2; display:inline-block; overflow:hidden; border-bottom:1px solid #ddd;border-top:3px solid #2861c0; font-size:12px; font-weight:700; min-height:60px; height:60px\9;/*if IE*/}
+.sear{width:515px; margin:18px 0 0 15px; height:20px; font-weight:700; vertical-align:middle;  text-align:left; float:left;}
+.sear_list{width:380px; margin:18px 0 0 15px; height:20px; font-weight:700; vertical-align:middle;  text-align:left; float:left;}
+.twr{float:left; margin-top:4px; margin-right:10px;}
+.twr_list{float:left; margin-top:2px; margin-right:15px;}
+.sel_still{width:70px;font-size:12px; color:#333; text-decoration:none; font-weight:100; background-color:#fff; border:1px solid #aaa; margin:0 5px;padding:2px; float:left; }
+.f333_date{width:80px;font-size:12px; color:#333; text-decoration:none; font-weight:100; background-color:#fff; border:1px solid #aaa; margin:0 5px;padding:2px; float:left; }
+.btn_bsb30{width:20px; height:20px; display:inline-block; background-color:#fff; border:1px solid #ccc; cursor:pointer; margin:0; padding:0; float:left;}
+.btn_bsb60{width:60px; height:30px; display:inline-block; background:#beddf4; border:1px solid #9fc5e2; color:#0444a5;padding:5px; font-size:12px; line-height:14px; font-weight:700;cursor:pointer;float:left; margin-top:14px;}
+.btn_bb80{width:80px; height:30px; display:inline-block; background-color:#2861c0; border:1px solid #1955b9;  font-size:12px; color:#fff; line-height:9px; font-weight:700;cursor:pointer; float:left; padding:10px; margin:14px 0 0 10px;}
+.btn_bsb30:hover{background:#efefef; border:1px solid #aaa; color:#666;}
+.btn_bsb60:hover{background:#a4ccea; border:1px solid #73a9df; color:#0444a5;}
+/*.btn_bb80:hover{background:#3072cb;}*/
+.cal{margin:0 5px; float:left;}
+
+.graph{width:100%; float:left;position:relative;}
+
+.tb_stc{width:100%; border:0; border-collapse:collapse; padding:0;margin-top:20px;min-height:64px; float:left;}
+.tb_stc ul{margin:0; padding:0 !important; width:100%; float:left; border:none !important;}
+.tb_stc li{list-style-type:none; border-bottom:1px solid #e2e2e2 !important; font-size:12px; margin:0; padding:0 !important;float:left;}
+
+.tb_stc_b{background:#eaf3fa !important;  }
+.tb_stc_b li{border-top:3px solid #2861c0; font-weight:700; }
+
+.tb_stc_p{background:#eaf3fa !important;  }/*표 최상단 파란배경-종합보고서*/
+.tb_stc_p li{border-top:3px solid #2861c0; line-height:16px; height:32px; .border-top:0;/*if IE 6,7*/}
+
+.stc_li10{list-style-type:none; width:10% !important;text-align:center; border-left:1px solid #e0e0e0; border-bottom:1px solid #e0e0e0;}
+.stc_li11{list-style-type:none; width:11.11% !important; text-align:center; border-left:1px solid #e0e0e0; border-bottom:1px solid #e0e0e0;}
+.stc_li18{list-style-type:none; width:18% !important; text-align:center; border-left:1px solid #e0e0e0; border-bottom:1px solid #e0e0e0;}
+.stc_li10p{width:2% !important;float:left;height:50px !important;.height:200px; !important;}
+
+.still_photo{width:100%; height:28%; margin-top:20px; box-sizing:border-box; float:left;}
+.still_photo ul{width:100%; height:100%; margin:0; padding:0; box-sizing:border-box;}
+.still_photo ul li{width:24.2%; margin-right:1%; height:100%; float:left; list-style-type:none; margin-bottom:1%; overflow:hidden; }
+.nbr{margin-right:0px !important;}
+.pdate{width:100%; height:100%; overflow:hidden; border-top:3px solid #666 !important; border:1px solid #ddd;}
+.pdate img{width:100%; height:100%;}
+.pdate_l{width:70%; height:34px;color:#333; font-weight:700; font-size:12px; padding:0 0 0 5px; float:left;  background-color:#f2f2f2; line-height:34px;}
+.pdate_100{width:100%; height:34px;color:#333; font-weight:700; font-size:12px; padding:0 0 0 5px; float:left;  background-color:#f2f2f2; line-height:34px;}
+.pdate_100p{width:100%; height:24px;color:#333; font-weight:700; font-size:12px; padding:0 0 0 5px; float:left;  background-color:#f2f2f2; line-height:20px;}
+
+
+.tb_prt{width:100%; /*height:100%;*/ border:0; border-collapse:collapse; padding:0;margin-bottom:20px;float:left;overflow:hidden; .width:92%;/*if IE 6,7*/}
+.tb_prt ul{margin:0; padding:0 !important; width:100%; float:left;height:19%;}
+.tb_prt li{list-style-type:none; margin:0; padding:0; width:49%; height:100%;float:left; }
+
+.tb_pdt{width:100%; border:0; border-collapse:collapse; padding:0;margin-bottom:20px;float:left;overflow:hidden; .width:92%; .border-top:3px solid #2861c0;/*if IE 6,7*/}
+.tb_pdt ul{margin:0; padding:0 !important; width:100%; float:left; border-bottom:1px solid #e2e2e2;}
+.tb_pdt li{list-style-type:none;  font-size:12px; line-height:32px; margin:0; padding:0 !important;float:left; }
+
+
+.loc_wrap{float:left; width:90%; margin:5px 0 10px 15px;}
+.loc_wrap ul{width:100%; height:100%; margin:0; padding:0;}
+.loc_wrap li{list-style-type:none; float:left; margin-right:10px; vertical-align:middle; line-height:16px;}
+#sel_list{width:100%; background:#eaf3fa; display:none; overflow:hidden; border-bottom:1px solid #ddd; position:fixed;top:129px;z-index:3000; left:64px;padding:10px; }
+.loc_name{width:100%; height:32px; margin-bottom:10px; color:#666; font-size:24px; font-weight:400; margin-top:20px;}
+.right_x{float:right; font-size:12px; color:#666; text-align:right; font-weight:700;}
+#sel_prt{float:right; display:none; overflow:hidden; margin-top:-5px;}
+.btn_close{float:right;width:32px; height:32px;vertical-align:middle;background:none;border:none;display:block;cursor:pointer;margin-top:10px;padding:0;}
+
+input[type='checkbox'] {background: #fff;border: solid 1px #ddd;height: 14px;width: 14px;-webkit-appearance: none;margin-right:5px; border:none\9;/*if IE*/}
+input[type='checkbox']:checked {background: url(../images/chk.gif) center no-repeat;border: solid 1px #2861c0;}
+input[type='checkbox']:checked:after {content: ' ';display: block;background: #b4b1ae;position: relative;top: 3px;left: 3px;}
+
+.cal{margin:0 5px; float:left;}
+.cal_10{margin:10px 5px 0 0; float:left;}
+.cal_13{margin:13px 5px 0 0; float:left;}
+.cal_15{margin:15px 5px 0 0; float:left;}
