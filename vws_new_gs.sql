@@ -1251,7 +1251,7 @@ CREATE TABLE `user_info` (
 
 LOCK TABLES `user_info` WRITE;
 /*!40000 ALTER TABLE `user_info` DISABLE KEYS */;
-INSERT INTO `user_info` VALUES ('minsu',1,'0','7','0','minsu','1',NULL,NULL,NULL,0,'0','0',NULL,NULL,NULL);
+INSERT INTO `user_info` VALUES ('admin',1,'0','7','0','admin','administrator',NULL,NULL,NULL,0,'0','0',NULL,NULL,NULL);
 /*!40000 ALTER TABLE `user_info` ENABLE KEYS */;
 UNLOCK TABLES;
 
