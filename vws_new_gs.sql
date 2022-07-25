@@ -273,7 +273,7 @@ CREATE TABLE `dn_menu_in` (
 
 LOCK TABLES `dn_menu_in` WRITE;
 /*!40000 ALTER TABLE `dn_menu_in` DISABLE KEYS */;
-INSERT INTO `dn_menu_in` VALUES (1,1,'종합현황','tms_main.php',4,1),(1,2,'강우현황','tms_rain.php',4,1),(1,3,'수위현황','tms_flow.php',4,1),(1,4,'AWS현황','tms_aws.php',4,1),(1,5,'적설현황','tms_snow.php',4,1),(2,1,'강우자료','dtm_rain.php',2,1),(2,2,'수위자료','dtm_wl.php',2,1),(2,3,'AWS자료','dtm_aws.php',2,1),(2,4,'적설자료','dtm_snow.php',2,1),(2,5,'수동호출','dtm_mcall.php',2,0),(3,1,'강우보고서','rpt_rain.php',3,1),(3,2,'수위보고서','rpt_wl.php',3,1),(3,3,'AWS보고서','rpt_aws.php',3,1),(3,4,'적설보고서','rpt_snow.php',3,1),(3,5,'기본보고서','rpt_ori.php',3,1),(4,1,'시스템설정','set_setting.php',1,1),(4,2,'기관정보설정','set_organ.php',1,1),(4,3,'사용자설정','set_user.php',3,1),(4,4,'장비설정','set_equip.php',2,1);
+INSERT INTO `dn_menu_in` VALUES (1,1,'종합현황','tms_main.php',4,1),(1,2,'강우현황','tms_rain.php',4,1),(1,3,'수위현황','tms_flow.php',4,1),(1,4,'AWS현황','tms_aws.php',4,1),(1,5,'적설현황','tms_snow.php',4,1),(2,1,'강우자료','dtm_rain.php',2,1),(2,2,'수위자료','dtm_wl.php',2,1),(2,3,'AWS자료','dtm_aws.php',2,1),(2,4,'적설자료','dtm_snow.php',2,1),(2,5,'수동호출','dtm_mcall.php',2,0),(3,1,'강우보고서','rpt_rain.php',3,1),(3,2,'수위보고서','rpt_wl.php',3,1),(3,3,'AWS보고서','rpt_aws.php',3,1),(3,4,'적설보고서','rpt_snow.php',3,1),(4,1,'시스템설정','set_setting.php',1,1),(4,2,'기관정보설정','set_organ.php',1,1),(4,3,'사용자설정','set_user.php',3,1),(4,4,'장비설정','set_equip.php',2,1);
 /*!40000 ALTER TABLE `dn_menu_in` ENABLE KEYS */;
 UNLOCK TABLES;
 
