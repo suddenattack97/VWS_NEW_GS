@@ -68,16 +68,16 @@
 			            });
 					}else{
 						lay_html += ' <tr> ';
-						lay_html += ' <td colspan="7">데이터가 없습니다.</td> ';
+						lay_html += ' <td colspan="7" style="height:560px;">데이터가 없습니다.</td> ';
 						lay_html += ' </tr>';
 
-						for( var i=0; i<rowCnt; i++){
-							lay_html += ' <tr> ';
-							for(var j=0; j<columCnt; j++){
-								lay_html += ' <td></td>';
-							}
-							lay_html += '</tr>';
-						}
+						// for( var i=0; i<rowCnt; i++){
+						// 	lay_html += ' <tr> ';
+						// 	for(var j=0; j<columCnt; j++){
+						// 		lay_html += ' <td></td>';
+						// 	}
+						// 	lay_html += '</tr>';
+						// }
 					}
 					lay_html += ' </table>';
 					lay_html += ' <div class="guide_txt"> ';
@@ -368,7 +368,7 @@
 		        if(type == 1){
 		    		var lay_html = '';	
 					var rowCnt = 20;
-					var columCnt = 6;
+					var columCnt = 5;
 		    		
 					lay_html += ' <div class="main_contitle"> ';
 					lay_html += ' <div class="tit"> ';
@@ -390,30 +390,29 @@
 					if(data.list){
 			            $.each(data.list, function(i, v){
 							lay_html += ' <tr class="hh" id="flow_'+v.AREA_CODE+'"> ';
-							lay_html += ' <td class="hh" id="RTU_NAME">'+v.RTU_NAME+'</td> ';
-							lay_html += ' <td class="hh" id="FLOW_BN">'+toFixedOfNum(v.FLOW_BN, 2, 0.01)+'</td> ';
-							lay_html += ' <td class="hh" id="FLOW_N">'+toFixedOfNum(v.FLOW_N, 2, 0.01)+'</td> ';
-							lay_html += ' <td class="hh" id="FLOW_LEVEL1">'+v.FLOW_WARNING+'</td> ';
-							lay_html += ' <td class="hh" id="FLOW_LEVEL2">'+v.FLOW_DANGER+'</td> ';
-						
+								lay_html += ' <td class="hh" id="RTU_NAME">'+v.RTU_NAME+'</td> ';
+								lay_html += ' <td class="hh" id="FLOW_BN">'+toFixedOfNum(v.FLOW_BN, 2, 0.01)+'</td> ';
+								lay_html += ' <td class="hh" id="FLOW_N">'+toFixedOfNum(v.FLOW_N, 2, 0.01)+'</td> ';
+								lay_html += ' <td class="hh" id="FLOW_LEVEL1">'+v.FLOW_WARNING+'</td> ';
+								lay_html += ' <td class="hh" id="FLOW_LEVEL2">'+v.FLOW_DANGER+'</td> ';
 							lay_html += ' </tr>';
 			            });
 					}else{
-						var tmp_colspan = 6;
+						var tmp_colspan = 5;
 						// if(common_level_cnt == 3) tmp_colspan = 7;
 						// else if(common_level_cnt == 4) tmp_colspan = 7;
 						// else if(common_level_cnt == 5) tmp_colspan = 9;
 						lay_html += ' <tr> ';
-						lay_html += ' <td colspan="'+tmp_colspan+'">데이터가 없습니다.</td> ';
+						lay_html += ' <td colspan="'+tmp_colspan+'" style="height:560px;">데이터가 없습니다.</td> ';
 						lay_html += ' </tr>';
 
-						for( var i=0; i<rowCnt; i++){
-							lay_html += ' <tr> ';
-							for(var j=0; j<columCnt; j++){
-								lay_html += ' <td></td>';
-							}
-							lay_html += '</tr>';
-						}
+						// for( var i=0; i<rowCnt; i++){
+						// 	lay_html += ' <tr> ';
+						// 	for(var j=0; j<columCnt; j++){
+						// 		lay_html += ' <td></td>';
+						// 	}
+						// 	lay_html += '</tr>';
+						// }
 					}
 					lay_html += ' </table>';
 					lay_html += ' <div class="guide_txt"> ';
@@ -470,7 +469,7 @@
 		        if(type == 1){
 		    		var lay_html = '';
 					var rowCnt = 20;
-					var columCnt = 6;	
+					var columCnt = 11;	
 		    		
 					lay_html += ' <div class="main_contitle"> ';
 					lay_html += ' <div class="tit"> ';
@@ -582,16 +581,16 @@
 			            });
 					}else{
 						lay_html += ' <tr> ';
-						lay_html += ' <td colspan="12">데이터가 없습니다.</td> ';
+						lay_html += ' <td colspan="12" style="height:560px;">데이터가 없습니다.</td> ';
 						lay_html += ' </tr>';
 
-						for( var i=0; i<rowCnt; i++){
-							lay_html += ' <tr> ';
-							for(var j=0; j<columCnt; j++){
-								lay_html += ' <td></td>';
-							}
-							lay_html += '</tr>';
-						}
+						// for( var i=0; i<rowCnt; i++){
+						// 	lay_html += ' <tr> ';
+						// 	for(var j=0; j<columCnt; j++){
+						// 		lay_html += ' <td></td>';
+						// 	}
+						// 	lay_html += '</tr>';
+						// }
 					}
 					lay_html += ' </table></div>';
 					$(lay_id).append(lay_html);
@@ -679,16 +678,16 @@
 			            });
 					}else{
 						lay_html += ' <tr> ';
-						lay_html += ' <td colspan="12">데이터가 없습니다.</td> ';
+						lay_html += ' <td colspan="12" style="height:560px;">데이터가 없습니다.</td> ';
 						lay_html += ' </tr>';
 
-						for( var i=0; i<rowCnt; i++){
-							lay_html += ' <tr> ';
-							for(var j=0; j<columCnt; j++){
-								lay_html += ' <td></td>';
-							}
-							lay_html += '</tr>';
-						}
+						// for( var i=0; i<rowCnt; i++){
+						// 	lay_html += ' <tr> ';
+						// 	for(var j=0; j<columCnt; j++){
+						// 		lay_html += ' <td></td>';
+						// 	}
+						// 	lay_html += '</tr>';
+						// }
 						
 					}
 					lay_html += ' </table>';
