@@ -110,7 +110,7 @@
 	  #top_layout { z-index: 55; position: absolute; width: 100%;}
 	  #top {background-color: #162A45; width: 100%; display: inline-flex; align-items: flex-end;}
 	  #logo {width: 20%; background-color: #fff; height: 60px; vertical-align: middle;  padding-left: 10px; display: flex; align-items: center; font-size: 2.3rem; letter-spacing: -2px;}
-	  #logo span:last-child { color: #0050AB; font-weight: 800;  letter-spacing: -2px; padding:  0 5px; font-family:'nanumsquare', 'Dotum', 'Gulim', 'Arial', sans-serif !important;}
+	  #logo span:last-child {width: 100%; text-align: center; color: #0050AB; font-weight: 800;  letter-spacing: -2px; padding:  0 5px; font-family:'nanumsquare', 'Dotum', 'Gulim', 'Arial', sans-serif !important;}
 	  #logo span:first-child {width: 150px; text-align: center;}
 	  #logo_area { height: 60px; text-align: center; display: inline-block;}
 	  #logo_area img{padding-right: 5px; width: 100%}

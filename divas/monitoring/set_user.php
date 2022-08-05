@@ -51,7 +51,7 @@ require_once "./head.php";
 							<th class="li25 bL_1gry">사용자명</th>
 							<th class="li25 bL_1gry">소속기관</th>
 							<th class="li15 bL_1gry">사용자 구분</th>
-							<th class="li15 bL_1gry">문자 알림</th>
+							<!-- <th class="li15 bL_1gry">문자 알림</th> -->
 						</tr>
 					</thead>
 					<tbody>
@@ -68,7 +68,7 @@ require_once "./head.php";
 							<td id="l_USER_NAME" class="li25 bL_1gry"><?=$val['USER_NAME']?></td>
 							<td class="li25 bL_1gry"><?=$val['ORGAN_NAME']?></td>
 							<td class="li15 bL_1gry"><?=$val['USER_TYPE_NAME']?></td>
-							<td class="li15 bL_1gry"><?=$val['IS_PERMIT_NAME']?></td>
+							<!-- <td class="li15 bL_1gry"><?=$val['IS_PERMIT_NAME']?></td> -->
 						</tr>
 				<? 
 						}
@@ -197,7 +197,7 @@ require_once "./head.php";
 					</tr>
 					<tr>
 						<td class="bg_lb w10 bold al_C bL0">휴대폰 번호 (SMS)</td>
-						<td class="w400p">
+						<td colspan="3" class="w400p">
 							<select id="MOBILE1" name="MOBILE1" size="1" class="f333_12">
 								<option value="010">010</option>
 								<option value="011">011</option>
@@ -210,13 +210,13 @@ require_once "./head.php";
 							-
 							<input id="MOBILE3" name="MOBILE3" type="text" class="f333_12" size="6" maxlength="4">
 						</td>
-						<td class="bg_lb w10 bold al_C">장비 상태 알림</td>
+						<!-- <td class="bg_lb w10 bold al_C">장비 상태 알림</td>
 						<td>
 							<select id="IS_PERMIT" name="IS_PERMIT" class="f333_12">
 								<option value="0">미알림</option>
 								<option value="1">알림</option>
 							</select>
-						</td>
+						</td> -->
 					</tr>
 					<!-- <tr>
 						<td class="bg_lb w10 bold al_C bL0">휴대폰 번호 (APP)</td>

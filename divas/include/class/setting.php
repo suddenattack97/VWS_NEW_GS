@@ -244,11 +244,11 @@ Class ClassSetting {
 				$data[$i]['ORGAN_NAME'] = $rs[$i]['ORGAN_NAME'];
 				$data[$i]['USER_TYPE'] = $rs[$i]['USER_TYPE'];
 				if($rs[$i]['USER_TYPE'] == "0"){
-					$data[$i]['USER_TYPE_NAME'] = "최상위관리자";
+					$data[$i]['USER_TYPE_NAME'] = "관리자";
 				}else if($rs[$i]['USER_TYPE'] == "1"){
 					$data[$i]['USER_TYPE_NAME'] = "지역관리자";
 				}else if($rs[$i]['USER_TYPE'] == "3"){
-					$data[$i]['USER_TYPE_NAME'] = "일반사용자";
+					$data[$i]['USER_TYPE_NAME'] = "사용자";
 				}else if($rs[$i]['USER_TYPE'] == "4"){
 					$data[$i]['USER_TYPE_NAME'] = "GUEST";
 				}
