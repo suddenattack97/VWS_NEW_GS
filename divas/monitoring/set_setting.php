@@ -25,7 +25,7 @@ require_once "./head.php";
 					<div data-tab="main-tab" class="tab">메인 메뉴 설정</div>
 					<div data-tab="sub-tab" class="tab">서브 메뉴 설정</div>
 					<div data-tab="popup-tab" class="tab">팝업 메뉴 설정</div>
-					<div data-tab="report-tab" class="tab">기본보고서 설정</div>
+					<!-- <div data-tab="report-tab" class="tab">기본보고서 설정</div> -->
 					
 					</div>  				
 		</div>
@@ -587,8 +587,8 @@ require_once "./head.php";
 						<tr>
 							<th class="w20i">상위 메뉴</th>
 							<th class="w30i">하위 메뉴 대표</th>
-							<th class="w20i">url</th>
-							<th class="w15i">아이콘</th>
+							<!-- <th class="w20i">url</th>
+							<th class="w15i">아이콘</th> -->
 							<th class="w15i">사용 여부</th>
 						</tr>
 					</thead>
@@ -601,8 +601,8 @@ require_once "./head.php";
 						<tr class="hh">
 							<td><?=$val['menu_name']?><input type="hidden" name="top_idx[]" value="<?=$val['menu_idx']?>"></td>
 							<td><?=$val['sub_name']?></td>
-							<td><a href="<?=$val['menu_url']?>"><?=$val['menu_url']?></a></td>
-							<td class="bg_td_gry"><img src="../img/<?=$val['menu_icon']?>" /></td>
+							<!-- <td><a href="<?=$val['menu_url']?>"><?=$val['menu_url']?></a></td>
+							<td class="bg_td_gry"><img src="../img/<?=$val['menu_icon']?>" /></td> -->
 							<td>
 							<? 
 								if($val['menu_idx'] != '4'){
@@ -648,7 +648,7 @@ require_once "./head.php";
 						<tr>
 							<th class="w20i">상위 메뉴</th>
 							<th class="w30i">하위 메뉴</th>
-							<th class="w20i">url</th>
+							<!-- <th class="w20i">url</th> -->
 							<th class="w15i">권한</th>
 							<th class="w15i">사용 여부</th>
 						</tr>
@@ -663,7 +663,7 @@ require_once "./head.php";
 						<tr class="hh">
 							<td class="gubun"><?=$val['menu_name']?></td><input type="hidden" name="sub_idx[]" value="<?=$val['menu_idx']?>">
 							<td><?=$val2['menu_name']?><input type="hidden" name="sub_num[]" value="<?=$val2['menu_num']?>"></td>
-							<td><a href="<?=$val2['menu_url']?>"><?=$val2['menu_url']?></a></td>
+							<!-- <td><a href="<?=$val2['menu_url']?>"><?=$val2['menu_url']?></a></td> -->
 							<td>
 								<select name="sub_level[]">
 									<option value="1" <?if($val2['menu_level']=="1"){echo "selected";}?>>최상위관리자</option>
