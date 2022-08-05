@@ -571,6 +571,7 @@ CREATE TABLE `organ_info` (
 LOCK TABLES `organ_info` WRITE;
 /*!40000 ALTER TABLE `organ_info` DISABLE KEYS */;
 /*!40000 ALTER TABLE `organ_info` ENABLE KEYS */;
+INSERT INTO `ORGAN_INFO` VALUES (1,'0','재난안전대책본부',NULL,0,NULL,NULL);
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
