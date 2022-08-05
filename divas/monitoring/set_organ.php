@@ -22,7 +22,8 @@ require_once "./head.php";
 		<div class="right_bg2 mB_20">
 				<ul id="search_box">
 					<li>
-					<span class="tit">기관 목록 조회 : </span>
+					<span class="tit">기관 목록</span>
+					<!-- <span class="tit">기관 목록 조회 : </span>
 					<select id="search_col" name="search_col" class="f333_12" size="1">
 						<option value="0">기관명</option>
 						<option value="1">부서명</option>
@@ -32,7 +33,7 @@ require_once "./head.php";
 					<input type="text" id="search_word" name="search_word" class="f333_12" size="60">
 					&nbsp;&nbsp;
 					<button type="button" id="btn_search" class="btn_bb80 mL_10"><i class="fa fa-search mR_5 font15"></i>조회</button>
-					<button type="button" id="btn_search_all" class="btn_lbb80_s w90p"><i class="fa fa-list-alt mR_5 font15"></i>전체목록</button>
+					<button type="button" id="btn_search_all" class="btn_lbb80_s w90p"><i class="fa fa-list-alt mR_5 font15"></i>전체목록</button> -->
 </li></ul>
 					
 		<ul class="set_ulwrap_nh">
@@ -103,9 +104,9 @@ require_once "./head.php";
 						<td class="bg_lb w10 bold al_C">장비정렬기준</td>
 						<td>
 							<select id="SORT_BASE" name="SORT_BASE" class="f333_12" size="1">
-								<option value="0">정렬순서</option>
-								<option value="1">행정코드</option>
 								<option value="2">장비이름</option>
+								<option value="1">행정코드</option>
+								<option value="0">지정순서</option>
 							</select>
 						</td>
 					</tr>
