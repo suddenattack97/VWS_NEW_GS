@@ -332,7 +332,7 @@ Class ClassCommon {
 			$rs = $this->DB->execute($sql);
 
 			if($_SESSION['user_type'] != 0 && $_SESSION['user_type'] != 7){
-				if($rs[0]['menu_idx'] == 4){
+				if($rs[0]['menu_idx'] == 4 || $rs[0]['menu_idx'] == 2){
 					$str = ' <script> ';
 					$str.= ' location.href="'.ROOT.'/divas/monitoring/page_out.php"; ';
 					$str.= ' </script>';

@@ -666,10 +666,10 @@ require_once "./head.php";
 							<!-- <td><a href="<?=$val2['menu_url']?>"><?=$val2['menu_url']?></a></td> -->
 							<td>
 								<select name="sub_level[]">
-									<option value="1" <?if($val2['menu_level']=="1"){echo "selected";}?>>최상위관리자</option>
-									<option value="2" <?if($val2['menu_level']=="2"){echo "selected";}?>>지역관리자</option>
-									<option value="3" <?if($val2['menu_level']=="3"){echo "selected";}?>>일반사용자</option>
-									<option value="4" <?if($val2['menu_level']=="4"){echo "selected";}?>>임시사용자</option>
+									<option value="1" <?if($val2['menu_level']=="1"){echo "selected";}?>>관리자</option>
+									<!-- <option value="2" <?if($val2['menu_level']=="2"){echo "selected";}?>>지역관리자</option> -->
+									<option value="3" <?if($val2['menu_level']=="3"){echo "selected";}?>>사용자</option>
+									<!-- <option value="4" <?if($val2['menu_level']=="4"){echo "selected";}?>>임시사용자</option> -->
 								</select> 부터
 							</td>
 							<td>
@@ -742,10 +742,10 @@ require_once "./head.php";
 							</td>	
 							<td>
 								<select name="popup_level[]">
-									<option value="1" <?if($val['menu_level']=="1"){echo "selected";}?>>최상위관리자</option>
-									<option value="2" <?if($val['menu_level']=="2"){echo "selected";}?>>지역관리자</option>
-									<option value="3" <?if($val['menu_level']=="3"){echo "selected";}?>>일반사용자</option>
-									<option value="4" <?if($val['menu_level']=="4"){echo "selected";}?>>임시사용자</option>
+									<option value="1" <?if($val['menu_level']=="1"){echo "selected";}?>>관리자</option>
+									<!-- <option value="2" <?if($val['menu_level']=="2"){echo "selected";}?>>지역관리자</option> -->
+									<option value="3" <?if($val['menu_level']=="3"){echo "selected";}?>>사용자</option>
+									<!-- <option value="4" <?if($val['menu_level']=="4"){echo "selected";}?>>임시사용자</option> -->
 								</select> 부터
 							</td>
 							<td>

@@ -119,13 +119,13 @@ require_once "./head.php";
 							<select id="USER_TYPE" name="USER_TYPE" class="f333_12">
 								<option value="">사용자 구분</option>
 								<? if(ss_user_type == 0 || ss_user_type == 7){ ?>
-								<option value="0">최상위 관리자</option>
+								<option value="0">관리자</option>
 								<? } ?>
 								<? if(ss_user_type == 0 || ss_user_type == 1 || ss_user_type == 7){ ?>
-								<option value="1">지역 관리자</option>
+								<!-- <option value="1">지역 관리자</option> -->
 								<? } ?>
-								<option value="3">일반 사용자</option>
-								<option value="4">임시 사용자</option>
+								<option value="3">사용자</option>
+								<!-- <option value="4">임시 사용자</option> -->
 								<!-- <option value="5">마을 담당자</option> -->
 							</select> 
 							<select id="MENU_TYPE" name="MENU_TYPE" class="f333_12" style="display:none">
@@ -440,6 +440,8 @@ crypt.setKey(key);
 					// 		$("#tree").jstree("select_node", tmp_id); // jstree 해당 id 체크
 					// 	});
 			        // }
+					$("#btn_check").addClass('dp0');
+					$("#btn_in").css('display', 'none');
 		        }else{
 				    swal("체크", "사용자 상세 조회중 오류가 발생 했습니다.", "warning");
 		        }
@@ -580,7 +582,7 @@ crypt.setKey(key);
 						$("#EMAIL1").val(EMAIL.split("@")[0]);
 						$("#EMAIL2").val(0);
 						$("#EMAIL3").val(EMAIL.split("@")[1]);
-						$("#MOBILE1").val(MOBILE.split("-")[0]);
+						$("#MOBILE1").val(MOBILE.split("-")[0] ? MOBILE.split("-")[0] : "010");
 						$("#MOBILE2").val(MOBILE.split("-")[1]);
 						$("#MOBILE3").val(MOBILE.split("-")[2]);
 						$("#IS_PERMIT").val(data.list.IS_PERMIT);
