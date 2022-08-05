@@ -1,9 +1,9 @@
 <?
 require_once "../include/class/setting.php";
-require_once "../include/class/broadcast.php";
+// require_once "../include/class/broadcast.php";
 
 $ClassSetting = new ClassSetting($DB); // 설정
-$ClassBroadCast = new ClassBroadCast($DB); // 방송
+// $ClassBroadCast = new ClassBroadCast($DB); // 방송
 
 $ClassSetting->getEquipList(); // 장비 조회
 $data_list = $ClassSetting->rsEquipList;

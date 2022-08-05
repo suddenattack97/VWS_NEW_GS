@@ -1,6 +1,6 @@
 <?
 require_once "../include/class/setting.php";
-require_once "../include/class/broadcast.php";
+// require_once "../include/class/broadcast.php";
 
 $ClassSetting = new ClassSetting($DB); // 설정
 // $ClassBroadCast = new ClassBroadCast($DB); // 방송
