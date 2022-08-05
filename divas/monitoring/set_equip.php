@@ -120,7 +120,7 @@ require_once "./head.php";
 				<table class="set_tb">
 					<tr>
 						<td class="bg_lb w10 bold al_C bL0">장비 ID</td>
-						<td class="w20"><input type="text" id="RTU_ID" name="RTU_ID" class="f333_12" size="10" value="<?=$data_id?>"></td>
+						<td class="w20"><input type="text" id="RTU_ID" name="RTU_ID" class="f333_12" size="10" value="<?=$data_id?>" readonly></td>
 						<td class="bg_lb w10 bold al_C">통신 ID</td>
 						<td><input type="text" id="SIGNAL_ID" name="SIGNAL_ID" class="f333_12" size="10"></td>
 						<td class="bg_lb w10 bold al_C">행정 코드</td>
@@ -189,7 +189,7 @@ require_once "./head.php";
 						?>
 							</select>
 						</td>
-						<td class="bg_lb w10 bold al_C">정렬 순서</td>
+						<td class="bg_lb w10 bold al_C">정렬 순서 지정</td>
 						<td><input id="SORT_FLAG" name="SORT_FLAG" type="text" class="f333_12" size="6" value="0"></td>
 						<td class="bg_lb w10 bold al_C bT_1gry">회선 / 모델</td>
 						<td class="bT_1gry" colspan="3">
