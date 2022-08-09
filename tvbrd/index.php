@@ -87,7 +87,7 @@ require_once "./head.php";
               </span>
               <span class="fL w15">
               	<select>
-					<? for($i=0; $i<=22; $i++){ ?>
+					<? for($i=8; $i<=22; $i++){ ?>
                 	<option value="<?=$i?>"><?=$i?></option>
                 	<? } ?>
 				</select>
