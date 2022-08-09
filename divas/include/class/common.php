@@ -752,6 +752,7 @@ Class ClassCommon {
 	function popUpmenu(){
 		if(DB == "0"){
 			$popup_http = $_REQUEST['url'];
+			$popup_name = $_REQUEST['popup_name'];
 			$popup_idx = $_REQUEST['popup_idx'];
 			$popup_level = $_REQUEST['popup_level'];
 			$popup_use = $_REQUEST['popup_use'];
@@ -764,7 +765,7 @@ Class ClassCommon {
 						// $popup_url[$key] = $popup_url[$key];
 					}
 				}
-				$sql = " UPDATE dn_direct_url SET menu_url = '".$popup_http[$key].$popup_url[$key]."' , menu_level = '".$popup_level[$key]."', menu_use = '".$popup_use[$key]."'
+				$sql = " UPDATE dn_direct_url SET menu_name = '".$popup_name[$key]."' , menu_url = '".$popup_http[$key].$popup_url[$key]."' , menu_level = '".$popup_level[$key]."', menu_use = '".$popup_use[$key]."'
 						 WHERE menu_idx = '".$val."' ";
 
 						 if( $this->DB->QUERYONE($sql) ){

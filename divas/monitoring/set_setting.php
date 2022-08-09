@@ -729,7 +729,8 @@ require_once "./head.php";
 						foreach($data_url as $key => $val){
 					?>
 						<tr class="hh">
-							<td><?=$val['menu_name']?><input type="hidden" name="popup_idx[]" value="<?=$val['menu_idx']?>"></td>
+							<!-- <td><?=$val['menu_name']?><input type="hidden" name="popup_idx[]" value="<?=$val['menu_idx']?>"></td> -->
+							<td><input type="text" name="popup_name[]" value="<?=$val['menu_name']?>"><input type="hidden" name="popup_idx[]" value="<?=$val['menu_idx']?>"></td>
 							<td>
 							<?
 								$http_array = array("http://","https://");
