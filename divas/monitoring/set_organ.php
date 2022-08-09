@@ -339,6 +339,12 @@ $(document).ready(function(){
 		}
 	});
 
+	
+	if($("#list_table tbody tr").length == 1){
+		$("#btn_de").attr("disabled", true);
+		$("#btn_de").css("background-color","#666");
+	}
+	
 	// 삭제
 	$("#btn_de").click(function(){
 		if( form_check("D") ){
