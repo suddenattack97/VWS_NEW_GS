@@ -442,7 +442,7 @@ var handleButton = function handleButton(event, params, modal) {
 
       if (targetedConfirm && doneFunctionExists && modalIsVisible) {
         handleConfirm(modal, params);
-      } else if (doneFunctionExists && modalIsVisible || targetedOverlay) {
+      } else if (doneFunctionExists && modalIsVisible) {
         handleCancel(modal, params);
       } else if ((0, _handleDom.isDescendant)(modal, target) && target.tagName === 'BUTTON') {
         sweetAlert.close();
