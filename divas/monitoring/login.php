@@ -67,8 +67,8 @@ if(recaptcha == 0){
 					<span id="top_title"><?=top_title?></span> <span id="top_text"><?=top_text?></span>
 				</div>
 			</div>
-			<div class="close_box">X
-			</div>
+			<!-- <div class="close_box">X
+			</div> -->
 		</div>
 		<fieldset style="margin-bottom:20px;">
 			<div class="input">
