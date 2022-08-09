@@ -314,9 +314,9 @@ require_once "./head.php";
 						</tr>
 
 						<tr class="hh hd">
-							<td>리캡차</td>
+							<td>로그인 리캡차</td>
 							<td>
-								리캡차 :
+								사용여부 :
 								<select id="recaptcha" name="recaptcha">
 									<option value="0" <?if(recaptcha=="0"){echo "selected";}?>>미사용</option>
 									<!-- <option value="1" <?if(recaptcha=="1"){echo "selected";}?>>구글</option> -->
