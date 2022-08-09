@@ -153,7 +153,7 @@ function rain(kind, arr_area_code){ // 강우 - 강우만 있는 장비
 
 								$.ajax({
 									type: "POST",
-									url: "http://api.vworld.kr/req/address?service=address&request=getAddress&version=2.0&crs=epsg:4326&point="+point[0][0]+","+point[0][1]+"&format=json&type=both&zipcode=true&simple=false&key=1EDCB9E6-2E12-3E90-A64E-F363C69E25B3",
+									url: "http://api.vworld.kr/req/address?service=address&request=getAddress&version=2.0&crs=epsg:4326&point="+point[0][0]+","+point[0][1]+"&format=json&type=both&zipcode=true&simple=false&key=F6342F62-1FE6-3AE7-A404-6B9E0583385C",
 									cache: false,
 									dataType: "jsonp",
 									success : function(data) {
