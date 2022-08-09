@@ -39,15 +39,10 @@ $(document).ready(function(){
 		var nWidth = $("#top_img img")[0].naturalWidth;
 		var nHeight = $("#top_img img")[0].naturalHeight;
 		var fixVal = nHeight / 60;
-		if($("#logo_area img").attr("src") == "../images/top/logo.png"){
-			$("#logo_area").css("width", "159px");
-			$("#logo_area").css("height", "35px");
-		}else{
-			if(nWidth/fixVal > 100){
-				$("#top_img").css("overflow", "hidden");	
-			}
-			$("#logo_area").css("width", nWidth/fixVal);
+		if(nWidth/fixVal > 100){
+			$("#top_img").css("overflow", "hidden");	
 		}
+		$("#logo_area").css("width", nWidth/fixVal);
 		// console.log($("#top_img img")[0].naturalWidth);
 	}
 	logoImgChange();
