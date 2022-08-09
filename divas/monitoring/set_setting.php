@@ -306,12 +306,12 @@ require_once "./head.php";
 								<input type="text" id="top_title" name="top_title" class="w95 f333_12" value="<?=top_title?>">
 							</td>
 						</tr>
-						<tr class="hh">
+						<!-- <tr class="hh">
 							<td class="bg_lb">상단바 내용</td>
 							<td colspan="6">
 								<input type="text" id="top_text" name="top_text" class="w95 f333_12" value="<?=top_text?>">
 							</td>
-						</tr>
+						</tr> -->
 
 						<tr class="hh hd">
 							<td>로그인 리캡차</td>
@@ -587,8 +587,8 @@ require_once "./head.php";
 						<tr>
 							<th class="w20i">상위 메뉴</th>
 							<th class="w30i">하위 메뉴 대표</th>
-							<!-- <th class="w20i">url</th>
-							<th class="w15i">아이콘</th> -->
+							<!-- <th class="w20i">url</th> -->
+							<!-- <th class="w15i">아이콘</th> -->
 							<th class="w15i">사용 여부</th>
 						</tr>
 					</thead>
