@@ -51,7 +51,7 @@ if(recaptcha == 0){
 // 	$tmp = "2";
 } 
 ?>
-<form id="login_frm" class="login<?=$tmp?>">
+<form id="login_frm" class="login<?=$tmp?>" autocomplete="off">
 	<input type="hidden" name="mode" value="login">
 	<input type="hidden" id="target" name="target" value="<?=$_REQUEST['target']?>">
 	<input type="hidden" id="l_id" name="l_id">
