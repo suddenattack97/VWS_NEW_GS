@@ -11,7 +11,7 @@ require_once "../_info/_set_setting.php";
             <a href="/"><img src="../images/top/<?=top_img?>"></a>
           </div>
       </span> 
-       <span id="top_title"><?=top_title?> <?=top_text?></span> 
+       <span id="top_title"><?=top_title?></span> 
     </div>
 <!-- 
     <div id="top_img"></div>
