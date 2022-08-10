@@ -22,7 +22,7 @@ require_once "./head.php";
 		<input type="hidden" id="mode" name="mode">
 
 		<div class="main_contitle">
-					<div class="tit"><img src="../images/board_icon_aws.png"> <span>사용자 설정</span>
+					<div class="tit"><img src="../images/board_icon_aws.png"> <span>관리자 설정</span>
 					<span id="rtu_name" class="sub_tit mL20"></span>
 					</div>  				
 		</div>
@@ -50,7 +50,7 @@ require_once "./head.php";
 							<th class="li15 bL_1gry">사용자 ID</th>
 							<th class="li25 bL_1gry">사용자명</th>
 							<th class="li25 bL_1gry">소속기관</th>
-							<th class="li15 bL_1gry">사용자 구분</th>
+							<!-- <th class="li15 bL_1gry">사용자 구분</th> -->
 							<!-- <th class="li15 bL_1gry">문자 알림</th> -->
 						</tr>
 					</thead>
@@ -59,7 +59,6 @@ require_once "./head.php";
 				if($data_list){
 					$num = 0;
 					foreach($data_list as $key => $val){ 
-						if($val['USER_TYPE'] != '7'){
 							$num++;
 							?>
 						<tr id="list_<?=$num?>">
@@ -67,11 +66,10 @@ require_once "./head.php";
 							<td id="l_USER_ID" class="li15 bL_1gry"><?=$val['USER_ID']?></td>
 							<td id="l_USER_NAME" class="li25 bL_1gry"><?=$val['USER_NAME']?></td>
 							<td class="li25 bL_1gry"><?=$val['ORGAN_NAME']?></td>
-							<td class="li15 bL_1gry"><?=$val['USER_TYPE_NAME']?></td>
+							<!-- <td class="li15 bL_1gry"><?=$val['USER_TYPE_NAME']?></td> -->
 							<!-- <td class="li15 bL_1gry"><?=$val['IS_PERMIT_NAME']?></td> -->
 						</tr>
 				<? 
-						}
 					}
 				}
 				?>
@@ -85,9 +83,6 @@ require_once "./head.php";
 					<li>
 					<span class="tit">	설정값 입력 </span>
 					<!--<span class="sel_right_n">
-					<? if(ss_user_type == 0 || ss_user_type == 1 || ss_user_type == 7){ ?>
-					<button type="button" id="btn_in" class="btn_bb80">등록</button>
-					<? } ?>
 					<button type="button" id="btn_re" class="btn_lbb80_s">초기화</button>
 					<button type="button" id="btn_up" class="btn_lbb80_s">수정</button>
 					<button type="button" id="btn_de" class="btn_lbb80_s">삭제</button>
@@ -113,31 +108,7 @@ require_once "./head.php";
 							</select>
 						</td>
 					</tr>
-					<tr>
-						<td class="bg_lb w10 bold al_C bL0">사용자 구분</td>
-						<td colspan="3">
-							<select id="USER_TYPE" name="USER_TYPE" class="f333_12">
-								<option value="">사용자 구분</option>
-								<? if(ss_user_type == 0 || ss_user_type == 7){ ?>
-								<option value="0">관리자</option>
-								<? } ?>
-								<? if(ss_user_type == 0 || ss_user_type == 1 || ss_user_type == 7){ ?>
-								<!-- <option value="1">지역 관리자</option> -->
-								<? } ?>
-								<option value="3">사용자</option>
-								<!-- <option value="4">임시 사용자</option> -->
-								<!-- <option value="5">마을 담당자</option> -->
-							</select> 
-							<select id="MENU_TYPE" name="MENU_TYPE" class="f333_12" style="display:none">
-								<option value="0">음성경보시스템</option>
-								<option value="1">기상방재시스템</option>
-								<option value="2">통합방재시스템</option>
-							</select>
-							<!-- <? if(ss_user_type == 0 || ss_user_type == 1 || ss_user_type == 7){ ?>
-							<button type="button" id="btn_right"  class="btn_bbr w130p">방송권한 지역선택</button>
-							<? } ?> -->
-						</td>
-					</tr>
+					
 					<tr>
 						<td class="bg_lb w10 bold al_C bL0">사용자 ID</td>
 						<td colspan="3">
@@ -245,9 +216,7 @@ require_once "./head.php";
 			</li>
 		</ul>
 		<div class="guide_btn"> 
-		<? if(ss_user_type == 0 || ss_user_type == 1 || ss_user_type == 7){ ?>
 					<button type="button" id="btn_in" class="btn_bb80"><i class="fa fa-plus mR5 font15"></i>등록</button>
-					<? } ?>
 					<button type="button" id="btn_re" class="btn_lbb80_s"><i class="fa fa-repeat mR5 font15"></i>초기화</button>
 					<button type="button" id="btn_up" class="btn_lbb80_s"><i class="fa fa-edit mR5 font15"></i>수정</button>
 					<button type="button" id="btn_de" class="btn_lbb80_s"><i class="fa fa-times mR5 font15"></i>삭제</button>
@@ -409,8 +378,8 @@ crypt.setKey(key);
 			        var SMART_MOBILE = data.list.SMART_MOBILE ? data.list.SMART_MOBILE : "";
 					$("#C_USER_ID").val(data.list.USER_ID);
 					$("#ORGAN_ID").val(data.list.ORGAN_ID);
-					$("#USER_TYPE").val(data.list.USER_TYPE);
-					$("#MENU_TYPE").val(data.list.MENU_TYPE);
+					// $("#USER_TYPE").val(data.list.USER_TYPE);
+					// $("#MENU_TYPE").val(data.list.MENU_TYPE);
 					$("#USER_ID").val(data.list.USER_ID);
 					$("#USER_PWD").val(data.list.USER_PWD);
 
@@ -536,7 +505,7 @@ crypt.setKey(key);
 		if(C_USER_ID == ""){
 			$("#C_USER_ID").val("");
 			$("#ORGAN_ID option:eq(0)").prop("selected", true);
-			$("#USER_TYPE").val("");
+			// $("#USER_TYPE").val("");
 			$("#MENU_TYPE").val(0);
 			$("#USER_ID").val("");
 			$("#USER_PWD").val("");
@@ -568,7 +537,7 @@ crypt.setKey(key);
 				        var SMART_MOBILE = data.list.SMART_MOBILE ? data.list.SMART_MOBILE : "";
 						$("#C_USER_ID").val(data.list.USER_ID);
 						$("#ORGAN_ID").val(data.list.ORGAN_ID);
-						$("#USER_TYPE").val(data.list.USER_TYPE);
+						// $("#USER_TYPE").val(data.list.USER_TYPE);
 						$("#MENU_TYPE").val(data.list.MENU_TYPE);
 						$("#USER_ID").val(data.list.USER_ID);
 						$("#USER_PWD").val(data.list.USER_PWD);
@@ -727,78 +696,7 @@ crypt.setKey(key);
 		}
 	});
 
-	// 방송권한 지역 선택
-	// $("#btn_right").click(function(){
-	// 	if( !$("#USER_TYPE").val() ){
-	//     	swal("체크", "사용자 구분을 선택해 주세요.", "warning");
-	//     	$("#USER_TYPE").focus(); return false;	
-	// 	}else if( $("#USER_TYPE").val() == "0" || $("#USER_TYPE").val() == "1" ){
-	//     	swal("체크", "관리자의 경우 소속기관의 모든 장비에 방송권한이 있습니다.", "warning");
-	//     	$("#USER_TYPE").focus(); return false;	
-	// 	}else{
-	// 		popup_open(); // 레이어 팝업 열기
-	// 	}
-	// });
 	
-	// 트리메뉴 호출
-	// if(ie_version == "N/A"){ // ie가 아닐 경우
-	// 	$("#tree").jstree({
-	// 		"plugins":["wholerow", "checkbox"]
-	// 	});
-	// }else{ // ie일 경우(wholerow 플러그인에 ie 오류 있음)
-	// 	$("#tree").jstree({
-	// 		"plugins":["checkbox"]
-	// 	});
-	// }
-
-	// 트리메뉴 체크 상태 변경 시
-	// $("#tree").on("changed.jstree", function(e, data){
-	// 	$("#STR_RTU_ID").val("");
-		
-	//     for(i = 0; i < data.selected.length; i ++){
-	//     	var obj = data.instance.get_node(data.selected[i]);
-	//     	var type = obj.li_attr.type;
-	//     	var group_id = obj.li_attr.group_id;
-	//     	var rtu_id = obj.li_attr.rtu_id;
-	//     	//console.log(type, group_id, rtu_id);
-	    	
-	//     	if(type == "rtu"){
-	// 	    	var STR_RTU_ID = $("#STR_RTU_ID").val();
-		    	
-	// 	    	if(STR_RTU_ID == ""){
-	// 	    		$("#STR_RTU_ID").val(rtu_id);
-	// 	    	}else{
-	// 	    		$("#STR_RTU_ID").val(STR_RTU_ID + "-" + rtu_id);
-	// 	    	}
-	//     	}
-	//     }
-
-	// 	var tmp_arr_check = [];
-	//     var tmp_arr_split = $("#STR_RTU_ID").val().split("-");
-	//     $.each(tmp_arr_split, function(i, v){
-	//     	if(jQuery.inArray(v, tmp_arr_check) == "-1" && v != ""){
-	//  		   tmp_arr_check.push(v);
-	//     	}
-	//     });
-
-	//     $("#STR_RTU_ID").val( tmp_arr_check.join("-") );
-	//     $("#rtu_cnt_text").text( tmp_arr_check.length );
-	// }).jstree();
-	
-	// 방송권한 지역 전체선택
-	// $("#btn_all").click(function(){
-	// 	var now_sel = $("#tree").jstree("get_selected");
-	// 	var max_cnt = 0;
-	// 	$.each($("#tree").jstree("get_json"), function(i, v){
-	// 		max_cnt += Number(v["children"].length + 1);
-	// 	});
-		
-	// 	if(now_sel.length == max_cnt){
-	// 		$("#tree").jstree("deselect_all");
-	// 	}else{
-	// 		$("#tree").jstree("select_all");
-	// 	}
-	// }); 
 		
 	// 아이디 입력 시
 	$("#USER_ID").change(function(){
@@ -851,10 +749,7 @@ crypt.setKey(key);
 		var mobile_check = /^\d{2,3}(-?)\d{3,4}(-?)\d{4}$/; // 전화번호 형식
 		
 		if(kind == "I"){
-			if( !$("#USER_TYPE").val() ){
-			    swal("체크", "사용자 구분을 선택해 주세요.", "warning");
-			    $("#USER_TYPE").focus(); return false;	
-			}else if( !$("#USER_ID").val() ){
+			if( !$("#USER_ID").val() ){
 			    swal("체크", "사용자 ID를 입력해 주세요.", "warning");
 			    $("#USER_ID").focus(); return false;	
 			}else if( !id_check.test( $("#USER_ID").val() ) ){
@@ -881,9 +776,6 @@ crypt.setKey(key);
 		}else if(kind == "U"){
 			if( !$("#C_USER_ID").val() ){
 			    swal("체크", "사용자를 선택해 주세요.", "warning"); return false;
-			}else if( !$("#USER_TYPE").val() ){
-			    swal("체크", "사용자 구분을 선택해 주세요.", "warning");
-			    $("#USER_TYPE").focus(); return false;	
 			}else if( !$("#USER_ID").val() ){
 			    swal("체크", "사용자 ID를 입력해 주세요.", "warning");
 			    $("#USER_ID").focus(); return false;	
@@ -920,7 +812,7 @@ crypt.setKey(key);
 	$("#C_USER_ID").val("");
 	$("#STR_RTU_ID").val("");
 	$("#ORGAN_ID option:eq(0)").prop("selected", true);
-	$("#USER_TYPE").val("");
+	// $("#USER_TYPE").val("");
 	$("#MENU_TYPE").val(0);
 	$("#USER_ID").val("");
 	$("#USER_PWD").val("");
