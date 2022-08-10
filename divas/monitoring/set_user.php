@@ -31,8 +31,8 @@ require_once "./head.php";
 					<li>
 					<span class="tit">	사용자 목록 조회 : </span>
 					<select id="search_col" name="search_col" class="f333_12" size="1">
-						<option value="0">사용자 ID</option>
-						<option value="1">사용자명</option>
+						<option value="0">관리자 ID</option>
+						<option value="1">관리자명</option>
 					</select>
 					&nbsp; 
 					<input type="text" id="search_word" name="search_word" class="f333_12" size="60">
@@ -47,8 +47,8 @@ require_once "./head.php";
 					<thead class="tb_data_tbg">
 						<tr>
 							<th class="li5">번호</th>
-							<th class="li15 bL_1gry">사용자 ID</th>
-							<th class="li25 bL_1gry">사용자명</th>
+							<th class="li15 bL_1gry">관리자 ID</th>
+							<th class="li25 bL_1gry">관리자명</th>
 							<th class="li25 bL_1gry">소속기관</th>
 							<!-- <th class="li15 bL_1gry">사용자 구분</th> -->
 							<!-- <th class="li15 bL_1gry">문자 알림</th> -->
@@ -110,7 +110,7 @@ require_once "./head.php";
 					</tr>
 					
 					<tr>
-						<td class="bg_lb w10 bold al_C bL0">사용자 ID</td>
+						<td class="bg_lb w10 bold al_C bL0">관리자 ID</td>
 						<td colspan="3">
 							<input id="USER_ID" name="USER_ID" type="text" class="f333_12" size="18">
 							<button type="button" id="btn_check"  class="btn_bbr w100p">중복체크</button>
@@ -130,7 +130,7 @@ require_once "./head.php";
 						<td colspan="3"><input id="USER_PWD_RE" type="password" class="f333_12" size="18"></td>
 					</tr> -->
 					<tr>
-						<td class="bg_lb w10 bold al_C bL0">사용자명</td>
+						<td class="bg_lb w10 bold al_C bL0">관리자명</td>
 						<td colspan="3"><input id="USER_NAME" name="USER_NAME" type="text" class="f333_12" size="18"></td>
 					</tr>
 					<tr>
