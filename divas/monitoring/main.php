@@ -129,12 +129,11 @@ $(document).ready(function(){
 				window.onpopstate = function () {
 					history.go(1);
 				};
-				if($(".sweet-overlay").css('display') !== "block"){
-					login('tms_main.php');
-				}
+				// if($(".sweet-overlay").css('display') !== "block"){
+				// 	login('tms_main.php');
+				// }
 
 				return;
-			}else{
 			}
 			var days = Math.floor(distDt / _day);
 			var hours = Math.floor((distDt % _day) / _hour);
