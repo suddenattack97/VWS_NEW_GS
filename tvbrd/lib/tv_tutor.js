@@ -362,16 +362,16 @@
 					// 		return ol.coordinate.format(coordinate, '{x}, {y}', 4);
 					// 	}
 					// }),
-					new ol.control.OverviewMap({
-						layers: [
-							new ol.layer.Tile({
-								source: new ol.source.XYZ({
-									url: 'http://api.vworld.kr/req/wmts/1.0.0/'+api_key+'/'+(map_skin == 1 ? 'Satellite' : (map_skin == 2 ? 'Base' : (map_skin == 3 ? 'Hybrid' : (map_skin == 4 ? 'gray' : (map_skin == 5 ? 'midnight' : 'base')))))+'/{z}/{y}/{x}.'+(map_skin == 1 ? 'jpeg' :(map_skin == 2 ? 'png' : 'png'))
-								})
-							})
-						],
-						collapsed: false
-					}),
+					// new ol.control.OverviewMap({
+					// 	layers: [
+					// 		new ol.layer.Tile({
+					// 			source: new ol.source.XYZ({
+					// 				url: 'http://api.vworld.kr/req/wmts/1.0.0/'+api_key+'/'+(map_skin == 1 ? 'Satellite' : (map_skin == 2 ? 'Base' : (map_skin == 3 ? 'Hybrid' : (map_skin == 4 ? 'gray' : (map_skin == 5 ? 'midnight' : 'base')))))+'/{z}/{y}/{x}.'+(map_skin == 1 ? 'jpeg' :(map_skin == 2 ? 'png' : 'png'))
+					// 			})
+					// 		})
+					// 	],
+					// 	collapsed: false
+					// }),
 					new ol.control.ScaleLine(),
 					new ol.control.Zoom(),
 					new ol.control.ZoomSlider(),
