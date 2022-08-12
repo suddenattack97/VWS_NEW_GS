@@ -92,7 +92,7 @@ Class ClassSetting {
 				$data[$i]['AREA_CODE'] = $rs[$i]['AREA_CODE'];
 				$data[$i]['TEXT'] = $rs[$i]['AREA_MAIN']." ".$rs[$i]['AREA_SUB'];
 				if($rs[$i]['SORT_BASE'] == "0"){
-					$data[$i]['SORT_BASE_NAME'] = "정렬순서";
+					$data[$i]['SORT_BASE_NAME'] = "지정순서";
 				}else if($rs[$i]['SORT_BASE'] == "1"){
 					$data[$i]['SORT_BASE_NAME'] = "행정코드";
 				}else if($rs[$i]['SORT_BASE'] == "2"){
