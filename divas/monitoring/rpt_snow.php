@@ -112,7 +112,7 @@ require_once "./head.php";
 						}
 					}
 					?>	
-					<tr class="bg_lgr">
+					<tr class="bg_lgr print_hd">
 						<td class="li10 bg_lb bR_1gry">최고</td>
 					<? 
 					if($data_row['MAX']){
@@ -125,7 +125,7 @@ require_once "./head.php";
 					?>
 						<td class="backslash bL_1gry"></td>
 					</tr>
-					<tr class="bg_lgr">
+					<tr class="bg_lgr print_hd">
 						<td class="li10 bg_lb bR_1gry">최저</td>
 					<? 
 					if($data_row['MIN']){
@@ -138,7 +138,7 @@ require_once "./head.php";
 					?>
 						<td class="backslash bL_1gry"></td>
 					</tr>
-					<tr class="bg_lgr">
+					<tr class="bg_lgr print_hd">
 						<td class="li10 bg_lb bR_1gry">평균</td>
 					<? 
 					if($data_row['AVR']){
