@@ -374,8 +374,8 @@
 					// }),
 					new ol.control.ScaleLine(),
 					new ol.control.Zoom(),
-					new ol.control.ZoomSlider(),
-					new ol.control.FullScreen()
+					new ol.control.ZoomSlider()
+					// new ol.control.FullScreen()
 				]
 			}); 
 			
