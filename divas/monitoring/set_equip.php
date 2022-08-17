@@ -163,15 +163,15 @@ require_once "./head.php";
 						</td>
 						<td class="bg_lb w10 bold al_C dngr">경계치 / 위험치</td>
 						<td class="">
-							<input type="text" id="FLOW_WARNING" name="FLOW_WARNING" class="warn f333_12" size="10" maxlength="10">
+							<input type="text" id="FLOW_WARNING" name="FLOW_WARNING" class="warn f333_12" size="10" maxlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
 							 / 
-							<input type="text" id="FLOW_DANGER" name="FLOW_DANGER" class="warn f333_12" size="10" maxlength="10">
+							<input type="text" id="FLOW_DANGER" name="FLOW_DANGER" class="warn f333_12" size="10" maxlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
 						</td>
 						<td class="bg_lb w10 bold al_C dngr">경계치 해제 / 위험치 해제</td>
 						<td class=""  colspan="3">
-							<input type="text" id="FLOW_WARNING_OFF" name="FLOW_WARNING_OFF" class="warn f333_12" size="10" maxlength="10">
+							<input type="text" id="FLOW_WARNING_OFF" name="FLOW_WARNING_OFF" class="warn f333_12" size="10" maxlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
 							 / 
-							<input type="text" id="FLOW_DANGER_OFF" name="FLOW_DANGER_OFF" class="warn f333_12" size="10" maxlength="10">
+							<input type="text" id="FLOW_DANGER_OFF" name="FLOW_DANGER_OFF" class="warn f333_12" size="10" maxlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
 						</td>
 					</tr>
 					<tr>
@@ -484,6 +484,87 @@ require_once "./head.php";
 
 <script type="text/javascript">
 $(document).ready(function(){
+	var FLOW_WARNING_CHANGE = 0;
+	var FLOW_DANGER_CHANGE = 0;
+	var FLOW_WARNING_OFF_CHANGE = 0;
+	var FLOW_DANGER_OFF_CHANGE = 0;
+
+	$("input[name='FLOW_WARNING']").click(function(){
+		if(FLOW_WARNING_CHANGE == 0){
+			swal({
+				title: '<div class="alpop_top_r">경계치 변경</div><div class="alpop_mes_r">정말 경계치 정보 변경하실 겁니까?</div>',
+				text: '확인 시 경계치 변경이 가능합니다.',
+				showCancelButton: true,
+				confirmButtonColor: '#ca4726',
+				confirmButtonText: '확인',
+				cancelButtonText: '취소',
+				closeOnConfirm: false,
+				html: true
+			}, function(isConfirm){
+				if(isConfirm){
+					FLOW_WARNING_CHANGE = 1;
+					swal.close();
+				};
+			});
+		}
+	});
+	$("input[name='FLOW_DANGER']").click(function(){
+		if(FLOW_DANGER_CHANGE == 0){
+			swal({
+				title: '<div class="alpop_top_r">위험치 변경</div><div class="alpop_mes_r">정말 위험치 정보 변경하실 겁니까?</div>',
+				text: '확인 시 위험치 변경이 가능합니다.',
+				showCancelButton: true,
+				confirmButtonColor: '#ca4726',
+				confirmButtonText: '확인',
+				cancelButtonText: '취소',
+				closeOnConfirm: false,
+				html: true
+			}, function(isConfirm){
+				if(isConfirm){
+					FLOW_DANGER_CHANGE = 1;
+					swal.close();
+				};
+			});
+		}
+	});
+	$("input[name='FLOW_WARNING_OFF']").click(function(){
+		if(FLOW_WARNING_OFF_CHANGE == 0){
+			swal({
+				title: '<div class="alpop_top_r">경계치 해제 변경</div><div class="alpop_mes_r">정말 경계치 해제 정보 변경하실 겁니까?</div>',
+				text: '확인 시 해제 변경이 가능합니다.',
+				showCancelButton: true,
+				confirmButtonColor: '#ca4726',
+				confirmButtonText: '확인',
+				cancelButtonText: '취소',
+				closeOnConfirm: false,
+				html: true
+			}, function(isConfirm){
+				if(isConfirm){
+					FLOW_WARNING_OFF_CHANGE = 1;
+					swal.close();
+				};
+			});
+		}
+	});
+	$("input[name='FLOW_DANGER_OFF']").click(function(){
+		if(FLOW_DANGER_OFF_CHANGE == 0){
+			swal({
+				title: '<div class="alpop_top_r">위험치 해제 변경</div><div class="alpop_mes_r">정말 위험치 해제 정보 변경하실 겁니까?</div>',
+				text: '확인 시 위험치 해제 변경이 가능합니다.',
+				showCancelButton: true,
+				confirmButtonColor: '#ca4726',
+				confirmButtonText: '확인',
+				cancelButtonText: '취소',
+				closeOnConfirm: false,
+				html: true
+			}, function(isConfirm){
+				if(isConfirm){
+					FLOW_DANGER_OFF_CHANGE = 1;
+					swal.close();
+				};
+			});
+		}
+	});
 	// 조회
 	$("#btn_search").click(function(){
 		var search_col = $("#search_col").val();
@@ -636,6 +717,12 @@ $(document).ready(function(){
 	
 	// 목록 선택
 	$("#list_table tbody tr").click(function(){
+
+		//경계치/위험치 적용 전 확인값 초기화
+		FLOW_WARNING_CHANGE = 0;
+		FLOW_DANGER_CHANGE = 0;
+		FLOW_WARNING_OFF_CHANGE = 0;
+		FLOW_DANGER_OFF_CHANGE = 0;
 		$("#dup_check").val(0); // 행정코드 중복체크 리셋
 		// $("#dup_check2").val(0); // 계측기코드 중복체크 리셋
 		

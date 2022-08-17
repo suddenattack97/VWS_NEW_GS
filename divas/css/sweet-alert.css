@@ -974,6 +974,9 @@ body.stop-scrolling {
 .alpop_top_b{margin-top:-30px; padding:15px; width:100%; background:#5b7fda; text-align:left; vertical-align:middle; color:#fff; font-size:16px; }
 .alpop_mes_b{margin-top:55px; letter-spacing:-0.5px;}
 
+.alpop_top_r{margin-top:-30px; padding:15px; width:100%; background:#ca4726; text-align:left; vertical-align:middle; color:#fff; font-size:16px; }
+.alpop_mes_r{margin-top:55px; letter-spacing:-0.5px;}
+
 .alpop_title{float:left; color:#fff; font-size:16px; margin:10px;}
 .alpop_btn{float:right; display:block; padding:5px; background:#a83300; font-size:12px; color:#fff; font-weight:400; margin:7px;}
 .alpop_btn:hover{background:#9a2f01; cursor:pointer;}
