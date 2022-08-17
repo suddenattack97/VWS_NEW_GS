@@ -277,9 +277,9 @@
 			if(map_control_type == 1){
 				map_type = 1;
 				$("#top").hide();
-				$("#wrapper").append("<div id='new'><span id='widescr'>전체보기</span></div>");
+				$("#wrapper").append("<div id='new'></div>");
 				// $(".sidr").css('top','0px');
-				$("#widescr").click( function(){
+				$("#new").click( function(){
 					window.open('./index.php?','');
 				});
 				$("#sel_move").lcs_off(); // 미니모드일 경우에는 무조건 장비이동 끄도록 설정

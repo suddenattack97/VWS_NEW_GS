@@ -218,7 +218,24 @@ text-decoration: none; */
   padding:0 10px;
 }
 
-div#new{position:absolute;width: 66px;height: 31px;top: 10px;left: 10px;background: #252525;color: white;display:inline-block;padding:0;margin:0;z-index:9999;border-radius: 5px;text-align: center;padding: 6px; cursor: pointer;}
+div#new{
+  position:absolute;
+  width: 66px;
+  height: 31px;
+  top: 10px;
+  left: 10px;
+  background-image: url("../img/widescr.png");
+  background-repeat : no-repeat;
+  color: white;
+  display:inline-block;
+  padding:0;
+  margin:0;
+  z-index:9999;
+  border-radius: 5px;
+  text-align: center;
+  padding: 6px;
+  cursor: pointer;
+  }
 
 /* 
 .menu_show{height:34px; margin:0;}
