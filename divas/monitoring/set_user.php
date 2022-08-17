@@ -177,9 +177,9 @@ require_once "./head.php";
 								<option value="019">019</option>
 							</select>
 							- 
-							<input id="MOBILE2" name="MOBILE2" type="text" class="f333_12" size="6" maxlength="4">
+							<input id="MOBILE2" name="MOBILE2" type="text" class="f333_12" size="6" maxlength="4" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
 							-
-							<input id="MOBILE3" name="MOBILE3" type="text" class="f333_12" size="6" maxlength="4">
+							<input id="MOBILE3" name="MOBILE3" type="text" class="f333_12" size="6" maxlength="4" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
 						</td>
 						<!-- <td class="bg_lb w10 bold al_C">장비 상태 알림</td>
 						<td>
