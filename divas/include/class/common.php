@@ -1,4 +1,5 @@
 <?
+// require_once "../../../tvbrd/class/Divas_Util.php";//유틸 class
 Class ClassCommon {
 
 	private $DB;
@@ -647,21 +648,67 @@ Class ClassCommon {
 		}
 	}
 	
+	// 이미지 업로드 관련 함수
+	function imgUpload($kind, $name, $data){ // kind = (1: 상단 로고, 2: 장비 상태 이미지), name = file name, data = 기타
+		
+		var_dump($_FILES);
+		$file_name = $_FILES[$name]['name'];           // 업로드한 파일명
+		$file_tmp_name = $_FILES[$name]['tmp_name'];   // 임시 디렉토리에 저장한 파일명
+		$file_size = $_FILES[$name]['size'];           // 업로드한 파일의 크기
+		$file_type = $_FILES[$name]['type'];           // 업로드한 파일의 타입
+		
+		if($file_size > 5000000){
+			return array(2, "이미지는 5mb 이하만 등록하실 수 있습니다.");
+		}else if($file_type != "image/jpeg" && $file_type != "image/png"){
+			return array(2, "jpeg 또는 png만 등록하실 수 있습니다.");
+		}
+		
+		$real_name = $file_name; // 업로드 하기 전 파일명
+		$arr = explode(".", $real_name);
+		$file_exe = $arr[1];
+
+		if($kind == 1){
+			$upload_time = time(); // 업로드 되는 시간
+			$upload_name = "file_".$upload_time.".".$file_exe; // 업로드 되는 파일명
+			$upload_dir = "../img/top/".$upload_name; // 파일을 저장할 디렉토리
+			$db_dir = "img/top/".$upload_name; // 디비에 저장할 디렉토리
+		}else if($kind == 2){
+			$upload_time = time();
+			$upload_name = "file_".$upload_time.".".$file_exe;
+			//$upload_dir = "../img/state/".$upload_name;
+			$upload_dir = "../../divas/images/state/".$upload_name;
+			//$db_dir = "img/state/".$upload_name;
+			$db_dir = $upload_name;
+		}
+		
+		// 파일을 지정한 디렉토리에 업로드
+		if( !move_uploaded_file($file_tmp_name, $upload_dir) ){
+			return array(2, "파일 업로드 중 오류가 발생 했습니다.");
+		}else{
+			return array(1, $db_dir);
+		}
+	}
+
 	/**
 	 *   기본 환경설정 저장
 	 */
 	function setSetting(){
 		if(DB == "0"){
-			$sql = " UPDATE dn_setting SET 
-					 top_img = '".$_REQUEST['top_img']."',
-					 top_title = '".$_REQUEST['top_title']."',
-					 top_text = '".$_REQUEST['top_text']."',
-					 recaptcha = ".$_REQUEST['recaptcha'].",
-					 level_cnt = ".$_REQUEST['level_cnt'].",
-					 load_time = ".$_REQUEST['load_time']."";
-			$sql.= " WHERE set_idx = ".ss_organ_id." ";
+			$sql = " UPDATE dn_setting SET ";
+			if($_REQUEST['top_img_check'] == 1){
+				$rs_img = $this->imgUpload(1, "sel_top_img", null);
+				$sql .= " top_img = '".$rs_img[1]."',";
+			}else{
+				$sql .= " top_img = '".$_REQUEST['top_img']."',";
+			}
+			$sql .= " top_title = '".$_REQUEST['top_title']."',";
+			$sql .= " top_text = '".$_REQUEST['top_text']."',";
+			$sql .= " recaptcha = ".$_REQUEST['recaptcha'].",";
+			$sql .= " level_cnt = ".$_REQUEST['level_cnt'].",";
+			$sql .= " load_time = ".$_REQUEST['load_time']."";
+			$sql .= " WHERE set_idx = ".ss_organ_id." ";
 
-			// echo $sql;
+			//echo $sql;
 			//시스템 지역 코드 설정
 			if($_SESSION['user_type'] == 7 && $_REQUEST['area_code']){
 				$sql = " UPDATE wr_map_setting SET
@@ -691,7 +738,7 @@ Class ClassCommon {
 			$top_idx = $_REQUEST['top_idx'];
 			$top_use = $_REQUEST['top_use'];
 			foreach($top_idx as $key => $val){
-				if($top_idx[$key] != '7'){	// 환경설정은 사용 변경하지 않음
+				// if($top_idx[$key] != '7'){	// 환경설정은 사용 변경하지 않음
 					$sql = " UPDATE dn_menu_top SET menu_use = '".$top_use[$key]."'
 						 WHERE menu_idx = '".$val."' ";
 					
@@ -701,7 +748,7 @@ Class ClassCommon {
 						$arrReturn[] = false;
 					}
 					$this->DB->parseFree();
-				}
+				// }
 			}
 			
 			if( in_array(false, $arrReturn) ){

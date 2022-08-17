@@ -298,6 +298,9 @@ require_once "./head.php";
 							<td class="bg_lb">상단바 로고</td>
 							<td colspan="6">
 								<input type="text" id="top_img" name="top_img" class="w95 f333_12" value="<?=top_img?>">
+								<input type="file" id="sel_top_img" name="sel_top_img" style="display: none;">
+								<input type="text" id="top_img_check" name="top_img_check" value="0" style="display: none;">
+								<input type="text" id="mode" name="mode" value="set" style="display: none;">
 							</td>
 						</tr>
 						<tr class="hh">
@@ -836,7 +839,14 @@ require_once "./head.php";
 <script type="text/javascript">
 $(document).ready(function(){
 
-
+    // 상단 로고 및 텍스트 변경
+    $("#top_img").click(function(){
+    	$("#sel_top_img").trigger("click");
+    });
+    $("#sel_top_img").change(function(){
+    	$("#top_img").val(this.value);
+		$("#top_img_check").val(1);
+    });
 	// if(<?=$_SESSION['user_type']?> != "7"){
 	// 	$(".hd").hide();
 	// }
@@ -856,10 +866,12 @@ $(document).ready(function(){
 		// 파라미터 가지고 가도록
 		// $(".hd").show();
 		var param = "mode=set&"+$("#set_frm").serialize();
+		var tmp_data = new FormData($("#set_frm")[0]); 
+
 		$.ajax({
 	        type: "POST",
 	        url: "../_info/json/_set_json.php",
-		    data: param,
+		    data: tmp_data,
 	        cache: false,
 	        dataType: "json",
 	        success : function(data){
