@@ -693,7 +693,7 @@
 					lay_html += ' </table>';
 					lay_html += ' <div class="guide_txt"> ';
 					lay_html += '<ul><li class="icon"><i class="fa fa-paperclip"></i></li>';
-					lay_html += '<li class="txt02">cm</li></ul>';
+					lay_html += '<li class="txt02">단위 [cm]</li></ul>';
 					lay_html += '</div>';
 					lay_html += '</div>';
 					$(lay_id).append(lay_html);
