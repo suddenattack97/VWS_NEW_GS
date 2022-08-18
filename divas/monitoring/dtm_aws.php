@@ -84,249 +84,212 @@ require_once "./head.php";
 									</tr>
 								</thead>
 								<tbody>
-									<?
-										if($data_list['RAIN'] == "-" &&
-										$data_list['TEMP'] == "-" &&
-										$data_list['TEMP_MAX'] == "-" &&
-										$data_list['TEMP_MIN'] == "-" &&
-										$data_list['DEG'] == "-" &&
-										$data_list['VEL'] == "-" &&
-										$data_list['DEG_MAX'] == "-" && 
-										$data_list['VEL_MAX'] == "-" &&
-										$data_list['ATMO'] == "-" && 
-										$data_list['ATMO_MAX'] == "-" &&
-										$data_list['ATMO_MIN'] == "-" &&
-										$data_list['HUMI'] == "-" &&
-										$data_list['HUMI_MAX'] == "-" &&
-										$data_list['HUMI_MIN'] == "-" &&
-										$data_list['RADI'] == "-" &&
-										$data_list['SUNS'] == "-"){
-											var_dump($data_list);
-											// echo "@@@@";
-									?>
 									<tr class="hh">
 										<td colspan="2" class="blue_L_1">우량 (mm)</td>
 									<? 
-									// if($data_list['RAIN']){
+									if($data_list['RAIN']){
 										foreach($data_list['RAIN'] as $key => $val){ 
 									?>
 										<td id="data" data-mode="rain" data-hour="<?=$key?>"><?=$val?></td>
 									<? 
 										}
-									// }
+									}
 									?>	
 										<td class="mint_L"><?=$data_list['RAIN_SUM']?></td>
 									</tr>
 									<tr class="hh">
 										<td colspan="2" class="blue_L_1 line14">온도 (℃)</td>
 									<? 
-									// if($data_list['TEMP']){
+									if($data_list['TEMP']){
 										foreach($data_list['TEMP'] as $key => $val){ 
 									?>
 										<td id="data" data-mode="temp" data-kind="TEMP" data-hour="<?=$key?>"><?=$val?></td>
 									<? 
 										}
-									// }
+									}
 									?>	
 										<td class="mint_L"><?=$data_list['TEMP_AVR']?></td>
 									</tr>
 									<!-- <tr>
 										<td class="blue_L_1">최고</td>
 									<? 
-									// if($data_list['TEMP_MAX']){
+									if($data_list['TEMP_MAX']){
 										foreach($data_list['TEMP_MAX'] as $key => $val){ 
 									?>
 										<td id="data" data-mode="temp" data-kind="TEMP_MAX" data-hour="<?=$key?>"><?=$val?></td>
 									<? 
 										}
-									// }
+									}
 									?>	
 										<td class="mint_L"><?=$data_list['TEMP_MAX_AVR']?></td>
 									</tr>
 									<tr>
 										<td class="blue_L_1">최저</td>
 									<? 
-									// if($data_list['TEMP_MIN']){
+									if($data_list['TEMP_MIN']){
 										foreach($data_list['TEMP_MIN'] as $key => $val){ 
 									?>
 										<td id="data" data-mode="temp" data-kind="TEMP_MIN" data-hour="<?=$key?>"><?=$val?></td>
 									<? 
 										}
-									// }
+									}
 									?>	
 										<td class="mint_L"><?=$data_list['TEMP_MIN_AVR']?></td>
 									</tr> -->
 									<tr class="hh"> 
 										<td colspan="2" rowspan="2" class="blue_L_1 line14">풍향 / 풍속<br> (㎧)</td>
 									<? 
-									// if($data_list['DEG']){
+									if($data_list['DEG']){
 										foreach($data_list['DEG'] as $key => $val){ 
 									?>
 										<td id="data" data-mode="wind" data-kind="DEG" data-hour="<?=$key?>"><?=$val?></td>
 									<? 
 										}
-									// }
+									}
 									?>	
 										<td class="mint_L"><?=$data_list['DEG_AVR']?></td>
 									</tr>
 									<tr class="hh">
 									<? 
-									// if($data_list['VEL']){
+									if($data_list['VEL']){
 										foreach($data_list['VEL'] as $key => $val){ 
 									?>
 										<td id="data" data-mode="wind" data-kind="VEL" data-hour="<?=$key?>"><?=$val?></td>
 									<? 
 										}
-									// }
+									}
 									?>	
 										<td class="mint_L"><?=$data_list['VEL_AVR']?></td>
 									</tr>
 									<!-- <tr>
 										<td rowspan="2" class="blue_L_1">최고</td>
 									<? 
-									// if($data_list['DEG_MAX']){
+									if($data_list['DEG_MAX']){
 										foreach($data_list['DEG_MAX'] as $key => $val){ 
 									?>
 										<td id="data" data-mode="wind" data-kind="DEG_MAX" data-hour="<?=$key?>"><?=$val?></td>
 									<? 
 										}
-									// }
+									}
 									?>	
 										<td class="mint_L"><?=$data_list['DEG_MAX_AVR']?></td>
 									</tr>
 									<tr>
 									<? 
-									// if($data_list['VEL_MAX']){
+									if($data_list['VEL_MAX']){
 										foreach($data_list['VEL_MAX'] as $key => $val){ 
 									?>
 										<td id="data" data-mode="wind" data-kind="VEL_MAX" data-hour="<?=$key?>"><?=$val?></td>
 									<? 
 										}
-									// }
+									}
 									?>	
 										<td class="mint_L"><?=$data_list['VEL_MAX_AVR']?></td>
 									</tr> -->
 									<tr class="hh"> 
 										<td colspan="2" class="blue_L_1 line14">기압 (hPa)</td>
 									<? 
-									// if($data_list['ATMO']){
+									if($data_list['ATMO']){
 										foreach($data_list['ATMO'] as $key => $val){ 
 									?>
 										<td id="data" data-mode="atmo" data-kind="ATMO" data-hour="<?=$key?>"><?=$val?></td>
 									<? 
 										}
-									// }
+									}
 									?>	
 										<td class="mint_L"><?=$data_list['ATMO_AVR']?></td>
 									</tr>
 									<!-- <tr>
 										<td class="blue_L_1">최고</td>
 									<? 
-									// if($data_list['ATMO_MAX']){
+									if($data_list['ATMO_MAX']){
 										foreach($data_list['ATMO_MAX'] as $key => $val){ 
 									?>
 										<td id="data" data-mode="atmo" data-kind="ATMO_MAX" data-hour="<?=$key?>"><?=$val?></td>
 									<? 
 										}
-									// }
+									}
 									?>	
 										<td class="mint_L"><?=$data_list['ATMO_MAX_AVR']?></td>
 									</tr>
 									<tr>
 										<td class="blue_L_1">최저</td>
 									<? 
-									// if($data_list['ATMO_MIN']){
+									if($data_list['ATMO_MIN']){
 										foreach($data_list['ATMO_MIN'] as $key => $val){ 
 									?>
 										<td id="data" data-mode="atmo" data-kind="ATMO_MIN" data-hour="<?=$key?>"><?=$val?></td>
 									<? 
 										}
-									// }
+									}
 									?>	
 										<td class="mint_L"><?=$data_list['ATMO_MIN_AVR']?></td>
 									</tr> -->
 									<tr class="hh">
 										<td colspan="2" class="blue_L_1 line14">습도 (%)</td>
 									<? 
-									// if($data_list['HUMI']){
+									if($data_list['HUMI']){
 										foreach($data_list['HUMI'] as $key => $val){ 
 									?>
 										<td id="data" data-mode="humi" data-kind="HUMI" data-hour="<?=$key?>"><?=$val?></td>
 									<? 
 										}
-									// }
+									}
 									?>	
 										<td class="mint_L"><?=$data_list['HUMI_AVR']?></td>
 									</tr>
 									<!-- <tr>
 										<td class="blue_L_1">최고</td>
 									<? 
-									// if($data_list['HUMI_MAX']){
+									if($data_list['HUMI_MAX']){
 										foreach($data_list['HUMI_MAX'] as $key => $val){ 
 									?>
 										<td id="data" data-mode="humi" data-kind="HUMI_MAX" data-hour="<?=$key?>"><?=$val?></td>
 									<? 
 										}
-									// }
+									}
 									?>	
 										<td class="mint_L"><?=$data_list['HUMI_MAX_AVR']?></td>
 									</tr>
 									<tr>
 										<td class="blue_L_1">최저</td>
 									<? 
-									// if($data_list['HUMI_MIN']){
+									if($data_list['HUMI_MIN']){
 										foreach($data_list['HUMI_MIN'] as $key => $val){ 
 									?>
 										<td id="data" data-mode="humi" data-kind="HUMI_MIN" data-hour="<?=$key?>"><?=$val?></td>
 									<? 
 										}
-									// }
+									}
 									?>	
 										<td class="mint_L"><?=$data_list['HUMI_MIN_AVR']?></td>
 									</tr> -->
 									<!-- <tr class="hh">
 										<td colspan="2" class="blue_L_1">일사 (MJ/m2)</td>
 									<? 
-									// if($data_list['RADI']){
+									if($data_list['RADI']){
 										foreach($data_list['RADI'] as $key => $val){ 
 									?>
 										<td id="data" data-mode="radi" data-hour="<?=$key?>"><?=$val?></td>
 									<? 
 										}
-									// }
+									}
 									?>	
 										<td class="mint_L"><?=$data_list['RADI_AVR']?></td>
 									</tr>
 									<tr class="hh">
 										<td colspan="2" class="blue_L_1"> 일조(hr)</td>
 									<? 
-									// if($data_list['SUNS']){
+									if($data_list['SUNS']){
 										foreach($data_list['SUNS'] as $key => $val){ 
 									?>
 										<td id="data" data-mode="suns" data-hour="<?=$key?>"><?=$val?></td>
 									<? 
 										}
-									// }
+									}
 									?>	
 										<td class="mint_L"><?=$data_list['SUNS_AVR']?></td>
 									</tr> -->
-									<? 
-									}else{
-										?>
-										<tr>
-											<td colspan="26" style="height:560px">데이터가 없습니다.</td>
-										</tr>
-					
-										<? for($i=0; $i<$rowCnt; $i++){?>
-												<tr>
-										<? for($j=0; $j<$columCnt; $j++){?>	
-												<td class="blue_L_1"></td>	
-										<?}?>
-											</tr>
-										<?	
-											}
-										}
-										?>	
 								</tbody>
 							</table>
 						</li>
@@ -603,31 +566,83 @@ $(document).ready(function(){
 
 	// 자료 수정
 	$("#btn_save").click(function(){
+		// console.log($("#mode").val());
 		var tmp_spin = null;
-		var param = $("#dtm_frm").serialize();
-		$.ajax({
-	        type: "POST",
-	        url: "../_info/json/_dtm_json.php",
-		    data: param,
-	        cache: false,
-	        dataType: "json",
-	        success : function(data){
-                if(data.result){
-                	popup_main_close(); // 레이어 좌측 및 상단 닫기
-		    		location.reload(); return false;
-                }else{
-					swal("체크", "자료 수정중 오류가 발생 했습니다.", "warning");
-                }
-	        },
-	        beforeSend : function(data){ 
-	   			tmp_spin = spin_start("#dtm_frm #spin", "-40px");
-	        },
-	        complete : function(data){ 
-	        	if(tmp_spin){
-	        		spin_stop(tmp_spin, "#dtm_frm #spin");
-	        	}
-	        }
-	    });
+		let check = [];
+
+		// 풍향이 아닐때만 숫자, 음수 체크
+		if($("#mode").val() == 'deg_save'){
+			var param = $("#dtm_frm").serialize();
+			$.ajax({
+				type: "POST",
+				url: "../_info/json/_dtm_json.php",
+				data: param,
+				cache: false,
+				dataType: "json",
+				success : function(data){
+					if(data.result){
+						popup_main_close(); // 레이어 좌측 및 상단 닫기
+						location.reload(); return false;
+					}else{
+						swal("체크", "자료 수정중 오류가 발생 했습니다.", "warning");
+					}
+				},
+				beforeSend : function(data){ 
+					   tmp_spin = spin_start("#dtm_frm #spin", "-40px");
+				},
+				complete : function(data){ 
+					if(tmp_spin){
+						spin_stop(tmp_spin, "#dtm_frm #spin");
+					}
+				}
+			});
+		}else{
+			// 숫자, 음수 체크
+			$('.tb_data_p2 .f333_12').each(function(idx){    
+				var value = $(this).val();
+				if($.isNumeric(value)){
+					if($("#mode").val() == 'temp_save') check[idx] = 1; // 온도 타입일때
+					else check[idx] = value >= 0 ? 1 : 2;		// 온도 타입 아닐때
+				}else{
+					check[idx] = 0;
+				}
+			  });
+			console.log(check);
+			if(check.indexOf(0) != -1){
+				let eq = check.indexOf(0);
+				swal("체크", "숫자만 입력해 주세요!", "warning");
+				// $(".tb_data_p2 .f333_12").eq(eq).focus();
+			}else if(check.indexOf(2) != -1){
+				let eq = check.indexOf(2);
+				swal("체크", "양수로 입력해 주세요!", "warning");
+				// $(".tb_data_p2 .f333_12").eq(eq).focus();
+			}else{
+				var param = $("#dtm_frm").serialize();
+				$.ajax({
+					type: "POST",
+					url: "../_info/json/_dtm_json.php",
+					data: param,
+					cache: false,
+					dataType: "json",
+					success : function(data){
+						if(data.result){
+							popup_main_close(); // 레이어 좌측 및 상단 닫기
+							location.reload(); return false;
+						}else{
+							swal("체크", "자료 수정중 오류가 발생 했습니다.", "warning");
+						}
+					},
+					beforeSend : function(data){ 
+						   tmp_spin = spin_start("#dtm_frm #spin", "-40px");
+					},
+					complete : function(data){ 
+						if(tmp_spin){
+							spin_stop(tmp_spin, "#dtm_frm #spin");
+						}
+					}
+				});
+			}
+		}
 	});
 
 	// 풍향 변환
