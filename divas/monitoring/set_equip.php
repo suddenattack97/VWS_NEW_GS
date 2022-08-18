@@ -246,7 +246,7 @@ require_once "./head.php";
 							</select>분
 						</td>
 						<td class="bg_lb w10 bold al_C">PORT</td>
-						<td><input type="text" id="PORT" name="PORT" class="f333_12" size="6" value="0"></td>
+						<td><input type="text" id="PORT" name="PORT" class="f333_12" size="6" maxlength="5" value="0" oninput="input_check('PORT',this.value);this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"></td>
 						<td class="bg_lb w10 bold al_C">통신정보</td>
 						<td><input type="text" id="CONNECTION_INFO" name="CONNECTION_INFO" class="f333_12" size="18"></td>
 						<td class="bg_lb w10 bold al_C">Baudrate</td>
@@ -483,6 +483,23 @@ require_once "./head.php";
 </div>
 
 <script type="text/javascript">
+
+	function input_check(kind,value){
+		if(kind == "PORT"){
+			if(value > 65535) {
+				$("#PORT").val(0);
+				swal({
+					title: '<div class="alpop_top_r">PORT 입력</div><div class="alpop_mes_r">유효한 범위의 값이 아닙니다.</div>',
+					text: '정상적인 값을 입력해주세요.',
+					confirmButtonColor: '#ca4726',
+					confirmButtonText: '확인',
+					html: true
+				});
+			}
+		}
+	}
+
+
 $(document).ready(function(){
 	var FLOW_WARNING_CHANGE = 0;
 	var FLOW_DANGER_CHANGE = 0;
