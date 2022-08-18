@@ -259,8 +259,7 @@ $(document).ready(function(){
 		$('.tb_data_p2 .f333_12').each(function(idx){    
 			var value = $(this).val();
 			if($.isNumeric(value)){
-				check[idx] = 1;
-				// check[idx] = value >= 0 ? 1 : 2;
+				check[idx] = value >= 0 ? 1 : 2;
 			}else{
 				check[idx] = 0;
 			}
