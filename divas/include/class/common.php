@@ -570,6 +570,7 @@ Class ClassCommon {
 			
 			define("top_img", $tmp_top_img);					//상단바 로고 경로
 			define("top_title", $rs[0]['top_title']);			//상단바 타이틀 제목
+			$_SESSION['top_title'] = $rs[0]['top_title'] ;			//상단바 타이틀 제목
 			define("top_text", $rs[0]['top_text']);				//상단바 타이틀 내용
 			define("recaptcha", $rs[0]['recaptcha']);			//리캡차(0: 미사용, 1: 구글, 2: 기본)
 			define("level_cnt", $rs[0]['level_cnt']);			//경계 단계(2, 3, 5)

@@ -13,7 +13,7 @@ require_once "./head.php";
 	    	</div>
 	        <div id="top_img"></div>
 	        <div class="ttext">
-	        	<span id="top_text"></span> <span class="txtcolor_lb">자동 기상현황 관측시스템</span>
+	        	<span id="top_text"></span> <span class="txtcolor_lb"><?=$_SESSION['top_title']?></span>
 	        </div>
 			<div id="now_date" class="date"></div>
     	</div>
