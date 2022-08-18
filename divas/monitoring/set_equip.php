@@ -1449,13 +1449,15 @@ $(document).ready(function(){
 			    $("#RTU_NAME").focus(); return false;	
 			}else if( !$("#LINE_NO").val() ){
 			    swal("체크", "회선을 선택해 주세요.", "warning");
-			    $("#LINE_NO").focus(); return false;	
+			    // $("#LINE_NO").focus(); 
+				return false;	
 			}else if( !$("#MODEL_NO").val() ){
 			    swal("체크", "모델을 선택해 주세요.", "warning"); 
 			    $("#MODEL_NO").focus(); return false;	
 			}else if( !$("#RTU_TYPE").val() ){
 			    swal("체크", "장비 구분을 선택해 주세요.", "warning"); 
-			    $("#RTU_TYPE").focus(); return false;	
+			    // $("#RTU_TYPE").focus(); 
+				return false;	
 			// }else if( $("#VHF_USE").val() == "1" ){
 				// if( !$("#VHF_SYSTEM_ID").val() ){
 			    // 	swal("체크", "VHF 그룹을 입력해 주세요.", "warning"); 
