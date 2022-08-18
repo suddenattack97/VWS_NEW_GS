@@ -652,7 +652,6 @@ Class ClassCommon {
 	// 이미지 업로드 관련 함수
 	function imgUpload($kind, $name, $data){ // kind = (1: 상단 로고, 2: 장비 상태 이미지), name = file name, data = 기타
 		
-		var_dump($_FILES);
 		$file_name = $_FILES[$name]['name'];           // 업로드한 파일명
 		$file_tmp_name = $_FILES[$name]['tmp_name'];   // 임시 디렉토리에 저장한 파일명
 		$file_size = $_FILES[$name]['size'];           // 업로드한 파일의 크기
@@ -671,8 +670,8 @@ Class ClassCommon {
 		if($kind == 1){
 			$upload_time = time(); // 업로드 되는 시간
 			$upload_name = "file_".$upload_time.".".$file_exe; // 업로드 되는 파일명
-			$upload_dir = "../img/top/".$upload_name; // 파일을 저장할 디렉토리
-			$db_dir = "img/top/".$upload_name; // 디비에 저장할 디렉토리
+			$upload_dir = ROOT_DIR.IMG_DIR."top/".$upload_name; // 파일을 저장할 디렉토리
+			$db_dir = $upload_name; // 디비에 저장할 디렉토리
 		}else if($kind == 2){
 			$upload_time = time();
 			$upload_name = "file_".$upload_time.".".$file_exe;

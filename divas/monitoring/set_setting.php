@@ -844,7 +844,7 @@ $(document).ready(function(){
     	$("#sel_top_img").trigger("click");
     });
     $("#sel_top_img").change(function(){
-    	$("#top_img").val(this.value);
+    	$("#top_img").val(this.value.substring(12));
 		$("#top_img_check").val(1);
     });
 	// if(<?=$_SESSION['user_type']?> != "7"){
@@ -872,6 +872,8 @@ $(document).ready(function(){
 	        type: "POST",
 	        url: "../_info/json/_set_json.php",
 		    data: tmp_data,
+			contentType: false,
+          	processData: false,
 	        cache: false,
 	        dataType: "json",
 	        success : function(data){
