@@ -918,8 +918,10 @@
 					console.log("범위 설정오류! function inputCheck()의 세번째 argument");
 				}
 			}
-			obj.value = obj.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
 			if(range.length > 1) {
+				// 최저가 음수이면 '-' 기호도 허용
+				if(range[0] < 0) obj.value = obj.value.replace(/[^\-0-9.]/g, '').replace(/(\..*)\./g, '$1');
+				else obj.value = obj.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
 				if(range[0] > obj.value || range[1] < obj.value) {
 					obj.value = obj.value.slice(0, obj.value.length-1);
 				}

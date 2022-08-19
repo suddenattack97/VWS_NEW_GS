@@ -332,12 +332,12 @@ require_once "./head.php";
                 <th class="bL_1blue2">50-59분</th>
               </tr>
               <tr id="input">
-                <td><input type="text" id="min_1" name="min[]" class="f333_12 al_c"></td>
-                <td class="bL_1black"><input type="text" id="min_2" name="min[]" class="f333_12 al_c"></td>
-                <td class="bL_1black"><input type="text" id="min_3" name="min[]" class="f333_12 al_c"></td>
-                <td class="bL_1black"><input type="text" id="min_4" name="min[]" class="f333_12 al_c"></td>
-                <td class="bL_1black"><input type="text" id="min_5" name="min[]" class="f333_12 al_c"></td>
-                <td class="bL_1black"><input type="text" id="min_6" name="min[]" class="f333_12 al_c"></td>
+                <td><input type="text" id="min_1" name="min[]" class="f333_12 al_c" oninput="inputCheck(this,'onlyNumber','0~9999')"></td>
+                <td class="bL_1black"><input type="text" id="min_2" name="min[]" class="f333_12 al_c" oninput="inputCheck(this,'onlyNumber','0~9999')"></td>
+                <td class="bL_1black"><input type="text" id="min_3" name="min[]" class="f333_12 al_c" oninput="inputCheck(this,'onlyNumber','0~9999')"></td>
+                <td class="bL_1black"><input type="text" id="min_4" name="min[]" class="f333_12 al_c" oninput="inputCheck(this,'onlyNumber','0~9999')"></td>
+                <td class="bL_1black"><input type="text" id="min_5" name="min[]" class="f333_12 al_c" oninput="inputCheck(this,'onlyNumber','0~9999')"></td>
+                <td class="bL_1black"><input type="text" id="min_6" name="min[]" class="f333_12 al_c" oninput="inputCheck(this,'onlyNumber','0~9999')"></td>
               </tr>
               <tr id="select">
               	<? for($i=1; $i<=6; $i++){ ?>
@@ -452,6 +452,14 @@ $(document).ready(function(){
 		if(mode == "rain"){
 			mode_val = "rain_save";
 			mode_text = "강우 자료 수정";
+			
+			$("#min_1").attr('oninput', "inputCheck(this,'onlyNumber','0~9999')");
+			$("#min_2").attr('oninput', "inputCheck(this,'onlyNumber','0~9999')");
+			$("#min_3").attr('oninput', "inputCheck(this,'onlyNumber','0~9999')");
+			$("#min_4").attr('oninput', "inputCheck(this,'onlyNumber','0~9999')");
+			$("#min_5").attr('oninput', "inputCheck(this,'onlyNumber','0~9999')");
+			$("#min_6").attr('oninput', "inputCheck(this,'onlyNumber','0~9999')");
+
 		}else if(mode == "temp"){
 			if(kind == "TEMP"){
 				mode_val = "temp_save";
@@ -463,20 +471,45 @@ $(document).ready(function(){
 				mode_val = "temp_min_save";
 				mode_text = "온도(최저) 자료 수정";
 			}
+
+			$("#min_1").attr('oninput', "inputCheck(this,'onlyNumber','-100~100')");
+			$("#min_2").attr('oninput', "inputCheck(this,'onlyNumber','-100~100')");
+			$("#min_3").attr('oninput', "inputCheck(this,'onlyNumber','-100~100')");
+			$("#min_4").attr('oninput', "inputCheck(this,'onlyNumber','-100~100')");
+			$("#min_5").attr('oninput', "inputCheck(this,'onlyNumber','-100~100')");
+			$("#min_6").attr('oninput', "inputCheck(this,'onlyNumber','-100~100')");
+
 		}else if(mode == "wind"){
 			if(kind == "VEL"){
 				mode_val = "vel_save";
 				mode_text = "풍속 자료 수정";
+				
+				$("#min_1").attr('oninput', "inputCheck(this,'onlyNumber','0~100')");
+				$("#min_2").attr('oninput', "inputCheck(this,'onlyNumber','0~100')");
+				$("#min_3").attr('oninput', "inputCheck(this,'onlyNumber','0~100')");
+				$("#min_4").attr('oninput', "inputCheck(this,'onlyNumber','0~100')");
+				$("#min_5").attr('oninput', "inputCheck(this,'onlyNumber','0~100')");
+				$("#min_6").attr('oninput', "inputCheck(this,'onlyNumber','0~100')");
+				
 			}else if(kind == "VEL_MAX"){
 				mode_val = "vel_max_save";
 				mode_text = "풍속(최고) 자료 수정";
 			}else if(kind == "DEG"){
 				mode_val = "deg_save";
 				mode_text = "풍향 자료 수정";
+				
+				$("#min_1").attr('oninput', "");
+				$("#min_2").attr('oninput', "");
+				$("#min_3").attr('oninput', "");
+				$("#min_4").attr('oninput', "");
+				$("#min_5").attr('oninput', "");
+				$("#min_6").attr('oninput', "");
+				
 			}else if(kind == "DEG_MAX"){
 				mode_val = "deg_max_save";
 				mode_text = "풍향(최고) 자료 수정";
 			}
+
 		}else if(mode == "atmo"){
 			if(kind == "ATMO"){
 				mode_val = "atmo_save";
@@ -488,6 +521,14 @@ $(document).ready(function(){
 				mode_val = "atmo_min_save";
 				mode_text = "기압(최저) 자료 수정";
 			}
+			
+			$("#min_1").attr('oninput', "inputCheck(this,'onlyNumber','0~9999')");
+			$("#min_2").attr('oninput', "inputCheck(this,'onlyNumber','0~9999')");
+			$("#min_3").attr('oninput', "inputCheck(this,'onlyNumber','0~9999')");
+			$("#min_4").attr('oninput', "inputCheck(this,'onlyNumber','0~9999')");
+			$("#min_5").attr('oninput', "inputCheck(this,'onlyNumber','0~9999')");
+			$("#min_6").attr('oninput', "inputCheck(this,'onlyNumber','0~9999')");
+			
 		}else if(mode == "humi"){
 			if(kind == "HUMI"){
 				mode_val = "humi_save";
@@ -499,6 +540,14 @@ $(document).ready(function(){
 				mode_val = "humi_min_save";
 				mode_text = "습도(최저) 자료 수정";
 			}
+			
+			$("#min_1").attr('oninput', "inputCheck(this,'onlyNumber','0~100')");
+			$("#min_2").attr('oninput', "inputCheck(this,'onlyNumber','0~100')");
+			$("#min_3").attr('oninput', "inputCheck(this,'onlyNumber','0~100')");
+			$("#min_4").attr('oninput', "inputCheck(this,'onlyNumber','0~100')");
+			$("#min_5").attr('oninput', "inputCheck(this,'onlyNumber','0~100')");
+			$("#min_6").attr('oninput', "inputCheck(this,'onlyNumber','0~100')");
+
 		}else if(mode == "radi"){
 			mode_val = "radi_save";
 			mode_text = "일사 자료 수정";
