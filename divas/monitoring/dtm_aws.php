@@ -84,7 +84,7 @@ require_once "./head.php";
 									</tr>
 								</thead>
 								<tbody>
-									<tr class="hh">
+									<tr class="hh_aws">
 										<td colspan="2" class="blue_L_1">우량 (mm)</td>
 									<? 
 									if($data_list['RAIN']){
@@ -97,7 +97,7 @@ require_once "./head.php";
 									?>	
 										<td class="mint_L"><?=$data_list['RAIN_SUM']?></td>
 									</tr>
-									<tr class="hh">
+									<tr class="hh_aws">
 										<td colspan="2" class="blue_L_1 line14">온도 (℃)</td>
 									<? 
 									if($data_list['TEMP']){
@@ -136,7 +136,7 @@ require_once "./head.php";
 									?>	
 										<td class="mint_L"><?=$data_list['TEMP_MIN_AVR']?></td>
 									</tr> -->
-									<tr class="hh"> 
+									<tr class="hh_aws"> 
 										<td colspan="2" rowspan="2" class="blue_L_1 line14">풍향 / 풍속<br> (㎧)</td>
 									<? 
 									if($data_list['DEG']){
@@ -149,7 +149,7 @@ require_once "./head.php";
 									?>	
 										<td class="mint_L"><?=$data_list['DEG_AVR']?></td>
 									</tr>
-									<tr class="hh">
+									<tr class="hh_aws">
 									<? 
 									if($data_list['VEL']){
 										foreach($data_list['VEL'] as $key => $val){ 
@@ -186,7 +186,7 @@ require_once "./head.php";
 									?>	
 										<td class="mint_L"><?=$data_list['VEL_MAX_AVR']?></td>
 									</tr> -->
-									<tr class="hh"> 
+									<tr class="hh_aws"> 
 										<td colspan="2" class="blue_L_1 line14">기압 (hPa)</td>
 									<? 
 									if($data_list['ATMO']){
@@ -225,7 +225,7 @@ require_once "./head.php";
 									?>	
 										<td class="mint_L"><?=$data_list['ATMO_MIN_AVR']?></td>
 									</tr> -->
-									<tr class="hh">
+									<tr class="hh_aws">
 										<td colspan="2" class="blue_L_1 line14">습도 (%)</td>
 									<? 
 									if($data_list['HUMI']){

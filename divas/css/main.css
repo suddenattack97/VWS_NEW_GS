@@ -570,8 +570,10 @@
 
 /*데이터테이블 공통스타일 - 셀 너비는 li class로 따로 잡아서 씀*/
 
-  .hh{}/*ul 마우스오버 컬러 처리용*/
+  .hh{ }/*ul 마우스오버 컬러 처리용*/
   .hh:hover{background:#f4f6f9 ; }
+
+  .hh_aws{ height : 70px;}
 
   .hh_c{}
   .hh_c:hover{cursor:pointer;}
