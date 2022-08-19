@@ -133,7 +133,7 @@ require_once "./head.php";
 					<tr>
 						<td class="bg_lb w10 bold al_C">장비명</td>
 						<td>
-							<input type="text" id="RTU_NAME" name="RTU_NAME" class="f333_12" size="22">
+							<input type="text" id="RTU_NAME" name="RTU_NAME" class="f333_12" size="22" maxlength="30">
 						</td>
 						<td class="bg_lb w10 bold al_C">장비 구분</td>
 						<td colspan="5">
@@ -163,7 +163,7 @@ require_once "./head.php";
 						</td>
 						<td class="bg_lb w10 bold al_C dngr">경계치 / 위험치</td>
 						<td class="">
-							<input type="text" id="FLOW_WARNING" name="FLOW_WARNING" class="warn f333_12" size="10" maxlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+							<input type="text" id="FLOW_WARNING" name="FLOW_WARNING" class="warn f333_12" size="10" maxlength="10" oninput="inputCheck(this,'onlyNumber','0~9999')">
 							 / 
 							<input type="text" id="FLOW_DANGER" name="FLOW_DANGER" class="warn f333_12" size="10" maxlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
 						</td>
@@ -246,9 +246,9 @@ require_once "./head.php";
 							</select>분
 						</td>
 						<td class="bg_lb w10 bold al_C">PORT</td>
-						<td><input type="text" id="PORT" name="PORT" class="f333_12" size="6" maxlength="5" value="0" oninput="input_check('PORT',this.value);this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"></td>
+						<td><input type="text" id="PORT" name="PORT" class="f333_12" size="6" maxlength="5" value="0" oninput="inputCheck(this,'onlyPort','')"></td>
 						<td class="bg_lb w10 bold al_C">통신정보</td>
-						<td><input type="text" id="CONNECTION_INFO" name="CONNECTION_INFO" class="f333_12" size="18" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"></td>
+						<td><input type="text" id="CONNECTION_INFO" name="CONNECTION_INFO" class="f333_12" size="18" oninput="inputCheck(this,'onlyIp','')"></td>
 						<td class="bg_lb w10 bold al_C">Baudrate</td>
 						<td>
 							<select id="BAUDRATE" name="BAUDRATE" size="1" class="f333_12">

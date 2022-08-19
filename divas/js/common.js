@@ -901,6 +901,56 @@
 		}
 	}
 		
+	 /**
+     *  oninput 입력시 유효성 체크
+	 *  type = onlyNumber 만 range 사용
+     *  20220819 서정명
+     */
+	function inputCheck(obj, type, range) {
+		if(type == 'onlyNumber'){ // 숫자값만, 범위(range) 체크
+			if(range.length > 1) {
+				range = range.split('~');
+				if(range.length == 2){
+					range[0] = parseInt(range[0]);
+					range[1] = parseInt(range[1]);
+				}else{
+					console.log("범위 설정오류! function inputCheck()의 세번째 argument");
+				}
+			}
+			obj.value = obj.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
+			if(range.length > 1) {
+				if(range[0] > obj.value || range[1] < obj.value) {
+					obj.value = obj.value.slice(0, obj.value.length-1);
+				}
+			}
+		}else if(type == 'onlyIp'){ // ip 체크 : 숫자값만, ip 정규식 체크
+			obj.value = obj.value.replace(/[^0-9.]/g, '');
+			// let ipformat = /^(?!.*\.$)((?!0\d)(1?\d?\d|25[0-5]|2[0-4]\d)(\.|$)){4}$/;
+			let ipformat = /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
+			if(obj.value.length > 0){
+				obj.onblur = function(){
+					if (!ipformat.test(obj.value)) {
+						obj.value = "";
+						swal({
+							title: '<div class="alpop_top_r">IP 입력</div><div class="alpop_mes_r">유효한 범위의 값이 아닙니다.</div>',
+							text: '정상적인 값을 입력해주세요.',
+							confirmButtonColor: '#ca4726',
+							confirmButtonText: '확인',
+							html: true
+						});
+					}
+				}
+			}
+		}else if(type == 'onlyPort'){ // port값 범위 체크(0~65535)
+			let range1 = 0;
+			let range2 = 65535;
+			obj.value = obj.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
+			if(range1 > obj.value || range2 < obj.value) {
+				obj.value = obj.value.slice(0, obj.value.length-1);
+			}
+		}
+	}
+			
 	// 10보다 작으면 0 붙어줌
 	function makeDateForm(time){
 		return time < 10 ? "0"+time : time;
