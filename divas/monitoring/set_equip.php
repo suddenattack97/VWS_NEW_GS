@@ -122,7 +122,7 @@ require_once "./head.php";
 						<td class="bg_lb w10 bold al_C bL0">장비 ID</td>
 						<td class="w20"><input type="text" id="RTU_ID" name="RTU_ID" class="f333_12" size="10" value="<?=$data_id?>" readonly></td>
 						<td class="bg_lb w10 bold al_C">통신 ID</td>
-						<td><input type="text" id="SIGNAL_ID" name="SIGNAL_ID" class="f333_12" size="10"></td>
+						<td><input type="text" id="SIGNAL_ID" name="SIGNAL_ID" class="f333_12" size="10" oninput="inputCheck(this,'onlyNumber','0~9999')"></td>
 						<td class="bg_lb w10 bold al_C">행정 코드</td>
 						<td colspan="3">
 							<input type="text" id="AREA_CODE" name="AREA_CODE" class="f333_12" size="12" maxlength="10">
@@ -133,7 +133,7 @@ require_once "./head.php";
 					<tr>
 						<td class="bg_lb w10 bold al_C">장비명</td>
 						<td>
-							<input type="text" id="RTU_NAME" name="RTU_NAME" class="f333_12" size="22" maxlength="30">
+							<input type="text" id="RTU_NAME" name="RTU_NAME" class="f333_12" size="22" maxlength="30" onblur="inputCheck(this,'text','1~30')">
 						</td>
 						<td class="bg_lb w10 bold al_C">장비 구분</td>
 						<td colspan="5">
@@ -165,13 +165,13 @@ require_once "./head.php";
 						<td class="">
 							<input type="text" id="FLOW_WARNING" name="FLOW_WARNING" class="warn f333_12" size="10" maxlength="10" oninput="inputCheck(this,'onlyNumber','0~9999')">
 							 / 
-							<input type="text" id="FLOW_DANGER" name="FLOW_DANGER" class="warn f333_12" size="10" maxlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+							<input type="text" id="FLOW_DANGER" name="FLOW_DANGER" class="warn f333_12" size="10" maxlength="10" oninput="inputCheck(this,'onlyNumber','0~9999')">
 						</td>
 						<td class="bg_lb w10 bold al_C dngr">경계치 해제 / 위험치 해제</td>
 						<td class=""  colspan="3">
-							<input type="text" id="FLOW_WARNING_OFF" name="FLOW_WARNING_OFF" class="warn f333_12" size="10" maxlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+							<input type="text" id="FLOW_WARNING_OFF" name="FLOW_WARNING_OFF" class="warn f333_12" size="10" maxlength="10" oninput="inputCheck(this,'onlyNumber','0~9999')">
 							 / 
-							<input type="text" id="FLOW_DANGER_OFF" name="FLOW_DANGER_OFF" class="warn f333_12" size="10" maxlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+							<input type="text" id="FLOW_DANGER_OFF" name="FLOW_DANGER_OFF" class="warn f333_12" size="10" maxlength="10" oninput="inputCheck(this,'onlyNumber','0~9999')">
 						</td>
 					</tr>
 					<tr>
@@ -190,7 +190,7 @@ require_once "./head.php";
 							</select>
 						</td>
 						<td class="bg_lb w10 bold al_C">정렬 순서 지정</td>
-						<td><input id="SORT_FLAG" name="SORT_FLAG" type="text" class="f333_12" size="6" value="0"></td>
+						<td><input id="SORT_FLAG" name="SORT_FLAG" type="text" class="f333_12" size="6" value="0" oninput="inputCheck(this,'onlyNumber','1~9999')"></td>
 						<td class="bg_lb w10 bold al_C bT_1gry">회선 / 모델</td>
 						<td class="bT_1gry" colspan="3">
 							<select id="LINE_NO" name="LINE_NO" size="1" class="f333_12">
@@ -248,7 +248,7 @@ require_once "./head.php";
 						<td class="bg_lb w10 bold al_C">PORT</td>
 						<td><input type="text" id="PORT" name="PORT" class="f333_12" size="6" maxlength="5" value="0" oninput="inputCheck(this,'onlyPort','')"></td>
 						<td class="bg_lb w10 bold al_C">통신정보</td>
-						<td><input type="text" id="CONNECTION_INFO" name="CONNECTION_INFO" class="f333_12" size="18" oninput="inputCheck(this,'onlyIp','')"></td>
+						<td><input type="text" id="CONNECTION_INFO" name="CONNECTION_INFO" class="f333_12" size="18" onblur="inputCheck(this,'onlyIp','')"></td>
 						<td class="bg_lb w10 bold al_C">Baudrate</td>
 						<td>
 							<select id="BAUDRATE" name="BAUDRATE" size="1" class="f333_12">

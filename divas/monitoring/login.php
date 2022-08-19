@@ -72,7 +72,8 @@ if(recaptcha == 0){
 		</div>
 		<fieldset style="margin-bottom:20px;">
 			<div class="input">
-				<input type="id" id="user_id" name="user_id" onkeypress="if( event.keyCode == 13 ){$('#user_pwd').focus();}" placeholder="ID" required />
+				<input type="id" id="user_id" name="user_id" onkeypress="if( event.keyCode == 13 ){$('#user_pwd').focus();}" placeholder="ID" required 
+				onblur="inputCheck(this,'text','5~15')"/>
 			</div>
 			<div class="input">
 				<input type="password" id="user_pwd" name="user_pwd" onkeypress="if( event.keyCode == 13 ){$('#login_ok').click();}" placeholder="Password" required />

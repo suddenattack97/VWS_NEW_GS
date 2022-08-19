@@ -131,12 +131,12 @@ require_once "./head.php";
 					</tr> -->
 					<tr>
 						<td class="bg_lb w10 bold al_C bL0">관리자명</td>
-						<td colspan="3"><input id="USER_NAME" name="USER_NAME" type="text" class="f333_12" size="18"></td>
+						<td colspan="3"><input id="USER_NAME" name="USER_NAME" type="text" class="f333_12" size="18" maxlength="10"></td>
 					</tr>
 					<tr>
 						<td height="35" class="bg_lb w10 bold al_C bL0">이메일</td>
 						<td colspan="3">
-							<input id="EMAIL1" name="EMAIL1" type="text" class="f333_12" size="10"> @ 
+							<input id="EMAIL1" name="EMAIL1" type="text" class="f333_12" size="10" maxlength="20"> @ 
 							<select id="EMAIL2" name="EMAIL2" class="f333_12">
 								<option value="0">직접입력</option>
 								<option value="chollian.net">chollian.net</option>
@@ -163,7 +163,7 @@ require_once "./head.php";
 								<option value="shinbiro.com">shinbiro.com</option>
 								<option value="yahoo.co.kr">yahoo.co.kr</option>
 							</select> / 
-							<input id="EMAIL3" name="EMAIL3" type="text" class="f333_12" size="32">
+							<input id="EMAIL3" name="EMAIL3" type="text" class="f333_12" size="32" maxlength="20" onblur="inputCheck(this,'onlyEmail','')">
 						</td>
 					</tr>
 					<tr>
@@ -177,9 +177,9 @@ require_once "./head.php";
 								<option value="019">019</option>
 							</select>
 							- 
-							<input id="MOBILE2" name="MOBILE2" type="text" class="f333_12" size="6" maxlength="4" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+							<input id="MOBILE2" name="MOBILE2" type="text" class="f333_12" size="6" maxlength="4" oninput="inputCheck(this,'numberLn','0~9999')">
 							-
-							<input id="MOBILE3" name="MOBILE3" type="text" class="f333_12" size="6" maxlength="4" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+							<input id="MOBILE3" name="MOBILE3" type="text" class="f333_12" size="6" maxlength="4" oninput="inputCheck(this,'numberLn','0~9999')">
 						</td>
 						<!-- <td class="bg_lb w10 bold al_C">장비 상태 알림</td>
 						<td>
@@ -766,6 +766,12 @@ crypt.setKey(key);
 			}else if( !$("#USER_NAME").val() ){
 			    swal("체크", "사용자명을 입력해 주세요.", "warning"); 
 			    $("#USER_NAME").focus(); return false;
+			}else if( !$("#MOBILE2").val() || !$("#MOBILE3").val() ){
+			    swal("체크", "휴대폰 번호를 입력해 주세요.", "warning"); 
+			    $("#MOBILE2").focus(); return false;
+			}else if( $("#MOBILE2").val().length < 3 || $("#MOBILE3").val().length < 4 ){
+			    swal("체크", "휴대폰 번호를 확인해 주세요.", "warning"); 
+			    $("#MOBILE2").focus(); return false;
 			}
 			if(pwFlag){
 				if( !pwd_check.test( $("#USER_PWD").val() ) ){

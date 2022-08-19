@@ -306,7 +306,7 @@ require_once "./head.php";
 						<tr class="hh">
 							<td class="bg_lb">상단바 제목</td>
 							<td colspan="6">
-								<input type="text" id="top_title" name="top_title" class="w95 f333_12" value="<?=top_title?>">
+								<input type="text" id="top_title" name="top_title" class="w95 f333_12" value="<?=top_title?>" maxlength="10">
 							</td>
 						</tr>
 						<!-- <tr class="hh">
@@ -733,7 +733,8 @@ require_once "./head.php";
 					?>
 						<tr class="hh">
 							<!-- <td><?=$val['menu_name']?><input type="hidden" name="popup_idx[]" value="<?=$val['menu_idx']?>"></td> -->
-							<td><input type="text" name="popup_name[]" value="<?=$val['menu_name']?>"><input type="hidden" name="popup_idx[]" value="<?=$val['menu_idx']?>"></td>
+							<td><input type="text" name="popup_name[]" value="<?=$val['menu_name']?>" maxlength="20" onblur="inputCheck(this,'text','1~20')">
+							<input type="hidden" name="popup_idx[]" value="<?=$val['menu_idx']?>"></td>
 							<td>
 							<?
 								$http_array = array("http://","https://");
@@ -741,7 +742,7 @@ require_once "./head.php";
 							<select name="url[]">
 								<option value="http://" <?=(strstr($val['menu_url'], "http://") ? 'selected' : '')?>>http://</option>
 								<option value="https://" <?=(strstr($val['menu_url'], "https://") ? 'selected' : '')?>>https://</option>
-							</select> <input name="popup_url[]" type="text" value="<?=str_replace($http_array,"",$val['menu_url'])?>"> </option>
+							</select> <input name="popup_url[]" type="text" value="<?=str_replace($http_array,"",$val['menu_url'])?>" onblur="inputCheck(this,'text','4~100')"> </option>
 					
 							</td>	
 							<td>
