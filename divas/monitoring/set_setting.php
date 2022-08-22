@@ -281,7 +281,7 @@ require_once "./head.php";
 				</li>
 				</ul> -->
 				<ul class="system_tit">
-				<li><i class="fa fa-cog"></i>시스템 설정</li>
+				<li><i class="fa fa-cog"></i>운영 설정</li>
 				<li><button type="button" name="btn_save" class="btn_bb80">저장</button></li></ul>
 
 				<ul class="set_ulwrap_nh">
