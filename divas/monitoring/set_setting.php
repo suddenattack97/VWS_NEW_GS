@@ -13,7 +13,7 @@ require_once "./head.php";
 		<form id="set_frm">
 
 		<div class="main_contitle">
-					<div class="tit"><img src="../images/board_icon_aws.png"> <span>환경설정</span>
+					<div class="tit"><img src="../images/board_icon_aws.png"> <span>시스템 설정</span>
 					<span id="rtu_name" class="sub_tit mL20"></span>
 					</div>  				
 		</div>
@@ -21,7 +21,7 @@ require_once "./head.php";
 		<div class="main_contitle mB0">
 					<!-- <div class="tit w100 bB_2blue"> -->
 					<div class="tit w100">
-					<div data-tab="system-tab" class="tab">시스템 설정</div>
+					<div data-tab="system-tab" class="tab">운영 설정</div>
 					<div data-tab="main-tab" class="tab">메인 메뉴 설정</div>
 					<div data-tab="sub-tab" class="tab">서브 메뉴 설정</div>
 					<div data-tab="popup-tab" class="tab">팝업 메뉴 설정</div>
