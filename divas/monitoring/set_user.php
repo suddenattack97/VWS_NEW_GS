@@ -177,9 +177,9 @@ require_once "./head.php";
 								<option value="019">019</option>
 							</select>
 							- 
-							<input id="MOBILE2" name="MOBILE2" type="text" class="f333_12" size="6" maxlength="4" oninput="inputCheck(this,'numberLn','0~9999')">
+							<input id="MOBILE2" name="MOBILE2" type="text" class="f333_12" size="6" maxlength="4" oninput="inputCheck(this,'onlyNumber','0~9999')">
 							-
-							<input id="MOBILE3" name="MOBILE3" type="text" class="f333_12" size="6" maxlength="4" oninput="inputCheck(this,'numberLn','0~9999')">
+							<input id="MOBILE3" name="MOBILE3" type="text" class="f333_12" size="6" maxlength="4" oninput="inputCheck(this,'onlyNumber','0~9999')">
 						</td>
 						<!-- <td class="bg_lb w10 bold al_C">장비 상태 알림</td>
 						<td>
