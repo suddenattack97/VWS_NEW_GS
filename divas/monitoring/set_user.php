@@ -523,6 +523,7 @@ crypt.setKey(key);
 			$("#SMART_MOBILE3").val("");
 			$("#SMART_USE").val(0);
 		}else{
+			$("#dup_check").val(1);
 			var param = "mode=user&USER_ID="+C_USER_ID;
 			$.ajax({
 		        type: "POST",
@@ -788,8 +789,8 @@ crypt.setKey(key);
 			}else if( !id_check.test( $("#USER_ID").val() ) ){
 			    swal("체크", "사용자 ID는 영어와 숫자만 사용하여 15자리 이하로 입력해 주세요.", "warning"); 
 			    $("#USER_ID").focus(); return false;	
-			}else if( $("#dup_check").val() == "0" ){
-			    swal("체크", "아이디 중복체크를 진행해 주세요.", "warning"); return false;
+			// }else if( $("#dup_check").val() == "0" ){
+			//     swal("체크", "아이디 중복체크를 진행해 주세요.", "warning"); return false;
 			}else if( !$("#USER_PWD").val() ){
 			    swal("체크", "비밀번호를 입력해 주세요.", "warning");
 			    $("#USER_PWD").focus(); return false;	
