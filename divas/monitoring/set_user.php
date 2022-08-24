@@ -138,30 +138,19 @@ require_once "./head.php";
 						<td colspan="3">
 							<input id="EMAIL1" name="EMAIL1" type="text" class="f333_12" size="10" maxlength="20"> @ 
 							<select id="EMAIL2" name="EMAIL2" class="f333_12">
+								<option value="0">naver.com</option>
+								<option value="0">hanmail.net</option>
+								<option value="0">daum.net</option>
+								<option value="0">nate.com</option>
+								<option value="0">gmail.com</option>
+								<option value="0">hotmail.com</option>
+								<option value="0">lycos.co.kr</option>
+								<option value="0">empal.com</option>
+								<option value="0">cyworld.com</option>
+								<option value="0">yahoo.com</option>
+								<option value="0">paran.com</option>
+								<option value="0">dreamwiz.com</option>
 								<option value="0">직접입력</option>
-								<option value="chollian.net">chollian.net</option>
-								<option value="dreamwiz.com">dreamwiz.com</option>
-								<option value="empal.com">empal.com</option>
-								<option value="freechal.com">freechal.com</option>
-								<option value="hanafos.com">hanafos.com</option>
-								<option value="hananet.com">hananet.com</option>
-								<option value="hanmir.com">hanmir.com</option>
-								<option value="hitel.net">hitel.net</option>
-								<option value="hotmail.com">hotmail.com</option>
-								<option value="intizen.com">intizen.com</option>
-								<option value="kebi.com">kebi.com</option>
-								<option value="korea.com">korea.com</option>
-								<option value="kornet.net">kornet.net</option>
-								<option value="lycos.co.kr">lycos.co.kr</option>
-								<option value="msn.com">msn.com</option>
-								<option value="nate.com">nate.com</option>
-								<option value="naver.com">naver.com</option>
-								<option value="netian.com">netian.com</option>
-								<option value="orgio.com">orgio.com</option>
-								<option value="paran.com">paran.com</option>
-								<option value="sayclub.com">sayclub.com</option>
-								<option value="shinbiro.com">shinbiro.com</option>
-								<option value="yahoo.co.kr">yahoo.co.kr</option>
 							</select> / 
 							<input id="EMAIL3" name="EMAIL3" type="text" class="f333_12" size="32" maxlength="20" onblur="inputCheck(this,'onlyEmail','')">
 						</td>
