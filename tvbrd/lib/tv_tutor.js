@@ -135,7 +135,8 @@
         	over_level = response.setting.over_level;
             clus_level = response.setting.clus_level;
 			api_key = response.setting.api_key;
-            
+
+            sessionStorage.setItem('API_KEY',api_key);
         	$("#view_top_img").val(top_img);
         	$("#sel_top_text").val(top_text);
         	if(top_img != null){
