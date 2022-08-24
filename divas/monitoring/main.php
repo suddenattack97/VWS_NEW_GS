@@ -87,6 +87,10 @@ $(document).ready(function(){
 	var checkLogin = getCookie("set_login");
 	var session_cookie = getCookie("session_time");
 
+	var ms_token = sessionStorage.getItem("ms");
+	var login_token = sessionStorage.getItem("set_login_"+ms_token);
+	var sesstiontime_token = sessionStorage.getItem("session_time_"+ms_token);
+
 	const countDownTimer = function (id, date) {
 		var _vDate = new Date(date); // 전달 받은 일자
 		var _vDate_stamp = new Date(date).getTime(); // 전달 받은 일자
@@ -104,34 +108,28 @@ $(document).ready(function(){
 			// var distDt = _vDate - now;
 			var distDt = _vDate_stamp - ms;
 
-			if (distDt < 0 || checkLogin !== "1" || !checkLogin) {
+			if (distDt < 0 || login_token !== "1" || !login_token) {
+				
+				login_token = 0;
+				// console.log("Session Expired!");
+				// console.log(login_token);
 				clearInterval(timer);
 				document.getElementById(id).textContent = "X";
 				document.getElementById("user_id").textContent = "X";
 
 				$("#btn_logout").addClass('dp0');
+				$("#btn_layout").addClass('dp0');
 				$("#btn_login").removeClass('dp0');
 				$("#user_id").addClass("dp0");
 				$("#session_time").addClass("dp0");
 				$("#session_time").prev().addClass("dp0");
 				var tmp_src = $("#main").attr("src");
 
-				// if(checkLogin == "1" && checkLogin) {
-				// 	if(tmp_src == "tms_main.php"){
-				// 		$("#btn_layout").addClass("dp0");
-				// 	}
-				// }
-
-				createCookie("set_login","0","1");
-				createCookie("session_time","","1");
-
+				sessionStorage.clear();
 				history.pushState(null, null, location.href);
 				window.onpopstate = function () {
 					history.go(1);
 				};
-				// if($(".sweet-overlay").css('display') !== "block"){
-				// 	login('tms_main.php');
-				// }
 
 				return;
 			}
@@ -162,17 +160,18 @@ $(document).ready(function(){
 		if(String(now_s).length == 1) now_s = '0'+now_s;
 		$("#now_date").html(now_y+'년 '+now_m+'월 '+now_d+'일 '+now_h+'시 '+now_i+'분 '+now_s+'초');
 
-		var checkLogin = getCookie("set_login");
-		var session_time = getCookie("session_time");
+		// var checkLogin = getCookie("set_login");
+		// var session_time = getCookie("session_time");
+		
 		var tmp_src = $("#main").attr("src");
 
+		countDownTimer('session_time', sesstiontime_token);
 
-		countDownTimer('session_time', session_time);
-
-		if(checkLogin !== "1" || !checkLogin){
+		if(login_token !== "1" || !login_token){
 			if(tmp_src == "dtm_rain.php" || tmp_src == "dtm_wl.php" || tmp_src == "dtm_aws.php" || tmp_src == "dtm_snow.php" || tmp_src == "dtm_mcall.php" ||
 			tmp_src == "rpt_ori.php" || tmp_src == "set_setting.php" || tmp_src == "set_organ.php" || tmp_src == "set_user.php" || tmp_src == "set_equip.php"){
-				location.href = "./main.php"; 
+				sessionStorage.clear();
+				location.href = "./main.php";
 				return false;
 			}
 		}
@@ -209,7 +208,7 @@ $(document).ready(function(){
 
 	// 로그인 버튼
 	$("#btn_login").click(function(){
-		var checkLogin = getCookie("set_login");
+		// var checkLogin = getCookie("set_login");
 		login("tms_main.php");
 		// window.open("./login.php", "로그인을 해주세요.", "width=533, height=533 , status=no");
 	});
@@ -232,7 +231,10 @@ $(document).ready(function(){
 		    success : function(data){
 		    	if(data.result){
 	    			// location.href = "./login.php"; return false;
-					createCookie("set_login","0","1");
+					// createCookie("set_login","0","1");
+					// sessionStorage.setItem("set_login_"+ms_token,0);
+					sessionStorage.clear();
+
 					history.pushState(null, null, location.href);
 					window.onpopstate = function () {
 						history.go(1);
@@ -254,7 +256,7 @@ $(document).ready(function(){
 		var tmp_num = $(this).data("num");
 		var checkLogin = getCookie("set_login");
 		var tmp_href = $(this).attr("target");
-		if(checkLogin != "1"){ //0: 로그인X 1:로그인O
+		if(login_token != "1"){ //0: 로그인X 1:로그인O
 			if(tmp_num == 10 || tmp_num == 11 || tmp_num == 12){
 				login(tmp_href);
 			}
@@ -278,7 +280,7 @@ $(document).ready(function(){
 		var tmp_num = $(this).data("num");
 		var tmp_href = $(this).attr("href");
 		var checkLogin = getCookie("set_login");
-		if(checkLogin != "1"){
+		if(login_token != "1"){
 			if(tmp_num == 2 || tmp_num == 4 || tmp_href == "rpt_ori.php"){
 				// $("#main").attr("src", ");
 				// window.open("./login.php?target="+tmp_href, "로그인을 해주세요.", "width=533, height=533 , status=no");
@@ -296,7 +298,7 @@ $(document).ready(function(){
 		var tmp_num = $(this).data("num");
 		var tmp_href = $(this).attr("href");
 		var checkLogin = getCookie("set_login");
-		if(checkLogin != "1"){
+		if(login_token != "1"){
 			if(tmp_num == 2 || tmp_num == 4 || tmp_href == "rpt_ori.php"){
 				// $("#main").attr("src", ");
 				// window.open("./login.php?target="+tmp_href, "로그인을 해주세요.", "width=533, height=533, toolbar=no,status=no,menubar=no,resizable=yes, location=no");
@@ -313,7 +315,7 @@ $(document).ready(function(){
 	$("#main").load(function(){
 		var tmp_src = $(this).attr("src");
 		
-		if(checkLogin == "1" && checkLogin) {
+		if(login_token == "1" && login_token) {
 			if(tmp_src == "tms_main.php"){
 				$("#btn_layout").removeClass("dp0");
 			}else{

@@ -247,8 +247,31 @@ wd+TfN++aIZJivncuQIDAQAB
 //우클릭 방지 추가
 document.oncontextmenu = function(){return false;}
 
+var ms_token = sessionStorage.getItem("ms");
+var login_token = sessionStorage.getItem("set_login_"+ms_token);
+var sesstiontime_token = sessionStorage.getItem("session_time_"+ms_token);
+		
+
 // 환경설정 토글
 function setToggle(sets){
+
+	var _vDate = new Date(sesstiontime_token); // 전달 받은 일자
+	var _vDate_stamp = new Date(sesstiontime_token).getTime(); // 전달 받은 일자
+	var _second = 1000;
+	var _minute = _second * 60;
+	var _hour = _minute * 60;
+	var _day = _hour * 24;
+
+	var ms = new Date().getTime();
+	var now = new Date(ms);
+	
+	var distDt = _vDate_stamp - ms;
+
+	if (distDt < 0 || login_token !== "1" || !login_token) {
+		login_token = 0;
+		sessionStorage.clear();
+		// window.close();
+	}
 
 	//쿠키 가져오기 함수
 	function getCookie(cName) {
@@ -264,14 +287,13 @@ function setToggle(sets){
 		}
 		return unescape(cValue);
 	}
-	var checkLogin = getCookie("set_login");
-
+	// var checkLogin = getCookie("set_login");
 
 	var set = document.getElementById(sets);
 	if(set.style.display=="block"){
 		set.style.display="none";
 	}else{
-		if (checkLogin !== "1" || !checkLogin) {
+		if (login_token !== "1" || !login_token) {
 			swal({ 
 			title: '',
 			text: '<div><iframe width="451px" height="530px" scrolling="no" src="../divas/monitoring/login.php?target=map" style="border: 0;margin-top:-30px;margin-left: -5px;"></iframe></div>',

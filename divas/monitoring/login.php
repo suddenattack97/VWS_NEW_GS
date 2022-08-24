@@ -256,16 +256,24 @@ $(document).ready(function(){
 							var ms = new Date().getTime() + 3600000;
 							var session_time = new Date(ms);
 
-							createCookie("set_login","1","1");
-							createCookie("session_time",session_time,"2");
+							sessionStorage.setItem('ms', ms);	
+							sessionStorage.setItem('set_login_'+ms, 1);	
+							sessionStorage.setItem('session_time_'+ms, session_time);		
+							
+							// createCookie("set_login","1","1");
+							// createCookie("session_time",session_time,"2");
 							
 							// var user_text = window.parent.parent.document.getElementById("user_id");
 							// $(user_text).text("사용자 : "+user_id);
 
 							if($("#target").val()){
 								if($("#target").val() == "map"){
-									parent.parent.location.href = "../../tvbrd/index.php";
+									// parent.parent.location.href = "../../tvbrd/index.php";
+									parent.parent.location.reload();
 									parent.parent.opener.parent.parent.location.reload();
+									parent.parent.opener.parent.parent.sessionStorage.setItem('ms', ms);
+									parent.parent.opener.parent.parent.sessionStorage.setItem('set_login_'+ms, 1);	
+									parent.parent.opener.parent.parent.sessionStorage.setItem('session_time_'+ms, session_time);									
 								}else{
 									parent.parent.location.href = "main.php?target="+$("#target").val();
 								}
