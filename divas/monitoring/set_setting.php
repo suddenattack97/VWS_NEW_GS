@@ -881,7 +881,7 @@ $(document).ready(function(){
                 if(data.result){
                 	swal({
                 		title: "시스템 설정 완료",
-                		text: "설정이 완료 됐습니다. 종합현황으로 이동 합니다.", 
+                		text: "설정이 완료 됐습니다.", 
                         type: "success",
                 		timer: 1300,
                 	    showConfirmButton: false,
