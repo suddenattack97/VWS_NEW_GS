@@ -235,7 +235,7 @@ require_once "./head.php";
 						<tr>
 							<th class="w10i bR_1gry">구분</th>
 							<th class=" bR_1gry">종류</th>
-							<th class=" bR_1gry">풍속/풍향</th>
+							<th class=" bR_1gry">타입</th>
 							<? 
 							if($type == "A"){
 								foreach($data_nums['NUM'] as $key => $val){ 		
@@ -265,7 +265,7 @@ require_once "./head.php";
 					<tr class="hh tr_rtu" data-id="<?=$val['AREA_CODE']?>">
 						<td class="realName2 bR_1gry" rowspan="4"><?=$val['RTU_NAME']?></td>
 						<td class="realDepth bR_1gry" rowspan="2">현재</td>
-						<td class="realDepth bR_1gry" rowspan="1">풍향</td>
+						<td class="bR_1gry" rowspan="1">풍향</td>
 						<? foreach($val['DEG'] as $key2 => $val2){ ?>
 						<td class=""><?=$val2?></td>
 						<? } ?>
@@ -275,7 +275,7 @@ require_once "./head.php";
 					<tr class="hh tr_rtu" data-id="<?=$val['AREA_CODE']?>">
 						<td class="dp0 dp3"><?=$val['RTU_NAME']?></td>
 						<td class="dp0 dp3">현재</td>
-						<td class="realDepth bR_1gry" rowspan="1">풍속</td>
+						<td class="bR_1gry" rowspan="1">풍속</td>
 						<? foreach($val['VEL'] as $key2 => $val2){ ?>
 						<td class=""><?=$val2?></td>
 						<? } ?>
@@ -285,7 +285,7 @@ require_once "./head.php";
 					<tr class="hh tr_rtu" data-id="<?=$val['AREA_CODE']?>">
 						<td class="dp0 dp3"><?=$val['RTU_NAME']?></td>
 						<td class="realDepth bR_1gry" rowspan="2">최고</td>
-						<td class="realDepth bR_1gry" rowspan="1">풍향</td>
+						<td class="bR_1gry" rowspan="1">풍향</td>
 						<? foreach($val['DEG_MAX'] as $key2 => $val2){ ?>
 						<td class=""><?=$val2?></td>
 						<? } ?>
@@ -295,7 +295,7 @@ require_once "./head.php";
 					<tr class="hh tr_rtu" data-id="<?=$val['AREA_CODE']?>">
 						<td class="dp0 dp3"><?=$val['RTU_NAME']?></td>
 						<td class="dp0 dp3">최고</td>
-						<td class="realDepth bR_1gry" rowspan="1">풍속</td>
+						<td class="bR_1gry" rowspan="1">풍속</td>
 						<? foreach($val['VEL_MAX'] as $key2 => $val2){ ?>
 						<td class=""><?=$val2?></td>
 						<? } ?>
