@@ -31,7 +31,7 @@ require_once "./head.php";
                 	</div>
                 </span> -->
               </li>
-	          <li class="p8 bB_1gry w100 bg_lgr_d">
+	          <!-- <li class="p8 bB_1gry w100 bg_lgr_d">
               <span class="fL w40">상황판 로고 삽입</span>
               <span class="fR w60">
               	<div class="file_input">
@@ -42,8 +42,8 @@ require_once "./head.php";
               		<input type="file" id="sel_top_img" name="sel_top_img" style="display: none;">
             	</div>
               </span>
-              </li>
-	          <li class="p8 bB_1gry w100 bg_lgr_d">
+              </li> -->
+	          <!-- <li class="p8 bB_1gry w100 bg_lgr_d">
               <span class="fL w40">상황판 제목 삽입</span>
               <span class="fR w60">
               	<div class="file_input">
@@ -51,7 +51,7 @@ require_once "./head.php";
               		<input type="text" id="sel_top_text" name="sel_top_text">
             	</div>
               </span>
-              </li>
+              </li> -->
               <!--
               <li id="sel_box" class="p8 bB_1gry w100 bg_lgr_d">
                 <span class="fL w30">표시 단위</span>
