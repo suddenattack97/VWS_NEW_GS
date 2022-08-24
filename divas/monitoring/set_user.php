@@ -349,6 +349,8 @@ crypt.setKey(key);
 		$("#dup_check").val(1); // 아이디 중복체크 리셋
 		// $("#btn_check").css("display","none"); // 아이디 중복체크 버튼 비활성화
 		// $("#USER_ID").attr("readonly","true"); // 아이디 중복체크 버튼 비활성화
+		
+		$("#USER_ID").attr('disabled','true');
 
 		bg_color("selected", "#list_table tbody tr", this); // 리스트 선택 시 배경색
 		var l_USER_ID = $("#"+this.id+" #l_USER_ID").text();
