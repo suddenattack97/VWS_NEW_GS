@@ -657,8 +657,9 @@ $(document).ready(function(){
 				title: "장비 내역 출력",
 				customize: function(win){
 					$(win.document.body).find("body").css("overflow", "visible");
-					$(win.document.body).find("h1").css("text-align", "center").css("font-size", "18px");
-					$(win.document.body).find("table").css("font-size", "12px");
+					$(win.document.body).find("h1").css("text-align", "center").css("font-size", "18px").css("margin", "20px");
+					$(win.document.body).find("table").css("font-size", "12px").css("margin", "20px").css("width", "97%").css("border-right", "1px solid #C4C4C4");
+					$(win.document.body).find("table").attr("border", "1");
 					$(win.document.body).find("tr").css("text-align", "center");
 				}
 			},

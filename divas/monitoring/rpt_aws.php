@@ -696,7 +696,7 @@ $(document).ready(function(){
 					// 테이블에 현재 선택된 장비만 남기고 나머지는 숨김
 					$.each($("#list_table .tr_rtu"), function(i, v){
 						$(v).find('td[rowspan]').attr('rowspan', '1');
-						console.log($(v).attr("data-id"));
+						// console.log($(v).attr("data-id"));
 						if($(v).attr("data-id") != area_code){
 							$(v).hide();
 						}else{
