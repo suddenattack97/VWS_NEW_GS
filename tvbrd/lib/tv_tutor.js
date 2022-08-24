@@ -138,12 +138,12 @@
 
             sessionStorage.setItem('API_KEY',api_key);
 
-        	$("#view_top_img").val(top_img);
+        	// $("#view_top_img").val(top_img);
         	$("#sel_top_text").val(top_text);
-        	if(top_img != null){
-        		top_img = '<img src="'+top_img+'" alt="로고"/>';
-            	$("#top_img").html(top_img);
-        	}
+        	// if(top_img != null){
+        		// top_img = '<img src="'+top_img+'" alt="로고"/>';
+            	// $("#top_img").html(top_img);
+        	// }
         	// $("#top_text").html(top_text);
         	
         	$("#sel_skin input:radio[value='"+map_skin+"']").prop("checked", true);

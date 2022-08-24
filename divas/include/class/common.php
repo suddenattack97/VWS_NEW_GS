@@ -569,6 +569,7 @@ Class ClassCommon {
 			define("ss_is_login", $_SESSION['is_login']);		//로그인 상태(0: 비로그인, 1: 로그인)
 			
 			define("top_img", $tmp_top_img);					//상단바 로고 경로
+			$_SESSION['top_img'] = $tmp_top_img ;			//상단바 타이틀 제목
 			define("top_title", $rs[0]['top_title']);			//상단바 타이틀 제목
 			$_SESSION['top_title'] = $rs[0]['top_title'] ;			//상단바 타이틀 제목
 			define("top_text", $rs[0]['top_text']);				//상단바 타이틀 내용

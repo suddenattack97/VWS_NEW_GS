@@ -11,7 +11,7 @@ require_once "./head.php";
 	    			<img src="img/settings.png">
 	    		</a>
 	    	</div>
-	        <div id="top_img"></div>
+	        <div id="top_img"><img src="../divas/images/top/<?=$_SESSION['top_img']?>" alt="로고"/></div>
 	        <div class="ttext">
 	        	<span id="top_text"></span> <span class="txtcolor_lb"><?=$_SESSION['top_title']?></span>
 	        </div>
