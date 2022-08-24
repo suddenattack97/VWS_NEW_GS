@@ -194,7 +194,7 @@ require_once "./head.php";
 						foreach($data_list as $key => $val){ 
 					?>
 					<tr class="hh tr_rtu" data-id="<?=$val['AREA_CODE']?>">
-						<td class=" bR_1gry" rowspan="3"><?=$val['RTU_NAME']?></td>
+						<td class="realName bR_1gry" rowspan="3"><?=$val['RTU_NAME']?></td>
 						<td class=" bR_1gry">현재</td>
 						<? foreach($val['TEMP'] as $key2 => $val2){ ?>
 						<td class=""><?=$val2?></td>
@@ -203,7 +203,7 @@ require_once "./head.php";
 						<td class=" bL_1gry"><?=$val['TEMP_AVR']?></td>
 					</tr>
 					<tr class="hh tr_rtu" data-id="<?=$val['AREA_CODE']?>">
-						<td style="display: none;"></td>
+						<td class="dp0 dp3"><?=$val['RTU_NAME']?></td>
 						<td class=" bR_1gry">최고</td>
 						<? foreach($val['TEMP_MAX'] as $key2 => $val2){ ?>
 						<td class=""><?=$val2?></td>
@@ -212,7 +212,7 @@ require_once "./head.php";
 						<td class=" bL_1gry"><?=$val['TEMP_MAX_AVR']?></td>
 					</tr>
 					<tr class="hh tr_rtu" data-id="<?=$val['AREA_CODE']?>">
-						<td style="display: none;"></td>
+						<td class="dp0 dp3"><?=$val['RTU_NAME']?></td>
 						<td class=" bR_1gry">최저</td>
 						<? foreach($val['TEMP_MIN'] as $key2 => $val2){ ?>
 						<td class=""><?=$val2?></td>
@@ -262,8 +262,8 @@ require_once "./head.php";
 						foreach($data_list as $key => $val){ 
 					?>
 					<tr class="hh tr_rtu" data-id="<?=$val['AREA_CODE']?>">
-						<td class=" bR_1gry" rowspan="4"><?=$val['RTU_NAME']?></td>
-						<td class=" bR_1gry" rowspan="2">현재</td>
+						<td class="realName2 bR_1gry" rowspan="4"><?=$val['RTU_NAME']?></td>
+						<td class="realDepth bR_1gry" rowspan="2">현재</td>
 						<? foreach($val['DEG'] as $key2 => $val2){ ?>
 						<td class=""><?=$val2?></td>
 						<? } ?>
@@ -271,8 +271,8 @@ require_once "./head.php";
 						<td class=" bL_1gry"><?=$val['DEG_AVR']?></td>
 					</tr>
 					<tr class="hh tr_rtu" data-id="<?=$val['AREA_CODE']?>">
-						<td style="display: none;"></td>
-						<td style="display: none;"></td>
+						<td class="dp0 dp3"><?=$val['RTU_NAME']?></td>
+						<td class="dp0 dp3">현재</td>
 						<? foreach($val['VEL'] as $key2 => $val2){ ?>
 						<td class=""><?=$val2?></td>
 						<? } ?>
@@ -280,8 +280,8 @@ require_once "./head.php";
 						<td class=" bL_1gry"><?=$val['VEL_AVR']?></td>
 					</tr>
 					<tr class="hh tr_rtu" data-id="<?=$val['AREA_CODE']?>">
-						<td style="display: none;"></td>
-						<td class=" bR_1gry" rowspan="2">최고</td>
+						<td class="dp0 dp3"><?=$val['RTU_NAME']?></td>
+						<td class="realDepth bR_1gry" rowspan="2">최고</td>
 						<? foreach($val['DEG_MAX'] as $key2 => $val2){ ?>
 						<td class=""><?=$val2?></td>
 						<? } ?>
@@ -289,8 +289,8 @@ require_once "./head.php";
 						<td class=" bL_1gry"><?=$val['DEG_MAX_AVR']?></td>
 					</tr>
 					<tr class="hh tr_rtu" data-id="<?=$val['AREA_CODE']?>">
-						<td style="display: none;"></td>
-						<td style="display: none;"></td>
+						<td class="dp0 dp3"><?=$val['RTU_NAME']?></td>
+						<td class="dp0 dp3">최고</td>
 						<? foreach($val['VEL_MAX'] as $key2 => $val2){ ?>
 						<td class=""><?=$val2?></td>
 						<? } ?>
@@ -339,7 +339,7 @@ require_once "./head.php";
 						foreach($data_list as $key => $val){ 
 					?>
 					<tr class="hh tr_rtu" data-id="<?=$val['AREA_CODE']?>">
-						<td class=" bR_1gry" rowspan="3"><?=$val['RTU_NAME']?></td>
+						<td class="realName bR_1gry" rowspan="3"><?=$val['RTU_NAME']?></td>
 						<td class=" bR_1gry">현재</td>
 						<? foreach($val['ATMO'] as $key2 => $val2){ ?>
 						<td class=""><?=$val2?></td>
@@ -348,7 +348,7 @@ require_once "./head.php";
 						<td class=" bL_1gry"><?=$val['ATMO_AVR']?></td>
 					</tr>
 					<tr class="hh tr_rtu" data-id="<?=$val['AREA_CODE']?>">
-						<td style="display: none;"></td>
+						<td class="dp0 dp3"><?=$val['RTU_NAME']?></td>
 						<td class=" bR_1gry">최고</td>
 						<? foreach($val['ATMO_MAX'] as $key2 => $val2){ ?>
 						<td class=""><?=$val2?></td>
@@ -357,7 +357,7 @@ require_once "./head.php";
 						<td class=" bL_1gry"><?=$val['ATMO_MAX_AVR']?></td>
 					</tr>
 					<tr class="hh tr_rtu" data-id="<?=$val['AREA_CODE']?>">
-						<td style="display: none;"></td>
+						<td class="dp0 dp3"><?=$val['RTU_NAME']?></td>
 						<td class=" bR_1gry">최저</td>
 						<? foreach($val['ATMO_MIN'] as $key2 => $val2){ ?>
 						<td class=""><?=$val2?></td>
@@ -407,7 +407,7 @@ require_once "./head.php";
 						foreach($data_list as $key => $val){ 
 					?>
 					<tr class="hh tr_rtu" data-id="<?=$val['AREA_CODE']?>">
-						<td class=" bR_1gry" rowspan="3"><?=$val['RTU_NAME']?></td>
+						<td class="realName bR_1gry" rowspan="3"><?=$val['RTU_NAME']?></td>
 						<td class=" bR_1gry">현재</td>
 						<? foreach($val['HUMI'] as $key2 => $val2){ ?>
 						<td class=""><?=$val2?></td>
@@ -416,7 +416,7 @@ require_once "./head.php";
 						<td class=" bL_1gry"><?=$val['HUMI_AVR']?></td>
 					</tr>
 					<tr class="hh tr_rtu" data-id="<?=$val['AREA_CODE']?>">
-						<td style="display: none;"></td>
+						<td class="dp0 dp3"><?=$val['RTU_NAME']?></td>
 						<td class=" bR_1gry">최고</td>
 						<? foreach($val['HUMI_MAX'] as $key2 => $val2){ ?>
 						<td class=""><?=$val2?></td>
@@ -425,7 +425,7 @@ require_once "./head.php";
 						<td class=" bL_1gry"><?=$val['HUMI_MAX_AVR']?></td>
 					</tr>
 					<tr class="hh tr_rtu" data-id="<?=$val['AREA_CODE']?>">
-						<td style="display: none;"></td>
+						<td class="dp0 dp3"><?=$val['RTU_NAME']?></td>
 						<td class=" bR_1gry">최저</td>
 						<? foreach($val['HUMI_MIN'] as $key2 => $val2){ ?>
 						<td class=""><?=$val2?></td>
@@ -695,8 +695,12 @@ $(document).ready(function(){
 
 					// 테이블에 현재 선택된 장비만 남기고 나머지는 숨김
 					$.each($("#list_table .tr_rtu"), function(i, v){
+						$(v).find('td[rowspan]').attr('rowspan', '1');
+						console.log($(v).attr("data-id"));
 						if($(v).attr("data-id") != area_code){
 							$(v).hide();
+						}else{
+							$(v).find('td').removeClass('dp0');
 						}
 					});
 

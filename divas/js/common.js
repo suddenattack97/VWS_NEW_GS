@@ -856,6 +856,10 @@
 				},complete : function(data){
 					printJS('print.png', 'image');
 					$("#list_table .tr_rtu").show();
+					$("#list_table tbody tr").find('.realDepth').attr('rowspan', '2');
+					$("#list_table tbody tr").find('.realName').attr('rowspan', '3');
+					$("#list_table tbody tr").find('.realName2').attr('rowspan', '4');
+					$("#list_table tbody tr").find('.dp3').addClass('dp0');
 					$("#search_dt").hide();
 					$(".print_hd").show();
 				}
@@ -1073,11 +1077,17 @@
 		if(typeof n != "number" || n > 12) return NaN;
 		if(typeof m != "number") return NaN;
 		// 첫번째 값만
-		var textVal = txt.trim();
-		var tmpVal = textVal.split(" ");
-		textVal = Number(tmpVal[0]);
-		if(typeof textVal != "number") return textVal;
-
+		var textVal = "";
+		var tmpVal = "";
+		if(isNaN(txt)){
+			textVal = (txt != null) ? txt.trim() : "-";
+			tmpVal = textVal.split(" ");
+			textVal = Number(tmpVal[0]);
+			if(typeof textVal != "number") return textVal;
+			else if(isNaN(+textVal)) return txt;
+		}else{
+			textVal = txt;
+		}
 		var reck = 1;
 		for (var i=0; i<n; i++) reck *= 10;
 		var result = Math.round((textVal*m) * reck) / reck;
