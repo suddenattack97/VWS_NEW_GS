@@ -306,7 +306,7 @@ require_once "./head.php";
 						<tr class="hh">
 							<td class="bg_lb">상단바 제목</td>
 							<td colspan="6">
-								<input type="text" id="top_title" name="top_title" class="w95 f333_12" value="<?=top_title?>" maxlength="10">
+								<input type="text" id="top_title" name="top_title" class="w95 f333_12" value="<?=top_title?>" maxlength="12">
 							</td>
 						</tr>
 						<!-- <tr class="hh">
