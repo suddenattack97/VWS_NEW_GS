@@ -617,55 +617,55 @@ $(document).ready(function(){
 	$("#btn_save").click(function(){
 		// console.log($("#mode").val());
 		var tmp_spin = null;
-		let check = [];
+		// let check = [];
 
-		// 풍향이 아닐때만 숫자, 음수 체크
-		if($("#mode").val() == 'deg_save'){
-			var param = $("#dtm_frm").serialize();
-			$.ajax({
-				type: "POST",
-				url: "../_info/json/_dtm_json.php",
-				data: param,
-				cache: false,
-				dataType: "json",
-				success : function(data){
-					if(data.result){
-						popup_main_close(); // 레이어 좌측 및 상단 닫기
-						location.reload(); return false;
-					}else{
-						swal("체크", "자료 수정중 오류가 발생 했습니다.", "warning");
-					}
-				},
-				beforeSend : function(data){ 
-					   tmp_spin = spin_start("#dtm_frm #spin", "-40px");
-				},
-				complete : function(data){ 
-					if(tmp_spin){
-						spin_stop(tmp_spin, "#dtm_frm #spin");
-					}
-				}
-			});
-		}else{
-			// 숫자, 음수 체크
-			$('.tb_data_p2 .f333_12').each(function(idx){    
-				var value = $(this).val();
-				if($.isNumeric(value)){
-					if($("#mode").val() == 'temp_save') check[idx] = 1; // 온도 타입일때
-					else check[idx] = value >= 0 ? 1 : 2;		// 온도 타입 아닐때
-				}else{
-					check[idx] = 0;
-				}
-			  });
-			console.log(check);
-			if(check.indexOf(0) != -1){
-				let eq = check.indexOf(0);
-				swal("체크", "숫자만 입력해 주세요!", "warning");
-				// $(".tb_data_p2 .f333_12").eq(eq).focus();
-			}else if(check.indexOf(2) != -1){
-				let eq = check.indexOf(2);
-				swal("체크", "양수로 입력해 주세요!", "warning");
-				// $(".tb_data_p2 .f333_12").eq(eq).focus();
-			}else{
+		// // 풍향이 아닐때만 숫자, 음수 체크
+		// if($("#mode").val() == 'deg_save'){
+		// 	var param = $("#dtm_frm").serialize();
+		// 	$.ajax({
+		// 		type: "POST",
+		// 		url: "../_info/json/_dtm_json.php",
+		// 		data: param,
+		// 		cache: false,
+		// 		dataType: "json",
+		// 		success : function(data){
+		// 			if(data.result){
+		// 				popup_main_close(); // 레이어 좌측 및 상단 닫기
+		// 				location.reload(); return false;
+		// 			}else{
+		// 				swal("체크", "자료 수정중 오류가 발생 했습니다.", "warning");
+		// 			}
+		// 		},
+		// 		beforeSend : function(data){ 
+		// 			   tmp_spin = spin_start("#dtm_frm #spin", "-40px");
+		// 		},
+		// 		complete : function(data){ 
+		// 			if(tmp_spin){
+		// 				spin_stop(tmp_spin, "#dtm_frm #spin");
+		// 			}
+		// 		}
+		// 	});
+		// }else{
+		// 	// 숫자, 음수 체크
+		// 	$('.tb_data_p2 .f333_12').each(function(idx){    
+		// 		var value = $(this).val();
+		// 		if($.isNumeric(value)){
+		// 			if($("#mode").val() == 'temp_save') check[idx] = 1; // 온도 타입일때
+		// 			else check[idx] = value >= 0 ? 1 : 2;		// 온도 타입 아닐때
+		// 		}else{
+		// 			check[idx] = 0;
+		// 		}
+		// 	  });
+		// 	console.log(check);
+		// 	if(check.indexOf(0) != -1){
+		// 		let eq = check.indexOf(0);
+		// 		swal("체크", "숫자만 입력해 주세요!", "warning");
+		// 		// $(".tb_data_p2 .f333_12").eq(eq).focus();
+		// 	}else if(check.indexOf(2) != -1){
+		// 		let eq = check.indexOf(2);
+		// 		swal("체크", "양수로 입력해 주세요!", "warning");
+		// 		// $(".tb_data_p2 .f333_12").eq(eq).focus();
+		// 	}else{
 				var param = $("#dtm_frm").serialize();
 				$.ajax({
 					type: "POST",
@@ -690,8 +690,8 @@ $(document).ready(function(){
 						}
 					}
 				});
-			}
-		}
+			// }
+		// }
 	});
 
 	// 풍향 변환
