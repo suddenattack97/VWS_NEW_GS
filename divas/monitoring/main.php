@@ -266,6 +266,11 @@ $(document).ready(function(){
 		var tmp_num = $(this).data("num");
 		var checkLogin = getCookie("set_login");
 		var tmp_href = $(this).attr("target");
+
+		ms_token = localStorage.getItem("ms");
+		login_token = getCookie("set_login_"+ms_token);
+		sesstiontime_token = getCookie("session_time_"+ms_token);
+
 		if(login_token != "1"){ //0: 로그인X 1:로그인O
 			if(tmp_num == 10 || tmp_num == 11 || tmp_num == 12){
 				login(tmp_href);
@@ -290,6 +295,11 @@ $(document).ready(function(){
 		var tmp_num = $(this).data("num");
 		var tmp_href = $(this).attr("href");
 		var checkLogin = getCookie("set_login");
+
+		ms_token = localStorage.getItem("ms");
+		login_token = getCookie("set_login_"+ms_token);
+		sesstiontime_token = getCookie("session_time_"+ms_token);
+
 		if(login_token != "1"){
 			if(tmp_num == 2 || tmp_num == 4 || tmp_href == "rpt_ori.php"){
 				// $("#main").attr("src", ");
@@ -308,6 +318,11 @@ $(document).ready(function(){
 		var tmp_num = $(this).data("num");
 		var tmp_href = $(this).attr("href");
 		var checkLogin = getCookie("set_login");
+		
+		ms_token = localStorage.getItem("ms");
+		login_token = getCookie("set_login_"+ms_token);
+		sesstiontime_token = getCookie("session_time_"+ms_token);
+
 		if(login_token != "1"){
 			if(tmp_num == 2 || tmp_num == 4 || tmp_href == "rpt_ori.php"){
 				// $("#main").attr("src", ");
