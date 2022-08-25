@@ -1038,7 +1038,7 @@ $(document).ready(function(){
 								yAxisID: 'y_aws',
 								backgroundColor: ($("#option option:selected").val() == '0' ? '#c3dcf5' : 'rgba(255,255,255,0.1)'),
 								borderColor: '#69F',
-								borderWidth: 2
+								borderWidth: 0
 							}]
 						},
 						options: {
