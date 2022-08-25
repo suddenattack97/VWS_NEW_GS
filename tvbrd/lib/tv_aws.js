@@ -58,7 +58,7 @@ function aws(kind, arr_area_code){ // AWS - AWS 장비
 
 				if(!document.getElementById("aws_"+item+"_marker")){
 					var marker_content= document.createElement("div"); // 오버레이 팝업설정 
-					marker_content.innerHTML+="<div id='aws_"+item+"_marker' style='margin-top:-38px; margin-left: -10px;' class=''>\n\
+					marker_content.innerHTML+="<div id='aws_"+item+"_marker' style='margin-top:-38px; margin-left: -10px;' class='aws_marker'>\n\
 					<img style='-webkit-user-drag: none;' src='img/icon_s_03.png'/></div>";
 				}
 				var circle_content = document.createElement("div"); // 오버레이 팝업설정 

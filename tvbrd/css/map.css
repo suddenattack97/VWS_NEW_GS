@@ -18,6 +18,12 @@ div#top_img img{width:38px; height:28px; margin:8px 0 0 6px;}
 #map{width:100%;height:100%; margin:0; padding:0;}
 
 
+.rain_marker{ cursor : pointer }
+.flow_marker{ cursor : pointer }
+.aws_marker{ cursor : pointer }
+.snow_marker{ cursor : pointer }
+
+
 /*탑메뉴 설정팝업*/
 #set{margin:0; padding:20px 8px 8px 8px; position:absolute; right:0px; top:35px; display:none; z-index:20000; width:286px; background-color:white; /*background:url(../img/map_set_bg.jpg) top no-repeat;*/ }
 #set ul{margin:0; padding:0; width:100%;}

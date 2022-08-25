@@ -19,7 +19,7 @@ function flow(kind, arr_area_code){ // 강우 - 강우만 있는 장비
 				}
 				if(!document.getElementById("flow_"+item+"_marker")){
 					var marker_content= document.createElement("div"); // 오버레이 팝업설정 
-					marker_content.innerHTML+="<div id='flow_"+item+"_marker' style='margin-top:-38px; margin-left: -10px;' class=''><img style='-webkit-user-drag: none;' src='img/icon_s_02.png'/></div>";
+					marker_content.innerHTML+="<div id='flow_"+item+"_marker' style='margin-top:-38px; margin-left: -10px;' class='flow_marker'><img style='-webkit-user-drag: none;' src='img/icon_s_02.png'/></div>";
 				}
 
 				var circle_content = document.createElement("div"); // 오버레이 팝업설정 
