@@ -87,63 +87,65 @@ $(document).ready(function(){
 	var checkLogin = getCookie("set_login");
 	var session_cookie = getCookie("session_time");
 
-	var ms_token = sessionStorage.getItem("ms");
-	var login_token = sessionStorage.getItem("set_login_"+ms_token);
-	var sesstiontime_token = sessionStorage.getItem("session_time_"+ms_token);
+	var ms_token = localStorage.getItem("ms");
+	var login_token = getCookie("set_login_"+ms_token);
+	var sesstiontime_token = getCookie("session_time_"+ms_token);
 
-	const countDownTimer = function (id, date) {
-		var _vDate = new Date(date); // 전달 받은 일자
-		var _vDate_stamp = new Date(date).getTime(); // 전달 받은 일자
-		var _second = 1000;
-		var _minute = _second * 60;
-		var _hour = _minute * 60;
-		var _day = _hour * 24;
-		var timer;
+	// const countDownTimer = function (id, date) {
+	// 	var _vDate = new Date(date); // 전달 받은 일자
+	// 	var _vDate_stamp = new Date(date).getTime(); // 전달 받은 일자
+	// 	var _second = 1000;
+	// 	var _minute = _second * 60;
+	// 	var _hour = _minute * 60;
+	// 	var _day = _hour * 24;
+	// 	var timer;
 
-		function showRemaining() {
-			// var now = new Date();
-			var ms = new Date().getTime();
-			var now = new Date(ms);
+	// 	function showRemaining() {
+	// 		// var now = new Date();
+	// 		var ms = new Date().getTime();
+	// 		var now = new Date(ms);
 			
-			// var distDt = _vDate - now;
-			var distDt = _vDate_stamp - ms;
+	// 		// var distDt = _vDate - now;
+	// 		var distDt = _vDate_stamp - ms;
 
-			if (distDt < 0 || login_token !== "1" || !login_token) {
+	// 		login_token = localStorage.getItem("set_login_"+ms_token);
+
+	// 		if (distDt < 0 || login_token !== "1" || !login_token) {
 				
-				login_token = 0;
-				// console.log("Session Expired!");
-				// console.log(login_token);
-				clearInterval(timer);
-				document.getElementById(id).textContent = "X";
-				document.getElementById("user_id").textContent = "X";
+	// 			login_token = 0;
+	// 			// console.log("Session Expired!");
+	// 			// console.log(login_token);
+	// 			clearInterval(timer);
+	// 			document.getElementById(id).textContent = "X";
+	// 			document.getElementById("user_id").textContent = "X";
+	
+	// 			$("#btn_logout").addClass('dp0');
+	// 			$("#btn_layout").addClass('dp0');
+	// 			$("#btn_login").removeClass('dp0');
+	// 			$("#user_id").addClass("dp0");
+	// 			$("#session_time").addClass("dp0");
+	// 			$("#session_time").prev().addClass("dp0");
+	// 			var tmp_src = $("#main").attr("src");
+	
+	// 			localStorage.clear();
+	// 			history.pushState(null, null, location.href);
+	// 			window.onpopstate = function () {
+	// 				history.go(1);
+	// 			};
+	
+	// 			return;
+	// 		}
+			
+	// 		var days = Math.floor(distDt / _day);
+	// 		var hours = Math.floor((distDt % _day) / _hour);
+	// 		var minutes = Math.floor((distDt % _hour) / _minute);
+	// 		var seconds = Math.floor((distDt % _minute) / _second);
 
-				$("#btn_logout").addClass('dp0');
-				$("#btn_layout").addClass('dp0');
-				$("#btn_login").removeClass('dp0');
-				$("#user_id").addClass("dp0");
-				$("#session_time").addClass("dp0");
-				$("#session_time").prev().addClass("dp0");
-				var tmp_src = $("#main").attr("src");
-
-				sessionStorage.clear();
-				history.pushState(null, null, location.href);
-				window.onpopstate = function () {
-					history.go(1);
-				};
-
-				return;
-			}
-			var days = Math.floor(distDt / _day);
-			var hours = Math.floor((distDt % _day) / _hour);
-			var minutes = Math.floor((distDt % _hour) / _minute);
-			var seconds = Math.floor((distDt % _minute) / _second);
-
-			document.getElementById(id).textContent = minutes + '분 ';
-			document.getElementById(id).textContent += seconds + '초';
-		}
-			timer = setInterval(showRemaining, 1000);
-		
-	}
+	// 		document.getElementById(id).textContent = minutes + '분 ';
+	// 		document.getElementById(id).textContent += seconds + '초';
+	// 	}
+	// 		timer = setInterval(showRemaining, 1000);
+	// }
 
 	setInt_time = setInterval(function(){
 		var now_client_time = new Date();
@@ -161,16 +163,15 @@ $(document).ready(function(){
 		$("#now_date").html(now_y+'년 '+now_m+'월 '+now_d+'일 '+now_h+'시 '+now_i+'분 '+now_s+'초');
 
 		// var checkLogin = getCookie("set_login");
-		// var session_time = getCookie("session_time");
+		var session_time = getCookie("session_time_"+ms_token);
 		
 		var tmp_src = $("#main").attr("src");
 
-		countDownTimer('session_time', sesstiontime_token);
+		// countDownTimer('session_time', session_time);
 
 		if(login_token !== "1" || !login_token){
 			if(tmp_src == "dtm_rain.php" || tmp_src == "dtm_wl.php" || tmp_src == "dtm_aws.php" || tmp_src == "dtm_snow.php" || tmp_src == "dtm_mcall.php" ||
 			tmp_src == "rpt_ori.php" || tmp_src == "set_setting.php" || tmp_src == "set_organ.php" || tmp_src == "set_user.php" || tmp_src == "set_equip.php"){
-				sessionStorage.clear();
 				location.href = "./main.php";
 				return false;
 			}
@@ -232,9 +233,18 @@ $(document).ready(function(){
 		    	if(data.result){
 	    			// location.href = "./login.php"; return false;
 					// createCookie("set_login","0","1");
-					// sessionStorage.setItem("set_login_"+ms_token,0);
-					sessionStorage.clear();
+					// localStorage.setItem("set_login_"+ms_token,0);
+					localStorage.clear();
+					deleteCookie("set_login_"+ms_token);
+					deleteCookie("session_time_"+ms_token);
+					deleteCookie("keyUserID");
+					deleteCookie("keyUserName");
+					deleteCookie("keyUserPWD");
+					deleteCookie("keyOrganID");
+					deleteCookie("keyOrganName");
+					deleteCookie("keySortBase");
 
+					
 					history.pushState(null, null, location.href);
 					window.onpopstate = function () {
 						history.go(1);
@@ -339,7 +349,9 @@ function getCookie(cName) {
    }
    return unescape(cValue);
 }
-
+function deleteCookie(cookie_name) {
+        document.cookie = cookie_name + '=; expires=Thu, 01 Jan 1999 00:00:10 GMT; path=/';
+}
 // 아이프레임 url 확인
 function ifr(){
 	console.log( $("#main").attr("src") );

@@ -256,9 +256,11 @@ $(document).ready(function(){
 							var ms = new Date().getTime() + 3600000;
 							var session_time = new Date(ms);
 
-							sessionStorage.setItem('ms', ms);	
-							sessionStorage.setItem('set_login_'+ms, 1);	
-							sessionStorage.setItem('session_time_'+ms, session_time);		
+							localStorage.setItem('ms', ms);	
+							// localStorage.setItem('set_login_'+ms, 1);
+							// localStorage.setItem('session_time_'+ms, session_time);
+							createCookie("set_login_"+ms,"1","1");
+							createCookie("session_time_"+ms,"1","1");
 							
 							// createCookie("set_login","1","1");
 							// createCookie("session_time",session_time,"2");
@@ -271,9 +273,9 @@ $(document).ready(function(){
 									// parent.parent.location.href = "../../tvbrd/index.php";
 									parent.parent.location.reload();
 									parent.parent.opener.parent.parent.location.reload();
-									parent.parent.opener.parent.parent.sessionStorage.setItem('ms', ms);
-									parent.parent.opener.parent.parent.sessionStorage.setItem('set_login_'+ms, 1);	
-									parent.parent.opener.parent.parent.sessionStorage.setItem('session_time_'+ms, session_time);									
+									parent.parent.opener.parent.parent.localStorage.setItem('ms', ms);
+									parent.parent.opener.parent.parent.localStorage.setItem('set_login_'+ms, 1);	
+									parent.parent.opener.parent.parent.localStorage.setItem('session_time_'+ms, session_time);									
 								}else{
 									parent.parent.location.href = "main.php?target="+$("#target").val();
 								}

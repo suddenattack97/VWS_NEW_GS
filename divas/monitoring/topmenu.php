@@ -118,10 +118,10 @@ require_once "../_info/_set_setting.php";
 
 <script type="text/javascript">
 
-  var ms_token = sessionStorage.getItem("ms");
-	var login_token = sessionStorage.getItem("set_login_"+ms_token);
-	var sesstiontime_token = sessionStorage.getItem("session_time_"+ms_token);
-  
+  var ms_token = localStorage.getItem("ms");
+	var login_token = getCookie("set_login_"+ms_token);
+	var sesstiontime_token = getCookie("session_time_"+ms_token);
+
   if(login_token != 1){
     // 로그인 안했을때 숨김처리
     // $("#btn_logout").addClass('dp_b');
@@ -133,10 +133,26 @@ require_once "../_info/_set_setting.php";
     $("#session_time").addClass('dp0');
   }else{
     //로그인 했을때 보임처리
-      $("#btn_login").addClass('dp0');
+    $("#btn_login").addClass('dp0');
   }
   // 파라미터 삭제(로그인 target)
   $("i").click(function(){
       history.replaceState({}, null, location.pathname);
   });
+
+  //쿠키 가져오기 함수
+function getCookie(cName) {
+   cName = cName + '=';
+   var cookieData = document.cookie;
+   var start = cookieData.indexOf(cName);
+   var cValue = '';
+   if(start != -1){
+      start += cName.length;
+      var end = cookieData.indexOf(';', start);
+      if(end == -1)end = cookieData.length;
+      cValue = cookieData.substring(start, end);
+   }
+   return unescape(cValue);
+}
+
 </script>

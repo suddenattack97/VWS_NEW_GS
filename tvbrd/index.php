@@ -244,16 +244,30 @@ wd+TfN++aIZJivncuQIDAQAB
 		
 <script type="text/javascript">
 
+//쿠키 가져오기 함수
+function getCookie(cName) {
+	cName = cName + '=';
+	var cookieData = document.cookie;
+	var start = cookieData.indexOf(cName);
+	var cValue = '';
+	if(start != -1){
+	start += cName.length;
+	var end = cookieData.indexOf(';', start);
+	if(end == -1)end = cookieData.length;
+	cValue = cookieData.substring(start, end);
+	}
+	return unescape(cValue);
+}
+
 //우클릭 방지 추가
 document.oncontextmenu = function(){return false;}
-
-var ms_token = sessionStorage.getItem("ms");
-var login_token = sessionStorage.getItem("set_login_"+ms_token);
-var sesstiontime_token = sessionStorage.getItem("session_time_"+ms_token);
 		
-
 // 환경설정 토글
 function setToggle(sets){
+
+	var ms_token = localStorage.getItem("ms");
+	var login_token = getCookie("set_login_"+ms_token);
+	var sesstiontime_token = getCookie("session_time_"+ms_token);
 
 	var _vDate = new Date(sesstiontime_token); // 전달 받은 일자
 	var _vDate_stamp = new Date(sesstiontime_token).getTime(); // 전달 받은 일자
@@ -267,26 +281,6 @@ function setToggle(sets){
 	
 	var distDt = _vDate_stamp - ms;
 
-	if (distDt < 0 || login_token !== "1" || !login_token) {
-		login_token = 0;
-		sessionStorage.clear();
-		// window.close();
-	}
-
-	//쿠키 가져오기 함수
-	function getCookie(cName) {
-		cName = cName + '=';
-		var cookieData = document.cookie;
-		var start = cookieData.indexOf(cName);
-		var cValue = '';
-		if(start != -1){
-		start += cName.length;
-		var end = cookieData.indexOf(';', start);
-		if(end == -1)end = cookieData.length;
-		cValue = cookieData.substring(start, end);
-		}
-		return unescape(cValue);
-	}
 	// var checkLogin = getCookie("set_login");
 
 	var set = document.getElementById(sets);
