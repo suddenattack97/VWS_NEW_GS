@@ -23,7 +23,7 @@ function rain(kind, arr_area_code){ // 강우 - 강우만 있는 장비
 				if(!document.getElementById("rain_"+item+"_marker")){
 					var marker_content= document.createElement("div"); // 오버레이 팝업설정 
 					marker_content.innerHTML+="<div id='rain_"+item+"_marker' style='margin-top:-38px; margin-left: -10px;' class=''>\n\
-					<img style='cursor:"+(map_control_type == 1 ? 'not-allowed' : 'pointer')+"; -webkit-user-drag: none;' src='img/icon_s_01.png'/></div>";
+					<img style='-webkit-user-drag: none;' src='img/icon_s_01.png'/></div>";
 				}
 				var circle_content = document.createElement("div"); // 오버레이 팝업설정 
 				circle_content.innerHTML+="<div id='wave_"+item+"' class='chameleon'></div>";
