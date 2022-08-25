@@ -688,7 +688,7 @@ Class ClassSetting {
 	 */
 	function getEquipView(){
 		if(DB == "0"){
-			$sql = " SELECT *,AES_DECRYPT(UNHEX(CONNECTION_INFO), MD5(".ss_organ_code.")) as decryt_con_info FROM RTU_INFO 
+			$sql = " SELECT * FROM RTU_INFO 
 					 WHERE RTU_ID = '".$_REQUEST['RTU_ID']."' ";
 			
 			$rs = $this->DB->execute($sql);
@@ -701,8 +701,7 @@ Class ClassSetting {
 			$data['LINE_NO'] = $rs[0]['LINE_NO'];
 			$data['MODEL_NO'] = $rs[0]['MODEL_NO'];
 			$data['RTU_TYPE'] = $rs[0]['RTU_TYPE'];
-			//$data['CONNECTION_INFO'] = $rs[0]['CONNECTION_INFO'];
-			$data['CONNECTION_INFO'] = $rs[0]['decryt_con_info'];
+			$data['CONNECTION_INFO'] = $rs[0]['CONNECTION_INFO'];
 			$data['CALL_LAST_D'] = substr($rs[0]['CALL_LAST'], 0, 10);
 			$data['CALL_LAST_H'] = substr($rs[0]['CALL_LAST'], 11, 2);
 			$data['CALL_LAST_M'] = substr($rs[0]['CALL_LAST'], 14, 2);
