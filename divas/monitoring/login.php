@@ -299,7 +299,7 @@ $(document).ready(function(){
 					 	$("#recaptcha").val("");
 					<? } ?>
 				}else if(data.result == 3){
-					swal("체크", "로그인 시도 횟수 초과입니다. 1시간 후에 다시 시도해 주세요.", "warning");
+					swal("체크", "로그인 시도 횟수 초과입니다. 5분 후에 다시 시도해 주세요.", "warning");
 				}else if(data.result == 4){
 					swal("체크", data.msg, "warning");
 		    	}else{

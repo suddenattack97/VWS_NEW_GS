@@ -127,7 +127,7 @@ Class ClassCommon {
 					$FAIL_CNT = $rs[0]['FAIL_CNT'];
 					$LAST_FAIL_DATE = $rs[0]['LAST_FAIL_DATE'];
 	
-					if( $LAST_FAIL_DATE == date("Y-m-d H", time()).":00:00" && $FAIL_CNT >= 10){
+					if( strtotime($LAST_FAIL_DATE) >= strtotime(date("Y-m-d H:i", strtotime('-5 minutes')).":00") && $FAIL_CNT >= 10){
 						$result = false;
 					}else{
 						$result = true;
@@ -227,12 +227,14 @@ Class ClassCommon {
 				$FAIL_CNT = $IdInfo['FAIL_CNT'] + 1;
 				$LAST_FAIL_DATE = $IdInfo['LAST_FAIL_DATE'];
 
-				if( $LAST_FAIL_DATE != date("Y-m-d H", time()).":00:00" ){
+				if( strtotime($LAST_FAIL_DATE) < strtotime(date("Y-m-d H:i", strtotime('-5 minutes')).":00") ){ // 얼마안에 fail_cnt를 초기화할 것인지
 					$FAIL_CNT = 1;
+					$sql = " UPDATE user_info SET FAIL_CNT = ".$FAIL_CNT.", LAST_FAIL_DATE = DATE_FORMAT(now(), '%Y-%m-%d %H:%i')
+							 WHERE user_id = '".$tmp_id."' ";
+				}else{
+					$sql = " UPDATE user_info SET FAIL_CNT = ".$FAIL_CNT."
+							 WHERE user_id = '".$tmp_id."' ";
 				}
-
-				$sql = " UPDATE user_info SET FAIL_CNT = ".$FAIL_CNT.", LAST_FAIL_DATE = DATE_FORMAT(now(), '%Y-%m-%d %H')
-						 WHERE user_id = '".$tmp_id."' ";
 				
 				if($this->DB->QUERYONE($sql)) $sqlReturn = true;
 				
