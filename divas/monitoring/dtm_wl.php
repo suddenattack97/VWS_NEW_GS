@@ -28,7 +28,7 @@ require_once "./head.php";
 			</ul>
 			<ul class="stitle_box">
                  <!-- <li><?=$sdate?></li> -->
-                 <li>[ 단위 : mm ]</li>
+                 <li>[ 단위 : m ]</li>
              </ul>
 		<ul class="set_ulwrap_nh">
 			<li class="li100_nor">
