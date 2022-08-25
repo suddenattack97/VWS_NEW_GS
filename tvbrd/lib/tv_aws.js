@@ -415,7 +415,7 @@ function aws(kind, arr_area_code){ // AWS - AWS 장비
 
 								$.ajax({
 									type: "POST",
-									url: "http://api.vworld.kr/req/address?service=address&request=getAddress&version=2.0&crs=epsg:4326&point="+point[0][0]+","+point[0][1]+"&format=json&type=both&zipcode=true&simple=false&key="+sessionStorage.getItem('API_KEY'),
+									url: "http://api.vworld.kr/req/address?service=address&request=getAddress&version=2.0&crs=epsg:4326&point="+point[0][0]+","+point[0][1]+"&format=json&type=both&zipcode=true&simple=false&key="+localStorage.getItem('API_KEY'),
 									cache: false,
 									dataType: "jsonp",
 									success : function(data) {
