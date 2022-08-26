@@ -421,16 +421,18 @@ function aws(kind, arr_area_code){ // AWS - AWS 장비
 									success : function(data) {
 										var emd;
 										if(data.response.result){
-											if(data.response.result[0].structure.level4A){
+											if(data.response.result[0].structure.level4A !== ""){
 												if(data.response.result[0].text.indexOf(data.response.result[0].structure.level4A) != -1){
 													emd = data.response.result[0].structure.level4A;
 												}else{
 													if(data.response.result[0].structure.level4L){
-														emd = data.response.result[0].structure.level4L;
+														if(data.response.result[0].text.indexOf(data.response.result[0].structure.level4L) != -1){
+															emd = data.response.result[0].structure.level4L;
+														}
 													}
 												}
 											}else{
-												if(data.response.result[0].structure.level4L){
+												if(data.response.result[0].text.indexOf(data.response.result[0].structure.level4L) != -1){
 													emd = data.response.result[0].structure.level4L;
 												}
 											}
