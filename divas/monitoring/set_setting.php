@@ -740,7 +740,7 @@ require_once "./head.php";
 							<select name="url[]">
 								<option value="http://" <?=(strstr($val['menu_url'], "http://") ? 'selected' : '')?>>http://</option>
 								<option value="https://" <?=(strstr($val['menu_url'], "https://") ? 'selected' : '')?>>https://</option>
-							</select> <input name="popup_url[]" type="text" value="<?=str_replace($http_array,"",$val['menu_url'])?>" onblur="inputCheck(this,'text','4~100')"> </option>
+							</select> <input name="popup_url[]" type="text" value="<?=str_replace($http_array,"",$val['menu_url'])?>" onblur="inputCheck(this,'text','1~100')"> </option>
 					
 							</td>	
 							<!-- <td>
