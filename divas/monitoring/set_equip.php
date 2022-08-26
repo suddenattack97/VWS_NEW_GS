@@ -149,7 +149,7 @@ require_once "./head.php";
 								<option value="F00">수위계</option>
 								<!-- <option value="DP0">변위계</option> -->
 								<!-- <option value="EQ0">지진계</option> -->
-								<option value="RF0">강우수위계</option>
+								<!-- <option value="RF0">강우수위계</option> -->
 								<option value="A00">AWS</option>
 								<option value="S00">적설계</option>
 							</select> 
