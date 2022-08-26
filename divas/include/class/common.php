@@ -808,14 +808,14 @@ Class ClassCommon {
 			$popup_use = $_REQUEST['popup_use'];
 			$popup_url = $_REQUEST['popup_url'];
 			foreach($popup_idx as $key => $val){
-				if($popup_use[$key] == '0'){	// 미사용 선택 => 최고관리자 이하이면 menu_level -1(한단계 올림), 사용으로...21/01/06 서정명
-					if($popup_level[$key] != '1'){
-						$popup_level[$key] = $popup_level[$key] - 1;
-						$popup_use[$key] = '1';
-						// $popup_url[$key] = $popup_url[$key];
-					}
-				}
-				$sql = " UPDATE dn_direct_url SET menu_name = '".$popup_name[$key]."' , menu_url = '".$popup_http[$key].$popup_url[$key]."' , menu_level = '".$popup_level[$key]."', menu_use = '".$popup_use[$key]."'
+				// if($popup_use[$key] == '0'){	// 미사용 선택 => 최고관리자 이하이면 menu_level -1(한단계 올림), 사용으로...21/01/06 서정명
+				// 	if($popup_level[$key] != '1'){
+				// 		$popup_level[$key] = $popup_level[$key] - 1;
+				// 		$popup_use[$key] = '1';
+				// 		// $popup_url[$key] = $popup_url[$key];
+				// 	}
+				// }
+				$sql = " UPDATE dn_direct_url SET menu_name = '".$popup_name[$key]."' , menu_url = '".$popup_http[$key].$popup_url[$key]."' , menu_use = '".$popup_use[$key]."'
 						 WHERE menu_idx = '".$val."' ";
 
 						 if( $this->DB->QUERYONE($sql) ){
