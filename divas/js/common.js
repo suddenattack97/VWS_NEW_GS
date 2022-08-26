@@ -937,17 +937,17 @@
 			}
 		}else if(type == 'text'){ // 문자열 길이 체크
 			if(obj.value.length > 0){
-			var ignores = ['<','>','&lt;','&gt;','INNERHTML','JAVASCRIPT','EVAL','ONMOUSEWHEEL','ONACTIVE','ONFOCUSOUT','EXPRESSION','CHARSET'
-			,'ONDATAAVAILABLE','ONCUT','ONKEYUP','APPLET','DOCUMENT','ONAFTERIPUDATE','ONCLICK','ONKEYPRESS','META','STRING','ONMOUSEDOWN','ONCHANGE'
-			,'ONLOAD','XML','CREATE','ONBEFOREACTIVATE','ONBEFORECUT','ONBOUNCE','BLINK','APPEND','ONBEFORECOPY','ONDBCLICK','ONMOUSEENTER','LINK'
-			,'BINDING','ONBEFOREDEACTIVATE','ONDEACTIVATE','ONMOUSEOUT','STYLE','ALERT','ONDATASETCHAGED','ONDRAG','ONMOUSEOVER','SCRIPT','MSGBOX'
-			,'CNBEFOREPRINT','ONDRAGEND','ONSUBMIT','EMBED','REFRESH','CNBEFOREPASTE','ONDRAGENTER','ONMOUSEEND','OBJECT','VOID','ONBEFOREEDITFOCUS'
-			,'ONDRAGLEAVE','ONRESIZESTART','IFRAME','COOKIE','ONBEFOREULOAD','ONDRAGOVER','ONULOAD','FRAME','HREF','ONBEFOREUPDATE','ONDRAGSTART'
-			,'ONSELECTSTART','FRAMESET','ONPASTE','ONPROPERTYCHANGE','ONDROP','ONRESET','ILAYER','ONRESIZE','ONDATASETCOMPLETE','ONERROR','ONMOVE'
-			,'LAYER','ONSELECT','ONCELLCHANGE','ONFINISH','ONSTOP','BGSOUND','BASE','ONLAYOUTCOMPLETE','ONFOCUS','ONROWEXIT','TITLE','ONBLUR'
+			var filters = ['<','>','&lt;','&gt;','"',"'",'&','%','%00','INNERHTML','JAVASCRIPT','EVAL','ONMOUSEWHEEL','ONACTIVE','ONFOCUSOUT'
+			,'EXPRESSION','CHARSET','ONDATAAVAILABLE','ONCUT','ONKEYUP','APPLET','DOCUMENT','ONAFTERIPUDATE','ONCLICK','ONKEYPRESS','META','STRING'
+			,'ONMOUSEDOWN','ONCHANGE','ONLOAD','XML','CREATE','ONBEFOREACTIVATE','ONBEFORECUT','ONBOUNCE','BLINK','APPEND','ONBEFORECOPY','ONDBCLICK'
+			,'ONMOUSEENTER','LINK','BINDING','ONBEFOREDEACTIVATE','ONDEACTIVATE','ONMOUSEOUT','STYLE','ALERT','ONDATASETCHAGED','ONDRAG','ONMOUSEOVER'
+			,'SCRIPT','MSGBOX','CNBEFOREPRINT','ONDRAGEND','ONSUBMIT','EMBED','REFRESH','CNBEFOREPASTE','ONDRAGENTER','ONMOUSEEND','OBJECT','VOID'
+			,'ONBEFOREEDITFOCUS','ONDRAGLEAVE','ONRESIZESTART','IFRAME','COOKIE','ONBEFOREULOAD','ONDRAGOVER','ONULOAD','FRAME','HREF','ONBEFOREUPDATE'
+			,'ONDRAGSTART','ONSELECTSTART','FRAMESET','ONPASTE','ONPROPERTYCHANGE','ONDROP','ONRESET','ILAYER','ONRESIZE','ONDATASETCOMPLETE','ONERROR'
+			,'ONMOVE','LAYER','ONSELECT','ONCELLCHANGE','ONFINISH','ONSTOP','BGSOUND','BASE','ONLAYOUTCOMPLETE','ONFOCUS','ONROWEXIT','TITLE','ONBLUR'
 			,'ONSELECTIONCHANGE','VBSCRIPT','ONERRORUPDATE','ONBEFORE','ONSTART','ONROWSINSERTED','ONKEYDOWN','ONFILTERCHAGE','ONMOUSEUP','ONFOCUSIN'
-			,'ONCONTROLSELECTED','ONROWSDELETE','ONLOSECAPTURE','ONROWENTER','ONHELP','ONREADYSTATECHANGE','ONMOUSELEAVE','ONMOUSEMOVE',
-			'innerHTML','javascript','eval','onmousewheel','onactive','onfocusout','expression','charset'
+			,'ONCONTROLSELECTED','ONROWSDELETE','ONLOSECAPTURE','ONROWENTER','ONHELP','ONREADYSTATECHANGE','ONMOUSELEAVE','ONMOUSEMOVE'
+			,'innerHTML','javascript','eval','onmousewheel','onactive','onfocusout','expression','charset'
 			,'ondataavailable','oncut','onkeyup','applet','document','onafteripudate','onclick','onkeypress','meta','string','onmousedown','onchange'
 			,'onload','xml','create','onbeforeactivate','onbeforecut','onbounce','blink','append','onbeforecopy','ondbclick','onmouseenter','link'
 			,'binding','onbeforedeactivate','ondeactivate','onmouseout','style','alert','ondatasetchaged','ondrag','onmouseover','script','msgbox'
@@ -980,11 +980,11 @@
 					}
 					var indices = [];
 					var tmpStr = obj.value;
-					ignores.forEach(function(v, i){
+					filters.forEach(function(v, i){
 						let ig_idx = tmpStr.indexOf(v);
 						if(ig_idx != -1) {
-							indices.push(ignores[i]);
-							tmpStr = replaceALL(tmpStr, ignores[i], '');
+							indices.push(filters[i]);
+							tmpStr = replaceALL(tmpStr, filters[i], '');
 						}
 					});
 					if(indices.length > 0) {

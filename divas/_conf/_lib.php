@@ -317,4 +317,51 @@ function MobileCheck(){
 	}
 	return ($checkCount >= 1) ? "Mobile" : "Computer"; 
 }
+
+/**
+ *	XSS(크로스사이트 스크립트) 공격 취약점 체크
+ *	해당 되는 문자열 삭제
+ *	@return string
+ */
+function XSSCheck($str){
+	// $filters = array('','<','>','&lt;','&gt;','"',"'",'&','%','%00');	// 특수문자 제거는 정규식으로
+	$filters = array('','INNERHTML','JAVASCRIPT','EVAL','ONMOUSEWHEEL','ONACTIVE','ONFOCUSOUT'
+	,'EXPRESSION','CHARSET','ONDATAAVAILABLE','ONCUT','ONKEYUP','APPLET','DOCUMENT','ONAFTERIPUDATE','ONCLICK','ONKEYPRESS','META','STRING'
+	,'ONMOUSEDOWN','ONCHANGE','ONLOAD','XML','CREATE','ONBEFOREACTIVATE','ONBEFORECUT','ONBOUNCE','BLINK','APPEND','ONBEFORECOPY','ONDBCLICK'
+	,'ONMOUSEENTER','LINK','BINDING','ONBEFOREDEACTIVATE','ONDEACTIVATE','ONMOUSEOUT','STYLE','ALERT','ONDATASETCHAGED','ONDRAG','ONMOUSEOVER'
+	,'SCRIPT','MSGBOX','CNBEFOREPRINT','ONDRAGEND','ONSUBMIT','EMBED','REFRESH','CNBEFOREPASTE','ONDRAGENTER','ONMOUSEEND','OBJECT','VOID'
+	,'ONBEFOREEDITFOCUS','ONDRAGLEAVE','ONRESIZESTART','IFRAME','COOKIE','ONBEFOREULOAD','ONDRAGOVER','ONULOAD','FRAME','HREF','ONBEFOREUPDATE'
+	,'ONDRAGSTART','ONSELECTSTART','FRAMESET','ONPASTE','ONPROPERTYCHANGE','ONDROP','ONRESET','ILAYER','ONRESIZE','ONDATASETCOMPLETE','ONERROR'
+	,'ONMOVE','LAYER','ONSELECT','ONCELLCHANGE','ONFINISH','ONSTOP','BGSOUND','BASE','ONLAYOUTCOMPLETE','ONFOCUS','ONROWEXIT','TITLE','ONBLUR'
+	,'ONSELECTIONCHANGE','VBSCRIPT','ONERRORUPDATE','ONBEFORE','ONSTART','ONROWSINSERTED','ONKEYDOWN','ONFILTERCHAGE','ONMOUSEUP','ONFOCUSIN'
+	,'ONCONTROLSELECTED','ONROWSDELETE','ONLOSECAPTURE','ONROWENTER','ONHELP','ONREADYSTATECHANGE','ONMOUSELEAVE','ONMOUSEMOVE'
+	,'innerHTML','javascript','eval','onmousewheel','onactive','onfocusout','expression','charset'
+	,'ondataavailable','oncut','onkeyup','applet','document','onafteripudate','onclick','onkeypress','meta','string','onmousedown','onchange'
+	,'onload','xml','create','onbeforeactivate','onbeforecut','onbounce','blink','append','onbeforecopy','ondbclick','onmouseenter','link'
+	,'binding','onbeforedeactivate','ondeactivate','onmouseout','style','alert','ondatasetchaged','ondrag','onmouseover','script','msgbox'
+	,'cnbeforeprint','ondragend','onsubmit','embed','refresh','cnbeforepaste','ondragenter','onmouseend','object','void','onbeforeeditfocus'
+	,'ondragleave','onresizestart','iframe','cookie','onbeforeuload','ondragover','onuload','frame','Href','onbeforeupdate','ondragstart'
+	,'onselectstart','frameset','onpaste','onpropertychange','ondrop','onreset','ilayer','onresize','ondatasetcomplete','onerror','onmove'
+	,'layer','onselect','oncellchange','onfinish','onstop','bgsound','base','onlayoutcomplete','onfocus','onrowexit','title','onblur'
+	,'onselectionchange','vbscript','onerrorupdate','onbefore','onstart','onrowsinserted','onkeydown','onfilterchage','onmouseup','onfocusin'
+	,'oncontrolselected','onrowsdelete','onlosecapture','onrowenter','onhelp','onreadystatechange','onmouseleave','onmousemove');
+	
+	$indices = array();
+	$tmpStr = trim($str);
+	$tmpStr = preg_replace("/[ #\&\+\-%@=\/\\\:;,\.'\"\^`~\_|\!\?\*$#<>()\[\]\{\}]/i", "", $tmpStr);
+	$tmpStr = "!".$tmpStr;
+	foreach($filters as $key => $val){
+		if($key > 0){
+			if(strlen($tmpStr) > 0){
+				$idx = strpos($tmpStr, $val);
+				if($idx){
+					array_push($indices, $filters[$key]);
+					$tmpStr = str_replace($filters[$key], '', $tmpStr);
+				}
+			}
+		}
+	}
+	$tmpStr = preg_replace("/[ #\&\+\-%@=\/\\\:;,\.'\"\^`~\_|\!\?\*$#<>()\[\]\{\}]/i", "", $tmpStr);
+	return $tmpStr; 
+}
 ?>
