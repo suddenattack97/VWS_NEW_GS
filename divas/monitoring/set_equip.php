@@ -34,7 +34,7 @@ require_once "./head.php";
 						<option value="2">행정코드</option>
 					</select>
 					&nbsp; 
-					<input type="text" id="search_word" name="search_word" class="f333_12" size="60" onblur="inputCheck(this,'text','0~1000')">
+					<input type="text" id="search_word" name="search_word" class="f333_12" size="60">
 					&nbsp;&nbsp;
 					<button type="button" id="btn_search" class="btn_bb80 mL_10"><i class="fa fa-search mR_5 font15"></i>조회</button>
 					<button type="button" id="btn_search_all" class="btn_lbb80_s w90p"><i class="fa fa-list-alt mR_5 font15"></i>전체목록</button>
