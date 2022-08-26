@@ -904,6 +904,11 @@
 			return true;
 		}
 	}
+
+	// 문자열 전체 replace
+	function replaceALL(str, searchStr, replaceStr) {
+		return str.split(searchStr).join(replaceStr);
+	}
 		
 	 /**
      *  oninput 입력시 유효성 체크
@@ -932,6 +937,27 @@
 			}
 		}else if(type == 'text'){ // 문자열 길이 체크
 			if(obj.value.length > 0){
+			var ignores = ['<','>','&lt;','&gt;','INNERHTML','JAVASCRIPT','EVAL','ONMOUSEWHEEL','ONACTIVE','ONFOCUSOUT','EXPRESSION','CHARSET'
+			,'ONDATAAVAILABLE','ONCUT','ONKEYUP','APPLET','DOCUMENT','ONAFTERIPUDATE','ONCLICK','ONKEYPRESS','META','STRING','ONMOUSEDOWN','ONCHANGE'
+			,'ONLOAD','XML','CREATE','ONBEFOREACTIVATE','ONBEFORECUT','ONBOUNCE','BLINK','APPEND','ONBEFORECOPY','ONDBCLICK','ONMOUSEENTER','LINK'
+			,'BINDING','ONBEFOREDEACTIVATE','ONDEACTIVATE','ONMOUSEOUT','STYLE','ALERT','ONDATASETCHAGED','ONDRAG','ONMOUSEOVER','SCRIPT','MSGBOX'
+			,'CNBEFOREPRINT','ONDRAGEND','ONSUBMIT','EMBED','REFRESH','CNBEFOREPASTE','ONDRAGENTER','ONMOUSEEND','OBJECT','VOID','ONBEFOREEDITFOCUS'
+			,'ONDRAGLEAVE','ONRESIZESTART','IFRAME','COOKIE','ONBEFOREULOAD','ONDRAGOVER','ONULOAD','FRAME','HREF','ONBEFOREUPDATE','ONDRAGSTART'
+			,'ONSELECTSTART','FRAMESET','ONPASTE','ONPROPERTYCHANGE','ONDROP','ONRESET','ILAYER','ONRESIZE','ONDATASETCOMPLETE','ONERROR','ONMOVE'
+			,'LAYER','ONSELECT','ONCELLCHANGE','ONFINISH','ONSTOP','BGSOUND','BASE','ONLAYOUTCOMPLETE','ONFOCUS','ONROWEXIT','TITLE','ONBLUR'
+			,'ONSELECTIONCHANGE','VBSCRIPT','ONERRORUPDATE','ONBEFORE','ONSTART','ONROWSINSERTED','ONKEYDOWN','ONFILTERCHAGE','ONMOUSEUP','ONFOCUSIN'
+			,'ONCONTROLSELECTED','ONROWSDELETE','ONLOSECAPTURE','ONROWENTER','ONHELP','ONREADYSTATECHANGE','ONMOUSELEAVE','ONMOUSEMOVE',
+			'innerHTML','javascript','eval','onmousewheel','onactive','onfocusout','expression','charset'
+			,'ondataavailable','oncut','onkeyup','applet','document','onafteripudate','onclick','onkeypress','meta','string','onmousedown','onchange'
+			,'onload','xml','create','onbeforeactivate','onbeforecut','onbounce','blink','append','onbeforecopy','ondbclick','onmouseenter','link'
+			,'binding','onbeforedeactivate','ondeactivate','onmouseout','style','alert','ondatasetchaged','ondrag','onmouseover','script','msgbox'
+			,'cnbeforeprint','ondragend','onsubmit','embed','refresh','cnbeforepaste','ondragenter','onmouseend','object','void','onbeforeeditfocus'
+			,'ondragleave','onresizestart','iframe','cookie','onbeforeuload','ondragover','onuload','frame','Href','onbeforeupdate','ondragstart'
+			,'onselectstart','frameset','onpaste','onpropertychange','ondrop','onreset','ilayer','onresize','ondatasetcomplete','onerror','onmove'
+			,'layer','onselect','oncellchange','onfinish','onstop','bgsound','base','onlayoutcomplete','onfocus','onrowexit','title','onblur'
+			,'onselectionchange','vbscript','onerrorupdate','onbefore','onstart','onrowsinserted','onkeydown','onfilterchage','onmouseup','onfocusin'
+			,'oncontrolselected','onrowsdelete','onlosecapture','onrowenter','onhelp','onreadystatechange','onmouseleave','onmousemove'];
+
 				if(range.length > 1) {
 					range = range.split('~');
 					if(range.length == 2){
@@ -950,6 +976,26 @@
 							confirmButtonText: '확인',
 							html: true
 						});
+						obj.focus();
+					}
+					var indices = [];
+					var tmpStr = obj.value;
+					ignores.forEach(function(v, i){
+						let ig_idx = tmpStr.indexOf(v);
+						if(ig_idx != -1) {
+							indices.push(ignores[i]);
+							tmpStr = replaceALL(tmpStr, ignores[i], '');
+						}
+					});
+					if(indices.length > 0) {
+						swal({
+							title: '<div class="alpop_top_r">문자열 입력 오류</div><div class="alpop_mes_r">필터링 대상 문자열이 입력되었습니다.</div>',
+							text: '해당 문자열은 삭제되었습니다.',
+							confirmButtonColor: '#ca4726',
+							confirmButtonText: '확인',
+							html: true
+						});
+						obj.value = tmpStr;
 						obj.focus();
 					}
 				}
@@ -977,7 +1023,7 @@
 		}else if(type == 'onlyEmail'){ // 이메일 체크 : 정규식 체크
 			let regex = /[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
 			if(obj.value.length > 0){
-				console.log(regex.test(obj.value));
+				// console.log(regex.test(obj.value));
 				if (!regex.test(obj.value)) {
 					swal({
 						title: '<div class="alpop_top_r">도메인 입력</div><div class="alpop_mes_r">유효한 범위의 값이 아닙니다.</div>',
