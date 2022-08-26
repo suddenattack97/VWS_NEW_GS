@@ -506,7 +506,7 @@ switch($mode) {
 		// 지역 이름 비교
 		$qry = " SELECT a.ctprvn_cd, a.sig_cd, a.emd_cd
 				 FROM wr_map_info as a , wr_map_setting as b
-				 WHERE a.sig_cd = b.sig_cd AND a.sig_kor_nm = '".$name[0]."' AND a.emd_kor_nm = '".$name[1]."' ";
+				 WHERE a.sig_kor_nm = '".$name[0]."' AND a.emd_kor_nm = '".$name[1]."' ";
 
 				 
 				//  echo $qry;
