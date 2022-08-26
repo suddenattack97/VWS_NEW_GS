@@ -124,7 +124,7 @@ require_once "./head.php";
 			</div>
             <table class="tb_data_p2 bL_1gry bg_gry3">
               <tr class="tb_data_tbg bT_1blue2">
-                <th>01-09분</th>
+                <th>00-09분</th>
                 <th class="bL_1blue2">10-19분</th>
                 <th class="bL_1blue2">20-29분</th>
                 <th class="bL_1blue2">30-39분</th>
