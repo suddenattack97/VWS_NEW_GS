@@ -30,12 +30,13 @@ Class ClassSnowInfo {
 		}
 	}
 
-	/* 전일 적설 */
+	/* 전일 마지막 측정 적설 */
 	function getSnowBHValue($localcode){
-		$sql = " SELECT IFNULL(MAX(SNOW), '-') AS SNOW_BM
+		$sql = " SELECT IFNULL(SNOW, '-') AS SNOW_BM
 				 FROM SNOW_HIST
 				 WHERE SNOW_DATE BETWEEN ".R_BDAY_START." AND ".R_BDAY_END." 
-				 AND AREA_CODE = '".$localcode."' ";
+				 AND AREA_CODE = '".$localcode."'
+				 ORDER BY SNOW_DATE DESC LIMIT 1 ";
 		
 		if(DB == "0"){
 			$rs = $this->DB->execute($sql);
@@ -44,6 +45,29 @@ Class ClassSnowInfo {
 				$this->SNOW_BM = $rs[0]['SNOW_BM'] == "-" ? "-" : $rs[0]['SNOW_BM'];
 			}else{
 				$this->SNOW_BM = '-';
+			}
+			
+			unset($rs);
+			$this->DB->parseFree();
+		}else if(DB == "1"){
+			// ORACLE
+		}
+	}
+
+	/* 전일 최심 적설 */
+	function getSnowBMAXValue($localcode){
+		$sql = " SELECT IFNULL(MAX(SNOW), '-') AS SNOW_BMAX
+				 FROM SNOW_HIST
+				 WHERE SNOW_DATE BETWEEN ".R_BDAY_START." AND ".R_BDAY_END." 
+				 AND AREA_CODE = '".$localcode."' ";
+		
+		if(DB == "0"){
+			$rs = $this->DB->execute($sql);
+			
+			if($this->DB->num_rows){
+				$this->SNOW_BMAX = $rs[0]['SNOW_BMAX'] == "-" ? "-" : $rs[0]['SNOW_BMAX'];
+			}else{
+				$this->SNOW_BMAX = '-';
 			}
 			
 			unset($rs);

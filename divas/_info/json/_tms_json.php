@@ -380,18 +380,19 @@ switch($mode){
 		$ClassSnowInfo = new ClassSnowInfo($DB);
 		
 		for($i=0; $i<$SnowLocalDB->rsCnt; $i++) {
-			$ClassSnowInfo->getSnowBHValue($SnowLocalDB->AREA_CODE[$i]); //SNOW_BM
-			$ClassSnowInfo->getSnowBBHValue($SnowLocalDB->AREA_CODE[$i]); //SNOW_BBM
+			$ClassSnowInfo->getSnowBHValue($SnowLocalDB->AREA_CODE[$i]); //SNOW_BM 전일 마지막 적설
+			$ClassSnowInfo->getSnowBMAXValue($SnowLocalDB->AREA_CODE[$i]); //SNOW_BM 전일 최심 적설
+			$ClassSnowInfo->getSnowBBHValue($SnowLocalDB->AREA_CODE[$i]); //SNOW_BBM 전전일 최심 적설
 			$ClassSnowInfo->getSnowDMAXValue($SnowLocalDB->AREA_CODE[$i]); //SNOW_MAX
 			
 			//전일신적설 계산
-			if($ClassSnowInfo->SNOW_BM - $ClassSnowInfo->SNOW_BBM > 0) {
-				$BM_TEMP = $ClassSnowInfo->SNOW_BM - $ClassSnowInfo->SNOW_BBM;
+			if($ClassSnowInfo->SNOW_BMAX - $ClassSnowInfo->SNOW_BBM > 0) {
+				$BM_TEMP = $ClassSnowInfo->SNOW_BMAX - $ClassSnowInfo->SNOW_BBM;
 			}else {
 				if($ClassSnowInfo->SNOW_BBM > 0){
 					$BM_TEMP = 0;
 				}else{
-					$BM_TEMP = $ClassSnowInfo->SNOW_BM;
+					$BM_TEMP = $ClassSnowInfo->SNOW_BMAX;
 				}
 			}
 			//금일신적설 계산
@@ -412,7 +413,10 @@ switch($mode){
 			$data_snow[$i]['RTU_NAME'] = $SnowLocalDB->RTU_NAME[$i];
 			
 			//전일신적설
-			$data_snow[$i]['SNOW_SBM'] = $BM_TEMP;
+			// $data_snow[$i]['SNOW_SBM'] = $BM_TEMP;
+
+			//전일최심적설
+			$data_snow[$i]['SNOW_SBM'] = $ClassSnowInfo->SNOW_BMAX;
 			
 			//전일적설
 			$data_snow[$i]['SNOW_BM'] = $ClassSnowInfo->SNOW_BM;
@@ -837,18 +841,19 @@ switch($mode){
 			$ClassSnowInfo = new ClassSnowInfo($DB);
 			
 			for($i=0; $i<$SnowLocalDB->rsCnt; $i++) {
-				$ClassSnowInfo->getSnowBHValue($SnowLocalDB->AREA_CODE[$i]); //SNOW_BM
-				$ClassSnowInfo->getSnowBBHValue($SnowLocalDB->AREA_CODE[$i]); //SNOW_BBM
+				$ClassSnowInfo->getSnowBHValue($SnowLocalDB->AREA_CODE[$i]); //SNOW_BM 전일 마지막 적설
+				$ClassSnowInfo->getSnowBMAXValue($SnowLocalDB->AREA_CODE[$i]); //SNOW_BM 전일 최심 적설
+				$ClassSnowInfo->getSnowBBHValue($SnowLocalDB->AREA_CODE[$i]); //SNOW_BBM 전전일 최심 적설
 				$ClassSnowInfo->getSnowDMAXValue($SnowLocalDB->AREA_CODE[$i]); //SNOW_MAX
 				
 				//전일신적설 계산
-				if($ClassSnowInfo->SNOW_BM - $ClassSnowInfo->SNOW_BBM > 0) {
-					$BM_TEMP = $ClassSnowInfo->SNOW_BM - $ClassSnowInfo->SNOW_BBM;
+				if($ClassSnowInfo->SNOW_BMAX - $ClassSnowInfo->SNOW_BBM > 0) {
+					$BM_TEMP = $ClassSnowInfo->SNOW_BMAX - $ClassSnowInfo->SNOW_BBM;
 				}else {
 					if($ClassSnowInfo->SNOW_BBM > 0){
 						$BM_TEMP = 0;
 					}else{
-						$BM_TEMP = $ClassSnowInfo->SNOW_BM;
+						$BM_TEMP = $ClassSnowInfo->SNOW_BMAX;
 					}
 				}
 				//금일신적설 계산
@@ -873,7 +878,10 @@ switch($mode){
 				$data_snow[$i]['RTU_NAME'] = $SnowLocalDB->RTU_NAME[$i];
 				
 				//전일신적설
-				$data_snow[$i]['SNOW_SBM'] = $BM_TEMP;
+				// $data_snow[$i]['SNOW_SBM'] = $BM_TEMP;
+	
+				//전일최심적설
+				$data_snow[$i]['SNOW_SBM'] = $ClassSnowInfo->SNOW_BMAX;
 				
 				//전일적설
 				$data_snow[$i]['SNOW_BM'] = $ClassSnowInfo->SNOW_BM;

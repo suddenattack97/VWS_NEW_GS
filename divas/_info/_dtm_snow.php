@@ -37,8 +37,8 @@ for($i=0; $i<$LocalDB->rsCnt; $i++){
 			// }
 		}
 	}
-	$ClassSnowInfo->getSnowDMAXValue($LocalDB->AREA_CODE[$i]);
-	$data_list[$i]['SUM'] = ($ClassSnowInfo->SNOW_MAX == "-") ? "-" : round_data($ClassSnowInfo->SNOW_MAX, 0.001, 10);
+	$ClassSnowInfo->getSnowMax($LocalDB->AREA_CODE[$i], "H", $sdate." 00:00:00", $sdate." 23:59:59");
+	$data_list[$i]['SUM'] = ($ClassSnowInfo->rsData == "-") ? "-" : round_data($ClassSnowInfo->rsData, 0.001, 10);
 }
 
 $DB->CLOSE();

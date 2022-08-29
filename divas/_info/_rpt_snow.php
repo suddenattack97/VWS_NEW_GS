@@ -122,8 +122,8 @@ for($i=0; $i<$LocalDB->rsCnt; $i++){
 				}
 			}
 		}
-		$ClassSnowInfo->getSnowDMAXValue($LocalDB->AREA_CODE[$i]);
-		$data_list[$i]['SUM'] = ($ClassSnowInfo->SNOW_MAX == "-") ? "-" : round_data($ClassSnowInfo->SNOW_MAX, 0.001, 10);
+		$ClassSnowInfo->getSnowMax($LocalDB->AREA_CODE[$i], $s_type, $t_sdate, $t_edate);
+		$data_list[$i]['SUM'] = ($ClassSnowInfo->rsData == "-") ? "-" : round_data($ClassSnowInfo->rsData, 0.001, 10);
 	}else{
 		$ClassSnowInfo->getSnowRpt($LocalDB->AREA_CODE[$i], $type, $where_date, $ecnt);
 
@@ -141,13 +141,26 @@ for($i=0; $i<$LocalDB->rsCnt; $i++){
 				$row_cnt[ $val['NUM'] ] ++;
 			}
 		}
-		$ClassSnowInfo->getSnowDMAXValue($LocalDB->AREA_CODE[$i]);
-		$data_list[$i]['SUM'] = ($ClassSnowInfo->SNOW_MAX == "-") ? "-" : round_data($ClassSnowInfo->SNOW_MAX, 0.001, 10);
+		// 시간 설정
+		if($type == "H"){
+			$t_sdate = $sdate." 00:00:00";
+			$t_edate = $sdate." 23:50:00";
+		}else if ($type == "D"){
+			$last = date("t", strtotime($sdate));
+			$t_sdate = $yy."-".$mm."-01 00:00:00";
+			$t_edate = $yy."-".$mm."-".$last." 23:59:59";
+		}else if ($type == "N"){
+			$t_sdate = $yy."-01-01 00:00:00";
+			$t_edate = $yy."-12-31 23:59:59";
+		}
+
+		$ClassSnowInfo->getSnowMax($LocalDB->AREA_CODE[$i], $type, $t_sdate, $t_edate);
+		$data_list[$i]['SUM'] = ($ClassSnowInfo->rsData == "-") ? "-" : round_data($ClassSnowInfo->rsData, 0.001, 10);
 	}
 }
 // var_dump($data_list);
 for($i=0; $i<$tcnt; $i++){
-	$j = ($type == "H" || "A") ? $i : $i + 1;
+	$j = ($type == "H" || $type == "A") ? $i : $i + 1;
 	$data_row['MAX'][$i] = ($row_cnt[$j] == 0) ? "-" : sprintf("%.1f", $max[$j]);
 	$data_row['MIN'][$i] = ($row_cnt[$j] == 0) ? "-" : sprintf("%.1f", $min[$j]);
 	$data_row['AVR'][$i] = ($row_cnt[$j] == 0) ? "-" : sprintf("%.1f", $row[$j]/$row_cnt[$j]);

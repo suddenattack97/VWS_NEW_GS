@@ -656,8 +656,8 @@
 					lay_html += ' <table class="main_table m20"> ';
 					lay_html += ' 	<thead><tr> ';
 					lay_html += ' 	<th width="20%">지역</th> ';
-					lay_html += ' 	<th width="14%">전일신적설</th> ';
 					lay_html += ' 	<th width="14%">전일최심적설</th> ';
+					lay_html += ' 	<th width="14%">전일적설</th> ';
 					lay_html += ' 	<th width="14%">금일신적설</th> ';
 					lay_html += ' 	<th width="14%">현재적설</th> ';
 					lay_html += ' 	<th width="14%">금일최심적설</th> ';
