@@ -223,6 +223,25 @@ Class ClassSnowInfo {
 		}
 	}
 	
+	/* 최고 적설 자료 */
+	function getSnowMax($area_code, $type, $sdate, $edate){
+		if(DB == "0"){
+			$sql = " SELECT MAX(SNOW) AS DATA
+				 	 FROM SNOW_HIST
+					 WHERE AREA_CODE = '".$area_code."' AND DATA_TYPE = '".$type."'
+ 					 AND SNOW_DATE BETWEEN '".$sdate."' AND '".$edate."' ";
+			
+			$rs = $this->DB->execute($sql);
+			
+			$this->rsData = $rs[0]['DATA'];
+			
+			unset($rs); unset($data);
+			$this->DB->parseFree();
+		}else if(DB == "1"){
+			// ORACLE
+		}
+	}
+	
 	/* 적설 자료 합계 */
 	function getSnowSum($area_code, $type, $sdate, $edate){
 		if(DB == "0"){
@@ -233,7 +252,7 @@ Class ClassSnowInfo {
 			
 			$rs = $this->DB->execute($sql);
 			
-			$this->rsData = $rs[0]['DATA'];
+			$this->rsData2 = $rs[0]['DATA'];
 			
 			unset($rs); unset($data);
 			$this->DB->parseFree();

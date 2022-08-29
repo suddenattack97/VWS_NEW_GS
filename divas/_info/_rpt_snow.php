@@ -108,21 +108,22 @@ for($i=0; $i<$LocalDB->rsCnt; $i++){
 				$val['NUM'] = substr($val['SNOW_DATE'], 8,2);
 				for($c = 0; $c <= $j; $c++){
 					if($data_nums['NUM'][$c] == $val['NUM']){
-						$data_list[$i]['LIST'][$c] = round_data($val['SNOW'], 0.01, 10);
+						$data_list[$i]['LIST'][$c] = round_data($val['SNOW'], 0.001, 10);
 
 						if($val['SNOW'] != "-"){
-							$sum += round_data($val['SNOW'], 0.01, 10);
+							$sum += round_data($val['SNOW'], 0.001, 10);
 							$cnt ++;
-							$max[ $c ] = ($max[ $c ] < round_data($val['SNOW'], 0.01, 10)) ? round_data($val['SNOW'], 0.01, 10) : $max[ $c ];
-							$min[ $c ] = ($min[ $c ] > round_data($val['SNOW'], 0.01, 10)) ? round_data($val['SNOW'], 0.01, 10) : $min[ $c ];
-							$row[ $c ] += round_data($val['SNOW'], 0.01, 10);
+							$max[ $c ] = ($max[ $c ] < round_data($val['SNOW'], 0.001, 10)) ? round_data($val['SNOW'], 0.001, 10) : $max[ $c ];
+							$min[ $c ] = ($min[ $c ] > round_data($val['SNOW'], 0.001, 10)) ? round_data($val['SNOW'], 0.001, 10) : $min[ $c ];
+							$row[ $c ] += round_data($val['SNOW'], 0.001, 10);
 							$row_cnt[ $c ] ++;
 						}
 					}
 				}
 			}
 		}
-		$data_list[$i]['SUM'] = ($cnt == 0) ? "-" : sprintf("%.1f", $sum);		
+		$ClassSnowInfo->getSnowDMAXValue($LocalDB->AREA_CODE[$i]);
+		$data_list[$i]['SUM'] = ($ClassSnowInfo->SNOW_MAX == "-") ? "-" : round_data($ClassSnowInfo->SNOW_MAX, 0.001, 10);
 	}else{
 		$ClassSnowInfo->getSnowRpt($LocalDB->AREA_CODE[$i], $type, $where_date, $ecnt);
 
@@ -140,12 +141,13 @@ for($i=0; $i<$LocalDB->rsCnt; $i++){
 				$row_cnt[ $val['NUM'] ] ++;
 			}
 		}
-		$data_list[$i]['SUM'] = ($cnt == 0) ? "-" : sprintf("%.1f", $sum);
+		$ClassSnowInfo->getSnowDMAXValue($LocalDB->AREA_CODE[$i]);
+		$data_list[$i]['SUM'] = ($ClassSnowInfo->SNOW_MAX == "-") ? "-" : round_data($ClassSnowInfo->SNOW_MAX, 0.001, 10);
 	}
 }
 // var_dump($data_list);
 for($i=0; $i<$tcnt; $i++){
-	$j = ($type == "H") ? $i : $i + 1;
+	$j = ($type == "H" || "A") ? $i : $i + 1;
 	$data_row['MAX'][$i] = ($row_cnt[$j] == 0) ? "-" : sprintf("%.1f", $max[$j]);
 	$data_row['MIN'][$i] = ($row_cnt[$j] == 0) ? "-" : sprintf("%.1f", $min[$j]);
 	$data_row['AVR'][$i] = ($row_cnt[$j] == 0) ? "-" : sprintf("%.1f", $row[$j]/$row_cnt[$j]);
@@ -159,7 +161,6 @@ for($i=0; $i<$tcnt; $i++){
 $data_row['MAX_SUM'] = ($sum_cnt == 0) ? "-" : sprintf("%.1f", $sum_max);
 $data_row['MIN_SUM'] = ($sum_cnt == 0) ? "-" : sprintf("%.1f", $sum_min);
 $data_row['AVR_SUM'] = ($sum_cnt == 0) ? "-" : sprintf("%.1f", $sum_avr);
-
 $DB->CLOSE();
 ?>
 

@@ -196,26 +196,26 @@ switch($mode){
 				}
 			}
 			// 시단위 데이터
-			$ClassSnowInfo->getSnowSum($area_code, "M", $sdate." ".$hour.":00:00", $sdate." ".$hour.":59:59");
+			$ClassSnowInfo->getSnowMax($area_code, "M", $sdate." ".$hour.":00:00", $sdate." ".$hour.":59:59");
 			$tmp_data = $ClassSnowInfo->rsData;
 			$tmp_data = ($tmp_data != null) ? $tmp_data : "null";
 			$where_date = $sdate." ".$hour.":00:00";
 			$arrReturn[] = $ClassSnowInfo->setSnowData($area_code, "H", $where_date, $tmp_data);
 			// 일단위 데이터
-			$ClassSnowInfo->getSnowSum($area_code, "H", $sdate." 00:00:00", $sdate." 23:59:59");
+			$ClassSnowInfo->getSnowMax($area_code, "H", $sdate." 00:00:00", $sdate." 23:59:59");
 			$tmp_data = $ClassSnowInfo->rsData;
 			$tmp_data = ($tmp_data != null) ? $tmp_data : "null";
 			$where_date = $sdate." 00:00:00";
 			$arrReturn[] = $ClassSnowInfo->setSnowData($area_code, "D", $where_date, $tmp_data);
 			// 월단위 데이터
 			$last = date("t", strtotime($sdate));
-			$ClassSnowInfo->getSnowSum($area_code, "D", $yy."-".$mm."-01 00:00:00", $yy."-".$mm."-".$last." 23:59:59");
+			$ClassSnowInfo->getSnowMax($area_code, "D", $yy."-".$mm."-01 00:00:00", $yy."-".$mm."-".$last." 23:59:59");
 			$tmp_data = $ClassSnowInfo->rsData;
 			$tmp_data = ($tmp_data != null) ? $tmp_data : "null";
 			$where_date = $yy."-".$mm."-01 00:00:00";
 			$arrReturn[] = $ClassSnowInfo->setSnowData($area_code, "N", $where_date, $tmp_data);
 			// 연단위 데이터
-			$ClassSnowInfo->getSnowSum($area_code, "N", $yy."-01-01 00:00:00", $yy."-12-31 23:59:59");
+			$ClassSnowInfo->getSnowMax($area_code, "N", $yy."-01-01 00:00:00", $yy."-12-31 23:59:59");
 			$tmp_data = $ClassSnowInfo->rsData;
 			$tmp_data = ($tmp_data != null) ? $tmp_data : "null";
 			$where_date = $yy."-01-01 00:00:00";

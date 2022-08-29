@@ -61,7 +61,7 @@ require_once "./head.php";
 							<td>21</td>
 							<td>22</td>
 							<td>23</td>
-							<td class="mint_L">누계</td>
+							<td class="mint_L">최고</td>
 						</tr>
 					</thead>
 					<tbody>

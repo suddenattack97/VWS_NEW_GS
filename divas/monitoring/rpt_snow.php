@@ -91,7 +91,7 @@ require_once "./head.php";
 							?>
 							<th class="li3"><?=($i < 10) ? "0".$i : $i?></th>
 							<? } } ?>
-							<th class="li3 bL_1gry">누계</th>
+							<th class="li3 bL_1gry">최고</th>
 						</tr>	
 					</thead>
 			        <tbody>

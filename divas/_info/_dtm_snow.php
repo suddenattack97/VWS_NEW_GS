@@ -26,18 +26,19 @@ for($i=0; $i<$LocalDB->rsCnt; $i++){
 	$data_list[$i]['AREA_CODE'] = $LocalDB->AREA_CODE[$i];
 	$data_list[$i]['RTU_NAME'] = $LocalDB->RTU_NAME[$i];
 	
-	$sum = 0;
-	$cnt = 0;
+	// $sum = 0;
+	// $cnt = 0;
 	if($ClassSnowInfo->rsSnowRpt){
 		foreach($ClassSnowInfo->rsSnowRpt as $key => $val) {
 			$data_list[$i]['LIST'][ $val['NUM'] ] = round_data($val['SNOW'], 0.001, 10);
-			if($val['SNOW'] != "-"){
-				$sum += round_data($val['SNOW'], 0.001, 10);
-				$cnt ++;
-			}
+			// if($val['SNOW'] != "-"){
+			// 	$sum += round_data($val['SNOW'], 0.001, 10);
+			// 	$cnt ++;
+			// }
 		}
 	}
-	$data_list[$i]['SUM'] = ($cnt == 0) ? "-" : sprintf("%.1f", $sum);
+	$ClassSnowInfo->getSnowDMAXValue($LocalDB->AREA_CODE[$i]);
+	$data_list[$i]['SUM'] = ($ClassSnowInfo->SNOW_MAX == "-") ? "-" : round_data($ClassSnowInfo->SNOW_MAX, 0.001, 10);
 }
 
 $DB->CLOSE();
