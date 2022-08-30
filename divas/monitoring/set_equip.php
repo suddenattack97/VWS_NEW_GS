@@ -687,6 +687,10 @@ $(document).ready(function(){
 					}else{
 						$("#DANGER_USE0").prop("checked", true);
 					}
+
+					$("#AREA_CODE").attr('disabled',true);
+					$("#btn_check").hide();
+					$("#btn_area").hide();
 					// $("#DSCODE").val(data.list.DSCODE);
 					// $("#CD_DIST_OBSV").val(data.list.CD_DIST_OBSV);
 
@@ -986,6 +990,9 @@ $(document).ready(function(){
 			$("#FLOW_DANGER_OFF").val("");
 			$("#FLOW_WARNING_OFF").val("");
 			$("#DANGER_USE0").prop("checked", true);
+			$("#AREA_CODE").attr('disabled',false);
+			$("#btn_check").show();
+			$("#btn_area").show();
 			
 		}else{
 			var param = "mode=equip&RTU_ID="+C_RTU_ID;
