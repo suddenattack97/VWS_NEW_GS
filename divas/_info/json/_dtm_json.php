@@ -296,6 +296,60 @@ switch($mode){
 			$tmp_data = ($tmp_data != null) ? $tmp_data : "null";
 			$where_date = $yy."-01-01 00:00:00";
 			$arrReturn[] = $ClassAwsInfo->setTempData($area_code, "Y", $where_date, $tmp_data);
+			
+			/* 온도(최고) 자료 수정 */
+			// 시단위 데이터
+			$ClassAwsInfo->getTempMaxAvg($area_code, "M", $sdate." ".$hour.":00:00", $sdate." ".$hour.":59:59");
+			$tmp_data = $ClassAwsInfo->rsDataMax;
+			$tmp_data = ($tmp_data != null) ? $tmp_data : "null";
+			$where_date = $sdate." ".$hour.":00:00";
+			$arrReturn[] = $ClassAwsInfo->setTempMaxData($area_code, "H", $where_date, $tmp_data);
+			// 일단위 데이터
+			$ClassAwsInfo->getTempMaxAvg($area_code, "H", $sdate." 00:00:00", $sdate." 23:59:59");
+			$tmp_data = $ClassAwsInfo->rsDataMax;
+			$tmp_data = ($tmp_data != null) ? $tmp_data : "null";
+			$where_date = $sdate." 00:00:00";
+			$arrReturn[] = $ClassAwsInfo->setTempMaxData($area_code, "D", $where_date, $tmp_data);
+			// 월단위 데이터
+			$last = date("t", strtotime($sdate));
+			$ClassAwsInfo->getTempMaxAvg($area_code, "D", $yy."-".$mm."-01 00:00:00", $yy."-".$mm."-".$last." 23:59:59");
+			$tmp_data = $ClassAwsInfo->rsDataMax;
+			$tmp_data = ($tmp_data != null) ? $tmp_data : "null";
+			$where_date = $yy."-".$mm."-01 00:00:00";
+			$arrReturn[] = $ClassAwsInfo->setTempMaxData($area_code, "N", $where_date, $tmp_data);
+			// 연단위 데이터
+			$ClassAwsInfo->getTempMaxAvg($area_code, "N", $yy."-01-01 00:00:00", $yy."-12-31 23:59:59");
+			$tmp_data = $ClassAwsInfo->rsDataMax;
+			$tmp_data = ($tmp_data != null) ? $tmp_data : "null";
+			$where_date = $yy."-01-01 00:00:00";
+			$arrReturn[] = $ClassAwsInfo->setTempMaxData($area_code, "Y", $where_date, $tmp_data);
+
+			/* 온도(최저) 자료 수정 */
+			// 시단위 데이터
+			$ClassAwsInfo->getTempMinAvg($area_code, "M", $sdate." ".$hour.":00:00", $sdate." ".$hour.":59:59");
+			$tmp_data = $ClassAwsInfo->rsDataMin;
+			$tmp_data = ($tmp_data != null) ? $tmp_data : "null";
+			$where_date = $sdate." ".$hour.":00:00";
+			$arrReturn[] = $ClassAwsInfo->setTempMinData($area_code, "H", $where_date, $tmp_data);
+			// 일단위 데이터
+			$ClassAwsInfo->getTempMinAvg($area_code, "H", $sdate." 00:00:00", $sdate." 23:59:59");
+			$tmp_data = $ClassAwsInfo->rsDataMin;
+			$tmp_data = ($tmp_data != null) ? $tmp_data : "null";
+			$where_date = $sdate." 00:00:00";
+			$arrReturn[] = $ClassAwsInfo->setTempMinData($area_code, "D", $where_date, $tmp_data);
+			// 월단위 데이터
+			$last = date("t", strtotime($sdate));
+			$ClassAwsInfo->getTempMinAvg($area_code, "D", $yy."-".$mm."-01 00:00:00", $yy."-".$mm."-".$last." 23:59:59");
+			$tmp_data = $ClassAwsInfo->rsDataMin;
+			$tmp_data = ($tmp_data != null) ? $tmp_data : "null";
+			$where_date = $yy."-".$mm."-01 00:00:00";
+			$arrReturn[] = $ClassAwsInfo->setTempMinData($area_code, "N", $where_date, $tmp_data);
+			// 연단위 데이터
+			$ClassAwsInfo->getTempMinAvg($area_code, "N", $yy."-01-01 00:00:00", $yy."-12-31 23:59:59");
+			$tmp_data = $ClassAwsInfo->rsDataMin;
+			$tmp_data = ($tmp_data != null) ? $tmp_data : "null";
+			$where_date = $yy."-01-01 00:00:00";
+			$arrReturn[] = $ClassAwsInfo->setTempMinData($area_code, "Y", $where_date, $tmp_data);
 		}
 		
 		if( in_array(false, $arrReturn) ){
@@ -474,6 +528,33 @@ switch($mode){
 			$tmp_data = ($tmp_data != null) ? $tmp_data : "null";
 			$where_date = $yy."-01-01 00:00:00";
 			$arrReturn[] = $ClassAwsInfo->setVelData($area_code, "Y", $where_date, $tmp_data);
+
+			/* 풍속 최고자료 수정 */
+			// 시단위 데이터
+			$ClassAwsInfo->getVelMaxAvg($area_code, "M", $sdate." ".$hour.":00:00", $sdate." ".$hour.":59:59");
+			$tmp_data = $ClassAwsInfo->rsData;
+			$tmp_data = ($tmp_data != null) ? $tmp_data : "null";
+			$where_date = $sdate." ".$hour.":00:00";
+			$arrReturn[] = $ClassAwsInfo->setVelMaxData($area_code, "H", $where_date, $tmp_data);
+			// 일단위 데이터
+			$ClassAwsInfo->getVelMaxAvg($area_code, "H", $sdate." 00:00:00", $sdate." 23:59:59");
+			$tmp_data = $ClassAwsInfo->rsData;
+			$tmp_data = ($tmp_data != null) ? $tmp_data : "null";
+			$where_date = $sdate." 00:00:00";
+			$arrReturn[] = $ClassAwsInfo->setVelMaxData($area_code, "D", $where_date, $tmp_data);
+			// 월단위 데이터
+			$last = date("t", strtotime($sdate));
+			$ClassAwsInfo->getVelMaxAvg($area_code, "D", $yy."-".$mm."-01 00:00:00", $yy."-".$mm."-".$last." 23:59:59");
+			$tmp_data = $ClassAwsInfo->rsData;
+			$tmp_data = ($tmp_data != null) ? $tmp_data : "null";
+			$where_date = $yy."-".$mm."-01 00:00:00";
+			$arrReturn[] = $ClassAwsInfo->setVelMaxData($area_code, "N", $where_date, $tmp_data);
+			// 연단위 데이터
+			$ClassAwsInfo->getVelMaxAvg($area_code, "N", $yy."-01-01 00:00:00", $yy."-12-31 23:59:59");
+			$tmp_data = $ClassAwsInfo->rsData;
+			$tmp_data = ($tmp_data != null) ? $tmp_data : "null";
+			$where_date = $yy."-01-01 00:00:00";
+			$arrReturn[] = $ClassAwsInfo->setVelMaxData($area_code, "Y", $where_date, $tmp_data);
 		}
 		
 		if( in_array(false, $arrReturn) ){
@@ -874,6 +955,60 @@ switch($mode){
 			$tmp_data = ($tmp_data != null) ? $tmp_data : "null";
 			$where_date = $yy."-01-01 00:00:00";
 			$arrReturn[] = $ClassAwsInfo->setHumiData($area_code, "Y", $where_date, $tmp_data);
+
+			/* 습도 최고자료 수정 */
+			// 시단위 데이터
+			$ClassAwsInfo->getHumiMaxAvg($area_code, "M", $sdate." ".$hour.":00:00", $sdate." ".$hour.":59:59");
+			$tmp_data = $ClassAwsInfo->rsData;
+			$tmp_data = ($tmp_data != null) ? $tmp_data : "null";
+			$where_date = $sdate." ".$hour.":00:00";
+			$arrReturn[] = $ClassAwsInfo->setHumiMaxData($area_code, "H", $where_date, $tmp_data);
+			// 일단위 데이터
+			$ClassAwsInfo->getHumiMaxAvg($area_code, "H", $sdate." 00:00:00", $sdate." 23:59:59");
+			$tmp_data = $ClassAwsInfo->rsData;
+			$tmp_data = ($tmp_data != null) ? $tmp_data : "null";
+			$where_date = $sdate." 00:00:00";
+			$arrReturn[] = $ClassAwsInfo->setHumiMaxData($area_code, "D", $where_date, $tmp_data);
+			// 월단위 데이터
+			$last = date("t", strtotime($sdate));
+			$ClassAwsInfo->getHumiMaxAvg($area_code, "D", $yy."-".$mm."-01 00:00:00", $yy."-".$mm."-".$last." 23:59:59");
+			$tmp_data = $ClassAwsInfo->rsData;
+			$tmp_data = ($tmp_data != null) ? $tmp_data : "null";
+			$where_date = $yy."-".$mm."-01 00:00:00";
+			$arrReturn[] = $ClassAwsInfo->setHumiMaxData($area_code, "N", $where_date, $tmp_data);
+			// 연단위 데이터
+			$ClassAwsInfo->getHumiMaxAvg($area_code, "N", $yy."-01-01 00:00:00", $yy."-12-31 23:59:59");
+			$tmp_data = $ClassAwsInfo->rsData;
+			$tmp_data = ($tmp_data != null) ? $tmp_data : "null";
+			$where_date = $yy."-01-01 00:00:00";
+			$arrReturn[] = $ClassAwsInfo->setHumiMaxData($area_code, "Y", $where_date, $tmp_data);
+			
+			/* 습도 최저자료 수정 */
+			// 시단위 데이터
+			$ClassAwsInfo->getHumiMinAvg($area_code, "M", $sdate." ".$hour.":00:00", $sdate." ".$hour.":59:59");
+			$tmp_data = $ClassAwsInfo->rsData;
+			$tmp_data = ($tmp_data != null) ? $tmp_data : "null";
+			$where_date = $sdate." ".$hour.":00:00";
+			$arrReturn[] = $ClassAwsInfo->setHumiMinData($area_code, "H", $where_date, $tmp_data);
+			// 일단위 데이터
+			$ClassAwsInfo->getHumiMinAvg($area_code, "H", $sdate." 00:00:00", $sdate." 23:59:59");
+			$tmp_data = $ClassAwsInfo->rsData;
+			$tmp_data = ($tmp_data != null) ? $tmp_data : "null";
+			$where_date = $sdate." 00:00:00";
+			$arrReturn[] = $ClassAwsInfo->setHumiMinData($area_code, "D", $where_date, $tmp_data);
+			// 월단위 데이터
+			$last = date("t", strtotime($sdate));
+			$ClassAwsInfo->getHumiMinAvg($area_code, "D", $yy."-".$mm."-01 00:00:00", $yy."-".$mm."-".$last." 23:59:59");
+			$tmp_data = $ClassAwsInfo->rsData;
+			$tmp_data = ($tmp_data != null) ? $tmp_data : "null";
+			$where_date = $yy."-".$mm."-01 00:00:00";
+			$arrReturn[] = $ClassAwsInfo->setHumiMinData($area_code, "N", $where_date, $tmp_data);
+			// 연단위 데이터
+			$ClassAwsInfo->getHumiMinAvg($area_code, "N", $yy."-01-01 00:00:00", $yy."-12-31 23:59:59");
+			$tmp_data = $ClassAwsInfo->rsData;
+			$tmp_data = ($tmp_data != null) ? $tmp_data : "null";
+			$where_date = $yy."-01-01 00:00:00";
+			$arrReturn[] = $ClassAwsInfo->setHumiMinData($area_code, "Y", $where_date, $tmp_data);
 		}
 		
 		if( in_array(false, $arrReturn) ){
