@@ -933,6 +933,10 @@ $(document).ready(function(){
 				        cache: false,
 				        dataType: "json",
 				        success : function(data){
+							var rtu_id = $("#RTU_ID").val();
+							var l_rtu_id = 'list_'+rtu_id;
+							sessionStorage.setItem('list_rtu', l_rtu_id);
+
 					        if(data.result){
 			                	popup_main_close(); // 레이어 좌측 및 상단 닫기
 					    		location.reload(); return false;
@@ -1089,6 +1093,12 @@ $(document).ready(function(){
 		$(sessionStorage.getItem('list_row')).addClass('selected');
 		$(sessionStorage.getItem('list_row')).click();
 	  } 
+	if(sessionStorage.getItem('list_rtu')){
+		var row_item = sessionStorage.getItem('list_rtu');
+		$("tr[name="+row_item+"]").addClass('selected');
+		$("tr[name="+row_item+"]").click();
+	  }
+
 	// 삭제
 	$("#btn_de").click(function(){
 		if( form_check("D") ){
