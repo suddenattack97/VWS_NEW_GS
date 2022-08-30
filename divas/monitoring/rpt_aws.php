@@ -44,7 +44,7 @@ require_once "./head.php";
 						<option value="0" <?if($option == "0"){echo "selected";}?>>강우</option>
 						<option value="1" <?if($option == "1"){echo "selected";}?>>온도</option>
 						<option value="2" <?if($option == "2"){echo "selected";}?>>풍향/풍속</option>
-						<option value="3" <?if($option == "3"){echo "selected";}?>>기압</option>
+						<!-- <option value="3" <?if($option == "3"){echo "selected";}?>>기압</option> -->
 						<option value="4" <?if($option == "4"){echo "selected";}?>>습도</option>
 						<!-- <option value="5" <?if($option == "5"){echo "selected";}?>>일사</option>
 						<option value="6" <?if($option == "6"){echo "selected";}?>>일조</option> -->

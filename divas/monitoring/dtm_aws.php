@@ -186,7 +186,7 @@ require_once "./head.php";
 									?>	
 										<td class="mint_L"><?=$data_list['VEL_MAX_AVR']?></td>
 									</tr> -->
-									<tr class="hh_aws"> 
+									<!-- <tr class="hh_aws"> 
 										<td colspan="2" class="blue_L_1 line14">기압 (hPa)</td>
 									<? 
 									if($data_list['ATMO']){
@@ -199,7 +199,7 @@ require_once "./head.php";
 									?>	
 										<td class="mint_L"><?=$data_list['ATMO_AVR']?></td>
 									</tr>
-									<!-- <tr>
+									<tr>
 										<td class="blue_L_1">최고</td>
 									<? 
 									if($data_list['ATMO_MAX']){
