@@ -260,8 +260,8 @@ $(document).ready(function(){
 
 	// 초기화
 	$("#btn_re").click(function(){
-		var ORGAN_ID = $("#ORGAN_ID").val();
-		if(ORGAN_ID == ""){
+		var ORGAN_ID = $("#ORGAN_ID").val("");
+
 			$("#ORGAN_ID").val("");
 			$("#ORGAN_NAME").val("");
 			$("#DEPARTMENT").val("");
@@ -269,29 +269,7 @@ $(document).ready(function(){
 			$("#AREA_MAIN").val("");
 			$("#AREA_SUB").val("");
 			$("#SORT_BASE").val(0);
-		}else{
-			var param = "mode=organ&ORGAN_ID="+ORGAN_ID;
-			$.ajax({
-		        type: "POST",
-		        url: "../_info/json/_set_json.php",
-			    data: param,
-		        cache: false,
-		        dataType: "json",
-		        success : function(data){
-			        if(data.list){
-						$("#ORGAN_ID").val(data.list.ORGAN_ID);
-						$("#ORGAN_NAME").val(data.list.ORGAN_NAME);
-						$("#DEPARTMENT").val(data.list.DEPARTMENT);
-						$("#AREA_CODE").val(data.list.AREA_CODE);
-						$("#AREA_MAIN").val(data.list.AREA_MAIN);
-						$("#AREA_SUB").val(data.list.AREA_SUB);
-						$("#SORT_BASE").val(data.list.SORT_BASE);
-			        }else{
-					    swal("체크", "초기화중 오류가 발생 했습니다.", "warning");
-			        }
-		        }
-		    });
-		}
+			$("#list_table tbody tr").removeClass('selected');
 	});
 
 	// 수정
