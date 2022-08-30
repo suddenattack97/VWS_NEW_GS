@@ -73,7 +73,7 @@ require_once "./head.php";
 				if($data_list){
 					foreach($data_list as $key => $val){ 
 				?>
-						<tr id="list_<?=$val['NUM']?>" class="hh">
+						<tr id="list_<?=$val['NUM']?>" name="list_<?=$val['RTU_ID']?>" class="hh">
 							<td class="li5"><?=$val['NUM']?></td>
 							<td id="l_RTU_ID" class="li5 bL_1gry"><?=$val['RTU_ID']?></td>
 							<td class="li5 bL_1gry"><?=$val['SIGNAL_ID']?></td>
