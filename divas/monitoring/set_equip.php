@@ -929,6 +929,7 @@ $(document).ready(function(){
 
 					//중복 submit 방지
 					if(doubleSubmitCheck()) return;
+					$("#AREA_CODE").attr('disabled',false);
 					var param = "mode=equip_in&"+$("#set_frm").serialize();
 					$.ajax({
 				        type: "POST",
@@ -954,6 +955,7 @@ $(document).ready(function(){
 							}
 				        }
 				    });	
+					$("#AREA_CODE").attr('disabled',true);
 				}
 			}); // swal end
 		}
@@ -1027,6 +1029,7 @@ $(document).ready(function(){
 					
 					//중복 submit 방지
 					if(doubleSubmitCheck()) return;
+					$("#AREA_CODE").attr('disabled',false);
 					var param = "mode=equip_up&"+$("#set_frm").serialize();
 					$.ajax({
 				        type: "POST",
@@ -1048,6 +1051,7 @@ $(document).ready(function(){
 					        }
 				        }
 				    });	
+					$("#AREA_CODE").attr('disabled',true);
 				}
 			}); // swal end
 		}
@@ -1082,6 +1086,7 @@ $(document).ready(function(){
 					
 					//중복 submit 방지
 					if(doubleSubmitCheck()) return;
+					$("#AREA_CODE").attr('disabled',false);
 					var param = "mode=equip_de&"+$("#set_frm").serialize();
 					$.ajax({
 				        type: "POST",
@@ -1098,7 +1103,8 @@ $(document).ready(function(){
 								doubleSubmitFlag = false;
 					        }
 				        }
-				    });	
+				    });
+					$("#AREA_CODE").attr('disabled',true);
 				}
 			}); // swal end
 		}
