@@ -726,12 +726,12 @@ require_once "./head.php";
 							<input type="hidden" name="popup_idx[]" value="<?=$val['menu_idx']?>"></td>
 							<td>
 							<?
-								//$http_array = array("http://","https://");
+								$http_array = array("http://","https://");
 							?>
 							<select name="url[]">
 								<option value="http://" <?=(strstr($val['menu_url'], "http://") ? 'selected' : '')?>>http://</option>
 								<option value="https://" <?=(strstr($val['menu_url'], "https://") ? 'selected' : '')?>>https://</option>
-							</select> <input name="popup_url[]" type="text" value="<?=$val['menu_url']?>" onblur="this.value = this.value.replace('http:\/\/','').replace('https:\/\/',''); inputCheck(this,'text','1~100');"> </option>
+								</select> <input name="popup_url[]" type="text" value="<?=str_replace($http_array,"",$val['menu_url'])?>" onblur="this.value = this.value.replace('http:\/\/','').replace('https:\/\/',''); inputCheck(this,'text','1~100');"> </option>
 					
 							</td>	
 							<!-- <td>
