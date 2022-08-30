@@ -121,10 +121,10 @@ if($option == "0"){
 							if($val['RAIN'] != "-"){
 								$sum += round_data($val['RAIN'], 0.01, 10);
 								$cnt ++;
-								$max[ $c ] = ($max[ $c ] < round_data($val['RAIN'], 0.01, 10)) ? round_data($val['RAIN'], 0.01, 10) : $max[ $c ];
-								$min[ $c ] = ($min[ $c ] > round_data($val['RAIN'], 0.01, 10)) ? round_data($val['RAIN'], 0.01, 10) : $min[ $c ];
+								$max[ $c ] = ($max[ $c ]) ? ( ($max[ $c ] < round_data($val['RAIN'], 0.01, 10)) ? round_data($val['RAIN'], 0.01, 10) : $max[ $c ] ) : round_data($val['RAIN'], 0.01, 10);
+								$min[ $c ] = ($min[ $c ]) ? ( ($min[ $c ] > round_data($val['RAIN'], 0.01, 10)) ? round_data($val['RAIN'], 0.01, 10) : $min[ $c ] ) : round_data($val['RAIN'], 0.01, 10);
 								$row[ $c ] += round_data($val['RAIN'], 0.01, 10);
-								$row_cnt[ $c ] ++;
+								$row_cnt[ $c ] = $LocalDB->rsCnt;
 							}
 						}
 					}

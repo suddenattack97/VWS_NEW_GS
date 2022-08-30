@@ -114,10 +114,10 @@ for($i=0; $i<$LocalDB->rsCnt; $i++){
 						if($val['RAIN'] != "-"){
 							$sum += round_data($val['RAIN'], 0.01, 10);
 							$cnt ++;
-							$max[ $c ] = ($max[ $c ] < round_data($val['RAIN'], 0.01, 10)) ? round_data($val['RAIN'], 0.01, 10) : $max[ $c ];
-							$min[ $c ] = ($min[ $c ] > round_data($val['RAIN'], 0.01, 10)) ? round_data($val['RAIN'], 0.01, 10) : $min[ $c ];
+							$max[ $c ] = ($max[ $c ]) ? ( ($max[ $c ] < round_data($val['RAIN'], 0.01, 10)) ? round_data($val['RAIN'], 0.01, 10) : $max[ $c ] ) : round_data($val['RAIN'], 0.01, 10);
+							$min[ $c ] = ($min[ $c ]) ? ( ($min[ $c ] > round_data($val['RAIN'], 0.01, 10)) ? round_data($val['RAIN'], 0.01, 10) : $min[ $c ] ) : round_data($val['RAIN'], 0.01, 10);
 							$row[ $c ] += round_data($val['RAIN'], 0.01, 10);
-							$row_cnt[ $c ] ++;
+							$row_cnt[ $c ] = $LocalDB->rsCnt;
 						}
 					}
 				}
@@ -134,7 +134,8 @@ for($i=0; $i<$LocalDB->rsCnt; $i++){
 					$sum += round_data($val['RAIN'], 0.01, 10);
 					$cnt ++;
 					$max[ $val['NUM'] ] = ($max[ $val['NUM'] ]) ? ( ($max[ $val['NUM'] ] < round_data($val['RAIN'], 0.01, 10)) ? round_data($val['RAIN'], 0.01, 10) : $max[ $val['NUM'] ] ) : round_data($val['RAIN'], 0.01, 10);
-					$min[ $val['NUM'] ] = ($min[ $val['NUM'] ]) ? ( ($min[ $val['NUM'] ] > round_data($val['RAIN'], 0.01, 10)) ? round_data($val['RAIN'], 0.01, 10) : $min[ $val['NUM'] ] ) : round_data($val['RAIN'], 0.01, 10);					$row[ $val['NUM'] ] += round_data($val['RAIN'], 0.01, 10);
+					$min[ $val['NUM'] ] = ($min[ $val['NUM'] ]) ? ( ($min[ $val['NUM'] ] > round_data($val['RAIN'], 0.01, 10)) ? round_data($val['RAIN'], 0.01, 10) : $min[ $val['NUM'] ] ) : round_data($val['RAIN'], 0.01, 10);
+					$row[ $val['NUM'] ] += round_data($val['RAIN'], 0.01, 10);
 				}
 				$row_cnt[ $val['NUM'] ] ++;
 			}

@@ -113,10 +113,10 @@ for($i=0; $i<$LocalDB->rsCnt; $i++){
 						if($val['SNOW'] != "-"){
 							$sum += round_data($val['SNOW'], 0.001, 10);
 							$cnt ++;
-							$max[ $c ] = ($max[ $c ] < round_data($val['SNOW'], 0.001, 10)) ? round_data($val['SNOW'], 0.001, 10) : $max[ $c ];
-							$min[ $c ] = ($min[ $c ] > round_data($val['SNOW'], 0.001, 10)) ? round_data($val['SNOW'], 0.001, 10) : $min[ $c ];
+							$max[ $c ] = ($max[ $c ]) ? ( ($max[ $c ] < round_data($val['SNOW'], 0.001, 10)) ? round_data($val['SNOW'], 0.001, 10) : $max[ $c ] ) : round_data($val['SNOW'], 0.001, 10);
+							$min[ $c ] = ($min[ $c ]) ? ( ($min[ $c ] > round_data($val['SNOW'], 0.001, 10)) ? round_data($val['SNOW'], 0.001, 10) : $min[ $c ] ) : round_data($val['SNOW'], 0.001, 10);
 							$row[ $c ] += round_data($val['SNOW'], 0.001, 10);
-							$row_cnt[ $c ] ++;
+							$row_cnt[ $c ] = $LocalDB->rsCnt;
 						}
 					}
 				}
@@ -134,8 +134,8 @@ for($i=0; $i<$LocalDB->rsCnt; $i++){
 					if($min[ $val['NUM'] ] == false) $min[ $val['NUM'] ] = round_data($val['SNOW'], 0.001, 10);
 					$sum += round_data($val['SNOW'], 0.001, 10);
 					$cnt ++;
-					$max[ $val['NUM'] ] = ($max[ $val['NUM'] ] < round_data($val['SNOW'], 0.001, 10)) ? round_data($val['SNOW'], 0.001, 10) : $max[ $val['NUM'] ];
-					$min[ $val['NUM'] ] = ($min[ $val['NUM'] ] > round_data($val['SNOW'], 0.001, 10)) ? round_data($val['SNOW'], 0.001, 10) : $min[ $val['NUM'] ];
+					$max[ $val['NUM'] ] = ($max[ $val['NUM'] ]) ? ( ($max[ $val['NUM'] ] < round_data($val['SNOW'], 0.001, 10)) ? round_data($val['SNOW'], 0.001, 10) : $max[ $val['NUM'] ] ) : round_data($val['SNOW'], 0.001, 10);
+					$min[ $val['NUM'] ] = ($min[ $val['NUM'] ]) ? ( ($min[ $val['NUM'] ] > round_data($val['SNOW'], 0.001, 10)) ? round_data($val['SNOW'], 0.001, 10) : $min[ $val['NUM'] ] ) : round_data($val['SNOW'], 0.001, 10);
 					$row[ $val['NUM'] ] += round_data($val['SNOW'], 0.001, 10);
 				}
 				$row_cnt[ $val['NUM'] ] ++;
