@@ -1392,14 +1392,6 @@ $(document).ready(function(){
 			}else if( !area_check.test( $("#AREA_CODE").val() ) ){
 			    swal("체크", "행정 코드는  숫자만 사용하여 10자리로 입력해 주세요.", "warning"); 
 			    $("#AREA_CODE").focus(); return false;	
-			}else if( $("#dup_check").val() == "0" ){
-			    swal("체크", "행정 코드 중복체크를 진행해 주세요.", "warning"); return false;
-			// }else if( $("#CD_DIST_OBSV").val() != "" ){
-			// 	if( $("#dup_check2").val() == "0" ){
-			//     	swal("체크", "계측기 번호 중복체크를 진행해 주세요.", "warning"); return false;
-			// 	}else{
-			// 		return true;
-			// 	}
 			}else if( !$("#RTU_NAME").val() ){
 			    swal("체크", "장비명을 입력해 주세요.", "warning");
 			    $("#RTU_NAME").focus(); return false;	
