@@ -1934,16 +1934,6 @@
     			$("#sel_skin input:radio[value='4']").closest("li").attr("class", "");
 				$("#sel_skin input:radio[value='5']").closest("li").attr("class", "");
 
-				map.addControl(new ol.control.OverviewMap({
-					layers: [
-						new ol.layer.Tile({
-							source: new ol.source.XYZ({
-								url: 'http://api.vworld.kr/req/wmts/1.0.0/'+api_key+'/Satellite/{z}/{y}/{x}.jpeg'
-							})
-						})
-					],
-					collapsed: false
-				}));
 
     		}else if(this.value == 2){
     			// tmp_map_type = "SATELLITE";
@@ -1953,16 +1943,6 @@
     			$("#sel_skin input:radio[value='4']").closest("li").attr("class", "");
 				$("#sel_skin input:radio[value='5']").closest("li").attr("class", "");
 
-				map.addControl(new ol.control.OverviewMap({
-					layers: [
-						new ol.layer.Tile({
-							source: new ol.source.XYZ({
-								url: 'http://api.vworld.kr/req/wmts/1.0.0/'+api_key+'/Base/{z}/{y}/{x}.png'
-							})
-						})
-					],
-					collapsed: false
-				}));
 			}else if(this.value == 3){
     			// tmp_map_type = "Hybrid";
     			$("#sel_skin input:radio[value='1']").closest("li").attr("class", "");
