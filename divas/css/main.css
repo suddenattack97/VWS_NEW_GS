@@ -585,6 +585,8 @@
   .tb_data ul{margin:0; padding:0 !important;width:100%; float:left; border:none !important;}
   .tb_data li{list-style-type:none; /*border-bottom:1px solid #c4c4c4 !important;*/ font-size:12px; line-height:24px; margin:0; padding:0 !important; }
   
+  .tb_data #data{cursor: pointer;}
+  
   .tb_data2 th,  .tb_data2 td {font-family:"Nanum Gothic"; height: 24px; list-style-type:none; border-right: 1px solid #C4C4C4; border-bottom:1px solid #c4c4c4 !important; font-size:1.3rem; line-height:24px; margin:0; padding:0 !important; text-align:center; min-width:2.5%; width:2.5%;}
   .tb_data th,  .tb_data td {height: 32px; list-style-type:none; border-right: 1px solid #C4C4C4; border-bottom:1px solid #c4c4c4 !important; font-size:1.3rem; line-height:24px; margin:0; padding:0 !important; text-align:center; min-width:2.5%; width:2.5%;}
   .tb_data_system th,  .tb_data_system td {height: 32px; list-style-type:none; border-right: 1px solid #C4C4C4; border-bottom:1px solid #c4c4c4 !important; font-size:1.3rem; line-height:24px; margin:0; padding:0 !important; text-align:center; min-width:2.5%; width:8.5%;}
