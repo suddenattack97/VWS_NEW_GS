@@ -492,8 +492,8 @@ crypt.setKey(key);
 		// $("#tree").jstree("deselect_all"); // jstree 전체 체크 해제
 		$("#dup_check").val(0); // 아이디 중복체크 리셋
 
-		var C_USER_ID = $("#C_USER_ID").val();
-		if(C_USER_ID == ""){
+		var C_USER_ID = $("#C_USER_ID").val("");
+
 			$("#C_USER_ID").val("");
 			$("#ORGAN_ID option:eq(0)").prop("selected", true);
 			// $("#USER_TYPE").val("");
@@ -513,58 +513,9 @@ crypt.setKey(key);
 			$("#SMART_MOBILE2").val("");
 			$("#SMART_MOBILE3").val("");
 			$("#SMART_USE").val(0);
-		}else{
-			$("#dup_check").val(1);
-			var param = "mode=user&USER_ID="+C_USER_ID;
-			$.ajax({
-		        type: "POST",
-		        url: "../_info/json/_set_json.php",
-			    data: param,
-		        cache: false,
-		        dataType: "json",
-		        success : function(data){
-			        if(data.list){
-				        var EMAIL = data.list.EMAIL ? data.list.EMAIL : "";
-				        var MOBILE = data.list.MOBILE ? data.list.MOBILE : "";
-				        var SMART_MOBILE = data.list.SMART_MOBILE ? data.list.SMART_MOBILE : "";
-						$("#C_USER_ID").val(data.list.USER_ID);
-						$("#ORGAN_ID").val(data.list.ORGAN_ID);
-						// $("#USER_TYPE").val(data.list.USER_TYPE);
-						$("#MENU_TYPE").val(data.list.MENU_TYPE);
-						$("#USER_ID").val(data.list.USER_ID);
-						$("#USER_PWD").val(data.list.USER_PWD);
-						var pwLen = parseInt(data.list.USER_PWD_LEN);
-						var tmpLen = "";
-						while(pwLen > tmpLen.length){
-							tmpLen += "1"; 
-						}
-						$("#USER_PWD_LEN").val(tmpLen);
-						$("#USER_NAME").val(data.list.USER_NAME);
-						$("#EMAIL1").val(EMAIL.split("@")[0]);
-						$("#EMAIL2").val(0);
-						$("#EMAIL3").val(EMAIL.split("@")[1]);
-						$("#MOBILE1").val(MOBILE.split("-")[0] ? MOBILE.split("-")[0] : "010");
-						$("#MOBILE2").val(MOBILE.split("-")[1]);
-						$("#MOBILE3").val(MOBILE.split("-")[2]);
-						$("#IS_PERMIT").val(data.list.IS_PERMIT);
-						$("#SMART_MOBILE1").val(SMART_MOBILE.split("-")[0]);
-						$("#SMART_MOBILE2").val(SMART_MOBILE.split("-")[1]);
-						$("#SMART_MOBILE3").val(SMART_MOBILE.split("-")[2]);
-						$("#SMART_USE").val(data.list.SMART_USE);
-						
-				        // if(data.right){
-						// 	$.each(data.right, function(i, v){
-						// 		//console.log(i, v);
-						// 		var tmp_id = "#tree_"+v['GROUP_ID']+"_"+v['RTU_ID'];
-						// 		$("#tree").jstree("select_node", tmp_id); // jstree 해당 id 체크
-						// 	});
-				        // }
-			        }else{
-					    swal("체크", "초기화중 오류가 발생 했습니다.", "warning");
-			        }
-		        }
-		    });
-		}
+			$("#list_table tbody tr").removeClass('selected');
+			$("#btn_in").show();
+		
 	});
 
 	// 수정
