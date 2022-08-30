@@ -961,11 +961,11 @@ $(document).ready(function(){
 
 	// 초기화
 	$("#btn_re").click(function(){
-		$("#dup_check").val(0); // 행정코드 중복체크 리셋
-		$("#dup_check2").val(0); // 계측기코드 중복체크 리셋
+		// $("#dup_check").val(0); // 행정코드 중복체크 리셋
+		// $("#dup_check2").val(0); // 계측기코드 중복체크 리셋
 
-		var C_RTU_ID = $("#C_RTU_ID").val();
-		if(C_RTU_ID == ""){
+		var C_RTU_ID = $("#C_RTU_ID").val("");
+	
 			$("#C_RTU_ID").val("");
 			$("#C_SIGNAL_ID").val("");
 			$("#C_AREA_CODE").val("");
@@ -979,7 +979,7 @@ $(document).ready(function(){
 			$("#RTU_TYPE").val("");
 			$("#CONNECTION_INFO").val("");
 			$("#BROADCAST_SETTING").val("1");
-			$("#CALL_LAST_D").val("<?=date("Y-m-d")?>");
+			$("#CALL_LAST_D").val("0");
 			$("#CALL_LAST_H").val("00");
 			$("#CALL_LAST_M").val("00");
 			$("#SORT_FLAG").val("0");
@@ -993,52 +993,9 @@ $(document).ready(function(){
 			$("#AREA_CODE").attr('disabled',false);
 			$("#btn_check").show();
 			$("#btn_area").show();
+			$("#list_table tbody tr").removeClass('selected');
 			
-		}else{
-			var param = "mode=equip&RTU_ID="+C_RTU_ID;
-			$.ajax({
-		        type: "POST",
-		        url: "../_info/json/_set_json.php",
-			    data: param,
-		        cache: false,
-		        dataType: "json",
-		        success : function(data){
-			        if(data.list){
-						$("#C_RTU_ID").val(data.list.RTU_ID);
-						$("#C_SIGNAL_ID").val(data.list.SIGNAL_ID);
-						$("#C_AREA_CODE").val(data.list.AREA_CODE);
-						$("#RTU_ID").val(data.list.RTU_ID);
-						$("#SIGNAL_ID").val(data.list.SIGNAL_ID);
-						$("#AREA_CODE").val(data.list.AREA_CODE);
-						$("#RTU_NAME").val(data.list.RTU_NAME);
-						$("#ORGAN_ID").val(data.list.ORGAN_ID);
-						$("#LINE_NO").val(data.list.LINE_NO);
-						$("#MODEL_NO").val(data.list.MODEL_NO);
-						$("#RTU_TYPE").val(data.list.RTU_TYPE);
-						$("#CONNECTION_INFO").val(data.list.CONNECTION_INFO);
-						$("#BROADCAST_SETTING").val(data.list.BROADCAST_SETTING);
-						$("#CALL_LAST_D").val(data.list.CALL_LAST_D);
-						$("#CALL_LAST_H").val(data.list.CALL_LAST_H);
-						$("#CALL_LAST_M").val(data.list.CALL_LAST_M);
-						$("#SORT_FLAG").val(data.list.SORT_FLAG);
-						$("#PORT").val(data.list.PORT);
-						$("#BAUDRATE").val(data.list.BAUDRATE);
-						$("#FLOW_DANGER").val(data.list.FLOW_DANGER);
-						$("#FLOW_WARNING").val(data.list.FLOW_WARNING);
-						$("#FLOW_DANGER_OFF").val(data.list.FLOW_DANGER_OFF);
-						$("#FLOW_WARNING_OFF").val(data.list.FLOW_WARNING_OFF);
-						if(data.list.DANGER_USE == 1){
-							$("#DANGER_USE1").prop("checked", true);
-						}else{
-							$("#DANGER_USE0").prop("checked", true);
-						}
-						
-			        }else{
-					    swal("체크", "초기화중 오류가 발생 했습니다.", "warning");
-			        }
-		        }
-		    });
-		}
+		
 	});
 
 	// 수정
