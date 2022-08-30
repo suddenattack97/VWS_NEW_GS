@@ -140,6 +140,10 @@ require_once "../_info/_set_setting.php";
       history.replaceState({}, null, location.pathname);
   });
 
+  $(".column").click(function(){
+    sessionStorage.clear();
+  });
+
   //쿠키 가져오기 함수
 function getCookie(cName) {
    cName = cName + '=';
