@@ -60,9 +60,7 @@ $(document).ready(function(){
 	if(common_top_title && common_top_text) $("#top_title").html(common_top_title +" "+ common_top_text);
 	// if(common_top_text) $("#top_text").html(common_top_text);
 	if(common_board_type == 0){
-		$("#btn_board").click(function(){
-			swal("체크", "상황판이 없습니다. 추가 요망 시 연락해 주세요.", "warning");
-		});
+
 	}else if(common_board_type == 1){
 		$("#btn_board").click(function(){
 			window.open("../../tvbrd", "");
@@ -73,9 +71,7 @@ $(document).ready(function(){
 				window.open(common_board_url, "");
 			});
 		}else{
-			$("#btn_board").click(function(){
-				swal("체크", "환경설정에서 상황판 경로를 설정해 주세요.", "warning");
-			});
+
 		}
 	}
 
