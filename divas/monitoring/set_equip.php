@@ -643,6 +643,9 @@ $(document).ready(function(){
 		bg_color("selected", "#list_table tbody tr", this); // 리스트 선택 시 배경색
 		var l_RTU_ID = $("#"+this.id+" #l_RTU_ID").text();
 
+		var list_id = '#'+$(this).attr("id");
+		sessionStorage.setItem('list_row', list_id);
+		
 		var param = "mode=equip&RTU_ID="+l_RTU_ID;
 		$.ajax({
 	        type: "POST",
@@ -1082,6 +1085,10 @@ $(document).ready(function(){
 		}
 	});
 
+	if(sessionStorage.getItem('list_row')){
+		$(sessionStorage.getItem('list_row')).addClass('selected');
+		$(sessionStorage.getItem('list_row')).click();
+	  } 
 	// 삭제
 	$("#btn_de").click(function(){
 		if( form_check("D") ){
