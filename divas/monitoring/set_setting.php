@@ -675,16 +675,7 @@ require_once "./head.php";
 							</td> -->
 							<td>
 							<? 
-								if($val2['menu_idx'] == '4' && $val2['menu_num'] == '1'){
-									?>
-									<input type="hidden" name="sub_use[]" value="1">
-									<select name="sub_system" disabled>
-										<option value="0">미사용</option>
-										<option value="1" selected>사용</option>
-									</select>
-								<? 
 
-								}else{
 									?>
 									<select name="sub_use[]">
 										<option value="0" <?if($val2['menu_use']=="0"){echo "selected";}?>>미사용</option>
@@ -692,7 +683,7 @@ require_once "./head.php";
 									</select>
 								<? 
 		
-								}
+								
 							?>
 							</td>
 						</tr>
