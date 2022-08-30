@@ -771,15 +771,15 @@ Class ClassCommon {
 			$sub_level = $_REQUEST['sub_level'];
 			$sub_use = $_REQUEST['sub_use'];
 			foreach($sub_idx as $key => $val){
-				if($sub_use[$key] == '0'){	// 미사용 선택 => 최고관리자 이하이면 menu_level -1(한단계 올림), 사용으로...21/01/06 서정명
-					if($sub_level[$key] != '1'){
-						$sub_level[$key] = $sub_level[$key] - 1;
-						$sub_use[$key] = '1';
-					}
-				}
+				// if($sub_use[$key] == '0'){	// 미사용 선택 => 최고관리자 이하이면 menu_level -1(한단계 올림), 사용으로...21/01/06 서정명
+				// 	if($sub_level[$key] != '1'){
+				// 		$sub_level[$key] = $sub_level[$key] - 1;
+				// 		$sub_use[$key] = '1';
+				// 	}
+				// }
 				$sql = " UPDATE dn_menu_in SET menu_level = '".$sub_level[$key]."', menu_use = '".$sub_use[$key]."'
 						 WHERE menu_idx = '".$val."' AND menu_num = '".$sub_num[$key]."' ";
-					
+				//echo $sql;
 				if( $this->DB->QUERYONE($sql) ){
 					$arrReturn[] = true;
 				}else{
