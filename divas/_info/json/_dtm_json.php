@@ -53,11 +53,13 @@ switch($mode){
 		if($min){
 			// 분단위 데이터
 			for($i=0; $i<6; $i++){
+				$where_date = $sdate." ".$hour.":".$i."0:00";
 				if($min[$i] != null){
 					$min[$i] = $min[$i]*100;
-					$where_date = $sdate." ".$hour.":".$i."0:00";
-					$arrReturn[] = $ClassRainInfo->setRainData($area_code, "M", $where_date, $min[$i]);
+				}else{
+					$min[$i] = 'null';
 				}
+				$arrReturn[] = $ClassRainInfo->setRainData($area_code, "M", $where_date, $min[$i]);
 			}
 			// 시단위 데이터
 			$ClassRainInfo->getRainSum($area_code, "M", $sdate." ".$hour.":00:00", $sdate." ".$hour.":59:59");
@@ -121,11 +123,13 @@ switch($mode){
 		if($min){
 			// 분단위 데이터
 			for($i=0; $i<6; $i++){
+				$where_date = $sdate." ".$hour.":".$i."0:00";
 				if($min[$i] != null){
 					$min[$i] = $min[$i]*100;
-					$where_date = $sdate." ".$hour.":".$i."0:00";
-					$arrReturn[] = $ClassFlowInfo->setFlowData($area_code, "M", $where_date, $min[$i]);
+				}else{
+					$min[$i] = 'null';
 				}
+				$arrReturn[] = $ClassFlowInfo->setFlowData($area_code, "M", $where_date, $min[$i]);
 			}
 			// 시단위 데이터
 			$ClassFlowInfo->getFlowAvg($area_code, "M", $sdate." ".$hour.":00:00", $sdate." ".$hour.":59:59");
@@ -189,11 +193,13 @@ switch($mode){
 		if($min){
 			// 분단위 데이터
 			for($i=0; $i<6; $i++){
+				$where_date = $sdate." ".$hour.":".$i."0:00";
 				if($min[$i] != null){
 					$min[$i] = $min[$i]*1000;
-					$where_date = $sdate." ".$hour.":".$i."0:00";
-					$arrReturn[] = $ClassSnowInfo->setSnowData($area_code, "M", $where_date, $min[$i]);
+				}else{
+					$min[$i] = 'null';
 				}
+				$arrReturn[] = $ClassSnowInfo->setSnowData($area_code, "M", $where_date, $min[$i]);
 			}
 			// 시단위 데이터
 			$ClassSnowInfo->getSnowMax($area_code, "M", $sdate." ".$hour.":00:00", $sdate." ".$hour.":59:59");
@@ -231,93 +237,6 @@ switch($mode){
 		$returnBody = array( 'result' => $result );
 		echo json_encode( $returnBody );
 	break;
-
-	// 변위 자료 보기
-	case 'disp':
-		$ClassDispInfo = new ClassDispInfo($DB);
-		
-		$ClassDispInfo->getDispRpt($area_code, "M", $where_date, "");
-		
-		$data_list['DATE'] = $sdate;
-		$data_list['HOUR'] = $hour;
-		if($ClassDispInfo->rsDispRpt){
-			foreach($ClassDispInfo->rsDispRpt as $key => $val){
-				$data_list['MIN'][] = ($val['DISPLACEMENT'] == "-") ? "" : round_data($val['DISPLACEMENT'], 0.0001, 100);
-			}
-		}
-		
-		$returnBody = array( 'list' => $data_list );
-		echo json_encode( $returnBody );
-	break;
-	
-	// 변위 자료 수정
-	case 'disp_save':
-		$ClassDispInfo = new ClassDispInfo($DB);
-
-		$where_date2 .= " '".date('Y-m-d H:i:s', strtotime(substr($where_date, 2, 19)) - 60 * 10)."' ";
-		// $where_date2 .= substr($where_date, 0, 118)." ";
-		
-		if($min){
-			$ClassDispInfo->getDispRpt($area_code, "M", $where_date2, "");
-		
-			if($ClassDispInfo->rsDispRpt){
-				foreach($ClassDispInfo->rsDispRpt as $key => $val){
-					$bef_disp = ($val['DISPLACEMENT'] == "-") ? "-" : $val['DISPLACEMENT'];
-				}
-			}
-
-			// 분단위 데이터
-			for($i=0; $i<6; $i++){
-				if($min[$i] != null){
-					$min[$i] = $min[$i]*10000;
-					// 이전값과 현재값의 차이
-					if($i==0){
-						$diff_min[$i] = $min[$i]-$bef_disp;
-					}else{
-						$diff_min[$i] = $min[$i]-$tmp_bef;
-					}
-					$where_date = $sdate." ".$hour.":".$i."0:00";
-					$arrReturn[] = $ClassDispInfo->setDispData($area_code, "M", $where_date, $min[$i]);
-					$arrReturn[] = $ClassDispInfo->setDispDiffData($area_code, "M", $where_date, $diff_min[$i]);
-					$tmp_bef = $min[$i];
-				}
-			}
-			// 시단위 데이터
-			$ClassDispInfo->getDispSum($area_code, "M", $sdate." ".$hour.":00:00", $sdate." ".$hour.":59:59");
-			$tmp_data = $ClassDispInfo->rsData;
-			$tmp_data = ($tmp_data != null) ? $tmp_data : "null";
-			$where_date = $sdate." ".$hour.":00:00";
-			$arrReturn[] = $ClassDispInfo->setDispData($area_code, "H", $where_date, $tmp_data);
-			// 일단위 데이터
-			$ClassDispInfo->getDispSum($area_code, "H", $sdate." 00:00:00", $sdate." 23:59:59");
-			$tmp_data = $ClassDispInfo->rsData;
-			$tmp_data = ($tmp_data != null) ? $tmp_data : "null";
-			$where_date = $sdate." 00:00:00";
-			$arrReturn[] = $ClassDispInfo->setDispData($area_code, "D", $where_date, $tmp_data);
-			// 월단위 데이터
-			$last = date("t", strtotime($sdate));
-			$ClassDispInfo->getDispSum($area_code, "D", $yy."-".$mm."-01 00:00:00", $yy."-".$mm."-".$last." 23:59:59");
-			$tmp_data = $ClassDispInfo->rsData;
-			$tmp_data = ($tmp_data != null) ? $tmp_data : "null";
-			$where_date = $yy."-".$mm."-01 00:00:00";
-			$arrReturn[] = $ClassDispInfo->setDispData($area_code, "N", $where_date, $tmp_data);
-			// 연단위 데이터
-			$ClassDispInfo->getDispSum($area_code, "N", $yy."-01-01 00:00:00", $yy."-12-31 23:59:59");
-			$tmp_data = $ClassDispInfo->rsData;
-			$tmp_data = ($tmp_data != null) ? $tmp_data : "null";
-			$where_date = $yy."-01-01 00:00:00";
-			$arrReturn[] = $ClassDispInfo->setDispData($area_code, "Y", $where_date, $tmp_data);
-		}
-		
-		if( in_array(false, $arrReturn) ){
-			$result = false;
-		}else{
-			$result = true;
-		}
-		
-		$returnBody = array( 'result' => $result );
-		echo json_encode( $returnBody );
-	break;
 	
 	// 온도 자료 보기
 	case 'temp':
@@ -344,11 +263,13 @@ switch($mode){
 		if($min){
 			// 분단위 데이터
 			for($i=0; $i<6; $i++){
+				$where_date = $sdate." ".$hour.":".$i."0:00";
 				if($min[$i] != null){
 					$min[$i] = $min[$i]*100;
-					$where_date = $sdate." ".$hour.":".$i."0:00";
-					$arrReturn[] = $ClassAwsInfo->setTempData($area_code, "M", $where_date, $min[$i]);
+				}else{
+					$min[$i] = 'null';
 				}
+				$arrReturn[] = $ClassAwsInfo->setTempData($area_code, "M", $where_date, $min[$i]);
 			}
 			// 시단위 데이터
 			$ClassAwsInfo->getTempAvg($area_code, "M", $sdate." ".$hour.":00:00", $sdate." ".$hour.":59:59");
@@ -394,11 +315,13 @@ switch($mode){
 		if($min){
 			// 분단위 데이터
 			for($i=0; $i<6; $i++){
+				$where_date = $sdate." ".$hour.":".$i."0:00";
 				if($min[$i] != null){
 					$min[$i] = $min[$i]*100;
-					$where_date = $sdate." ".$hour.":".$i."0:00";
-					$arrReturn[] = $ClassAwsInfo->setTempMaxData($area_code, "M", $where_date, $min[$i]);
+				}else{
+					$min[$i] = 'null';
 				}
+				$arrReturn[] = $ClassAwsInfo->setTempMaxData($area_code, "M", $where_date, $min[$i]);
 			}
 			// 시단위 데이터
 			$ClassAwsInfo->getTempMaxAvg($area_code, "M", $sdate." ".$hour.":00:00", $sdate." ".$hour.":59:59");
@@ -444,11 +367,13 @@ switch($mode){
 		if($min){
 			// 분단위 데이터
 			for($i=0; $i<6; $i++){
+				$where_date = $sdate." ".$hour.":".$i."0:00";
 				if($min[$i] != null){
 					$min[$i] = $min[$i]*100;
-					$where_date = $sdate." ".$hour.":".$i."0:00";
-					$arrReturn[] = $ClassAwsInfo->setTempMinData($area_code, "M", $where_date, $min[$i]);
+				}else{
+					$min[$i] = 'null';
 				}
+				$arrReturn[] = $ClassAwsInfo->setTempMinData($area_code, "M", $where_date, $min[$i]);
 			}
 			// 시단위 데이터
 			$ClassAwsInfo->getTempMinAvg($area_code, "M", $sdate." ".$hour.":00:00", $sdate." ".$hour.":59:59");
@@ -516,11 +441,13 @@ switch($mode){
 		if($min){
 			// 분단위 데이터
 			for($i=0; $i<6; $i++){
+				$where_date = $sdate." ".$hour.":".$i."0:00";
 				if($min[$i] != null){
 					$min[$i] = $min[$i]*100;
-					$where_date = $sdate." ".$hour.":".$i."0:00";
-					$arrReturn[] = $ClassAwsInfo->setVelData($area_code, "M", $where_date, $min[$i]);
+				}else{
+					$min[$i] = 'null';
 				}
+				$arrReturn[] = $ClassAwsInfo->setVelData($area_code, "M", $where_date, $min[$i]);
 			}
 			// 시단위 데이터
 			$ClassAwsInfo->getVelAvg($area_code, "M", $sdate." ".$hour.":00:00", $sdate." ".$hour.":59:59");
@@ -566,11 +493,13 @@ switch($mode){
 		if($min){
 			// 분단위 데이터
 			for($i=0; $i<6; $i++){
+				$where_date = $sdate." ".$hour.":".$i."0:00";
 				if($min[$i] != null){
 					$min[$i] = $min[$i]*100;
-					$where_date = $sdate." ".$hour.":".$i."0:00";
-					$arrReturn[] = $ClassAwsInfo->setVelMaxData($area_code, "M", $where_date, $min[$i]);
+				}else{
+					$min[$i] = 'null';
 				}
+				$arrReturn[] = $ClassAwsInfo->setVelMaxData($area_code, "M", $where_date, $min[$i]);
 			}
 			// 시단위 데이터
 			$ClassAwsInfo->getVelMaxAvg($area_code, "M", $sdate." ".$hour.":00:00", $sdate." ".$hour.":59:59");
@@ -616,11 +545,13 @@ switch($mode){
 		if($min){
 			// 분단위 데이터
 			for($i=0; $i<6; $i++){
+				$where_date = $sdate." ".$hour.":".$i."0:00";
 				if($min[$i] != "-"){
 					$min[$i] = $ClassAwsInfo->getNumDegree($min[$i]);
-					$where_date = $sdate." ".$hour.":".$i."0:00";
-					$arrReturn[] = $ClassAwsInfo->setDegData($area_code, "M", $where_date, $min[$i]);
+				}else{
+					$min[$i] = 'null';
 				}
+				$arrReturn[] = $ClassAwsInfo->setDegData($area_code, "M", $where_date, $min[$i]);
 			}
 			// 시단위 데이터
 			$ClassAwsInfo->getDegAvg($area_code, "M", $sdate." ".$hour.":00:00", $sdate." ".$hour.":59:59");
@@ -666,11 +597,13 @@ switch($mode){
 		if($min){
 			// 분단위 데이터
 			for($i=0; $i<6; $i++){
+				$where_date = $sdate." ".$hour.":".$i."0:00";
 				if($min[$i] != "-"){
 					$min[$i] = $ClassAwsInfo->getNumDegree($min[$i]);
-					$where_date = $sdate." ".$hour.":".$i."0:00";
-					$arrReturn[] = $ClassAwsInfo->setDegMaxData($area_code, "M", $where_date, $min[$i]);
+				}else{
+					$min[$i] = 'null';
 				}
+				$arrReturn[] = $ClassAwsInfo->setDegMaxData($area_code, "M", $where_date, $min[$i]);
 			}
 			// 시단위 데이터
 			$ClassAwsInfo->getDegMaxAvg($area_code, "M", $sdate." ".$hour.":00:00", $sdate." ".$hour.":59:59");
@@ -734,11 +667,13 @@ switch($mode){
 		if($min){
 			// 분단위 데이터
 			for($i=0; $i<6; $i++){
+				$where_date = $sdate." ".$hour.":".$i."0:00";
 				if($min[$i] != null){
 					$min[$i] = $min[$i]*100;
-					$where_date = $sdate." ".$hour.":".$i."0:00";
-					$arrReturn[] = $ClassAwsInfo->setAtmoData($area_code, "M", $where_date, $min[$i]);
+				}else{
+					$min[$i] = 'null';
 				}
+				$arrReturn[] = $ClassAwsInfo->setAtmoData($area_code, "M", $where_date, $min[$i]);
 			}
 			// 시단위 데이터
 			$ClassAwsInfo->getAtmoAvg($area_code, "M", $sdate." ".$hour.":00:00", $sdate." ".$hour.":59:59");
@@ -784,11 +719,13 @@ switch($mode){
 		if($min){
 			// 분단위 데이터
 			for($i=0; $i<6; $i++){
+				$where_date = $sdate." ".$hour.":".$i."0:00";
 				if($min[$i] != null){
 					$min[$i] = $min[$i]*100;
-					$where_date = $sdate." ".$hour.":".$i."0:00";
-					$arrReturn[] = $ClassAwsInfo->setAtmoMaxData($area_code, "M", $where_date, $min[$i]);
+				}else{
+					$min[$i] = 'null';
 				}
+				$arrReturn[] = $ClassAwsInfo->setAtmoMaxData($area_code, "M", $where_date, $min[$i]);
 			}
 			// 시단위 데이터
 			$ClassAwsInfo->getAtmoMaxAvg($area_code, "M", $sdate." ".$hour.":00:00", $sdate." ".$hour.":59:59");
@@ -834,11 +771,13 @@ switch($mode){
 		if($min){
 			// 분단위 데이터
 			for($i=0; $i<6; $i++){
+				$where_date = $sdate." ".$hour.":".$i."0:00";
 				if($min[$i] != null){
 					$min[$i] = $min[$i]*100;
-					$where_date = $sdate." ".$hour.":".$i."0:00";
-					$arrReturn[] = $ClassAwsInfo->setAtmoMinData($area_code, "M", $where_date, $min[$i]);
+				}else{
+					$min[$i] = 'null';
 				}
+				$arrReturn[] = $ClassAwsInfo->setAtmoMinData($area_code, "M", $where_date, $min[$i]);
 			}
 			// 시단위 데이터
 			$ClassAwsInfo->getAtmoMinAvg($area_code, "M", $sdate." ".$hour.":00:00", $sdate." ".$hour.":59:59");
@@ -902,11 +841,13 @@ switch($mode){
 		if($min){
 			// 분단위 데이터
 			for($i=0; $i<6; $i++){
+				$where_date = $sdate." ".$hour.":".$i."0:00";
 				if($min[$i] != null){
 					$min[$i] = $min[$i]*100;
-					$where_date = $sdate." ".$hour.":".$i."0:00";
-					$arrReturn[] = $ClassAwsInfo->setHumiData($area_code, "M", $where_date, $min[$i]);
+				}else{
+					$min[$i] = 'null';
 				}
+				$arrReturn[] = $ClassAwsInfo->setHumiData($area_code, "M", $where_date, $min[$i]);
 			}
 			// 시단위 데이터
 			$ClassAwsInfo->getHumiAvg($area_code, "M", $sdate." ".$hour.":00:00", $sdate." ".$hour.":59:59");
@@ -952,11 +893,13 @@ switch($mode){
 		if($min){
 			// 분단위 데이터
 			for($i=0; $i<6; $i++){
+				$where_date = $sdate." ".$hour.":".$i."0:00";
 				if($min[$i] != null){
 					$min[$i] = $min[$i]*100;
-					$where_date = $sdate." ".$hour.":".$i."0:00";
-					$arrReturn[] = $ClassAwsInfo->setHumiMaxData($area_code, "M", $where_date, $min[$i]);
+				}else{
+					$min[$i] = 'null';
 				}
+				$arrReturn[] = $ClassAwsInfo->setHumiMaxData($area_code, "M", $where_date, $min[$i]);
 			}
 			// 시단위 데이터
 			$ClassAwsInfo->getHumiMaxAvg($area_code, "M", $sdate." ".$hour.":00:00", $sdate." ".$hour.":59:59");
@@ -1002,11 +945,13 @@ switch($mode){
 		if($min){
 			// 분단위 데이터
 			for($i=0; $i<6; $i++){
+				$where_date = $sdate." ".$hour.":".$i."0:00";
 				if($min[$i] != null){
 					$min[$i] = $min[$i]*100;
-					$where_date = $sdate." ".$hour.":".$i."0:00";
-					$arrReturn[] = $ClassAwsInfo->setHumiMinData($area_code, "M", $where_date, $min[$i]);
+				}else{
+					$min[$i] = 'null';
 				}
+				$arrReturn[] = $ClassAwsInfo->setHumiMinData($area_code, "M", $where_date, $min[$i]);
 			}
 			// 시단위 데이터
 			$ClassAwsInfo->getHumiMinAvg($area_code, "M", $sdate." ".$hour.":00:00", $sdate." ".$hour.":59:59");
@@ -1070,11 +1015,13 @@ switch($mode){
 		if($min){
 			// 분단위 데이터
 			for($i=0; $i<6; $i++){
+				$where_date = $sdate." ".$hour.":".$i."0:00";
 				if($min[$i] != null){
 					$min[$i] = $min[$i]*100;
-					$where_date = $sdate." ".$hour.":".$i."0:00";
-					$arrReturn[] = $ClassAwsInfo->setRadiData($area_code, "M", $where_date, $min[$i]);
+				}else{
+					$min[$i] = 'null';
 				}
+				$arrReturn[] = $ClassAwsInfo->setRadiData($area_code, "M", $where_date, $min[$i]);
 			}
 			// 시단위 데이터
 			$ClassAwsInfo->getRadiAvg($area_code, "M", $sdate." ".$hour.":00:00", $sdate." ".$hour.":59:59");
@@ -1138,11 +1085,13 @@ switch($mode){
 		if($min){
 			// 분단위 데이터
 			for($i=0; $i<6; $i++){
+				$where_date = $sdate." ".$hour.":".$i."0:00";
 				if($min[$i] != null){
 					$min[$i] = $min[$i]*100;
-					$where_date = $sdate." ".$hour.":".$i."0:00";
-					$arrReturn[] = $ClassAwsInfo->setSunsData($area_code, "M", $where_date, $min[$i]);
+				}else{
+					$min[$i] = 'null';
 				}
+				$arrReturn[] = $ClassAwsInfo->setSunsData($area_code, "M", $where_date, $min[$i]);
 			}
 			// 시단위 데이터
 			$ClassAwsInfo->getSunsAvg($area_code, "M", $sdate." ".$hour.":00:00", $sdate." ".$hour.":59:59");
