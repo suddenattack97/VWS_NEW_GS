@@ -1002,6 +1002,32 @@
 			}else{
 				$(obj).unbind('blur');
 			}
+		}else if(type == 'textLength'){ // 문자열 길이만 체크
+			if(obj.value.length > 0){
+				if(range.length > 1) {
+					range = range.split('~');
+					if(range.length == 2){
+						range[0] = parseInt(range[0]);
+						range[1] = parseInt(range[1]);
+					}else{
+						console.log("범위 설정오류! function inputCheck()의 세번째 argument");
+					}
+				}
+				if(range.length > 1) {
+					if(range[0] > obj.value.length || range[1] < obj.value.length) {
+						swal({
+							title: '<div class="alpop_top_r">문자열 입력</div><div class="alpop_mes_r">유효한 범위의 값이 아닙니다.</div>',
+							text: range[0] + '자 이상, '+range[1]+ '자 이하로 입력해주세요.',
+							confirmButtonColor: '#ca4726',
+							confirmButtonText: '확인',
+							html: true
+						});
+						obj.focus();
+					}
+				}
+			}else{
+				$(obj).unbind('blur');
+			}
 		}else if(type == 'onlyIp'){ // ip 체크 : 숫자값만, ip 정규식 체크
 			obj.value = obj.value.replace(/[^0-9.]/g, '');
 			// let ipformat = /^(?!.*\.$)((?!0\d)(1?\d?\d|25[0-5]|2[0-4]\d)(\.|$)){4}$/;
