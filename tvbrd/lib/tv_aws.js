@@ -606,10 +606,12 @@ function aws(kind, arr_area_code){ // AWS - AWS 장비
 					if( (map_kind == 1 || map_kind == 2) && jQuery.inArray("3", map_data) != "-1" ){
 						// 상황판이나 장비상태 선택, 적설 버튼 선택
 						if($("#wave_"+item).css('display') == 'none'){
-							$("#aws_"+item).show();
-							$("#aws_label_"+item).show();
-							$("#aws_"+item+"_marker").show();
-	
+							// $("#aws_"+item).show();
+							// $("#aws_label_"+item).show();
+							// $("#aws_"+item+"_marker").show();
+							// $("#aws_"+item+"_marker img").attr('src','img/icon_s_03.png');
+							// $("#aws_"+item+" .label_top").css('background','#0ca629 url(img/icon_label_04.png) left top no-repeat');
+
 							$("#snow_"+item).show();
 							if( $("#snow_"+item).length != 0 ){
 								tmp_arr_area_code['rain'].push(item); 
@@ -620,9 +622,11 @@ function aws(kind, arr_area_code){ // AWS - AWS 장비
 							// 	$("#"+item2+"_"+item).show();
 							// });
 						}else{
-							$("#aws_"+item).show();
-							$("#aws_label_"+item).show();
-							$("#aws_"+item+"_marker").show();
+							// $("#aws_"+item).show();
+							// $("#aws_label_"+item).show();
+							// $("#aws_"+item+"_marker").show();
+							// $("#aws_"+item+"_marker img").attr('src','img/icon_s_03.png');
+							// $("#aws_"+item+" .label_top").css('background','#0ca629 url(img/icon_label_04.png) left top no-repeat');
 	
 							$.each(arr_rtu[item]['sensor_kind'], function(index2, item2){
 								$("#"+item2+"_"+item).hide(); 
