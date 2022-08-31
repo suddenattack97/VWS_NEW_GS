@@ -3,7 +3,7 @@ Class ClassAwsInfo {
 
 	private $DB;
 
-	function ClassAwsInfo($DB){
+	function __construct($DB){
 		$this->DB = $DB;
 
 		if(date("i") >= 50) $min = "50";

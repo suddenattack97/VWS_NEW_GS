@@ -3,7 +3,7 @@ Class ClassDispInfo {
 
 	private $DB;
 
-	function ClassDispInfo($DB){
+	function __construct($DB){
 		$this->DB = $DB;
 	}
 
