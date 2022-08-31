@@ -5,6 +5,14 @@ Class ClassFlowinfo {
 
 	function ClassFlowinfo($DB){
 		$this->DB = $DB;
+		
+		if(date("i") >= 50) $min = "50";
+		else if(date("i") >= 40) $min = "40";
+		else if(date("i") >= 30) $min = "30";
+		else if(date("i") >= 20) $min = "20";
+		else if(date("i") >= 10) $min = "10";
+		else $min = "00";
+		$this->nowDate = date("Y-m-d H:").$min.":00";
 	}
 	
 	/* 전시간 수위 */
@@ -35,7 +43,7 @@ Class ClassFlowinfo {
 	function getFlowNValue($localcode){
 		$sql .= " SELECT IFNULL(FLOW_AVR, '-') AS FLOW_N 
 				  FROM FLOW_HIST 
-				  WHERE DATA_TYPE = 'M' AND FLOW_DATE BETWEEN ".R_BEF_START." AND ".R_NOW_END." 
+				  WHERE DATA_TYPE = 'M' AND FLOW_DATE BETWEEN ".R_BEF_START." AND '".$this->nowDate."' 
 				  AND AREA_CODE = '".$localcode."'
 				  ORDER BY FLOW_DATE DESC LIMIT 1 ";
 

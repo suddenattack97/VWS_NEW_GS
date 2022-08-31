@@ -5,13 +5,22 @@ Class ClassAwsInfo {
 
 	function ClassAwsInfo($DB){
 		$this->DB = $DB;
+
+		if(date("i") >= 50) $min = "50";
+		else if(date("i") >= 40) $min = "40";
+		else if(date("i") >= 30) $min = "30";
+		else if(date("i") >= 20) $min = "20";
+		else if(date("i") >= 10) $min = "10";
+		else $min = "00";
+		$this->nowDate = date("Y-m-d H:").$min.":00";
 	}
 
 	/* 현재 온도  */
 	function getTempNValue($localcode){
+		
 		$sql .= " SELECT IFNULL(AVR_VAL, '-') AS TEMP_N 
 				  FROM TEMP_HIST 
-				  WHERE DATA_TYPE = 'M' AND TEMP_DATE BETWEEN ".R_BBBEF_START." AND ".R_NOW_END." 
+				  WHERE DATA_TYPE = 'M' AND TEMP_DATE BETWEEN ".R_BBBEF_START." AND '".$this->nowDate."' 
 				  AND AREA_CODE = '".$localcode."'
 				  ORDER BY TEMP_DATE DESC LIMIT 1 ";
 
@@ -60,7 +69,7 @@ Class ClassAwsInfo {
 	function getWindNValue($localcode){
 		$sql .= " SELECT IFNULL(AVR_VEL1, '-') AS WIND_VEL, IFNULL(AVR_DEG1, '-') AS WIND_DEG 
 				  FROM WIND_HIST 
-				  WHERE DATA_TYPE = 'M' AND WIND_DATE BETWEEN ".R_BBBEF_START." AND ".R_NOW_END." 
+				  WHERE DATA_TYPE = 'M' AND WIND_DATE BETWEEN ".R_BBBEF_START." AND '".$this->nowDate."' 
 				  AND AREA_CODE = '".$localcode."'
 				  ORDER BY WIND_DATE DESC LIMIT 1 ";
 
@@ -120,7 +129,7 @@ Class ClassAwsInfo {
 	function getHumiNValue($localcode){
 		$sql = " SELECT IFNULL(AVR_VAL, '-') AS HUMI_N
 				  FROM HUMI_HIST
-				  WHERE DATA_TYPE = 'M' AND HUMI_DATE BETWEEN ".R_BBBEF_START." AND ".R_NOW_END."
+				  WHERE DATA_TYPE = 'M' AND HUMI_DATE BETWEEN ".R_BBBEF_START." AND '".$this->nowDate."'
 				  AND AREA_CODE = '".$localcode."'
 				  ORDER BY HUMI_DATE DESC LIMIT 1 ";
 		
@@ -169,7 +178,7 @@ Class ClassAwsInfo {
 	function getAtmoNValue($localcode){
 		$sql = " SELECT IFNULL(AVR_VAL, '-') AS ATMO_N
 				  FROM ATMO_HIST
-				  WHERE DATA_TYPE = 'M' AND ATMO_DATE BETWEEN ".R_BBBEF_START." AND ".R_NOW_END."
+				  WHERE DATA_TYPE = 'M' AND ATMO_DATE BETWEEN ".R_BBBEF_START." AND '".$this->nowDate."'
 				  AND AREA_CODE = '".$localcode."'
 				  ORDER BY ATMO_DATE DESC LIMIT 1 ";
 		
@@ -219,7 +228,7 @@ Class ClassAwsInfo {
 		function getRadiNValue($localcode){
 			$sql = " SELECT IFNULL(AVR_VAL, '-') AS RADI_N
 					  FROM RADI_HIST
-					  WHERE DATA_TYPE = 'M' AND RADI_DATE BETWEEN ".R_BBBEF_START." AND ".R_NOW_END."
+					  WHERE DATA_TYPE = 'M' AND RADI_DATE BETWEEN ".R_BBBEF_START." AND '".$this->nowDate."'
 					  AND AREA_CODE = '".$localcode."'
 					  ORDER BY RADI_DATE DESC LIMIT 1 ";
 			

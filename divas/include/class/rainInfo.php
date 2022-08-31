@@ -5,6 +5,14 @@ Class ClassRainInfo {
 
 	function ClassRainInfo($DB){
 		$this->DB = $DB;
+		
+		if(date("i") >= 50) $min = "50";
+		else if(date("i") >= 40) $min = "40";
+		else if(date("i") >= 30) $min = "30";
+		else if(date("i") >= 20) $min = "20";
+		else if(date("i") >= 10) $min = "10";
+		else $min = "00";
+		$this->nowDate = date("Y-m-d H:").$min.":00";
 	}
 
 	/* 10분 강우량 */
@@ -12,7 +20,7 @@ Class ClassRainInfo {
 		if(DB == "0"){
 			$sql = " SELECT IFNULL(RAIN, '-') AS RAIN_M 
 				  	 FROM RAIN_HIST 
-				  	 WHERE DATA_TYPE = 'M' AND RAIN_DATE BETWEEN ".R_BBBEF_START." AND ".R_NOW_END." 
+				  	 WHERE DATA_TYPE = 'M' AND RAIN_DATE BETWEEN ".R_BBBEF_START." AND '".$this->nowDate."' 
 				  	 AND AREA_CODE = '".$area_code."'
 				  	 ORDER BY RAIN_DATE DESC LIMIT 1 ";
 			
