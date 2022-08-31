@@ -40,10 +40,11 @@ function aws(kind, arr_area_code){ // AWS - AWS 장비
 						}else{
 							tmp_class = arr_rtu[item]['sensor_kind'][i];
 						}
-						var bb = (i == (arr_rtu[item]['sensor_cnt'] - 1)) ? "" : "bb";
+						// var bb = (i == (arr_rtu[item]['sensor_cnt'] - 1)) ? "" : "bb";
+
 						if(arr_rtu[item]['sensor_kind'][i]){
 							tmp_box_content += '\n\
-								<li id="'+arr_rtu[item]['sensor_kind'][i]+'_'+item+'" class="'+tmp_class+' '+bb+'">\n\
+								<li id="'+arr_rtu[item]['sensor_kind'][i]+'_'+item+'" class="'+tmp_class+' bb">\n\
 									<span class="dat_left">&nbsp;</span>\n\
 									<span class="dat_right">&nbsp;</span>\n\
 								</li>';
@@ -91,6 +92,16 @@ function aws(kind, arr_area_code){ // AWS - AWS 장비
 				map.addOverlay(arr_rtu[item]['marker']);
 				map.addOverlay(arr_rtu[item]['overlay']);
 				map.addOverlay(circle[item]);
+
+				if($("#wind_"+item).css('display') == 'none' &&
+				$("#damp_"+item).css('display') == 'none' &&
+				$("#temp_"+item).css('display') == 'none' &&
+				$("#pres_"+item).css('display') == 'none')
+				{
+					if($("#snow_"+item).css('display') == 'block'){
+						$('#rain_'+item).addClass('bb');
+					}
+				}
 
 				//초기 zindex 셋팅
 				$("#aws_"+item).parent().parent().addClass('overlay');
@@ -205,9 +216,9 @@ function aws(kind, arr_area_code){ // AWS - AWS 장비
 					$("#pres_"+item).hide();
     			}
 				
-				if(tmp_cnt == 1){
-					$("#"+tmp_last+"_"+item).removeClass("bb");
-				}
+				// if(tmp_cnt == 1){
+				// 	$("#"+tmp_last+"_"+item).removeClass("bb");
+				// }
 				
 				var tmp_yAnchor = 0;
 				if(tmp_cnt == 1) $("#aws_"+item).css('margin-top','-110px');//tmp_yAnchor = -111;
@@ -623,10 +634,10 @@ function aws(kind, arr_area_code){ // AWS - AWS 장비
     			}
 				
 				if(tmp_cnt == 1){
-					$("#"+tmp_last+"_"+item).removeClass("bb");
+					// $("#"+tmp_last+"_"+item).removeClass("bb");
 				}else{
 					$("#aws_"+item+" li").not(":first").addClass("bb");
-					$("#"+tmp_last+"_"+item).removeClass("bb");
+					// $("#"+tmp_last+"_"+item).removeClass("bb");
 				}
 				
 				var tmp_yAnchor = 0;
