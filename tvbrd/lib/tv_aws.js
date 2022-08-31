@@ -537,6 +537,8 @@ function aws(kind, arr_area_code){ // AWS - AWS 장비
 					$("#aws_"+item).show();
 					$("#aws_label_"+item).show();
 					$("#aws_"+item+"_marker").show();
+					$("#aws_"+item+"_marker img").attr('src','img/icon_s_03.png');
+					$("#aws_"+item+" .label_top").css('background','#0ca629 url(img/icon_label_04.png) left top no-repeat');
 
 					tmp_cnt = 0;
 					// 상황판이나 장비상태 선택, AWS 버튼 선택
@@ -561,6 +563,9 @@ function aws(kind, arr_area_code){ // AWS - AWS 장비
 							$("#aws_"+item+"_marker").show();
 	
 							$("#rain_"+item).show();
+							$("#aws_"+item+"_marker img").attr('src','img/icon_s_01.png');
+							$("#aws_"+item+" .label_top").css('background','#2782ff url(img/icon_label_04.png) left top no-repeat');
+
 							if( $("#rain_"+item).length != 0 ){
 								tmp_arr_area_code['rain'].push(item); 
 								tmp_cnt++;
@@ -573,7 +578,6 @@ function aws(kind, arr_area_code){ // AWS - AWS 장비
 							$("#aws_"+item).show();
 							$("#aws_label_"+item).show();
 							$("#aws_"+item+"_marker").show();
-	
 							$.each(arr_rtu[item]['sensor_kind'], function(index2, item2){
 								$("#"+item2+"_"+item).hide(); 
 								tmp_cnt = 1;
