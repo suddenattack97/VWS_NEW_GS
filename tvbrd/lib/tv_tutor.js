@@ -1594,20 +1594,20 @@
     	// 오버레이 줌레벨 막대
     	var sel_over = $("#sel_over_level select");
 		var slider = $("#slider_over").slider({
-			min: 0,
+			min: 8,
 			max: 22,
 			range: "min",
 			value: sel_over[ 0 ].selectedIndex,
 			slide: function( event, ui ) {
-				sel_over[ 0 ].selectedIndex = ui.value;
+				sel_over[ 0 ].selectedIndex = ui.value-8;
 			},
 			stop: function( event, ui ) {
-				if(Number(ui.value) < clus_level){
-					swal("체크", "라벨 표시 줌레벨은 장비 그룹 줌레벨보다 커야 합니다.", "warning");
-					sel_over[ 0 ].selectedIndex = over_level;
-					$("#slider_over").slider("value", over_level);
-					return false;
-				}
+				// if(Number(ui.value) < clus_level){
+				// 	// swal("체크", "라벨 표시 줌레벨은 장비 그룹 줌레벨보다 커야 합니다.", "warning");
+				// 	sel_over[ 0 ].selectedIndex = over_level;
+				// 	$("#slider_over").slider("value", over_level);
+				// 	return false;
+				// }
 	    		swal({
 	    			title: "<div class='alpop_top_b'>줌레벨 변경 확인</div><div class='alpop_mes_b'>라벨 표시 줌레벨을 변경하실 겁니까?</div>",
 	    			text: "확인 시 화면에 바로 적용 됩니다.",
@@ -1631,46 +1631,10 @@
 	    		});
 			}
 		});
-    	// // 클러스터 줌레벨 막대
-    	// var sel_clus = $("#sel_clus_level select");
-		// var slider = $("#slider_clus").slider({
-		// 	min: 0,
-		// 	max: 22,
-		// 	range: "min",
-		// 	value: sel_clus[ 0 ].selectedIndex,
-		// 	slide: function( event, ui ) {
-		// 		sel_clus[ 0 ].selectedIndex = ui.value;
-		// 	},
-		// 	stop: function( event, ui ) {
-		// 		if(Number(ui.value) > over_level){
-		// 			swal("체크", "장비 그룹 줌레벨은 라벨 표시 줌레벨보다 작아야 합니다.", "warning");
-		// 			sel_clus[ 0 ].selectedIndex = clus_level;
-		// 			$("#slider_clus").slider("value", clus_level);
-		// 			return false;
-		// 		}
-	    // 		swal({
-	    // 			title: "<div class='alpop_top_b'>줌레벨 변경 확인</div><div class='alpop_mes_b'>장비 그룹 줌레벨을 변경하실 겁니까?</div>",
-	    // 			text: "확인 시 화면에 바로 적용 됩니다.",
-	    // 			showCancelButton: true,
-	    // 			confirmButtonColor: "#5b7fda",
-	    // 			confirmButtonText: "확인",
-	    // 			cancelButtonText: "취소",
-	    // 			closeOnConfirm: false,
-	    // 			html: true
-	    // 		}, function(isConfirm){
-	    // 			if(isConfirm){
-	    // 				$.post("controll/tutor.php", { "mode" : "map_setting", "sub_mode" : "clus_level", "data" : ui.value }, function(){ 
-	    // 					clus_level = ui.value;
-	    // 					cluster.setMaxZoom(clus_level);
-		// 	    		});
-	    // 				swal("성공", "장비 그룹 줌레벨 변경이 완료 됐습니다.", "success");
-	    // 			}else{
-	    // 				sel_clus[ 0 ].selectedIndex = clus_level;
-		// 				$("#slider_clus").slider("value", clus_level);
-	    // 			}
-	    // 		});
-		// 	}
-		// });
+		$(sel_over).change(function(e){
+			$("#slider_over").slider("value", e.target.value);
+		});
+
 		// 오버레이 줌레벨 셀렉트 변경 이벤트
 		$(document).on("change","#sel_over_level select",function(){
 			if(Number(this.value) < clus_level){
