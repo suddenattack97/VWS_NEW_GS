@@ -81,9 +81,9 @@ if(recaptcha == 0){
 			</div>
 			<button type="button" id="login_ok" class="submit">LOGIN</button>
 <? if(recaptcha == 0){ ?>
-			<input type="hidden" id="recaptcha" name="recaptcha" value="1">
+			<input type="hidden" id="recaptcha" name="recaptcha" value="1" maxlength="5">
 <? }else if(recaptcha == 1){ ?>
-			<input type="hidden" id="recaptcha" name="recaptcha">
+			<input type="hidden" id="recaptcha" name="recaptcha" maxlength="5">
 			<div class="g-recaptcha" 
 				 data-theme="light"
 				 data-sitekey="6LdEtlkUAAAAAOerofVbokb6VG7QqZnO3bPhWl_W" 
@@ -93,7 +93,7 @@ if(recaptcha == 0){
 			<div class="g-recaptcha2">
 				<img src="../func/get_captcha.php" id="captcha" style="" />
 				<img src="../images/refresh.png" id="refresh" width="25" style="position: relative; bottom: 10px;" />
-				<input type="text" id="recaptcha" name="recaptcha" onkeypress="if( event.keyCode == 13 ){$('#login_ok').click();}" placeholder="" required />
+				<input type="text" id="recaptcha" name="recaptcha" onkeypress="if( event.keyCode == 13 ){$('#login_ok').click();}" maxlength="5" placeholder="" required />
 			</div>
 <? } ?>
 		</fieldset>
