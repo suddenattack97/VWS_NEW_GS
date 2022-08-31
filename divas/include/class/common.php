@@ -4,7 +4,7 @@ Class ClassCommon {
 
 	private $DB;
 
-	function ClassCommon($DB){
+	function __construct($DB){
 		$this->DB = $DB;
 	}
 	

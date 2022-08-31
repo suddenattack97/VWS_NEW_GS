@@ -3,7 +3,7 @@ Class ClassFlowinfo {
 
 	private $DB;
 
-	function ClassFlowinfo($DB){
+	function __construct($DB){
 		$this->DB = $DB;
 		
 		if(date("i") >= 50) $min = "50";
