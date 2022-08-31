@@ -129,7 +129,7 @@ switch($mode) {
 		$arr_rtu = array();
 		if($data){
 			$keyTosRtuID = $_COOKIE['keyTosRtuID'];
-			$arr_keyTosRtuID = explode(",", $keyTosRtuID);
+			$arr_keyTosRtuID = split(",", $keyTosRtuID);
 			
 			foreach($data as $key => $val){
 				// 쿠키 값에 따른 방송 장비 표시 제한

@@ -13,7 +13,7 @@ Class Divas_Util {
 	private $DB;
 
 	/* 생성자 */
-	function __construct($DB=null) {
+	function Divas_Util($DB=null) {
 		$this->DB = $DB;
 	}
 

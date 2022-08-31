@@ -76,7 +76,7 @@ function GetInt4d($data, $pos) {
 // http://uk.php.net/manual/en/function.getdate.php
 function gmgetdate($ts = null){
 	$k = array('seconds','minutes','hours','mday','wday','mon','year','yday','weekday','month',0);
-	return(array_comb($k,explode(":",gmdate('s:i:G:j:w:n:Y:z:l:F:U',is_null($ts)?time():$ts))));
+	return(array_comb($k,split(":",gmdate('s:i:G:j:w:n:Y:z:l:F:U',is_null($ts)?time():$ts))));
 	} 
 
 // Added for PHP4 compatibility
@@ -94,7 +94,7 @@ function v($data,$pos) {
 
 class OLERead {
 	var $data = '';
-	function __construct(){	}
+	function OLERead(){	}
 
 	function read($sFileName){
 		// check if file exist and is readable (Darko Miljanovic)
@@ -842,7 +842,7 @@ class Spreadsheet_Excel_Reader {
 
 		// Custom pattern can be POSITIVE;NEGATIVE;ZERO
 		// The "text" option as 4th parameter is not handled
-		$parts = explode(";",$format);
+		$parts = split(";",$format);
 		$pattern = $parts[0];
 		// Negative pattern
 		if (count($parts)>2 && $num==0) {
@@ -913,9 +913,9 @@ class Spreadsheet_Excel_Reader {
 	 *
 	 * Some basic initialisation
 	 */
-	function __construct($file='',$store_extended_info=true,$outputEncoding='') {
+	function Spreadsheet_Excel_Reader($file='',$store_extended_info=true,$outputEncoding='') {
 		$ttt= new OLERead();
-		$this->_ole = $ttt;
+		$this->_ole =& $ttt;
 		$this->setUTFEncoder('iconv');
 		if ($outputEncoding != '') { 
 			$this->setOutputEncoding($outputEncoding);

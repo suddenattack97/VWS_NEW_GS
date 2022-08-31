@@ -3,7 +3,7 @@ Class ClassRainInfo {
 
 	private $DB;
 
-	function __construct($DB){
+	function ClassRainInfo($DB){
 		$this->DB = $DB;
 		
 		if(date("i") >= 50) $min = "50";
