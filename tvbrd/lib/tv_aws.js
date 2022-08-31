@@ -613,6 +613,15 @@ function aws(kind, arr_area_code){ // AWS - AWS 장비
 							// $("#aws_"+item+" .label_top").css('background','#0ca629 url(img/icon_label_04.png) left top no-repeat');
 
 							$("#snow_"+item).show();
+							for(var i in tmp_arr_area_code){
+								if(tmp_arr_area_code[i].length != 0){
+									$.post( "controll/snow.php", { "mode" : "snow", "arr_area_code" : tmp_arr_area_code[i], "check" : "aws" }, function(response){
+										$.each(response.list, function(index, item2){
+											$("#snow_"+item2.area_code+" .dat_right").html(item2.day);
+										});
+									}, "json");
+								}
+							}
 							if( $("#snow_"+item).length != 0 ){
 								tmp_arr_area_code['rain'].push(item); 
 								tmp_cnt++;
