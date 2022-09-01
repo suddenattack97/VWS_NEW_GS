@@ -63,7 +63,7 @@ switch($mode){
 		$data_common['alert_cnt'] = alert_cnt;
 		$data_common['board_type'] = board_type;
 		$data_common['board_url'] = board_url;
-		$data_common['root_dir'] = root_dir;
+		$data_common['root_dir'] = ROOT_DIR;
 		$data_common['vhf_use'] = vhf_use;
 		
 		$returnBody = array( 'common' => $data_common );
@@ -301,9 +301,9 @@ switch($mode){
 		$ClassRainInfo = new ClassRainInfo($DB);
 		//aws자료
 		$ClassAwsInfo = new ClassAwsInfo($DB);
-		$data_sensor['ATMO'] = "";
-		$data_sensor['RADI'] = "";
-		$data_sensor['SUNS'] = "";
+		$data_sensor['ATMO'] = 0;
+		$data_sensor['RADI'] = 0;
+		$data_sensor['SUNS'] = 0;
 		for($i=0; $i<$AwsLocalDB->rsCnt; $i++) {
 			//지역코드
 			$data_aws[$i]['AREA_CODE'] = $AwsLocalDB->AREA_CODE[$i];
@@ -386,24 +386,28 @@ switch($mode){
 			$ClassSnowInfo->getSnowDMAXValue($SnowLocalDB->AREA_CODE[$i]); //SNOW_MAX
 			
 			//전일신적설 계산
-			if($ClassSnowInfo->SNOW_BMAX - $ClassSnowInfo->SNOW_BBM > 0) {
-				$BM_TEMP = $ClassSnowInfo->SNOW_BMAX - $ClassSnowInfo->SNOW_BBM;
-			}else {
-				if($ClassSnowInfo->SNOW_BBM > 0){
-					$BM_TEMP = 0;
-				}else{
-					$BM_TEMP = $ClassSnowInfo->SNOW_BMAX;
+			// if($ClassSnowInfo->SNOW_BMAX - $ClassSnowInfo->SNOW_BBM > 0) {
+			// 	$BM_TEMP = $ClassSnowInfo->SNOW_BMAX - $ClassSnowInfo->SNOW_BBM;
+			// }else {
+			// 	if($ClassSnowInfo->SNOW_BBM > 0){
+			// 		$BM_TEMP = 0;
+			// 	}else{
+			// 		$BM_TEMP = $ClassSnowInfo->SNOW_BMAX;
+			// 	}
+			// }
+			if($ClassSnowInfo->SNOW_MAX != '-' || $ClassSnowInfo->SNOW_MAX != '-'){
+				//금일신적설 계산
+				if($ClassSnowInfo->SNOW_MAX - $ClassSnowInfo->SNOW_BM > 0) {
+					$M_TEMP = $ClassSnowInfo->SNOW_MAX - $ClassSnowInfo->SNOW_BM;
+				}else {
+					if($ClassSnowInfo->SNOW_BM > 0){
+						$M_TEMP = 0;
+					}else{
+						$M_TEMP = $ClassSnowInfo->SNOW_MAX;
+					}
 				}
-			}
-			//금일신적설 계산
-			if($ClassSnowInfo->SNOW_MAX - $ClassSnowInfo->SNOW_BM > 0) {
-				$M_TEMP = $ClassSnowInfo->SNOW_MAX - $ClassSnowInfo->SNOW_BM;
-			}else {
-				if($ClassSnowInfo->SNOW_BM > 0){
-					$M_TEMP = 0;
-				}else{
-					$M_TEMP = $ClassSnowInfo->SNOW_MAX;
-				}
+			}else{
+				$M_TEMP = '-';
 			}
 			
 			//지역코드
