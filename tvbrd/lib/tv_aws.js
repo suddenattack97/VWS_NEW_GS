@@ -559,6 +559,11 @@ function aws(kind, arr_area_code){ // AWS - AWS 장비
 					});
 				}else{
 					if($("#wave_"+item).css('display') == 'none'){
+
+						$("#aws_"+item).hide();
+						$("#aws_label_"+item).hide();
+						$("#aws_"+item+"_marker").hide();
+
 						$("#wind_"+item).hide();
 						$("#damp_"+item).hide();
 						$("#temp_"+item).hide();
