@@ -104,7 +104,7 @@
     background-color:rgba(255,255,255,.6)
 }
 .ol-zoom{
-    top:7.5em;
+    top:45px;
     right:1.5em
 }
 .ol-rotate{
@@ -172,7 +172,7 @@
 }
 .ol-attribution{
     text-align:right;
-    top:4.5em;
+    top:45px;
     right:4.5em;
     width: 157px;
     max-width:calc(100% - 1.3em);
@@ -226,7 +226,7 @@
     display:none
 }
 .ol-zoomslider{
-    top:11.5em;
+    top:90px;
     right:1.5em;
     height:200px
 }
