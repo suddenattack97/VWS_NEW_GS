@@ -63,7 +63,7 @@ switch($mode){
 		$data_common['alert_cnt'] = alert_cnt;
 		$data_common['board_type'] = board_type;
 		$data_common['board_url'] = board_url;
-		$data_common['root_dir'] = root_dir;
+		$data_common['root_dir'] = ROOT_DIR;
 		$data_common['vhf_use'] = vhf_use;
 		
 		$returnBody = array( 'common' => $data_common );
