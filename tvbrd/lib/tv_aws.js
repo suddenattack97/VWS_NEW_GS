@@ -43,6 +43,10 @@ function aws(kind, arr_area_code){ // AWS - AWS 장비
 						// var bb = (i == (arr_rtu[item]['sensor_cnt'] - 1)) ? "" : "bb";
 
 						if(arr_rtu[item]['sensor_kind'][i]){
+							// console.log(arr_rtu[item]['sensor_kind'][i]);
+							if(arr_rtu[item]['sensor_kind'][i] == "snow" || arr_rtu[item]['sensor_kind'][i] == "pres") {
+								continue;
+							}
 							tmp_box_content += '\n\
 								<li id="'+arr_rtu[item]['sensor_kind'][i]+'_'+item+'" class="'+tmp_class+' bb">\n\
 									<span class="dat_left">&nbsp;</span>\n\
@@ -219,7 +223,12 @@ function aws(kind, arr_area_code){ // AWS - AWS 장비
 				// if(tmp_cnt == 1){
 				// 	$("#"+tmp_last+"_"+item).removeClass("bb");
 				// }
-				
+				for(var i = 0; i < arr_rtu[item]['sensor_cnt']; i++){
+					if(arr_rtu[item]['sensor_kind'][i] == "snow" || arr_rtu[item]['sensor_kind'][i] == "pres") {
+						tmp_cnt--;
+					}
+				}
+
 				var tmp_yAnchor = 0;
 				if(tmp_cnt == 1) $("#aws_"+item).css('margin-top','-110px');//tmp_yAnchor = -111;
 				else if(tmp_cnt == 2) $("#aws_"+item).css('margin-top','-145px'); //tmp_yAnchor = -146;
@@ -565,6 +574,7 @@ function aws(kind, arr_area_code){ // AWS - AWS 장비
 							$("#rain_"+item).show();
 							$("#aws_"+item+"_marker img").attr('src','img/icon_s_01.png');
 							$("#aws_"+item+" .label_top").css('background','#2782ff url(img/icon_label_04.png) left top no-repeat');
+							 $("#aws_"+item).css('margin-top','-115px');//tmp_yAnchor = -111;
 
 							if( $("#rain_"+item).length != 0 ){
 								tmp_arr_area_code['rain'].push(item); 
@@ -656,7 +666,13 @@ function aws(kind, arr_area_code){ // AWS - AWS 장비
 					$("#aws_"+item+" li").not(":first").addClass("bb");
 					// $("#"+tmp_last+"_"+item).removeClass("bb");
 				}
-				
+
+				for(var i = 0; i < arr_rtu[item]['sensor_cnt']; i++){
+					if(arr_rtu[item]['sensor_kind'][i] == "snow" || arr_rtu[item]['sensor_kind'][i] == "pres") {
+						tmp_cnt--;
+					}
+				}
+
 				var tmp_yAnchor = 0;
 				if(tmp_cnt == 1) $("#aws_"+item).css('margin-top','-110px');//tmp_yAnchor = -111;
 				else if(tmp_cnt == 2) $("#aws_"+item).css('margin-top','-145px'); //tmp_yAnchor = -146;
