@@ -280,7 +280,6 @@
 				map_type = 1;
 				$("#top").hide();
 				$("#wrapper").append("<div id='new'></div>");
-				// $(".sidr").css('top','0px');
 				$("#new").click( function(){
 					window.open('./index.php?','');
 				});
@@ -381,6 +380,11 @@
 				]
 			}); 
 			
+			if(map_control_type == 1){
+				$(".ol-zoom-in").parent().css('top','10px');
+				$(".ol-attribution").css('top','10px');
+				$(".ol-zoomslider").css('top','55px');
+			}
 
 			$(".ol-attribution button").click(function(){
 				if($(".ol-attribution button").attr("aria-expanded") == "false"){
