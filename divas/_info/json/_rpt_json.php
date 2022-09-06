@@ -259,11 +259,8 @@ switch($mode){
 		$data_list['RTU_NAME'] = $LocalDB->RTU_NAME;
 		$data_list['MAX'] = null; // 최고
 		$data_list['MIN'] = null; // 최저
-		$data_list['RISK_1'] = ($LocalDB->FLOW_LEVEL1[0] == 0) ? null : $LocalDB->FLOW_LEVEL1[0];
-		$data_list['RISK_2'] = ($LocalDB->FLOW_LEVEL2[0] == 0) ? null : $LocalDB->FLOW_LEVEL2[0];
-		$data_list['RISK_3'] = ($LocalDB->FLOW_LEVEL3[0] == 0) ? null : $LocalDB->FLOW_LEVEL3[0];
-		$data_list['RISK_4'] = ($LocalDB->FLOW_LEVEL4[0] == 0) ? null : $LocalDB->FLOW_LEVEL4[0];
-		$data_list['RISK_5'] = ($LocalDB->FLOW_LEVEL5[0] == 0) ? null : $LocalDB->FLOW_LEVEL5[0];
+		$data_list['RISK_1'] = ($LocalDB->FLOW_WARNING[0] == 0) ? null : $LocalDB->FLOW_WARNING[0];
+		$data_list['RISK_2'] = ($LocalDB->FLOW_DANGER[0] == 0) ? null : $LocalDB->FLOW_DANGER[0];
 		
 		if($ClassFlowInfo->rsFlowRpt){
 			foreach($ClassFlowInfo->rsFlowRpt as $key => $val){
@@ -271,9 +268,6 @@ switch($mode){
 				$data_list['DATA'][] = (round_data($val['FLOW'], 0.01, 100) == "-") ? null : round_data($val['FLOW'], 0.01, 100);
 				$data_list['DATA1'][] = $data_list['RISK_1'];
 				$data_list['DATA2'][] = $data_list['RISK_2'];
-				$data_list['DATA3'][] = $data_list['RISK_3'];
-				$data_list['DATA4'][] = $data_list['RISK_4'];
-				$data_list['DATA5'][] = $data_list['RISK_5'];
 				if(round_data($val['FLOW'], 0.01, 100) != "-"){
 					$data_list['MAX'] = ($data_list['MAX'] < round_data($val['FLOW'], 0.01, 100) || !$data_list['MAX']) ? round_data($val['FLOW'], 0.01, 100) : $data_list['MAX'];
 					$data_list['MIN'] = ($data_list['MIN'] > round_data($val['FLOW'], 0.01, 100) || !$data_list['MIN']) ? round_data($val['FLOW'], 0.01, 100) : $data_list['MIN'];
@@ -454,12 +448,9 @@ switch($mode){
 		$LocalDB = new ClassRtuInfo($DB, 1);
 		$LocalDB->getRtuInfo($area_code);
 
-		$area_data['RISK_1'] = ($LocalDB->FLOW_LEVEL1[0] == 0) ? null : $LocalDB->FLOW_LEVEL1[0];
-		$area_data['RISK_2'] = ($LocalDB->FLOW_LEVEL2[0] == 0) ? null : $LocalDB->FLOW_LEVEL2[0];
-		$area_data['RISK_3'] = ($LocalDB->FLOW_LEVEL3[0] == 0) ? null : $LocalDB->FLOW_LEVEL3[0];
-		$area_data['RISK_4'] = ($LocalDB->FLOW_LEVEL4[0] == 0) ? null : $LocalDB->FLOW_LEVEL4[0];
-		$area_data['RISK_5'] = ($LocalDB->FLOW_LEVEL5[0] == 0) ? null : $LocalDB->FLOW_LEVEL5[0];
-		// var_dump($area_data['RISK_1']);
+		$area_data['RISK_1'] = ($LocalDB->FLOW_WARNING[0] == 0) ? null : $LocalDB->FLOW_WARNING[0];
+		$area_data['RISK_2'] = ($LocalDB->FLOW_DANGER[0] == 0) ? null : $LocalDB->FLOW_DANGER[0];
+		
 		if($type == 'S'){
 			$data_list = getDateAndArray1m($sTdate, $eTdate, $area_data);
 		}else if($type == 'D'){
@@ -1022,9 +1013,6 @@ function getDateAndArrayD($sdate, $edate, $area_data){
 		if($area_data != null){
 			$data_list[$i]['DATA1'] = $area_data['RISK_1'];
 			$data_list[$i]['DATA2'] = $area_data['RISK_2'];
-			$data_list[$i]['DATA3'] = $area_data['RISK_3'];
-			$data_list[$i]['DATA4'] = $area_data['RISK_4'];
-			$data_list[$i]['DATA5'] = $area_data['RISK_5'];
 		}
 		$tmp_sdate = date("Y-m-d", strtotime($tmp_sdate.' + 1 days'));
 		$i++;
@@ -1076,9 +1064,6 @@ function getDateAndArray($sdate, $edate, $area_data){
 				if($area_data != null){
 					$data_list[$tmp_date]['DATA1'] = $area_data['RISK_1'];
 					$data_list[$tmp_date]['DATA2'] = $area_data['RISK_2'];
-					$data_list[$tmp_date]['DATA3'] = $area_data['RISK_3'];
-					$data_list[$tmp_date]['DATA4'] = $area_data['RISK_4'];
-					$data_list[$tmp_date]['DATA5'] = $area_data['RISK_5'];
 				}
 			}
 		}
@@ -1108,9 +1093,6 @@ function getDateAndArray1m($sTdate, $eTdate, $area_data){
 			if($area_data != null){
 				$data_list[$tmp_date]['DATA1'] = $area_data['RISK_1'];
 				$data_list[$tmp_date]['DATA2'] = $area_data['RISK_2'];
-				$data_list[$tmp_date]['DATA3'] = $area_data['RISK_3'];
-				$data_list[$tmp_date]['DATA4'] = $area_data['RISK_4'];
-				$data_list[$tmp_date]['DATA5'] = $area_data['RISK_5'];
 			}
 		}
 		$tmp_sdate = date("Y-m-d H", strtotime($tmp_date.' + 1 hours'));
