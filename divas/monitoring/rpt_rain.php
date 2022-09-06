@@ -101,6 +101,8 @@ require_once "./head.php";
 			        <tbody>
 					<? 
 					if($data_list){
+						$rowCnt = rpt_cnt;
+						$rowNum = 0;
 						foreach($data_list as $key => $val){ 
 					?>
 					<tr id="<?=$val['AREA_CODE']?>" class="hh tr_rtu">
@@ -113,6 +115,15 @@ require_once "./head.php";
 						<td class="li3 bL_1gry"><?=$val['SUM']?></td>
 					</tr>
 					<? 
+							$rowNum++;
+						}
+						for($i=0; $i<($rowCnt-$rowNum); $i++){
+							// echo "<tr><td colspan='26'></td></tr>";
+							echo "<tr>
+							<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+							<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+							<td></td><td></td><td></td><td></td><td></td><td class='bL_1gry'></td>
+							</tr>";
 						}
 					}
 					?>	

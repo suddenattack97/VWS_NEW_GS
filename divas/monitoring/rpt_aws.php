@@ -103,6 +103,8 @@ require_once "./head.php";
 			        <tbody>
 					<? 
 					if($data_list){
+						$rowCnt = rpt_cnt;
+						$rowNum = 0;
 						foreach($data_list as $key => $val){ 
 					?>
 					<tr class="hh tr_rtu" data-id="<?=$val['AREA_CODE']?>">
@@ -114,6 +116,14 @@ require_once "./head.php";
 						<!-- <td class=" bL_1gry"><?=$val['RAIN_AVR']?></td> -->
 					</tr>
 					<? 
+							$rowNum++;
+						}
+						for($i=0; $i<($rowCnt-$rowNum); $i++){
+							echo "<tr>
+							<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+							<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+							<td></td><td></td><td></td><td></td><td></td><td class='bL_1gry'></td>
+							</tr>";
 						}
 					}
 					?>
@@ -191,6 +201,8 @@ require_once "./head.php";
 			        <tbody>
 					<? 
 					if($data_list){
+						$rowCnt = rpt_cnt;
+						$rowNum = 0;
 						foreach($data_list as $key => $val){ 
 					?>
 					<tr class="hh tr_rtu" data-id="<?=$val['AREA_CODE']?>">
@@ -221,6 +233,14 @@ require_once "./head.php";
 						<td class=" bL_1gry"><?=$val['TEMP_MIN_AVR']?></td>
 					</tr>
 					<? 
+							$rowNum++;
+						}
+						for($i=0; $i<($rowCnt-$rowNum); $i++){
+							echo "<tr>
+							<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+							<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+							<td></td><td></td><td></td><td></td><td></td><td></td><td class='bL_1gry'></td>
+							</tr>";
 						}
 					}
 					?>
@@ -260,6 +280,8 @@ require_once "./head.php";
 			        <tbody>
 					<? 
 					if($data_list){
+						$rowCnt = rpt_cnt;
+						$rowNum = 0;
 						foreach($data_list as $key => $val){ 
 					?>
 					<tr class="hh tr_rtu" data-id="<?=$val['AREA_CODE']?>">
@@ -303,6 +325,14 @@ require_once "./head.php";
 						<td class=" bL_1gry"><?=$val['VEL_MAX_AVR']?></td>
 					</tr>
 					<? 
+							$rowNum++;
+						}
+						for($i=0; $i<($rowCnt-$rowNum); $i++){
+							echo "<tr>
+							<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+							<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+							<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class='bL_1gry'></td>
+							</tr>";
 						}
 					}
 					?>
@@ -409,6 +439,8 @@ require_once "./head.php";
 			        <tbody>
 					<? 
 					if($data_list){
+						$rowCnt = rpt_cnt;
+						$rowNum = 0;
 						foreach($data_list as $key => $val){ 
 					?>
 					<tr class="hh tr_rtu" data-id="<?=$val['AREA_CODE']?>">
@@ -439,6 +471,14 @@ require_once "./head.php";
 						<td class=" bL_1gry"><?=$val['HUMI_MIN_AVR']?></td>
 					</tr>
 					<? 
+							$rowNum++;
+						}
+						for($i=0; $i<($rowCnt-$rowNum); $i++){
+							echo "<tr>
+							<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+							<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+							<td></td><td></td><td></td><td></td><td></td><td></td><td class='bL_1gry'></td>
+							</tr>";
 						}
 					}
 					?>

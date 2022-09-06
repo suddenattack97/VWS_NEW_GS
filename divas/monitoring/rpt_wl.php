@@ -99,6 +99,8 @@ require_once "./head.php";
 			        <tbody>
 					<? 
 					if($data_list){
+						$rowCnt = rpt_cnt;
+						$rowNum = 0;
 						foreach($data_list as $key => $val){ 
 					?>
 					<tr id="<?=$val['AREA_CODE']?>" class="hh tr_rtu">
@@ -110,6 +112,14 @@ require_once "./head.php";
 						<? } ?>
 					</tr>
 					<? 
+							$rowNum++;
+						}
+						for($i=0; $i<($rowCnt-$rowNum); $i++){
+							echo "<tr>
+							<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+							<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+							<td></td><td></td><td></td><td></td><td></td>
+							</tr>";
 						}
 					}
 					?>
