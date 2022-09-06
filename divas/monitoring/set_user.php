@@ -57,6 +57,7 @@ require_once "./head.php";
 					<tbody>
 				<? 
 				if($data_list){
+					$rowCnt = set_cnt - 3;
 					$num = 0;
 					foreach($data_list as $key => $val){ 
 							$num++;
@@ -70,6 +71,11 @@ require_once "./head.php";
 							<!-- <td class="li15 bL_1gry"><?=$val['IS_PERMIT_NAME']?></td> -->
 						</tr>
 				<? 
+					}
+					for($i=0; $i<($rowCnt-$num); $i++){
+						echo "<tr>
+						<td></td><td></td><td></td><td></td>
+						</tr>";
 					}
 				}
 				?>

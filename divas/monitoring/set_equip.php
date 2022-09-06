@@ -71,6 +71,8 @@ require_once "./head.php";
 					<tbody>
 				<? 
 				if($data_list){
+					$rowCnt = set_cnt - 3;
+					$rowNum = 0;
 					foreach($data_list as $key => $val){ 
 				?>
 						<tr id="list_<?=$val['NUM']?>" name="list_<?=$val['RTU_ID']?>" class="hh">
@@ -96,6 +98,14 @@ require_once "./head.php";
 							</td> -->
 						</tr>
 				<? 
+						$rowNum++;
+					}
+					for($i=0; $i<($rowCnt-$rowNum); $i++){
+						echo "<tr>
+						<td></td><td class='bL_1gry'></td><td class='bL_1gry'></td><td class='bL_1gry'></td><td class='bL_1gry'></td>
+						<td class='bL_1gry'></td><td class='bL_1gry'></td><td class='bL_1gry'></td><td class='bL_1gry'></td><td class='bL_1gry'></td>
+						<td class='bL_1gry'></td><td class='bL_1gry'></td><td class='bL_1gry'></td>
+						</tr>";
 					}
 				}
 				?>

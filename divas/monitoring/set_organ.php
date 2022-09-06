@@ -52,6 +52,8 @@ require_once "./head.php";
 					<tbody>
 				<? 
 				if($data_list){
+					$rowCnt = set_cnt;
+					$rowNum = 0;
 					foreach($data_list as $key => $val){ 
 				?>
 						<tr id="list_<?=$val['ORGAN_ID']?>">
@@ -63,6 +65,12 @@ require_once "./head.php";
 							<td class="li15 bL_1gry"><?=$val['SORT_BASE_NAME']?></td>
 						</tr>
 				<? 
+						$rowNum++;
+					}
+					for($i=0; $i<($rowCnt-$rowNum); $i++){
+						echo "<tr>
+						<td></td><td></td><td></td><td></td><td></td>
+						</tr>";
 					}
 				}
 				?>
