@@ -83,6 +83,7 @@ require_once "./head.php";
 					if($data_list){
 					$rowCnt = 15;
 					$columCnt = 26;
+					$rowNum = 0;
 						foreach($data_list as $key => $val){ 
 							?>
 							<tr class="hh"> 
@@ -95,7 +96,16 @@ require_once "./head.php";
 								<td class="mint_L"><?=$val['SUM']?></td>
 							</tr>
 							<? 
+							$rowNum++;
 								}
+						for($i=0; $i<($rowCnt-$rowNum); $i++){
+							// echo "<tr><td colspan='26'></td></tr>";
+							echo "<tr>
+							<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+							<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+							<td></td><td></td><td></td><td></td><td></td><td></td>
+							</tr>";
+						}
 							}else{
 					
 					?>

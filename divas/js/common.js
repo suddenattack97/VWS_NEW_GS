@@ -20,6 +20,8 @@
 			}
 		}
 	}); 
+
+	var tms_cnt = 20;
 	
 	// 강우 테이블 호출
 	function rain_table(type, lay_id){
@@ -55,6 +57,7 @@
 					lay_html += ' 	</tr></thead>';
 	
 					if(data.list){
+						var rowNum = 0;
 			            $.each(data.list, function(i, v){
 							lay_html += ' <tr class="hh" id="rain_'+v.AREA_CODE+'"> ';
 							lay_html += ' <td class="hh" id="RTU_NAME">'+v.RTU_NAME+'</td> ';
@@ -65,7 +68,13 @@
 							lay_html += ' <td class="hh" id="RAIN_N">'+toFixedOfNum(v.RAIN_N, 1, 0.01)+'</td> ';
 							// lay_html += ' <td id="CALL_LAST">'+v.CALL_LAST+'</td> ';
 							lay_html += ' </tr>';
+							rowNum++;
 			            });
+						console.log(tms_cnt-rowNum);
+						for(var i=0; i<tms_cnt-rowNum; i++){
+							// lay_html += ' <tr class="hh"><td colspan="6"></tr>';
+							lay_html += ' <tr class="hh"><td></td><td></td><td></td><td></td><td></td><td></td></tr>';
+						}
 					}else{
 						lay_html += ' <tr> ';
 						lay_html += ' <td colspan="7" style="height:560px;">데이터가 없습니다.</td> ';

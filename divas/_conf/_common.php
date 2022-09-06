@@ -25,6 +25,14 @@ define("TEST_d", "31");
 define("TEST_h", "23");
 define("DISP_GROUP", "0"); // 0 : rtu_info에 변위센서 전부 등록, 1 : rtu_info에는 대표 하나만 등록 후 displacement_group에 자식 센서 등록
 
+/**
+ *  전체 줄 수
+ */
+define("tot_cnt", "20");	// 종합현황
+define("tms_cnt", "20");	// 각 현황
+define("dtm_cnt", "15");	// 자료관리
+define("rpt_cnt", "15");	// 보고서
+
 /* 
 * 화진 개발자 user_info.user_type
 */
