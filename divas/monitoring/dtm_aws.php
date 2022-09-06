@@ -54,7 +54,7 @@ require_once "./head.php";
 						<li class="li100">
 							<table id="view_table" class="tb_data">
 								<thead class="tb_data_tbg">
-									<tr class="h38p">
+									<tr class="hh_aws">
 										<th colspan="2" class="bL0">구분</th>
 										<td>00</td>
 										<td>01</td>

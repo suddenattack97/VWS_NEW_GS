@@ -28,10 +28,9 @@ define("DISP_GROUP", "0"); // 0 : rtu_info에 변위센서 전부 등록, 1 : rt
 /**
  *  전체 줄 수
  */
-define("tot_cnt", "20");	// 종합현황
-define("tms_cnt", "20");	// 각 현황
-define("dtm_cnt", "15");	// 자료관리
-define("rpt_cnt", "15");	// 보고서
+define("dtm_cnt", "17");	// 자료관리
+define("rpt_cnt", "10");	// 보고서
+define("set_cnt", "10");	// 설정
 
 /* 
 * 화진 개발자 user_info.user_type
