@@ -114,12 +114,24 @@ require_once "./head.php";
 					<? 
 							$rowNum++;
 						}
-						for($i=0; $i<($rowCnt-$rowNum); $i++){
-							echo "<tr>
-							<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-							<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-							<td></td><td></td><td></td><td></td><td></td>
-							</tr>";
+						if($type == "A"){
+							$inhtml = "<tr><td></td>";
+							foreach($data_nums['NUM'] as $key => $val){ 		
+								$inhtml .= "<td></td>";
+							}
+							$inhtml .= "</tr>";
+							for($i=0; $i<($rowCnt-$rowNum); $i++){
+								echo $inhtml;
+							}
+						}else{
+							$inhtml = "<tr><td></td>";
+							for($i=$scnt; $i<=$ecnt; $i++){
+								$inhtml .= "<td></td>";
+							}
+							$inhtml .= "</tr>";
+							for($i=0; $i<($rowCnt-$rowNum); $i++){
+								echo $inhtml;
+							}
 						}
 					}
 					?>
