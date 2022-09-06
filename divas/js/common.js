@@ -70,10 +70,17 @@
 							lay_html += ' </tr>';
 							rowNum++;
 			            });
-						console.log(tms_cnt-rowNum);
+						// console.log(tms_cnt-rowNum);
 						for(var i=0; i<tms_cnt-rowNum; i++){
 							// lay_html += ' <tr class="hh"><td colspan="6"></tr>';
-							lay_html += ' <tr class="hh"><td></td><td></td><td></td><td></td><td></td><td></td></tr>';
+							lay_html += ' <tr class="hh"> \n\
+							<td></td> \n\
+							<td></td> \n\
+							<td></td> \n\
+							<td class="bg_blue"></td> \n\
+							<td></td> \n\
+							<td></td> \n\
+							</tr>';
 						}
 					}else{
 						lay_html += ' <tr> ';
@@ -397,6 +404,7 @@
 					lay_html += ' 	</tr></thead>';
 					
 					if(data.list){
+						var rowNum = 0;
 			            $.each(data.list, function(i, v){
 							lay_html += ' <tr class="hh" id="flow_'+v.AREA_CODE+'"> ';
 								lay_html += ' <td class="hh" id="RTU_NAME">'+v.RTU_NAME+'</td> ';
@@ -405,7 +413,18 @@
 								lay_html += ' <td class="hh" id="FLOW_LEVEL1">'+v.FLOW_WARNING+'</td> ';
 								lay_html += ' <td class="hh" id="FLOW_LEVEL2">'+v.FLOW_DANGER+'</td> ';
 							lay_html += ' </tr>';
+							rowNum++;
 			            });
+						for(var i=0; i<tms_cnt-rowNum; i++){
+							// lay_html += ' <tr class="hh"><td colspan="6"></tr>';
+							lay_html += ' <tr class="hh"> \n\
+							<td></td> \n\
+							<td></td> \n\
+							<td></td> \n\
+							<td ></td> \n\
+							<td></td> \n\
+							</tr>';
+						}
 					}else{
 						var tmp_colspan = 5;
 						// if(common_level_cnt == 3) tmp_colspan = 7;
@@ -550,6 +569,7 @@
 					lay_html += ' 	</tr>';
 	
 					if(data.list){
+						var rowNum = 0;
 			            $.each(data.list, function(i, v){
 							lay_html += ' <tr class="hh" id="aws_'+v.AREA_CODE+'"> ';
 							lay_html += ' <td class="hh" id="RTU_NAME">'+v.RTU_NAME+'</td> ';
@@ -587,7 +607,25 @@
 							// 	lay_html += ' <td id="SUNS_MIN">'+toFixedOfNum(v.SUNS_MIN, 1, 0.01)+'</td> ';
 							// }
 							lay_html += ' </tr>';
+							rowNum++;
 			            });
+
+						for(var i=0; i<tms_cnt-rowNum; i++){
+							// lay_html += ' <tr class="hh"><td colspan="6"></tr>';
+							lay_html += ' <tr class="hh"> \n\
+							<td></td> \n\
+							<td></td> \n\
+							<td></td> \n\
+							<td></td> \n\
+							<td></td> \n\
+							<td></td> \n\
+							<td></td> \n\
+							<td></td> \n\
+							<td></td> \n\
+							<td></td> \n\
+							<td></td> \n\
+							</tr>';
+						}
 					}else{
 						lay_html += ' <tr> ';
 						lay_html += ' <td colspan="12" style="height:560px;">데이터가 없습니다.</td> ';
@@ -674,6 +712,7 @@
 					lay_html += ' 	</tr></thead>';
 	
 					if(data.list){
+						var rowNum = 0;
 			            $.each(data.list, function(i, v){
 							lay_html += ' <tr class="hh" id="snow_'+v.AREA_CODE+'"> ';
 							lay_html += ' <td class="hh" id="RTU_NAME">'+v.RTU_NAME+'</td> ';
@@ -684,7 +723,19 @@
 							lay_html += ' <td class="hh" id="SNOW_D">'+toFixedOfNum(v.SNOW_D, 1, 0.001)+'</td> ';
 							// lay_html += ' <td id="CALL_LAST">'+v.CALL_LAST+'</td> ';
 							lay_html += ' </tr>';
+							rowNum++;
 			            });
+						for(var i=0; i<tms_cnt-rowNum; i++){
+							// lay_html += ' <tr class="hh"><td colspan="6"></tr>';
+							lay_html += ' <tr class="hh"> \n\
+							<td></td> \n\
+							<td></td> \n\
+							<td></td> \n\
+							<td></td> \n\
+							<td></td> \n\
+							<td></td> \n\
+							</tr>';
+						}
 					}else{
 						lay_html += ' <tr> ';
 						lay_html += ' <td colspan="12" style="height:560px;">데이터가 없습니다.</td> ';

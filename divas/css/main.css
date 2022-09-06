@@ -572,6 +572,7 @@
 
   .hh{ }/*ul 마우스오버 컬러 처리용*/
   .hh:hover{background:#f4f6f9 ; }
+  .bg_blue{background: #F2FFFF;}
 
   .hh_aws{ height : 70px;}
 
