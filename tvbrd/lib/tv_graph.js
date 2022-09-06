@@ -90,9 +90,6 @@
 
 					data1[tmp_num] = item['data1'] == "-" ? "-" : Number(item['data1']);
 					data2[tmp_num] = item['data2'] == "-" ? "-" : Number(item['data2']);
-					data3[tmp_num] = item['data3'] == "-" ? "-" : Number(item['data3']);
-					data4[tmp_num] = item['data4'] == "-" ? "-" : Number(item['data4']);
-					data5[tmp_num] = item['data5'] == "-" ? "-" : Number(item['data5']);
 
 					graph_leg[tmp_num] = (tmp_num < 10) ? "0"+item['num'] : item['num'];
 					graph_data[tmp_num] = (tmp_data == "-") ? null : tmp_data;
@@ -159,89 +156,28 @@
 				MIN = MIN < 0 ? 0 : MIN;
 				//console.log("MAX:"+MAX, "MIN:"+MIN, "INC:"+INCRE);
 		
-				if(get_kind == "disp"){
-					chart = new Chart($("#sidr-id-graph"), {
-						type: "line",
-						data: {
-							labels: LEG,
-							datasets: [{
-								label: '주의보',
-								data: data1,
-								backgroundColor: '#fcf800',
-								borderColor: '#fcf800',
-								borderWidth: 2,
-								fill: false,
-								pointRadius: 0
-							}, {
-								label: '경보',
-								data: data2,
-								backgroundColor: '#ff9100',
-								borderColor: '#ff9100',
-								borderWidth: 2,
-								fill: false,
-								pointRadius: 0
-							}, {
-								label: '대피',
-								data: data3,
-								backgroundColor: '#ff0000',
-								borderColor: '#ff0000',
-								borderWidth: 2,
-								fill: false,
-								pointRadius: 0
-							},{
-								label: tmp_title,
-								data: DATA,
-								backgroundColor: 'rgb(242, 158, 17)',
-								borderColor: 'rgb(213, 135, 11)',
-								borderWidth: 1
-							}]
-						},
-						options: {
-							scales: {
-								yAxes: [{
-									ticks: {
-										min : -180,
-										max : 180,
-										// beginAtZero: true,
-										suggestedMin: MIN,
-										suggestedMax: MAX,
-										//stepSize: INCRE,
-										// maxTicksLimit: 10
-									}
-								}]
-							}
-						}
-					});
-				}else if(get_kind == "flow"){
+				if(get_kind == "flow"){
 					chart = new Chart($("#sidr-id-graph"), {
 						type: CTYPE,
 						data: {
 							labels: LEG,
 							datasets: [{
-									label: '주의보',
+									label: '경계치',
 									data: data1,
-									backgroundColor: '#fcf800',
-									borderColor: '#fcf800',
+									backgroundColor: '#008000',
+									borderColor: '#008000',
 									borderWidth: 2,
 									fill: false,
 									pointRadius: 0
 								}, {
-									label: '경보',
+									label: '위험치',
 									data: data2,
-									backgroundColor: '#ff9100',
-									borderColor: '#ff9100',
+									backgroundColor: '#ff8017',
+									borderColor: '#ff8017',
 									borderWidth: 2,
 									fill: false,
 									pointRadius: 0
 								}, {
-									label: '대피',
-									data: data3,
-									backgroundColor: '#ff0000',
-									borderColor: '#ff0000',
-									borderWidth: 2,
-									fill: false,
-									pointRadius: 0
-								},{
 									label: tmp_title,
 									data: DATA,
 									backgroundColor: 'rgb(54, 162, 235)',

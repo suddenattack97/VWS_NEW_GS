@@ -107,9 +107,6 @@ $dvUtil   = new Divas_Util();
 					$arr_data[$i]['data'] = $tmpInfo->TimeListValue[$i];
 					$arr_data[$i]['data1'] = $RtuInfo->level1*$calc;
 					$arr_data[$i]['data2'] = $RtuInfo->level2*$calc;
-					$arr_data[$i]['data3'] = $RtuInfo->level3*$calc;
-					$arr_data[$i]['data4'] = $RtuInfo->level4*$calc;
-					$arr_data[$i]['data5'] = $RtuInfo->level5*$calc;
 				}
 			}else{
 				$tmpInfo->getTimeListValue( $area_code, "H", $startdate, $enddate);

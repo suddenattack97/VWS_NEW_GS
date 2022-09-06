@@ -351,8 +351,7 @@ Class RtuInfo {
 
     // rtu_name and level
     function getRtuNameAndLevel($area_code=null) {
-    	$sql = " SELECT A.RTU_NAME, ifnull(B.BASE_RISKLEVEL1, '-') as level1, ifnull(B.BASE_RISKLEVEL2, '-') as level2, 
-                ifnull(B.BASE_RISKLEVEL3, '-') as level3, ifnull(B.BASE_RISKLEVEL4, '-') as level4, ifnull(B.BASE_RISKLEVEL5, '-')  as level5
+    	$sql = " SELECT A.RTU_NAME, ifnull(A.FLOW_WARNING, '-') as level1, ifnull(A.FLOW_DANGER, '-') as level2
                 FROM rtu_info AS A
                 LEFT JOIN RTU_SENSOR AS B ON A.RTU_ID = B.RTU_ID 
                 WHERE A.area_code = '".$area_code." '
@@ -362,9 +361,6 @@ Class RtuInfo {
     	$this->RTU_NAME = $rs[0]['RTU_NAME'];
     	$this->level1 = $rs[0]['level1']*$this->getCalc;
     	$this->level2 = $rs[0]['level2']*$this->getCalc;
-    	$this->level3 = $rs[0]['level3']*$this->getCalc;
-    	$this->level4 = $rs[0]['level4']*$this->getCalc;
-    	$this->level5 = $rs[0]['level5']*$this->getCalc;
     }
 
     /* 쿼리실행 */
