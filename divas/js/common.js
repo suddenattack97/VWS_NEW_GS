@@ -508,7 +508,7 @@
 					lay_html += ' <img src="../images/quick_link.png" onclick="quick_button(3);"></span>';
 					lay_html += ' </div>';
 					lay_html += ' </div> <div class="right_bg2">';
-					lay_html += ' <table class="main_table m20"> ';
+					lay_html += ' <table class="main_table_1 m20"> ';
 					lay_html += ' 	<tr> ';
 					lay_html += ' 	<th rowspan="2" width="15%">지역</th> ';
 					lay_html += ' 	<th colspan="2" width="15%">우량(㎜)</th> ';

@@ -1099,9 +1099,10 @@ div#top_img img{padding: 5px;} */
 
 	.gry{height:34px; border-left:1px solid #c4c4c4;border-bottom:1px solid #c4c4c4; background:#f5f4f5; font-weight:700 !important; color:#333 !important; text-align:center; }
 	.gry_f {height:34px; border-bottom:1px solid #c4c4c4; background:#f5f4f5; font-weight:700 !important; color:#333 !important; text-align:center; border-left:none;} 
-	.main_table_1 td{height:30px; border-bottom:1px solid #c4c4c4;  font-weight:normal; color:#666;text-align:center;} 
+	.main_table_1 td{height:30px; border-right: 1px solid #C4C4C4; border-bottom:1px solid #c4c4c4;  font-weight:normal; color:#666;text-align:center;} 
 	.main_table_1 th:first-child{border-left:none; border-right:1px solid #c4c4c4;} 
 	.main_table_1 td:first-child{font-weight:700;} 
+	.main_table_1 td:last-child {border-right: 0px;}
 
 		
 /*테이블-표 주요지점*/
