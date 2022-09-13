@@ -73,7 +73,7 @@ require_once "./head.php";
 				<? 
 					}
 					for($i=0; $i<($rowCnt-$num); $i++){
-						echo "<tr>
+						echo "<tr class='not_d'>
 						<td></td><td></td><td></td><td></td>
 						</tr>";
 					}
@@ -308,7 +308,8 @@ crypt.setKey(key);
 		}else if(search_col == "1"){ // 사용자명
 			search_col_id = "l_USER_NAME";
 		}
-		
+
+		$("#list_table .not_d").hide();
 		$.each( $("#list_table #"+search_col_id), function(i, v){
 			if( $(v).text().indexOf(search_word) == -1 ){
 				$(v).closest("tr").hide();
@@ -359,60 +360,62 @@ crypt.setKey(key);
 		$("#USER_ID").attr('disabled','true');
 
 		bg_color("selected", "#list_table tbody tr", this); // 리스트 선택 시 배경색
-		var l_USER_ID = $("#"+this.id+" #l_USER_ID").text();
-		
-		var param = "mode=user&USER_ID="+l_USER_ID;
-		$.ajax({
-	        type: "POST",
-	        url: "../_info/json/_set_json.php",
-		    data: param,
-	        cache: false,
-	        dataType: "json",
-	        success : function(data){
-		        if(data.list){
-			        var EMAIL = data.list.EMAIL ? data.list.EMAIL : "";
-			        var MOBILE = data.list.MOBILE ? data.list.MOBILE : "";
-			        var SMART_MOBILE = data.list.SMART_MOBILE ? data.list.SMART_MOBILE : "";
-					$("#C_USER_ID").val(data.list.USER_ID);
-					$("#ORGAN_ID").val(data.list.ORGAN_ID);
-					// $("#USER_TYPE").val(data.list.USER_TYPE);
-					// $("#MENU_TYPE").val(data.list.MENU_TYPE);
-					$("#USER_ID").val(data.list.USER_ID);
-					$("#USER_PWD").val(data.list.USER_PWD);
-
-					var pwLen = parseInt(data.list.USER_PWD_LEN);
-					var tmpLen = "";
-					while(pwLen > tmpLen.length){
-						tmpLen += "1"; 
+		if(this.id){
+			var l_USER_ID = $("#"+this.id+" #l_USER_ID").text();
+			
+			var param = "mode=user&USER_ID="+l_USER_ID;
+			$.ajax({
+				type: "POST",
+				url: "../_info/json/_set_json.php",
+				data: param,
+				cache: false,
+				dataType: "json",
+				success : function(data){
+					if(data.list){
+						var EMAIL = data.list.EMAIL ? data.list.EMAIL : "";
+						var MOBILE = data.list.MOBILE ? data.list.MOBILE : "";
+						var SMART_MOBILE = data.list.SMART_MOBILE ? data.list.SMART_MOBILE : "";
+						$("#C_USER_ID").val(data.list.USER_ID);
+						$("#ORGAN_ID").val(data.list.ORGAN_ID);
+						// $("#USER_TYPE").val(data.list.USER_TYPE);
+						// $("#MENU_TYPE").val(data.list.MENU_TYPE);
+						$("#USER_ID").val(data.list.USER_ID);
+						$("#USER_PWD").val(data.list.USER_PWD);
+	
+						var pwLen = parseInt(data.list.USER_PWD_LEN);
+						var tmpLen = "";
+						while(pwLen > tmpLen.length){
+							tmpLen += "1"; 
+						}
+						$("#USER_PWD_LEN").val(tmpLen);
+						$("#USER_NAME").val(data.list.USER_NAME);
+						$("#EMAIL1").val(EMAIL.split("@")[0]);
+						$("#EMAIL2").val(0);
+						$("#EMAIL3").val(EMAIL.split("@")[1]);
+						$("#MOBILE1").val(MOBILE.split("-")[0] ? MOBILE.split("-")[0] : "010");
+						$("#MOBILE2").val(MOBILE.split("-")[1]);
+						$("#MOBILE3").val(MOBILE.split("-")[2]);
+						$("#IS_PERMIT").val(data.list.IS_PERMIT);
+						$("#SMART_MOBILE1").val(SMART_MOBILE.split("-")[0] ? SMART_MOBILE.split("-")[0] : "010");
+						$("#SMART_MOBILE2").val(SMART_MOBILE.split("-")[1]);
+						$("#SMART_MOBILE3").val(SMART_MOBILE.split("-")[2]);
+						$("#SMART_USE").val(data.list.SMART_USE);
+						
+						// if(data.right){
+						// 	$.each(data.right, function(i, v){
+						// 		//console.log(i, v);
+						// 		var tmp_id = "#tree_"+v['GROUP_ID']+"_"+v['RTU_ID'];
+						// 		$("#tree").jstree("select_node", tmp_id); // jstree 해당 id 체크
+						// 	});
+						// }
+						$("#btn_check").addClass('dp0');
+						$("#btn_in").css('display', 'none');
+					}else{
+						swal("체크", "사용자 상세 조회중 오류가 발생 했습니다.", "warning");
 					}
-					$("#USER_PWD_LEN").val(tmpLen);
-					$("#USER_NAME").val(data.list.USER_NAME);
-					$("#EMAIL1").val(EMAIL.split("@")[0]);
-					$("#EMAIL2").val(0);
-					$("#EMAIL3").val(EMAIL.split("@")[1]);
-					$("#MOBILE1").val(MOBILE.split("-")[0] ? MOBILE.split("-")[0] : "010");
-					$("#MOBILE2").val(MOBILE.split("-")[1]);
-					$("#MOBILE3").val(MOBILE.split("-")[2]);
-					$("#IS_PERMIT").val(data.list.IS_PERMIT);
-					$("#SMART_MOBILE1").val(SMART_MOBILE.split("-")[0] ? SMART_MOBILE.split("-")[0] : "010");
-					$("#SMART_MOBILE2").val(SMART_MOBILE.split("-")[1]);
-					$("#SMART_MOBILE3").val(SMART_MOBILE.split("-")[2]);
-					$("#SMART_USE").val(data.list.SMART_USE);
-					
-			        // if(data.right){
-					// 	$.each(data.right, function(i, v){
-					// 		//console.log(i, v);
-					// 		var tmp_id = "#tree_"+v['GROUP_ID']+"_"+v['RTU_ID'];
-					// 		$("#tree").jstree("select_node", tmp_id); // jstree 해당 id 체크
-					// 	});
-			        // }
-					$("#btn_check").addClass('dp0');
-					$("#btn_in").css('display', 'none');
-		        }else{
-				    swal("체크", "사용자 상세 조회중 오류가 발생 했습니다.", "warning");
-		        }
-	        }
-	    });
+				}
+			});
+		}
 	});
 
 	// 등록

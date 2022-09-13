@@ -101,7 +101,7 @@ require_once "./head.php";
 						$rowNum++;
 					}
 					for($i=0; $i<($rowCnt-$rowNum); $i++){
-						echo "<tr>
+						echo "<tr class='not_d'>
 						<td></td><td class='bL_1gry'></td><td class='bL_1gry'></td><td class='bL_1gry'></td><td class='bL_1gry'></td>
 						<td class='bL_1gry'></td><td class='bL_1gry'></td><td class='bL_1gry'></td><td class='bL_1gry'></td><td class='bL_1gry'></td>
 						<td class='bL_1gry'></td><td class='bL_1gry'></td><td class='bL_1gry'></td>
@@ -507,6 +507,7 @@ $(document).ready(function(){
 			search_col_id = "l_AREA_CODE";
 		}
 		
+		$("#list_table .not_d").hide();
 		$.each( $("#list_table #"+search_col_id), function(i, v){
 			if( $(v).text().indexOf(search_word) == -1 ){
 				$(v).closest("tr").hide();
@@ -651,71 +652,73 @@ $(document).ready(function(){
 		// $("#dup_check2").val(0); // 계측기코드 중복체크 리셋
 		
 		bg_color("selected", "#list_table tbody tr", this); // 리스트 선택 시 배경색
-		var l_RTU_ID = $("#"+this.id+" #l_RTU_ID").text();
-
-		var list_id = '#'+$(this).attr("id");
-		sessionStorage.setItem('list_row', list_id);
-		
-		var param = "mode=equip&RTU_ID="+l_RTU_ID;
-		$.ajax({
-	        type: "POST",
-	        url: "../_info/json/_set_json.php",
-		    data: param,
-	        cache: false,
-	        dataType: "json",
-	        success : function(data){
-		        if(data.list){
-					$("#C_RTU_ID").val(data.list.RTU_ID);
-					$("#C_SIGNAL_ID").val(data.list.SIGNAL_ID);
-					$("#C_AREA_CODE").val(data.list.AREA_CODE);
-					$("#RTU_ID").val(data.list.RTU_ID);
-					$("#SIGNAL_ID").val(data.list.SIGNAL_ID);
-					$("#AREA_CODE").val(data.list.AREA_CODE);
-					$("#RTU_NAME").val(data.list.RTU_NAME);
-					$("#ORGAN_ID").val(data.list.ORGAN_ID);
-					$("#LINE_NO").val(data.list.LINE_NO);
-					$("#MODEL_NO").val(data.list.MODEL_NO);
-					$("#RTU_TYPE").val(data.list.RTU_TYPE);
-					$("#CONNECTION_INFO").val(data.list.CONNECTION_INFO);
-					$("#BROADCAST_SETTING").val(data.list.BROADCAST_SETTING);
-					$("#CALL_LAST_D").val(data.list.CALL_LAST_D);
-					$("#CALL_LAST_H").val(data.list.CALL_LAST_H);
-					$("#CALL_LAST_M").val(data.list.CALL_LAST_M);
-					$("#SORT_FLAG").val(data.list.SORT_FLAG);
-					$("#PORT").val(data.list.PORT);
-					$("#BAUDRATE").val(data.list.BAUDRATE);
-					// $("#VHF_USE").val(data.list.VHF_USE);
-					// $("#VHF_SYSTEM_ID").val(data.list.VHF_SYSTEM_ID);
-					// $("#VHF_RTU_ID").val(data.list.VHF_RTU_ID);
-					// $("#VHF_TRANS_ID").val(data.list.VHF_TRANS_ID);
-					$("#FLOW_DANGER").val(data.list.FLOW_DANGER);
-					$("#FLOW_WARNING").val(data.list.FLOW_WARNING);
-					$("#FLOW_DANGER_OFF").val(data.list.FLOW_DANGER_OFF);
-					$("#FLOW_WARNING_OFF").val(data.list.FLOW_WARNING_OFF);
-					if(data.list.DANGER_USE == 1){
-						$("#DANGER_USE1").prop("checked", true);
+		if(this.id){
+			var l_RTU_ID = $("#"+this.id+" #l_RTU_ID").text();
+	
+			var list_id = '#'+$(this).attr("id");
+			sessionStorage.setItem('list_row', list_id);
+			
+			var param = "mode=equip&RTU_ID="+l_RTU_ID;
+			$.ajax({
+				type: "POST",
+				url: "../_info/json/_set_json.php",
+				data: param,
+				cache: false,
+				dataType: "json",
+				success : function(data){
+					if(data.list){
+						$("#C_RTU_ID").val(data.list.RTU_ID);
+						$("#C_SIGNAL_ID").val(data.list.SIGNAL_ID);
+						$("#C_AREA_CODE").val(data.list.AREA_CODE);
+						$("#RTU_ID").val(data.list.RTU_ID);
+						$("#SIGNAL_ID").val(data.list.SIGNAL_ID);
+						$("#AREA_CODE").val(data.list.AREA_CODE);
+						$("#RTU_NAME").val(data.list.RTU_NAME);
+						$("#ORGAN_ID").val(data.list.ORGAN_ID);
+						$("#LINE_NO").val(data.list.LINE_NO);
+						$("#MODEL_NO").val(data.list.MODEL_NO);
+						$("#RTU_TYPE").val(data.list.RTU_TYPE);
+						$("#CONNECTION_INFO").val(data.list.CONNECTION_INFO);
+						$("#BROADCAST_SETTING").val(data.list.BROADCAST_SETTING);
+						$("#CALL_LAST_D").val(data.list.CALL_LAST_D);
+						$("#CALL_LAST_H").val(data.list.CALL_LAST_H);
+						$("#CALL_LAST_M").val(data.list.CALL_LAST_M);
+						$("#SORT_FLAG").val(data.list.SORT_FLAG);
+						$("#PORT").val(data.list.PORT);
+						$("#BAUDRATE").val(data.list.BAUDRATE);
+						// $("#VHF_USE").val(data.list.VHF_USE);
+						// $("#VHF_SYSTEM_ID").val(data.list.VHF_SYSTEM_ID);
+						// $("#VHF_RTU_ID").val(data.list.VHF_RTU_ID);
+						// $("#VHF_TRANS_ID").val(data.list.VHF_TRANS_ID);
+						$("#FLOW_DANGER").val(data.list.FLOW_DANGER);
+						$("#FLOW_WARNING").val(data.list.FLOW_WARNING);
+						$("#FLOW_DANGER_OFF").val(data.list.FLOW_DANGER_OFF);
+						$("#FLOW_WARNING_OFF").val(data.list.FLOW_WARNING_OFF);
+						if(data.list.DANGER_USE == 1){
+							$("#DANGER_USE1").prop("checked", true);
+						}else{
+							$("#DANGER_USE0").prop("checked", true);
+						}
+	
+						$("#AREA_CODE").attr('disabled',true);
+						$("#btn_check").hide();
+						$("#btn_area").hide();
+						// $("#DSCODE").val(data.list.DSCODE);
+						// $("#CD_DIST_OBSV").val(data.list.CD_DIST_OBSV);
+	
+						// if(data.list.RTU_TYPE == "R00" || data.list.RTU_TYPE == "F00" || data.list.RTU_TYPE == "DP0" || data.list.RTU_TYPE == "S00" || this.value == "A00"){
+						// 	$("#no_dngr").hide();
+						// 	$(".dngr").show();
+						// }else{
+						// 	$(".dngr").hide();
+						// 	$("#no_dngr").show();
+						// }
 					}else{
-						$("#DANGER_USE0").prop("checked", true);
+						swal("체크", "장비 상세 조회중 오류가 발생 했습니다.", "warning");
 					}
-
-					$("#AREA_CODE").attr('disabled',true);
-					$("#btn_check").hide();
-					$("#btn_area").hide();
-					// $("#DSCODE").val(data.list.DSCODE);
-					// $("#CD_DIST_OBSV").val(data.list.CD_DIST_OBSV);
-
-					// if(data.list.RTU_TYPE == "R00" || data.list.RTU_TYPE == "F00" || data.list.RTU_TYPE == "DP0" || data.list.RTU_TYPE == "S00" || this.value == "A00"){
-					// 	$("#no_dngr").hide();
-					// 	$(".dngr").show();
-					// }else{
-					// 	$(".dngr").hide();
-					// 	$("#no_dngr").show();
-					// }
-		        }else{
-				    swal("체크", "장비 상세 조회중 오류가 발생 했습니다.", "warning");
-		        }
-	        }
-	    });
+				}
+			});
+		}
 	});
 
 	// 장비 센서 조회

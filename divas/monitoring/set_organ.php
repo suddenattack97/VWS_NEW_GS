@@ -197,29 +197,31 @@ $(document).ready(function(){
 	// 목록 선택
 	$("#list_table tbody tr").click(function(){
 		bg_color("selected", "#list_table tbody tr", this); // 리스트 선택 시 배경색
-		var l_ORGAN_ID = $("#"+this.id+" #l_ORGAN_ID").text();
-
-		var param = "mode=organ&ORGAN_ID="+l_ORGAN_ID;
-		$.ajax({
-	        type: "POST",
-	        url: "../_info/json/_set_json.php",
-		    data: param,
-	        cache: false,
-	        dataType: "json",
-	        success : function(data){
-		        if(data.list){
-					$("#ORGAN_ID").val(data.list.ORGAN_ID);
-					$("#ORGAN_NAME").val(data.list.ORGAN_NAME);
-					$("#DEPARTMENT").val(data.list.DEPARTMENT);
-					$("#AREA_CODE").val(data.list.AREA_CODE);
-					$("#AREA_MAIN").val(data.list.AREA_MAIN);
-					$("#AREA_SUB").val(data.list.AREA_SUB);
-					$("#SORT_BASE").val(data.list.SORT_BASE);
-		        }else{
-				    swal("체크", "기관정보 상세 조회중 오류가 발생 했습니다.", "warning");
-		        }
-	        }
-	    });
+		if(this.id){
+			var l_ORGAN_ID = $("#"+this.id+" #l_ORGAN_ID").text();
+	
+			var param = "mode=organ&ORGAN_ID="+l_ORGAN_ID;
+			$.ajax({
+				type: "POST",
+				url: "../_info/json/_set_json.php",
+				data: param,
+				cache: false,
+				dataType: "json",
+				success : function(data){
+					if(data.list){
+						$("#ORGAN_ID").val(data.list.ORGAN_ID);
+						$("#ORGAN_NAME").val(data.list.ORGAN_NAME);
+						$("#DEPARTMENT").val(data.list.DEPARTMENT);
+						$("#AREA_CODE").val(data.list.AREA_CODE);
+						$("#AREA_MAIN").val(data.list.AREA_MAIN);
+						$("#AREA_SUB").val(data.list.AREA_SUB);
+						$("#SORT_BASE").val(data.list.SORT_BASE);
+					}else{
+						swal("체크", "기관정보 상세 조회중 오류가 발생 했습니다.", "warning");
+					}
+				}
+			});
+		}
 	});
 
 	// 등록
