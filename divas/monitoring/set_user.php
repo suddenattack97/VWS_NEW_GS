@@ -49,7 +49,7 @@ require_once "./head.php";
 							<th class="li5">번호</th>
 							<th class="li15 bL_1gry">관리자 ID</th>
 							<th class="li25 bL_1gry">관리자명</th>
-							<th class="li25 bL_1gry">소속기관</th>
+							<th class="li25 bL_1gry">휴대폰 번호</th>
 							<!-- <th class="li15 bL_1gry">사용자 구분</th> -->
 							<!-- <th class="li15 bL_1gry">문자 알림</th> -->
 						</tr>
@@ -66,7 +66,7 @@ require_once "./head.php";
 							<td class="li5"><?=$num?></td>
 							<td id="l_USER_ID" class="li15 bL_1gry"><?=$val['USER_ID']?></td>
 							<td id="l_USER_NAME" class="li25 bL_1gry"><?=$val['USER_NAME']?></td>
-							<td class="li25 bL_1gry"><?=$val['ORGAN_NAME']?></td>
+							<td class="li25 bL_1gry"><?=$val['MOBILE']?></td>
 							<!-- <td class="li15 bL_1gry"><?=$val['USER_TYPE_NAME']?></td> -->
 							<!-- <td class="li15 bL_1gry"><?=$val['IS_PERMIT_NAME']?></td> -->
 						</tr>
@@ -101,17 +101,17 @@ require_once "./head.php";
 					<tr>
 						<td class="bg_lb w10 bold al_C bL0">소속기관</td>
 						<td colspan="3">
-							<select id="ORGAN_ID" name="ORGAN_ID" class="f333_12">
-						<? 
+						<?
 						if($data_organ){
-							foreach($data_organ as $key => $val){ 
+							foreach($data_organ as $key => $val){
 						?>
-								<option value="<?=$val['ORGAN_ID']?>"><?=$val['ORGAN_NAME']?></option>
+								<input type="text" value="<?=$val['ORGAN_NAME']?>" class="f333_12" readonly>
 						<? 
+								break;
 							}
 						}
 						?>
-							</select>
+							<input id="ORGAN_ID" name="ORGAN_ID" class="f333_12" type="hidden" value="1">
 						</td>
 					</tr>
 					
@@ -125,7 +125,7 @@ require_once "./head.php";
 					<tr>
 						<td class="bg_lb w10 bold al_C bL0">비밀번호</td>
 						<td colspan="3">
-							<input id="USER_PWD_LEN" name="USER_PWD_LEN" type="password" class="f333_12" size="18" onblur="inputCheck(this,'textLength','6~20')" maxlength="20">
+							<input id="USER_PWD_LEN" name="USER_PWD_LEN" type="password" class="f333_12" size="18" maxlength="20">
 							<input id="USER_PWD" name="USER_PWD" type="password" style="display:none" maxlength="20">
 							<span> <i class="fa fa-exclamation-circle col_org mR_5"></i>영어, 숫자, <span class="spc">특수문자(!@#$%^&*)</span>를 적어도 하나씩 사용해서 8자리 이상, 20자리 이하</spna>
 							<!-- <div id="popSpc">! @ # $ % ^ & *</div> -->
@@ -144,18 +144,18 @@ require_once "./head.php";
 						<td colspan="3">
 							<input id="EMAIL1" name="EMAIL1" type="text" class="f333_12" size="10" maxlength="20"> @ 
 							<select id="EMAIL2" name="EMAIL2" class="f333_12">
-								<option value="0">naver.com</option>
-								<option value="0">hanmail.net</option>
-								<option value="0">daum.net</option>
-								<option value="0">nate.com</option>
-								<option value="0">gmail.com</option>
-								<option value="0">hotmail.com</option>
-								<option value="0">lycos.co.kr</option>
-								<option value="0">empal.com</option>
-								<option value="0">cyworld.com</option>
-								<option value="0">yahoo.com</option>
-								<option value="0">paran.com</option>
-								<option value="0">dreamwiz.com</option>
+								<option value="naver.com">naver.com</option>
+								<option value="hanmail.net">hanmail.net</option>
+								<option value="daum.net">daum.net</option>
+								<option value="nate.com">nate.com</option>
+								<option value="gmail.com">gmail.com</option>
+								<option value="hotmail.com">hotmail.com</option>
+								<option value="lycos.co.kr">lycos.co.kr</option>
+								<option value="empal.com">empal.com</option>
+								<option value="cyworld.com">cyworld.com</option>
+								<option value="yahoo.com">yahoo.com</option>
+								<option value="paran.com">paran.com</option>
+								<option value="dreamwiz.com">dreamwiz.com</option>
 								<option value="0">직접입력</option>
 							</select> / 
 							<input id="EMAIL3" name="EMAIL3" type="text" class="f333_12" size="32" maxlength="20" onblur="inputCheck(this,'onlyEmail','')">
@@ -390,8 +390,22 @@ crypt.setKey(key);
 						$("#USER_PWD_LEN").val(tmpLen);
 						$("#USER_NAME").val(data.list.USER_NAME);
 						$("#EMAIL1").val(EMAIL.split("@")[0]);
-						$("#EMAIL2").val(0);
-						$("#EMAIL3").val(EMAIL.split("@")[1]);
+						// $("#EMAIL2").val(0);
+						// $("#EMAIL2").val(EMAIL.split("@")[1]);
+						$("#EMAIL3").val("");
+						var email_check = 0;
+						$("#EMAIL2 > option").each(function(){
+							if(EMAIL.split("@")[1] == this.text){
+								console.log("일치");
+								$("#EMAIL2").val(this.text);
+								email_check++;
+								return false;
+							}
+						});
+						if(email_check == 0) {
+							$("#EMAIL2").val(0);
+							$("#EMAIL3").val(EMAIL.split("@")[1]);
+						}
 						$("#MOBILE1").val(MOBILE.split("-")[0] ? MOBILE.split("-")[0] : "010");
 						$("#MOBILE2").val(MOBILE.split("-")[1]);
 						$("#MOBILE3").val(MOBILE.split("-")[2]);
