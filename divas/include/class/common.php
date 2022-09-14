@@ -548,7 +548,8 @@ Class ClassCommon {
 			
 			$sql = " SELECT *
 					 FROM dn_setting
-					 WHERE set_idx = '".$organ_id."' ";
+					 WHERE set_idx = 1 ";
+					//  WHERE set_idx = '".$organ_id."' ";
 
 			$rs = $this->DB->execute($sql);
 			
