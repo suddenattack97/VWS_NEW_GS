@@ -130,7 +130,7 @@ require_once "./head.php";
 				<table class="set_tb">
 					<tr>
 						<td class="bg_lb w10 bold al_C bL0">장비 ID</td>
-						<td class="w20"><input type="text" id="RTU_ID" name="RTU_ID" class="f333_12" size="10" value="<?=$data_id?>" readonly></td>
+						<td class="w20"><input type="text" id="RTU_ID" name="RTU_ID" class="f333_12" size="10" value="<?=$data_id?>"></td>
 						<td class="bg_lb w10 bold al_C">통신 ID</td>
 						<td><input type="text" id="SIGNAL_ID" name="SIGNAL_ID" class="f333_12" size="10" oninput="inputCheck(this,'onlyNumber','0~9999')"></td>
 						<td class="bg_lb w10 bold al_C">행정 코드</td>
@@ -694,6 +694,7 @@ $(document).ready(function(){
 						}
 	
 						$("#AREA_CODE").attr('disabled',true);
+						$("#RTU_ID").attr('disabled',true);
 						$("#btn_check").hide();
 						$("#btn_area").hide();
 						// $("#DSCODE").val(data.list.DSCODE);
@@ -999,6 +1000,7 @@ $(document).ready(function(){
 			$("#FLOW_WARNING_OFF").val("");
 			$("#DANGER_USE0").prop("checked", true);
 			$("#AREA_CODE").attr('disabled',false);
+			$("#RTU_ID").attr('disabled',false);
 			$("#btn_check").show();
 			$("#btn_area").show();
 			$("#list_table tbody tr").removeClass('selected');
