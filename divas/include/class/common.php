@@ -606,8 +606,8 @@ Class ClassCommon {
 			define("daum_api", $rs[0]['daum_api']);				//다음 api key *
 			
 			if(ss_sort_base == 0){
-				// define("sort", "SORT_FLAG");
-				define("sort", "DISPLAY_IDX");
+				define("sort", "SORT_FLAG");
+				// define("sort", "DISPLAY_IDX");
 			}else if(ss_sort_base == 1){
 				define("sort", "AREA_CODE");
 			}else if(ss_sort_base == 2){
