@@ -187,17 +187,10 @@ require_once "./head.php";
 					<tr>
 						<td class="bg_lb w10 bold al_C">소속 기관</td>
 						<td>
-							<select id="ORGAN_ID" name="ORGAN_ID" class="f333_12">
-						<? 
-						if($data_organ){
-							foreach($data_organ as $key => $val){ 
-						?>
-								<option value="<?=$val['ORGAN_ID']?>"><?=$val['ORGAN_NAME']?></option>
-						<? 
-							}
-						}
-						?>
-							</select>
+							<input type="hidden" id="ORGAN_ID" name="ORGAN_ID" class="f333_12" size="15"
+								value="<? echo $data_organ[0]['ORGAN_ID'] ?>" readonly>
+							<input type="text" id="ORGAN_NAME" name="ORGAN_NAME" class="f333_12" size="15"
+								value="<? echo $data_organ[0]['ORGAN_NAME'] ?>" readonly>
 						</td>
 						<td class="bg_lb w10 bold al_C">정렬 순서 지정</td>
 						<td><input id="SORT_FLAG" name="SORT_FLAG" type="text" class="f333_12" size="6" value="0" oninput="inputCheck(this,'onlyNumber','1~9999')"></td>
