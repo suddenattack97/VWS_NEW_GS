@@ -408,7 +408,7 @@ crypt.setKey(key);
 						// 		$("#tree").jstree("select_node", tmp_id); // jstree 해당 id 체크
 						// 	});
 						// }
-						$("#btn_check").addClass('dp0');
+						$("#btn_check").hide();
 						$("#btn_in").css('display', 'none');
 					}else{
 						swal("체크", "사용자 상세 조회중 오류가 발생 했습니다.", "warning");
@@ -502,7 +502,9 @@ crypt.setKey(key);
 		$("#dup_check").val(0); // 아이디 중복체크 리셋
 
 		var C_USER_ID = $("#C_USER_ID").val("");
-
+			btn = document.getElementById('USER_ID');
+			btn.removeAttribute('disabled');	
+			$("#btn_check").show();
 			$("#C_USER_ID").val("");
 			$("#ORGAN_ID option:eq(0)").prop("selected", true);
 			// $("#USER_TYPE").val("");
