@@ -697,6 +697,7 @@ $(document).ready(function(){
 						$("#RTU_ID").attr('disabled',true);
 						$("#btn_check").hide();
 						$("#btn_area").hide();
+						$("#btn_in").hide();
 						// $("#DSCODE").val(data.list.DSCODE);
 						// $("#CD_DIST_OBSV").val(data.list.CD_DIST_OBSV);
 	
@@ -1003,6 +1004,7 @@ $(document).ready(function(){
 			$("#RTU_ID").attr('disabled',false);
 			$("#btn_check").show();
 			$("#btn_area").show();
+			$("#btn_in").show();
 			$("#list_table tbody tr").removeClass('selected');
 			
 		
