@@ -11,15 +11,15 @@ require_once "./head.php";
 	<div id="content">
 			
 		<form id="set_frm" action="set_organ.php" method="get">
-		<input type="hidden" id="ORGAN_ID" name="ORGAN_ID">
-		<input type="hidden" id="AREA_MAIN" name="AREA_MAIN">
-		<input type="hidden" id="AREA_SUB" name="AREA_SUB">
+		<input type="hidden" id="ORGAN_ID" name="ORGAN_ID" value="<? echo $data_list[0]['ORGAN_ID'] ?>">
+		<input type="hidden" id="AREA_MAIN" name="AREA_MAIN" value="<? echo $data_list[0]['AREA_MAIN'] ?>">
+		<input type="hidden" id="AREA_SUB" name="AREA_SUB" value="<? echo $data_list[0]['AREA_SUB'] ?>">
 
 		<div class="main_contitle">
 			<div class="tit"><img src="../images/board_icon_aws.png"> <span>기관정보 설정</span>
 			</div>  				
 		</div>
-		<div class="right_bg2 mB_20">
+		<div class="dp0">
 				<ul id="search_box">
 					<li>
 					<span class="tit">기관 목록</span>
@@ -85,7 +85,7 @@ require_once "./head.php";
 		<div class="right_bg2">
 		<ul id="search_box">
 					<li>
-					<span class="tit">설정값 입력</span>
+					<span class="tit">기관정보 설정</span>
 				<!-- <span class="sel_right_n">
 					<button type="button" id="btn_in" class="btn_bb80">등록</button>
 					<button type="button" id="btn_re" class="btn_lbb80_s">초기화</button>
@@ -99,22 +99,26 @@ require_once "./head.php";
 				<table class="set_tb">
 					<tr>
 						<td class="bg_lb w10 bold al_C bL_1gry_n">기관명</td>
-						<td><input type="text" id="ORGAN_NAME" name="ORGAN_NAME" class="f333_12" size="20"  maxlength="20"></td>
+						<td><input type="text" id="ORGAN_NAME" name="ORGAN_NAME" class="f333_12" size="20"
+							value="<? echo $data_list[0]['ORGAN_NAME'] ?>" >
+						</td>
 						<td class="bg_lb w10 bold al_C">부서명</td>
-						<td><input type="text" id="DEPARTMENT" name="DEPARTMENT" class="f333_12" size="20"  maxlength="20"></td>
+						<td><input type="text" id="DEPARTMENT" name="DEPARTMENT" class="f333_12" size="20"  maxlength="20"
+							value="<? echo $data_list[0]['DEPARTMENT'] ?>" ></td>
 					</tr>
 					<tr>
 						<td class="bg_lb w10 bold al_C bL_1gry_n">행정코드</td>
 						<td>
-							<input type="text" id="AREA_CODE" name="AREA_CODE" class="f333_12" size="20" readonly>
+							<input type="text" id="AREA_CODE" name="AREA_CODE" class="f333_12" size="20" 
+							value="<? echo $data_list[0]['AREA_CODE'] ?>" readonly>
 							<button type="button" id="btn_area" class="btn_bbr w100p">행정구역 조회</button>
 						</td>
 						<td class="bg_lb w10 bold al_C">장비정렬기준</td>
 						<td>
 							<select id="SORT_BASE" name="SORT_BASE" class="f333_12" size="1">
-								<option value="2">장비이름</option>
-								<option value="1">행정코드</option>
-								<option value="0">지정순서</option>
+								<option value="2" <? if($data_list[0]['SORT_BASE'] == 2){echo "selected";} ?> >장비이름</option>
+								<option value="1" <? if($data_list[0]['SORT_BASE'] == 1){echo "selected";} ?> >행정코드</option>
+								<option value="0" <? if($data_list[0]['SORT_BASE'] == 0){echo "selected";} ?> >지정순서</option>
 							</select>
 						</td>
 					</tr>
@@ -122,10 +126,10 @@ require_once "./head.php";
 			</li>
 		</ul>
 		<div class="guide_btn"> 
-					<button type="button" id="btn_in" class="btn_bb80"><i class="fa fa-plus mR5 font15"></i>등록</button>
-					<button type="button" id="btn_re" class="btn_lbb80_s"><i class="fa fa-repeat mR5 font15"></i>초기화</button>
-					<button type="button" id="btn_up" class="btn_lbb80_s"><i class="fa fa-edit mR5 font15"></i>수정</button>
-					<button type="button" id="btn_de" class="btn_lbb80_s"><i class="fa fa-times mR5 font15"></i>삭제</button>
+					<!-- <button type="button" id="btn_in" class="btn_bb80"><i class="fa fa-plus mR5 font15"></i>등록</button> -->
+					<!-- <button type="button" id="btn_re" class="btn_lbb80_s"><i class="fa fa-repeat mR5 font15"></i>초기화</button> -->
+					<button type="button" id="btn_up" class="btn_lbb80_s"><i class="fa fa-edit mR5 font15"></i>저장</button>
+					<!-- <button type="button" id="btn_de" class="btn_lbb80_s"><i class="fa fa-times mR5 font15"></i>삭제</button> -->
 		</div>
 		</div>
 		
@@ -269,26 +273,26 @@ $(document).ready(function(){
 	});
 
 	// 초기화
-	$("#btn_re").click(function(){
-		var ORGAN_ID = $("#ORGAN_ID").val("");
+	// $("#btn_re").click(function(){
+	// 	var ORGAN_ID = $("#ORGAN_ID").val("");
 
-			$("#ORGAN_ID").val("");
-			$("#ORGAN_NAME").val("");
-			$("#DEPARTMENT").val("");
-			$("#AREA_CODE").val("");
-			$("#AREA_MAIN").val("");
-			$("#AREA_SUB").val("");
-			$("#SORT_BASE").val(0);
-			$("#list_table tbody tr").removeClass('selected');
-	});
+	// 		$("#ORGAN_ID").val("");
+	// 		$("#ORGAN_NAME").val("");
+	// 		$("#DEPARTMENT").val("");
+	// 		$("#AREA_CODE").val("");
+	// 		$("#AREA_MAIN").val("");
+	// 		$("#AREA_SUB").val("");
+	// 		$("#SORT_BASE").val(0);
+	// 		$("#list_table tbody tr").removeClass('selected');
+	// });
 
 	// 수정
 	$("#btn_up").click(function(){
 		if( form_check("U") ){
 			var l_ORGAN_NAME = $("#list_"+$("#ORGAN_ID").val()+" #l_ORGAN_NAME").text();
 			swal({
-				title: '<div class="alpop_top_b">기관정보 수정 확인</div><div class="alpop_mes_b">['+l_ORGAN_NAME+']을 수정하실 겁니까?</div>',
-				text: '확인 시 기관정보가 수정 됩니다.',
+				title: '<div class="alpop_top_b">기관정보 저장 확인</div><div class="alpop_mes_b">['+l_ORGAN_NAME+']의 변경사항을 저장 하시겠습니까?</div>',
+				text: '확인 시 기관정보가 저장 됩니다.',
 				showCancelButton: true,
 				confirmButtonColor: '#5b7fda',
 				confirmButtonText: '확인',
@@ -465,15 +469,15 @@ $(document).ready(function(){
 	}
 
 	// 뒤로가기 관련 처리
-	$("#search_col").val(0);
-	$("#search_word").val("");
-	$("#ORGAN_ID").val("");
-	$("#ORGAN_NAME").val("");
-	$("#DEPARTMENT").val("");
-	$("#AREA_CODE").val("");
-	$("#AREA_MAIN").val("");
-	$("#AREA_SUB").val("");
-	$("#SORT_BASE").val(0);
+	// $("#search_col").val(0);
+	// $("#search_word").val("");
+	// $("#ORGAN_ID").val("");
+	// $("#ORGAN_NAME").val("");
+	// $("#DEPARTMENT").val("");
+	// $("#AREA_CODE").val("");
+	// $("#AREA_MAIN").val("");
+	// $("#AREA_SUB").val("");
+	// $("#SORT_BASE").val(0);
 });
 </script>
 

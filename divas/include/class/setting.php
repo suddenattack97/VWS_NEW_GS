@@ -91,6 +91,7 @@ Class ClassSetting {
 				$data[$i]['DEPARTMENT'] = $rs[$i]['ORGAN_DESC'];
 				$data[$i]['AREA_CODE'] = $rs[$i]['AREA_CODE'];
 				$data[$i]['TEXT'] = $rs[$i]['AREA_MAIN']." ".$rs[$i]['AREA_SUB'];
+				$data[$i]['SORT_BASE'] = $rs[$i]['SORT_BASE'];
 				if($rs[$i]['SORT_BASE'] == "0"){
 					$data[$i]['SORT_BASE_NAME'] = "지정순서";
 				}else if($rs[$i]['SORT_BASE'] == "1"){
