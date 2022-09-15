@@ -130,12 +130,12 @@ require_once "./head.php";
 				<table class="set_tb">
 					<tr>
 						<td class="bg_lb w10 bold al_C bL0">장비 ID</td>
-						<td class="w20"><input type="text" id="RTU_ID" name="RTU_ID" class="f333_12" size="10" value="<?=$data_id?>"></td>
+						<td class="w20"><input type="text" id="RTU_ID" name="RTU_ID" class="f333_12" size="10" value="<?=$data_id?>" oninput="inputCheck(this,'onlyNumber','1~9999')"></td>
 						<td class="bg_lb w10 bold al_C">통신 ID</td>
-						<td><input type="text" id="SIGNAL_ID" name="SIGNAL_ID" class="f333_12" size="10" oninput="inputCheck(this,'onlyNumber','0~9999')"></td>
+						<td><input type="text" id="SIGNAL_ID" name="SIGNAL_ID" class="f333_12" size="10" oninput="inputCheck(this,'onlyNumber','1~9999')"></td>
 						<td class="bg_lb w10 bold al_C">행정 코드</td>
 						<td colspan="3">
-							<input type="text" id="AREA_CODE" name="AREA_CODE" class="f333_12" size="12" maxlength="10">
+							<input type="text" id="AREA_CODE" name="AREA_CODE" class="f333_12 bg_lgr_d" size="12" maxlength="10" readonly>
 							<button type="button" id="btn_check" class="btn_bbr">중복체크</button>
 							<button type="button" id="btn_area" class="btn_bbr w100p">행정구역 조회</button>
 						</td>
@@ -189,7 +189,7 @@ require_once "./head.php";
 						<td>
 							<input type="hidden" id="ORGAN_ID" name="ORGAN_ID" class="f333_12" size="15"
 								value="<? echo $data_organ[0]['ORGAN_ID'] ?>" readonly>
-							<input type="text" id="ORGAN_NAME" name="ORGAN_NAME" class="f333_12" size="15"
+							<input type="text" id="ORGAN_NAME" name="ORGAN_NAME" class="f333_12 bg_lgr_d" size="15"
 								value="<? echo $data_organ[0]['ORGAN_NAME'] ?>" readonly>
 						</td>
 						<td class="bg_lb w10 bold al_C">정렬 순서 지정</td>
@@ -1299,15 +1299,15 @@ $(document).ready(function(){
 	// 폼 체크
 	function form_check(kind){
 		var num_check = /^[0-9]*$/; // 숫자만
-		//var area_check = /^[0-9]{10,10}$/; // 숫자이면서 10자리
+		var num_length_check = /^[0-9]{1,4}$/; // 숫자이면서 10자리
 		var area_check = /^[0-9]*$/; // 숫자만
 		
 		if(kind == "I"){
 			if( !$("#RTU_ID").val() ){
 			    swal("체크", "장비 ID를 입력해 주세요.", "warning");
 			    $("#RTU_ID").focus(); return false;	
-			}else if( !num_check.test( $("#RTU_ID").val() ) ){
-			    swal("체크", "장비 ID는 숫자만 사용해 주세요.", "warning"); 
+			}else if( !num_length_check.test( $("#RTU_ID").val() ) ){
+			    swal("체크", "장비 ID는 1~9999까지 숫자만 사용해 주세요.", "warning"); 
 			    $("#RTU_ID").focus(); return false;	
 			}else if( $("#RTU_ID").val() == $("#C_RTU_ID").val() ){
 			    swal("체크", "이미 사용중인 장비 ID 입니다.", "warning");
@@ -1393,8 +1393,8 @@ $(document).ready(function(){
 			}else if( !$("#RTU_ID").val() ){
 			    swal("체크", "장비 ID를 입력해 주세요.", "warning");
 			    $("#RTU_ID").focus(); return false;	
-			}else if( !num_check.test( $("#RTU_ID").val() ) ){
-			    swal("체크", "장비 ID는 숫자만 사용해 주세요.", "warning"); 
+			}else if( !num_length_check.test( $("#RTU_ID").val() ) ){
+			    swal("체크", "장비 ID는 1~9999까지 숫자만 사용해 주세요.", "warning"); 
 			    $("#RTU_ID").focus(); return false;	
 			}else if( !$("#SIGNAL_ID").val() ){
 			    swal("체크", "통신 ID를 입력해 주세요.", "warning");
