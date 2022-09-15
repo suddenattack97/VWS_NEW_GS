@@ -99,12 +99,12 @@ require_once "./head.php";
 				<table class="set_tb">
 					<tr>
 						<td class="bg_lb w10 bold al_C bL_1gry_n">기관명</td>
-						<td><input type="text" id="ORGAN_NAME" name="ORGAN_NAME" class="f333_12" size="20"
-							value="<? echo $data_list[0]['ORGAN_NAME'] ?>" >
+						<td><input type="text" id="ORGAN_NAME" name="ORGAN_NAME" class="f333_12" size="20" maxlength="20"
+							value="<? echo $data_list[0]['ORGAN_NAME'] ?>">
 						</td>
 						<td class="bg_lb w10 bold al_C">부서명</td>
-						<td><input type="text" id="DEPARTMENT" name="DEPARTMENT" class="f333_12" size="20"  maxlength="20"
-							value="<? echo $data_list[0]['DEPARTMENT'] ?>" ></td>
+						<td><input type="text" id="DEPARTMENT" name="DEPARTMENT" class="f333_12" size="20" maxlength="20"
+							value="<? echo $data_list[0]['DEPARTMENT'] ?>"></td>
 					</tr>
 					<tr>
 						<td class="bg_lb w10 bold al_C bL_1gry_n">행정코드</td>
