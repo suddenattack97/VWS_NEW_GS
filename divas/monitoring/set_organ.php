@@ -109,7 +109,7 @@ require_once "./head.php";
 					<tr>
 						<td class="bg_lb w10 bold al_C bL_1gry_n">행정코드</td>
 						<td>
-							<input type="text" id="AREA_CODE" name="AREA_CODE" class="f333_12" size="20" 
+							<input type="text" id="AREA_CODE" name="AREA_CODE" class="f333_12 bg_lgr_d" size="20" 
 							value="<? echo $data_list[0]['AREA_CODE'] ?>" readonly>
 							<button type="button" id="btn_area" class="btn_bbr w100p">행정구역 조회</button>
 						</td>
