@@ -110,7 +110,7 @@ require_once "./head.php";
 					
 					?>
 					<tr>
-						<td colspan="26" style="height:560px">데이터가 없습니다.</td>
+						<td colspan="26" style="height:256px">데이터가 없습니다.</td>
 					</tr>
 
 					<? for($i=0; $i<$rowCnt; $i++){?>
