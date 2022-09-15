@@ -105,7 +105,7 @@ require_once "./head.php";
 						if($data_organ){
 							foreach($data_organ as $key => $val){
 						?>
-								<input type="text" value="<?=$val['ORGAN_NAME']?>" class="f333_12" readonly>
+								<input type="text" value="<?=$val['ORGAN_NAME']?>" size="18" class="f333_12 bg_lgr_d" readonly>
 						<? 
 								break;
 							}
