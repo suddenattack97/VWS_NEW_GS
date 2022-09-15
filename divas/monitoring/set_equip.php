@@ -694,7 +694,8 @@ $(document).ready(function(){
 						}
 	
 						$("#AREA_CODE").attr('disabled',true);
-						$("#RTU_ID").attr('disabled',true);
+						$("#RTU_ID").attr('readonly',true);
+						$("#RTU_ID").addClass('bg_lgr_d');
 						$("#btn_check").hide();
 						$("#btn_area").hide();
 						$("#btn_in").hide();
@@ -1001,7 +1002,8 @@ $(document).ready(function(){
 			$("#FLOW_WARNING_OFF").val("");
 			$("#DANGER_USE0").prop("checked", true);
 			$("#AREA_CODE").attr('disabled',false);
-			$("#RTU_ID").attr('disabled',false);
+			$("#RTU_ID").attr('readonly',false);
+			$("#RTU_ID").removeClass('bg_lgr_d');
 			$("#btn_check").show();
 			$("#btn_area").show();
 			$("#btn_in").show();
