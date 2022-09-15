@@ -913,6 +913,17 @@ $(document).ready(function(){
 		}
 	});
 
+	// hover시 rowspan부분도 라인 색 맞게 바꿔줌
+	$(".tb_data tbody tr td").hover(function(){
+		$el = $(this);
+		$el.parent().addClass('bh');
+		if ($el.parent().has('td[rowspan]').length == 0)
+		$el.parent().prevAll('tr:has(td[rowspan]):first').find('td[rowspan]').addClass("bh");
+	}, function() {
+		$el = $(this);
+		$el.parent().removeClass('bh');
+		$el.parent().prevAll('tr:has(td[rowspan]):first').find('td[rowspan]').removeClass("bh");
+	});
 	
 	// 폼 체크
 	function form_check(kind){
@@ -922,12 +933,17 @@ $(document).ready(function(){
 				$("#load_time").val(10);
 			    $("#load_time").focus(); return false;	
 			}
+			result = [];
 			$('#list_table4 tr .popup_url').each(function(){	// 팝업메뉴 url 체크
 				if($(this).val().length < 4 || $(this).val().length > 100){
 					swal("체크", "팝업메뉴 url을 4~100자로 입력해 주세요.", "warning");
-			    	$(this).focus(); return false;	
+			    	$(this).focus();
+					result.push(false);
+				}else{
+					result.push(true);
 				}
 			});
+			if(result.indexOf(false) != -1) return false;
 		}
 		return true;
 	}
