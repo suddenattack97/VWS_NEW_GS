@@ -61,7 +61,7 @@ $dvUtil   = new Divas_Util();
 				*/
 				$qry = " SELECT realdata as snow,realtime as snow_date FROM realtime_data
 						 WHERE area_code = '".$val."'
-						 AND sensor_type = 'S'
+						 AND sensor_type = '2'
 						 AND realtime BETWEEN {ts '".$DM->getBefTime()."'} and {ts '".$DM->getNowMinTime()."'} ";
 				/*
 		    	if(TEST == "0"){
