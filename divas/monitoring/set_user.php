@@ -712,7 +712,7 @@ crypt.setKey(key);
     
 	// 폼 체크
 	function form_check(kind){
-		var id_check = /^[a-zA-Z0-9]{1,15}$/; // 영어 대소문자 또는 숫자이며 15자리 이하
+		var id_check = /^[a-zA-Z0-9]{5,15}$/; // 영어 대소문자 또는 숫자이며 5~15자리
 		var pwd_check = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,20}$/; // 영어, 숫자, 특수문자가 들어가며 8자리 이상 20자리 이하
 		var mobile_check = /^\d{2,3}(-?)\d{3,4}(-?)\d{4}$/; // 전화번호 형식
 		
@@ -721,7 +721,7 @@ crypt.setKey(key);
 			    swal("체크", "사용자 ID를 입력해 주세요.", "warning");
 			    $("#USER_ID").focus(); return false;	
 			}else if( !id_check.test( $("#USER_ID").val() ) ){
-			    swal("체크", "사용자 ID는 영어와 숫자만 사용하여 15자리 이하로 입력해 주세요.", "warning"); 
+			    swal("체크", "사용자 ID는 영어와 숫자만 사용하여 5~15자리로 입력해 주세요.", "warning"); 
 			    $("#USER_ID").focus(); return false;	
 			}else if( $("#USER_ID").val() == $("#C_USER_ID").val() ){
 			    swal("체크", "이미 사용중인 아이디 입니다.", "warning");
@@ -754,7 +754,7 @@ crypt.setKey(key);
 			    swal("체크", "사용자 ID를 입력해 주세요.", "warning");
 			    $("#USER_ID").focus(); return false;	
 			}else if( !id_check.test( $("#USER_ID").val() ) ){
-			    swal("체크", "사용자 ID는 영어와 숫자만 사용하여 15자리 이하로 입력해 주세요.", "warning"); 
+			    swal("체크", "사용자 ID는 영어와 숫자만 사용하여 5~15자리로 입력해 주세요.", "warning"); 
 			    $("#USER_ID").focus(); return false;	
 			// }else if( $("#dup_check").val() == "0" ){
 			//     swal("체크", "아이디 중복체크를 진행해 주세요.", "warning"); return false;
