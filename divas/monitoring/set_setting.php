@@ -722,7 +722,7 @@ require_once "./head.php";
 					?>
 						<tr class="hh">
 							<!-- <td><?=$val['menu_name']?><input type="hidden" name="popup_idx[]" value="<?=$val['menu_idx']?>"></td> -->
-							<td><input type="text" name="popup_name[]" value="<?=$val['menu_name']?>" maxlength="20" onblur="inputCheck(this,'text','1~20')">
+							<td><input class="popup_name" type="text" name="popup_name[]" value="<?=$val['menu_name']?>" maxlength="20" onblur="inputCheck(this,'text','1~20')">
 							<input type="hidden" name="popup_idx[]" value="<?=$val['menu_idx']?>"></td>
 							<td>
 							<?
@@ -933,6 +933,17 @@ $(document).ready(function(){
 				$("#load_time").val(10);
 			    $("#load_time").focus(); return false;	
 			}
+			let result = [];
+			$('#list_table4 tr .popup_name').each(function(){	// 팝업메뉴명 체크
+				if($(this).val().length < 1 || $(this).val().length > 20){
+					swal("체크", "팝업메뉴명을 1~20자로 입력해 주세요.", "warning");
+			    	$(this).focus();
+					result.push(false);
+				}else{
+					result.push(true);
+				}
+			});
+			if(result.indexOf(false) != -1) return false;
 			result = [];
 			$('#list_table4 tr .popup_url').each(function(){	// 팝업메뉴 url 체크
 				if($(this).val().length < 4 || $(this).val().length > 100){
