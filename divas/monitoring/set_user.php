@@ -738,8 +738,11 @@ crypt.setKey(key);
 			    swal("체크", "휴대폰 번호를 입력해 주세요.", "warning"); 
 			    $("#MOBILE2").focus(); return false;
 			}else if( $("#MOBILE2").val().length < 3 || $("#MOBILE3").val().length < 4 ){
-			    swal("체크", "휴대폰 번호를 확인해 주세요.", "warning"); 
+				swal("체크", "휴대폰 번호를 확인해 주세요.", "warning"); 
 			    $("#MOBILE2").focus(); return false;
+			}else if( !$("#EMAIL1").val() || !$("#EMAIL3").val() ){
+				swal("체크", "이메일 주소를 입력해 주세요.", "warning"); 
+				$("#EMAIL1").focus(); return false;
 			}
 			if(pwFlag){
 				if( !pwd_check.test( $("#USER_PWD").val() ) ){
@@ -770,6 +773,9 @@ crypt.setKey(key);
 			}else if( $("#MOBILE2").val().length < 3 || $("#MOBILE3").val().length < 4 ){
 			    swal("체크", "휴대폰 번호를 확인해 주세요.", "warning"); 
 			    $("#MOBILE2").focus(); return false;
+			}else if( !$("#EMAIL1").val() || !$("#EMAIL3").val() ){
+				swal("체크", "이메일 주소를 입력해 주세요.", "warning"); 
+				$("#EMAIL1").focus(); return false;
 			}
 			if(pwFlag){
 				if( !pwd_check.test( $("#USER_PWD").val() ) ){
