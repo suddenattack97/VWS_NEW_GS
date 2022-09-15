@@ -706,7 +706,7 @@ require_once "./head.php";
 
 		<ul class="set_ulwrap_nh hd">
 		<li class="li100_nor">
-			<table id="list_table" class="tb_data">
+			<table id="list_table4" class="tb_data">
 					<thead class="tb_data_tbg">
 						<tr>
 							<th class="w20i">팝업 메뉴</th>
@@ -731,8 +731,10 @@ require_once "./head.php";
 							<select name="url[]">
 								<option value="http://" <?=(strstr($val['menu_url'], "http://") ? 'selected' : '')?>>http://</option>
 								<option value="https://" <?=(strstr($val['menu_url'], "https://") ? 'selected' : '')?>>https://</option>
-								</select> <input name="popup_url[]" type="text" value="<?=str_replace($http_array,"",$val['menu_url'])?>" onblur="this.value = this.value.replace('http:\/\/','').replace('https:\/\/',''); inputCheck(this,'text','1~100');"> </option>
-					
+							</select> 
+							<input name="popup_url[]" type="text" maxlength="100" class="popup_url"
+									value="<?=str_replace($http_array,"",$val['menu_url'])?>" 
+									onblur="this.value = this.value.replace('http:\/\/','').replace('https:\/\/',''); inputCheck(this,'text','0~1000');"> 
 							</td>	
 							<!-- <td>
 								<select name="popup_level[]">
@@ -847,41 +849,43 @@ $(document).ready(function(){
 	// 저장
 	$("button[name=btn_save]").click(function(){
 		// console.log($("#load_time").val());
-		if($("#load_time").val() < 10){	
-			console.log("Refresh 간격을 10초 보다 작게 설정할 수 없습니다.");
-			$("#load_time").val(10);
+		if(form_check('I')){
+			// if($("#load_time").val() < 10){	
+			// 	console.log("Refresh 간격을 10초 보다 작게 설정할 수 없습니다.");
+			// 	$("#load_time").val(10);
+			// }
+			// 파라미터 가지고 가도록
+			// $(".hd").show();
+			var param = "mode=set&"+$("#set_frm").serialize();
+			var tmp_data = new FormData($("#set_frm")[0]); 
+	
+			$.ajax({
+				type: "POST",
+				url: "../_info/json/_set_json.php",
+				data: tmp_data,
+				contentType: false,
+				  processData: false,
+				cache: false,
+				dataType: "json",
+				success : function(data){
+					if(data.result){
+						swal({
+							title: "시스템 설정 완료",
+							text: "설정이 완료 됐습니다.", 
+							type: "success",
+							timer: 1300,
+							showConfirmButton: false,
+							allowOutsideClick: false
+						}, function(){
+							parent.location.reload();
+						}); 
+						return false;
+					}else{
+						swal("체크", "시스템 설정중 오류가 발생 했습니다.", "warning");
+					}
+				}
+			});
 		}
-		// 파라미터 가지고 가도록
-		// $(".hd").show();
-		var param = "mode=set&"+$("#set_frm").serialize();
-		var tmp_data = new FormData($("#set_frm")[0]); 
-
-		$.ajax({
-	        type: "POST",
-	        url: "../_info/json/_set_json.php",
-		    data: tmp_data,
-			contentType: false,
-          	processData: false,
-	        cache: false,
-	        dataType: "json",
-	        success : function(data){
-                if(data.result){
-                	swal({
-                		title: "시스템 설정 완료",
-                		text: "설정이 완료 됐습니다.", 
-                        type: "success",
-                		timer: 1300,
-                	    showConfirmButton: false,
-                	    allowOutsideClick: false
-                	}, function(){
-                    	parent.location.reload();
-                	}); 
-		    		return false;
-                }else{
-					swal("체크", "시스템 설정중 오류가 발생 했습니다.", "warning");
-                }
-	        }
-	    });
 	});
 		
 	// 시스템 설정 퀵메뉴 이벤트
@@ -908,6 +912,25 @@ $(document).ready(function(){
 			rows.not(":eq(0)").remove();
 		}
 	});
+
+	
+	// 폼 체크
+	function form_check(kind){
+		if(kind == "I"){
+			if( $("#load_time").val() < 10 ){
+			    swal("체크", "현황 Refresh 간격을 10초 이상으로 입력해 주세요.", "warning");
+				$("#load_time").val(10);
+			    $("#load_time").focus(); return false;	
+			}
+			$('#list_table4 tr .popup_url').each(function(){	// 팝업메뉴 url 체크
+				if($(this).val().length < 4 || $(this).val().length > 100){
+					swal("체크", "팝업메뉴 url을 4~100자로 입력해 주세요.", "warning");
+			    	$(this).focus(); return false;	
+				}
+			});
+		}
+		return true;
+	}
 
 	// 뒤로가기 관련 처리
 	$("#top_img").val("<?=top_img?>");
