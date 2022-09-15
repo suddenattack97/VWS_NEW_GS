@@ -55,7 +55,8 @@
 					lay_html += ' 	<th width="14%">월간</th> ';
 					// lay_html += ' 	<th width="10%">통신상태</th> ';
 					lay_html += ' 	</tr></thead>';
-	
+					
+					var noData_height = 240;
 					if(data.list){
 						var rowNum = 0;
 			            $.each(data.list, function(i, v){
@@ -84,8 +85,9 @@
 							</tr>';
 						}
 					}else{
+						if($('.main_twrap').length > 0) noData_height = 60;
 						lay_html += ' <tr> ';
-						lay_html += ' <td colspan="7" style="height:560px;">데이터가 없습니다.</td> ';
+						lay_html += ' <td colspan="7" style="height:'+noData_height+'px;">데이터가 없습니다.</td> ';
 						lay_html += ' </tr>';
 
 						// for( var i=0; i<rowCnt; i++){
@@ -404,6 +406,7 @@
 	
 					lay_html += ' 	</tr></thead>';
 					
+					var noData_height = 240;
 					if(data.list){
 						var rowNum = 0;
 			            $.each(data.list, function(i, v){
@@ -432,8 +435,9 @@
 						// if(common_level_cnt == 3) tmp_colspan = 7;
 						// else if(common_level_cnt == 4) tmp_colspan = 7;
 						// else if(common_level_cnt == 5) tmp_colspan = 9;
+						if($('.main_twrap').length > 0) noData_height = 60;
 						lay_html += ' <tr> ';
-						lay_html += ' <td colspan="'+tmp_colspan+'" style="height:560px;">데이터가 없습니다.</td> ';
+						lay_html += ' <td colspan="6" style="height:'+noData_height+'px;">데이터가 없습니다.</td> ';
 						lay_html += ' </tr>';
 
 						// for( var i=0; i<rowCnt; i++){
@@ -570,6 +574,7 @@
 
 					lay_html += ' 	</tr>';
 	
+					var noData_height = 240;
 					if(data.list){
 						var rowNum = 0;
 			            $.each(data.list, function(i, v){
@@ -630,8 +635,9 @@
 							</tr>';
 						}
 					}else{
+						if($('.main_twrap').length > 0) noData_height = 60;
 						lay_html += ' <tr> ';
-						lay_html += ' <td colspan="12" style="height:560px;">데이터가 없습니다.</td> ';
+						lay_html += ' <td colspan="12" style="height:'+noData_height+'px;">데이터가 없습니다.</td> ';
 						lay_html += ' </tr>';
 
 						// for( var i=0; i<rowCnt; i++){
@@ -714,6 +720,7 @@
 					// lay_html += ' 	<th width="10%">통신상태</th> ';
 					lay_html += ' 	</tr></thead>';
 	
+					var noData_height = 240;
 					if(data.list){
 						var rowNum = 0;
 			            $.each(data.list, function(i, v){
@@ -741,8 +748,9 @@
 							</tr>';
 						}
 					}else{
+						if($('.main_twrap').length > 0) noData_height = 60;
 						lay_html += ' <tr> ';
-						lay_html += ' <td colspan="12" style="height:560px;">데이터가 없습니다.</td> ';
+						lay_html += ' <td colspan="7" style="height:'+noData_height+'px;">데이터가 없습니다.</td> ';
 						lay_html += ' </tr>';
 
 						// for( var i=0; i<rowCnt; i++){
