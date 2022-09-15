@@ -84,6 +84,7 @@ require_once "./head.php";
 									</tr>
 								</thead>
 								<tbody>
+									<? if($data_sel){ ?>
 									<tr class="hh_aws">
 										<td colspan="2" class="blue_L_1">우량 (mm)</td>
 									<? 
@@ -290,6 +291,11 @@ require_once "./head.php";
 									?>	
 										<td class="mint_L"><?=$data_list['SUNS_AVR']?></td>
 									</tr> -->
+								<? } else{	?>
+									<tr>
+										<td colspan="26" style="height:256px">데이터가 없습니다.</td>
+									</tr>
+								<? } ?>
 								</tbody>
 							</table>
 						</li>

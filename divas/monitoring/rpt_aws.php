@@ -41,6 +41,7 @@ require_once "./head.php";
 					<li>
 					<span class="tit">구분  : </span>
 					<select id="option" name="option">
+					<? if($data_sel){ ?>
 						<option value="0" <?if($option == "0"){echo "selected";}?>>강우</option>
 						<option value="1" <?if($option == "1"){echo "selected";}?>>온도</option>
 						<option value="2" <?if($option == "2"){echo "selected";}?>>풍향/풍속</option>
@@ -48,6 +49,9 @@ require_once "./head.php";
 						<option value="4" <?if($option == "4"){echo "selected";}?>>습도</option>
 						<!-- <option value="5" <?if($option == "5"){echo "selected";}?>>일사</option>
 						<option value="6" <?if($option == "6"){echo "selected";}?>>일조</option> -->
+					<? }else{ ?>
+						<option value="">장비 없음</option>
+					<? } ?>
 					</select>
 					<span class="tit">검색 기간 : </span>
 					<input type="radio" class="btn_radio" name="sel_date" value="N" <?if($sel_date=="N"){echo "checked";}?>><span class="tit">연간 </span>
