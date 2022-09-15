@@ -79,7 +79,8 @@ Class ClassAwsInfo {
 			if($this->DB->num_rows){
 				$this->WIND_VEL = $rs[0]['WIND_VEL'] == "-" ? "-" : $rs[0]['WIND_VEL'];
 
-				if($rs[0]['WIND_DEG'] == "" && $rs[0]['WIND_VEL'] == 0){
+				if($rs[0]['WIND_DEG'] == "" || $rs[0]['WIND_DEG'] == 0 || $rs[0]['WIND_DEG'] == '-' ||
+					$rs[0]['WIND_VEL'] == "" || $rs[0]['WIND_VEL'] == 0 || $rs[0]['WIND_VEL'] == '-'){
 					$this->WIND_DEG = '-';
 				}else{
 					$this->WIND_DEG = $this->getDegreeString($rs[0]['WIND_DEG']);
@@ -108,7 +109,8 @@ Class ClassAwsInfo {
 			if($this->DB->num_rows){
 				$this->WIND_MAX_VEL = $rs[0]['WIND_MAX_VEL'] == "-" ? "-" : $rs[0]['WIND_MAX_VEL'];
 
-				if($rs[0]['WIND_MAX_DEG'] == "" || $rs[0]['WIND_MAX_VEL'] == 0){
+				if($rs[0]['WIND_MAX_DEG'] == "" || $rs[0]['WIND_MAX_DEG'] == 0 || $rs[0]['WIND_MAX_DEG'] == '-' ||
+					$rs[0]['WIND_MAX_VEL'] == "" || $rs[0]['WIND_MAX_VEL'] == 0 || $rs[0]['WIND_MAX_VEL'] == '-'){
 					$this->WIND_MAX_DEG = '-';
 				}else{
 					$this->WIND_MAX_DEG = $this->getDegreeString($rs[0]['WIND_MAX_DEG']);
@@ -705,12 +707,12 @@ Class ClassAwsInfo {
 			$this->DB->parseFree();
 			
 			if($rs[0]['cnt']){
-				$sql = " UPDATE WIND_HIST SET AVR_DEG1 = ".$data."
+				$sql = " UPDATE WIND_HIST SET AVR_DEG1 = ".$data.", MAX_DEG = ".$data."
 						 WHERE AREA_CODE = '".$area_code."' AND DATA_TYPE = '".$type."'
 						 AND WIND_DATE = '".$where_date."' ";
 			}else{
-				$sql = " INSERT INTO WIND_HIST (AREA_CODE, DATA_TYPE, WIND_DATE, AVR_DEG1)
-					 	 VALUES ('".$area_code."', '".$type."', '".$where_date."', ".$data.") ";
+				$sql = " INSERT INTO WIND_HIST (AREA_CODE, DATA_TYPE, WIND_DATE, AVR_DEG1, MAX_DEG)
+					 	 VALUES ('".$area_code."', '".$type."', '".$where_date."', ".$data.", ".$data.") ";
 			}
 			
 			if($this->DB->QUERYONE($sql)) $sqlReturn = true;
