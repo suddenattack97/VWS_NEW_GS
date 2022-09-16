@@ -343,7 +343,7 @@ require_once "./head.php";
 						<tr class="hh hd">
 							<td>현황 Refresh 간격</td>
 							<td>
-								시간 : <input type="text" id="load_time" name="load_time" class="f333_12" style="width: 50px" value="<?=load_time*0.001?>"> 초
+								시간 : <input type="text" id="load_time" name="load_time" class="f333_12" style="width: 50px" value="<?=load_time*0.001?>" oninput="inputCheck(this,'onlyNumber','1~99999')"> 초
 							</td>
 						</tr>
 
@@ -675,15 +675,22 @@ require_once "./head.php";
 							</td> -->
 							<td>
 							<? 
-
-									?>
-									<select name="sub_use[]">
-										<option value="0" <?if($val2['menu_use']=="0"){echo "selected";}?>>미사용</option>
-										<option value="1" <?if($val2['menu_use']=="1"){echo "selected";}?>>사용</option>
-									</select>
-								<? 
-		
-								
+								if($val['menu_idx'] == '4' && $val2['menu_num'] == '1'){
+							?>
+								<input type="hidden" name="sub_use[]" value="1">
+								<select name="sub_system" disabled>
+									<option value="0">미사용</option>
+									<option value="1" selected>사용</option>
+								</select>
+							<? 
+								}else{
+							?>
+								<select name="sub_use[]">
+									<option value="0" <?if($val2['menu_use']=="0"){echo "selected";}?>>미사용</option>
+									<option value="1" <?if($val2['menu_use']=="1"){echo "selected";}?>>사용</option>
+								</select>
+							<? 
+								}
 							?>
 							</td>
 						</tr>
@@ -746,14 +753,14 @@ require_once "./head.php";
 							<? 
 								if($val['menu_idx'] != '0'){
 							?>
-								<select name="popup_use[]">
+								<select class="popup_use" name="popup_use[]">
 									<option value="0" <?if($val['menu_use']=="0"){echo "selected";}?>>미사용</option>
 									<option value="1" <?if($val['menu_use']=="1"){echo "selected";}?>>사용</option>
 								</select>
 							<? 
 								}else{
 							?>
-								<input type="hidden" name="popup_use[]" value="1">
+								<input class="popup_use" type="hidden" name="popup_use[]" value="1">
 								<select name="popup_system" disabled>
 									<option value="0">미사용</option>
 									<option value="1" selected>사용</option>
@@ -934,24 +941,22 @@ $(document).ready(function(){
 			    $("#load_time").focus(); return false;	
 			}
 			let result = [];
-			$('#list_table4 tr .popup_name').each(function(){	// 팝업메뉴명 체크
-				if($(this).val().length < 1 || $(this).val().length > 20){
-					swal("체크", "팝업메뉴명을 1~20자로 입력해 주세요.", "warning");
-			    	$(this).focus();
-					result.push(false);
-				}else{
-					result.push(true);
-				}
-			});
-			if(result.indexOf(false) != -1) return false;
-			result = [];
-			$('#list_table4 tr .popup_url').each(function(){	// 팝업메뉴 url 체크
-				if($(this).val().length < 4 || $(this).val().length > 100){
-					swal("체크", "팝업메뉴 url을 4~100자로 입력해 주세요.", "warning");
-			    	$(this).focus();
-					result.push(false);
-				}else{
-					result.push(true);
+			$('#list_table4 tbody tr').each(function(i,v){	// 팝업메뉴명 체크, 팝업메뉴 url 체크
+				if($(this).find('.popup_use').val() > 0){
+					if($(this).find('.popup_name').val().length < 1 || $(this).find('.popup_name').val().length > 20){
+						swal("체크", "팝업메뉴명을 1~20자로 입력해 주세요.", "warning");
+						$(this).find('.popup_name').focus();
+						result.push(false);
+					}else{
+						result.push(true);
+					}
+					if($(this).find('.popup_url').val().length < 4 || $(this).find('.popup_url').val().length > 100){
+						swal("체크", "팝업메뉴 url을 4~100자로 입력해 주세요.", "warning");
+						$(this).find('.popup_url').focus();
+						result.push(false);
+					}else{
+						result.push(true);
+					}
 				}
 			});
 			if(result.indexOf(false) != -1) return false;
