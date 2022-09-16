@@ -70,12 +70,12 @@ require_once "../_info/_set_setting.php";
         <span id="now_date" class="pB_13 pL_5 pR_15"><?=date("Y년 n월 j일 H시 i분 s초")?></span>
 
         <!-- <div id="session" class="pB_13"> -->
-        <div id="session" class="">
+        <div id="session" class="pB_13">
           <span id="user_id_front" class="aR col_mint font_700 ">
-            <span id="user_id" class=""> 사용자 : <?=ss_user_id;?></span>
+            <span id="user_id" class="pL_5 pR_15"> 사용자 : <?=ss_user_id;?>(<?=ss_organ_name;?>)</span>
           </span>
-            <i id="session_time_front" class="fa fa-chevron-right pB_15 "></i>
-            <span id="session_time" class="pB_13 pL_5 pR_15 "></span>
+            <!-- <i id="session_time_front" class="fa fa-chevron-right pB_15 "></i>
+            <span id="session_time" class="pB_13 pL_5 pR_15 "></span> -->
         </div>
 
         <div class="top_btn">
