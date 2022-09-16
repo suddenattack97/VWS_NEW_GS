@@ -109,6 +109,7 @@
             return false;
         }
 	}
+	var tile;
 
     function tutor(){
 
@@ -333,17 +334,22 @@
 	            }
             }
             
-			var tile = new ol.layer.Group({
-				layers: [
-					new ol.layer.Tile({
-						source: new ol.source.XYZ({
-							url: 'http://api.vworld.kr/req/wmts/1.0.0/'+api_key+'/'+(map_skin == 1 ? 'Base' : (map_skin == 2 ? 'Satellite' : (map_skin == 3 ? 'Hybrid' : (map_skin == 4 ? 'gray' : (map_skin == 5 ? 'midnight' : 'base')))))+'/{z}/{y}/{x}.'+(map_skin == 1 ? 'png' :(map_skin == 2 ? 'jpeg' : 'png'))
-							// url: "https://{a-c}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png"
-						})
-					})
-				]
+			// var tile = new ol.layer.Group({
+			// 	layers: [
+			// 		new ol.layer.Tile({
+			// 			source: new ol.source.XYZ({
+			// 				url: 'http://api.vworld.kr/req/wmts/1.0.0/'+api_key+'/'+(map_skin == 1 ? 'Base' : (map_skin == 2 ? 'Satellite' : (map_skin == 3 ? 'Hybrid' : (map_skin == 4 ? 'gray' : (map_skin == 5 ? 'midnight' : 'base')))))+'/{z}/{y}/{x}.'+(map_skin == 1 ? 'png' :(map_skin == 2 ? 'jpeg' : 'png'))
+			// 				// url: "https://{a-c}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png"
+			// 			})
+			// 		})
+			// 	]
+			// });
+			tile = 	new ol.layer.Tile({
+				source: new ol.source.XYZ({
+					url: 'http://api.vworld.kr/req/wmts/1.0.0/'+api_key+'/'+(map_skin == 1 ? 'Base' : (map_skin == 2 ? 'Satellite' : (map_skin == 3 ? 'Hybrid' : (map_skin == 4 ? 'gray' : (map_skin == 5 ? 'midnight' : 'base')))))+'/{z}/{y}/{x}.'+(map_skin == 1 ? 'png' :(map_skin == 2 ? 'jpeg' : 'png'))
+					// url: "https://{a-c}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png"
+				})
 			});
-
 			view = new ol.View({
 					center: ol.proj.transform([Number(map_cent[1]), Number(map_cent[0])], 'EPSG:4326', 'EPSG:900913'),
 					zoom: map_level
@@ -380,6 +386,7 @@
 				]
 			}); 
 			
+			tile.setZIndex(0);
 			if(map_control_type == 1){
 				$(".ol-zoom-in").parent().css('top','10px');
 				$(".ol-attribution").css('top','10px');
@@ -1140,7 +1147,9 @@
 												features : [ polygon_feature[item.properties.EMD_CD][index] ]
 											})
 										});
+										arr_poly[ item.properties.EMD_CD ]['polygon'].setZIndex(1);
 										map.addLayer(arr_poly[ item.properties.EMD_CD ]['polygon']);
+										// arr_poly[ item.properties.EMD_CD ]['polygon'].setIndex(1);
 									});
 								}
 			    		    }else if(arr_poly[ item.properties.EMD_CD ]['type'] == "Polygon"){
@@ -1158,8 +1167,9 @@
 									  features : [ polygon_feature[item.properties.EMD_CD] ]
 									})
 								});
-
+								arr_poly[ item.properties.EMD_CD ]['polygon'].setZIndex(1);
 								map.addLayer(arr_poly[ item.properties.EMD_CD ]['polygon']);
+								// arr_poly[ item.properties.EMD_CD ]['polygon'].setIndex(1);
 			    		    }
 		            	}); // $.each(data.features, function(index, item) end
 		            },
@@ -1251,9 +1261,10 @@
 						
 					var vector_layer = new ol.layer.Vector({
 						source : new ol.source.Vector({
-						features : [ box_polygon_feature ]
+							features : [ box_polygon_feature ]
 						})
 					});
+					vector_layer.setZIndex(1);
 				} // for end
 					map.addLayer(vector_layer);
     	});
@@ -1884,15 +1895,14 @@
 		});
     	$(document).on("change","#sel_skin input",function(){
 
-			var Tile = new ol.layer.Group({
-				layers: [
-					new ol.layer.Tile({
+			map.removeLayer(tile);
+
+			tile = new ol.layer.Tile({
 						source: new ol.source.XYZ({
 							url: 'http://api.vworld.kr/req/wmts/1.0.0/'+api_key+'/'+(this.value == 1 ? 'Base' : (this.value == 2 ? 'Satellite' : (this.value == 3 ? 'Hybrid' : (this.value == 4 ? 'gray' : (this.value == 5 ? 'midnight' : 'base')))))+'/{z}/{y}/{x}.'+(this.value == 1 ? 'png' :(this.value == 2 ? 'jpeg' : 'png'))
 						})
-					})
-				]
 			});
+
 			$(".ol-overviewmap").remove();
     		if(this.value == 1){
         		// if(this.value == 1) tmp_map_type = "NORMAL";
@@ -1933,11 +1943,12 @@
     			$("#sel_skin input:radio[value='4']").closest("li").attr("class", "");
 				$("#sel_skin input:radio[value='5']").closest("li").attr("class", "bg_act");
     		}
-			map.setLayerGroup(Tile);
+			map.addLayer(tile);
+			tile.setZIndex(0);
 
-			box_polygon(); // 박스 폴리곤 호출
+			// box_polygon(); // 박스 폴리곤 호출
 
-			box_update();
+			// box_update();
 
     		$.post("controll/tutor.php", { "mode" : "map_setting", "sub_mode" : "map_skin", "data" : this.value }, function(){ });
     		tmp_map_type = null;
