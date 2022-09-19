@@ -1189,7 +1189,7 @@
 
 			var box_style = new ol.style.Style({
 				fill : new ol.style.Fill({
-						color : (tile_value == 2 || tile_value == 3 || tile_value == 5 ? [255,255,255, 0.5] : [ 0, 0, 0, 0.5])
+						color : (tile_value == 2 || tile_value == 3 || tile_value == 5 ? [0 ,0, 0, 0.5] : [ 0, 0, 0, 0.5])
 				})
 			});
 
