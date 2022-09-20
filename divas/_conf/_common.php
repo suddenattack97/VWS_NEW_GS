@@ -29,7 +29,7 @@ define("DISP_GROUP", "0"); // 0 : rtu_info에 변위센서 전부 등록, 1 : rt
  *  전체 줄 수
  */
 define("dtm_cnt", "8");	// 자료관리
-define("rpt_cnt", "8");	// 보고서
+define("rpt_cnt", "0");	// 보고서
 define("set_cnt", "10");	// 설정
 
 /* 
