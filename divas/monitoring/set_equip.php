@@ -990,7 +990,7 @@ $(document).ready(function(){
 			$("#RTU_TYPE").val("");
 			$("#CONNECTION_INFO").val("");
 			$("#BROADCAST_SETTING").val("1");
-			$("#CALL_LAST_D").val("0");
+			$("#CALL_LAST_D").val("<?=date("Y-m-d")?>");
 			$("#CALL_LAST_H").val("00");
 			$("#CALL_LAST_M").val("00");
 			$("#SORT_FLAG").val("0");
