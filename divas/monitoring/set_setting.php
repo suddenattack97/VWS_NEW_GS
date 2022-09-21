@@ -716,8 +716,8 @@ require_once "./head.php";
 			<table id="list_table4" class="tb_data">
 					<thead class="tb_data_tbg">
 						<tr>
-							<th class="w20i">팝업 메뉴</th>
-							<th class="w20i">url</th>
+							<th class="w20i">팝업 메뉴명</th>
+							<th class="w20i">사이트 주소</th>
 							<!-- <th class="w15i">권한</th> -->
 							<th class="w15i">사용 여부</th>
 						</tr>
@@ -934,12 +934,16 @@ $(document).ready(function(){
 	
 	// 폼 체크
 	function form_check(kind){
+		var ipPattern = /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(:?[0-9]{1,5})$/;
+		var urlPattern = /^([^\/]*)(\.)(com|net|kr|my|shop)/;
+
 		if(kind == "I"){
 			if( $("#load_time").val() < 10 ){
-			    swal("체크", "현황 Refresh 간격을 10초 이상으로 입력해 주세요.", "warning");
+				swal("체크", "현황 Refresh 간격을 10초 이상으로 입력해 주세요.", "warning");
 				$("#load_time").val(10);
 			    $("#load_time").focus(); return false;	
 			}
+			// 매뉴명, 사이트 주소 유효성 체크
 			let result = [];
 			$('#list_table4 tbody tr').each(function(i,v){	// 팝업메뉴명 체크, 팝업메뉴 url 체크
 				if($(this).find('.popup_use').val() > 0){
@@ -951,11 +955,20 @@ $(document).ready(function(){
 						result.push(true);
 					}
 					if($(this).find('.popup_url').val().length < 4 || $(this).find('.popup_url').val().length > 100){
-						swal("체크", "팝업메뉴 url을 4~100자로 입력해 주세요.", "warning");
+						swal("체크", "팝업메뉴 사이트 주소를 4~100자로 입력해 주세요.", "warning");
 						$(this).find('.popup_url').focus();
 						result.push(false);
 					}else{
-						result.push(true);
+						// 사이트 주소 유효성 체크
+						let ipTest = ipPattern.test($(this).find('.popup_url').val());
+						let urlTest = urlPattern.test($(this).find('.popup_url').val());
+						if(ipTest || urlTest) {
+							result.push(true);
+						}else{
+							swal("체크", "팝업메뉴 사이트 주소를 맞게 입력해 주세요.", "warning");
+							$(this).find('.popup_url').focus();
+							result.push(false);
+						}
 					}
 				}
 			});
