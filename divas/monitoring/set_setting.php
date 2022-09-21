@@ -716,10 +716,10 @@ require_once "./head.php";
 			<table id="list_table4" class="tb_data">
 					<thead class="tb_data_tbg">
 						<tr>
-							<th class="w20i">팝업 메뉴명</th>
-							<th class="w20i">사이트 주소</th>
-							<!-- <th class="w15i">권한</th> -->
 							<th class="w15i">사용 여부</th>
+							<th class="w25i">팝업 메뉴명</th>
+							<th class="w60">사이트 주소</th>
+							<!-- <th class="w15i">권한</th> -->
 						</tr>
 					</thead>
 			        <tbody>
@@ -728,27 +728,6 @@ require_once "./head.php";
 						foreach($data_url as $key => $val){
 					?>
 						<tr class="hh">
-							<!-- <td><?=$val['menu_name']?><input type="hidden" name="popup_idx[]" value="<?=$val['menu_idx']?>"></td> -->
-							<td><input class="popup_name" type="text" name="popup_name[]" value="<?=$val['menu_name']?>" maxlength="20" onblur="inputCheck(this,'text','1~20')">
-							<input type="hidden" name="popup_idx[]" value="<?=$val['menu_idx']?>"></td>
-							<td>
-							<?
-								$http_array = array("http://","https://");
-							?>
-							<select name="url[]">
-								<option value="http://" <?=(strstr($val['menu_url'], "http://") ? 'selected' : '')?>>http://</option>
-								<option value="https://" <?=(strstr($val['menu_url'], "https://") ? 'selected' : '')?>>https://</option>
-							</select> 
-							<input name="popup_url[]" type="text" maxlength="100" class="popup_url"
-									value="<?=str_replace($http_array,"",$val['menu_url'])?>" 
-									onblur="this.value = this.value.replace('http:\/\/','').replace('https:\/\/',''); inputCheck(this,'text','0~1000');"> 
-							</td>	
-							<!-- <td>
-								<select name="popup_level[]">
-									<option value="1" <?if($val['menu_level']=="1"){echo "selected";}?>>관리자</option>
-									<option value="3" <?if($val['menu_level']=="3"){echo "selected";}?>>사용자</option>
-								</select> 부터
-							</td> -->
 							<td>
 							<? 
 								if($val['menu_idx'] != '0'){
@@ -769,6 +748,28 @@ require_once "./head.php";
 								}
 							?>
 							</td>
+							<!-- <td><?=$val['menu_name']?><input type="hidden" name="popup_idx[]" value="<?=$val['menu_idx']?>"></td> -->
+							<td><input class="popup_name" type="text" name="popup_name[]" value="<?=$val['menu_name']?>" maxlength="20" onblur="inputCheck(this,'text','1~20')">
+							<input type="hidden" name="popup_idx[]" value="<?=$val['menu_idx']?>"></td>
+							<td>
+							<?
+								$http_array = array("http://","https://");
+							?>
+							<select name="url[]" class="url">
+								<option value="http://" <?=(strstr($val['menu_url'], "http://") ? 'selected' : '')?>>http://</option>
+								<option value="https://" <?=(strstr($val['menu_url'], "https://") ? 'selected' : '')?>>https://</option>
+							</select> 
+							<input name="popup_url[]" type="text" size="60" maxlength="100" class="popup_url"
+									value="<?=str_replace($http_array,"",$val['menu_url'])?>" 
+									onblur="this.value = this.value.replace('http:\/\/','').replace('https:\/\/',''); inputCheck(this,'text','0~1000');"> 
+							</td>	
+							<!-- <td>
+								<select name="popup_level[]">
+									<option value="1" <?if($val['menu_level']=="1"){echo "selected";}?>>관리자</option>
+									<option value="3" <?if($val['menu_level']=="3"){echo "selected";}?>>사용자</option>
+								</select> 부터
+							</td> -->
+							
 						</tr>
 					<? 
 						}
@@ -836,6 +837,18 @@ require_once "./head.php";
 <script type="text/javascript">
 $(document).ready(function(){
 
+	$('#list_table4 tbody tr').each(function(i,v){
+		if($(this).find('.popup_use').val() > 0){
+			$(this).find('.popup_name').attr('readonly',false).removeClass('bg_lgr_d');
+			$(this).find('.url').attr('disabled', false).removeClass('bg_lgr_d');
+			$(this).find('.popup_url').attr('readonly',false).removeClass('bg_lgr_d');
+		}else{
+			$(this).find('.popup_name').attr('readonly',true).addClass('bg_lgr_d');
+			$(this).find('.url').attr('disabled',true).addClass('bg_lgr_d');
+			$(this).find('.popup_url').attr('readonly',true).addClass('bg_lgr_d');
+		}
+	});
+
     // 상단 로고 및 텍스트 변경
     $("#top_img").click(function(){
     	$("#sel_top_img").trigger("click");
@@ -863,6 +876,7 @@ $(document).ready(function(){
 			// }
 			// 파라미터 가지고 가도록
 			// $(".hd").show();
+			$('#list_table4 .url').attr('disabled', false);
 			var param = "mode=set&"+$("#set_frm").serialize();
 			var tmp_data = new FormData($("#set_frm")[0]); 
 	
@@ -930,6 +944,21 @@ $(document).ready(function(){
 		$el = $(this);
 		$el.parent().removeClass('bh');
 		$el.parent().prevAll('tr:has(td[rowspan]):first').find('td[rowspan]').removeClass("bh");
+	});
+
+	// 팝업매뉴 사용 / 사용안함 바꿨을때,
+	$(".popup_use").change(function(){	
+		$('#list_table4 tbody tr').each(function(i,v){
+			if($(this).find('.popup_use').val() > 0){
+				$(this).find('.popup_name').attr('readonly',false).removeClass('bg_lgr_d');
+				$(this).find('.url').attr('disabled', false).removeClass('bg_lgr_d');
+				$(this).find('.popup_url').attr('readonly',false).removeClass('bg_lgr_d');
+			}else{
+				$(this).find('.popup_name').attr('readonly',true).addClass('bg_lgr_d');
+				$(this).find('.url').attr('disabled',true).addClass('bg_lgr_d');
+				$(this).find('.popup_url').attr('readonly',true).addClass('bg_lgr_d');
+			}
+		});
 	});
 	
 	// 폼 체크

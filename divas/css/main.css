@@ -467,7 +467,7 @@
 .w50{width:50%; /*ie6,7*/}
 .w50i{width:50% !important;}
 .w55{width:55%;}
-.w60{width:60%;}
+.w60{width:60% !important;}
 .w65{width:65%;/*ie6,7*/}
 .w70{width:70%;}
 .w70i{width:70% !important;}
