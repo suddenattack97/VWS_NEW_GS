@@ -70,8 +70,19 @@ CLASS DBmanager{
 		$this->recordcount = $this->num_rows;
 	}
 
+	FUNCTION updaterTrace($sql, $result) {	
+		$result = $result == 1 ? "true" : $result;
+		$btArr = debug_backtrace();
+		$btVal = $btArr[count($btArr)-1]['file'] .",".$btArr[count($btArr)-1]['function'];
+		$sql2 = " INSERT INTO updater_log (USER_ID, BACKTRACE, UP_SQL, UP_RESULT, LOG_DATE) VALUE 
+				( '".ss_user_id."', '".addslashes($btVal)."', '".addslashes($sql)."', '".$result."', DATE_FORMAT(now(), '%Y-%m-%d %H:%i')) "; 
+		$this->query_result=mysql_query($sql2,$this->db[conn]) or die(mysql_error());
+	}
+
 	FUNCTION QUERYONE($sql="") {
-		return mysql_query($sql,$this->db[conn]);
+		if(isset($sql))$this->query_result=mysql_query($sql,$this->db[conn]) or die(mysql_error());
+		$this->updaterTrace($sql, $this->query_result);
+		return $this->query_result;
 	}
 
 	/******************
