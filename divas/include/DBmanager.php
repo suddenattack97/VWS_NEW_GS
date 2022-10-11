@@ -74,8 +74,8 @@ CLASS DBmanager{
 		$result = $result == 1 ? "true" : $result;
 		$btArr = debug_backtrace();
 		$btVal = $btArr[count($btArr)-1]['file'] .",".$btArr[count($btArr)-1]['function'];
-		$sql2 = " INSERT INTO updater_log (USER_ID, BACKTRACE, UP_SQL, UP_RESULT, LOG_DATE) VALUE 
-				( '".ss_user_id."', '".addslashes($btVal)."', '".addslashes($sql)."', '".$result."', DATE_FORMAT(now(), '%Y-%m-%d %H:%i')) "; 
+		$sql2 = " INSERT INTO updater_log (USER_ID, IP, BACKTRACE, UP_SQL, UP_RESULT, LOG_DATE) VALUE 
+				( '".ss_user_id."', '".get_client_ip()."', '".addslashes($btVal)."', '".addslashes($sql)."', '".$result."', DATE_FORMAT(now(), '%Y-%m-%d %H:%i')) "; 
 		$this->query_result=mysql_query($sql2,$this->db[conn]) or die(mysql_error());
 	}
 

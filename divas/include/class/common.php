@@ -200,7 +200,10 @@ Class ClassCommon {
 				$_SESSION['organ_name'] = $rs[0]['organ_name'];
 				$_SESSION['sort_base'] = $rs[0]['sort_base'];
 				
-
+				$sql = " UPDATE user_info SET FAIL_CNT = 0
+				WHERE user_id = '".$rs[0]['user_id']."' ";
+				
+   				if($this->DB->QUERYONE($sql)) $sqlReturn = true;
 				
 				$sql = " SELECT rtu_id, rtu_right
 					 	 FROM user_right 
