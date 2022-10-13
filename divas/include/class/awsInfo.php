@@ -437,8 +437,11 @@ Class ClassAwsInfo {
 	/* 온도(최고) 자료 */
 	function getTempMaxAvg($area_code, $type, $sdate, $edate){
 		if(DB == "0"){
-			if($type == "M") $col = 'AVR_VAL';
-			else $col = 'MAX_VAL';
+			if($_REQUEST['mode'] == "temp_save"){
+				if($type == "M") $col = 'AVR_VAL';
+				else $col = 'MAX_VAL';
+			}else $col = 'MAX_VAL';
+
 			$sql = " SELECT MAX(".$col.") AS DATA
 				 	 FROM TEMP_HIST
 					 WHERE AREA_CODE = '".$area_code."' AND DATA_TYPE = '".$type."'
@@ -446,7 +449,7 @@ Class ClassAwsInfo {
 			
 			$rs = $this->DB->execute($sql);
 			
-			$this->rsDataMax = $rs[0]['DATA'];
+			$this->rsData = $rs[0]['DATA'];
 			
 			unset($rs); unset($data);
 			$this->DB->parseFree();
@@ -486,8 +489,11 @@ Class ClassAwsInfo {
 	/* 온도(최저) 자료 */
 	function getTempMinAvg($area_code, $type, $sdate, $edate){
 		if(DB == "0"){
-			if($type == "M") $col = 'AVR_VAL';
-			else $col = 'MIN_VAL';
+			if($_REQUEST['mode'] == "temp_save"){
+				if($type == "M") $col = 'AVR_VAL';
+				else $col = 'MIN_VAL';
+			}else $col = 'MIN_VAL';
+
 			$sql = " SELECT MIN(".$col.") AS DATA
 				 	 FROM TEMP_HIST
 					 WHERE AREA_CODE = '".$area_code."' AND DATA_TYPE = '".$type."'
@@ -495,7 +501,7 @@ Class ClassAwsInfo {
 			
 			$rs = $this->DB->execute($sql);
 			
-			$this->rsDataMin = $rs[0]['DATA'];
+			$this->rsData = $rs[0]['DATA'];
 			
 			unset($rs); unset($data);
 			$this->DB->parseFree();
@@ -630,8 +636,11 @@ Class ClassAwsInfo {
 	/* 풍속(최고) 자료 평균 */
 	function getVelMaxAvg($area_code, $type, $sdate, $edate){
 		if(DB == "0"){
-			if($type == "M") $col = 'AVR_VEL1';
-			else $col = 'MAX_VEL';
+			if($_REQUEST['mode'] == "vel_save"){
+				if($type == "M") $col = 'AVR_VEL1';
+				else $col = 'MAX_VEL';
+			}else $col = 'MAX_VEL';
+
 			$sql = " SELECT MAX(".$col.") AS DATA
 				 	 FROM WIND_HIST
 					 WHERE AREA_CODE = '".$area_code."' AND DATA_TYPE = '".$type."'
@@ -865,7 +874,12 @@ Class ClassAwsInfo {
 	/* 기압(최고) 자료 평균 */
 	function getAtmoMaxAvg($area_code, $type, $sdate, $edate){
 		if(DB == "0"){
-			$sql = " SELECT AVG(MAX_VAL) AS DATA
+			if($_REQUEST['mode'] == "atmo_save"){
+				if($type == "M") $col = 'AVR_VAL';
+				else $col = 'MAX_VAL';
+			}else $col = 'MAX_VAL';
+
+			$sql = " SELECT MAX(".$col.") AS DATA
 				 	 FROM ATMO_HIST
 					 WHERE AREA_CODE = '".$area_code."' AND DATA_TYPE = '".$type."'
  					 AND ATMO_DATE BETWEEN '".$sdate."' AND '".$edate."' ";
@@ -912,7 +926,12 @@ Class ClassAwsInfo {
 	/* 기압(최저) 자료 평균 */
 	function getAtmoMinAvg($area_code, $type, $sdate, $edate){
 		if(DB == "0"){
-			$sql = " SELECT AVG(MIN_VAL) AS DATA
+			if($_REQUEST['mode'] == "atmo_save"){
+				if($type == "M") $col = 'AVR_VAL';
+				else $col = 'MIN_VAL';
+			}else $col = 'MIN_VAL';
+
+			$sql = " SELECT MIN(".$col.") AS DATA
 				 	 FROM ATMO_HIST
 					 WHERE AREA_CODE = '".$area_code."' AND DATA_TYPE = '".$type."'
  					 AND ATMO_DATE BETWEEN '".$sdate."' AND '".$edate."' ";
@@ -1051,8 +1070,11 @@ Class ClassAwsInfo {
 	/* 습도(최고) 자료 */
 	function getHumiMaxAvg($area_code, $type, $sdate, $edate){
 		if(DB == "0"){
-			if($type == "M") $col = 'AVR_VAL';
-			else $col = 'MAX_VAL';
+			if($_REQUEST['mode'] == "humi_save"){
+				if($type == "M") $col = 'AVR_VAL';
+				else $col = 'MAX_VAL';
+			}else $col = 'MAX_VAL';
+
 			$sql = " SELECT MAX(".$col.") AS DATA
 				 	 FROM HUMI_HIST
 					 WHERE AREA_CODE = '".$area_code."' AND DATA_TYPE = '".$type."'
@@ -1085,7 +1107,7 @@ Class ClassAwsInfo {
 						 WHERE AREA_CODE = '".$area_code."' AND DATA_TYPE = '".$type."'
 						 AND HUMI_DATE = '".$where_date."' ";
 			}else{
-				$sql = " INSERT INTO ATMO_HIST (AREA_CODE, DATA_TYPE, HUMI_DATE, MAX_VAL)
+				$sql = " INSERT INTO HUMI_HIST (AREA_CODE, DATA_TYPE, HUMI_DATE, MAX_VAL)
 					 	 VALUES ('".$area_code."', '".$type."', '".$where_date."', ".$data.") ";
 			}
 			
@@ -1100,8 +1122,11 @@ Class ClassAwsInfo {
 	/* 습도(최저) 자료 */
 	function getHumiMinAvg($area_code, $type, $sdate, $edate){
 		if(DB == "0"){
-			if($type == "M") $col = 'AVR_VAL';
-			else $col = 'MIN_VAL';
+			if($_REQUEST['mode'] == "humi_save"){
+				if($type == "M") $col = 'AVR_VAL';
+				else $col = 'MIN_VAL';
+			}else $col = 'MIN_VAL';
+
 			$sql = " SELECT MIN(".$col.") AS DATA
 				 	 FROM HUMI_HIST
 					 WHERE AREA_CODE = '".$area_code."' AND DATA_TYPE = '".$type."'
@@ -1327,12 +1352,12 @@ Class ClassAwsInfo {
 	/* 온도 10분 자료 */
 	function getTemp10m($area_code, $type, $sdate, $edate){
 		if(DB == "0"){
-			$sql = " SELECT IFNULL(AVR_VAL, '-') AS TEMP,MIN_VAL AS TEMP_MIN,MAX_VAL AS TEMP_MAX, TEMP_DATE
+			$sql = " SELECT IFNULL(AVR_VAL, '-') AS TEMP, MIN_VAL AS TEMP_MIN, MAX_VAL AS TEMP_MAX, TEMP_DATE
 				  	 FROM TEMP_HIST
 					 WHERE DATA_TYPE = '".$type."' AND AREA_CODE = '".$area_code."'
 					 AND TEMP_DATE between '".$sdate."' and '".$edate."'
 					 ORDER BY TEMP_DATE ";
-			// echo $sql;
+			
 			$rs = $this->DB->execute($sql);
 			
 			for($i=0; $i<$this->DB->NUM_ROW(); $i++){
@@ -1381,7 +1406,7 @@ Class ClassAwsInfo {
 	/* 기압 10분 자료 */
 	function getAtmo10m($area_code, $type, $sdate, $edate){
 		if(DB == "0"){
-			$sql = " SELECT IFNULL(AVR_VAL, '-') AS ATMO,MIN_VAL AS ATMO_MIN,MAX_VAL AS ATMO_MAX, ATMO_DATE
+			$sql = " SELECT IFNULL(AVR_VAL, '-') AS ATMO, MIN_VAL AS ATMO_MIN, MAX_VAL AS ATMO_MAX, ATMO_DATE
 				  	 FROM ATMO_HIST
 					 WHERE DATA_TYPE = '".$type."' AND AREA_CODE = '".$area_code."'
 					 AND ATMO_DATE between '".$sdate."' and '".$edate."'
@@ -1407,11 +1432,12 @@ Class ClassAwsInfo {
 	/* 습도 10분 자료 */
 	function getHumi10m($area_code, $type, $sdate, $edate){
 		if(DB == "0"){
-			$sql = " SELECT IFNULL(AVR_VAL, '-') AS HUMI,MIN_VAL AS HUMI_MIN,MAX_VAL AS HUMI_MAX, HUMI_DATE
+			$sql = " SELECT IFNULL(AVR_VAL, '-') AS HUMI, MIN_VAL AS HUMI_MIN, MAX_VAL AS HUMI_MAX, HUMI_DATE
 				  	 FROM HUMI_HIST
 					 WHERE DATA_TYPE = '".$type."' AND AREA_CODE = '".$area_code."'
 					 AND HUMI_DATE between '".$sdate."' and '".$edate."'
 					 ORDER BY HUMI_DATE ";
+			
 			$rs = $this->DB->execute($sql);
 			
 			for($i=0; $i<$this->DB->NUM_ROW(); $i++){
