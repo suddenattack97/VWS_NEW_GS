@@ -396,15 +396,20 @@ crypt.setKey(key);
 						var email_check = 0;
 						$("#EMAIL2 > option").each(function(){
 							if(EMAIL.split("@")[1] == this.text){
-								console.log("일치");
+								// console.log("일치");
 								$("#EMAIL2").val(this.text);
+								$("#EMAIL3").val(this.text);
 								email_check++;
+								$("#EMAIL3").addClass("bg_lgr_d");
+								$("#EMAIL3").prop("readonly", true);
 								return false;
 							}
 						});
 						if(email_check == 0) {
 							$("#EMAIL2").val(0);
 							$("#EMAIL3").val(EMAIL.split("@")[1]);
+							$("#EMAIL3").removeClass("bg_lgr_d");
+							$("#EMAIL3").prop("readonly", false);
 						}
 						$("#MOBILE1").val(MOBILE.split("-")[0] ? MOBILE.split("-")[0] : "010");
 						$("#MOBILE2").val(MOBILE.split("-")[1]);
