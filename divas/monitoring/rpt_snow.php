@@ -10,7 +10,7 @@ require_once "./head.php";
 	<div class="product_state">
 	<div id="content">
 	
-		<form id="form_search" action="rpt_snow.php" method="get">
+		<form id="form_search" action="rpt_snow.php" method="post">
 	
 		<div class="main_contitle">
 					<div class="tit"><img src="../images/board_icon_aws.png"> <span>적설 보고서</span>

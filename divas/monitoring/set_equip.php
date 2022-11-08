@@ -10,7 +10,7 @@ require_once "./head.php";
 	<div class="product_state">
 	<div id="content">
 	
-		<form id="set_frm" action="set_equip.php" method="get">
+		<form id="set_frm" action="set_equip.php" method="post">
 		<input type="hidden" id="dup_check" name="dup_check" value="0"><!-- 행정 코드 중복 체크 0:실패, 1:성공 -->
 		<input type="hidden" id="dup_check2" name="dup_check2" value="0"><!-- 계측기 번호 중복 체크 0:실패, 1:성공 -->
 		<input type="hidden" id="C_RTU_ID" name="C_RTU_ID"><!-- 선택한 장비 아이디 -->

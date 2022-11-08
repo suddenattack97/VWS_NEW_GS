@@ -16,7 +16,7 @@ require_once "./head.php";
 
 		<div class="right_bg2">
 		<ul id="search_box">
-		<form id="form_search" action="dtm_aws.php" method="get">
+		<form id="form_search" action="dtm_aws.php" method="post">
 			<li>
 			<span class="tit">지역</span>
 			<select id="area_code" name="area_code">

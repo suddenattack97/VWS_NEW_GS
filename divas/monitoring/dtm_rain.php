@@ -17,7 +17,7 @@ require_once "./head.php";
 
 		<div class="right_bg2">
 		<ul id="search_box">
-			<form id="form_search" action="dtm_rain.php" method="get">
+			<form id="form_search" action="dtm_rain.php" method="post">
 			<li>
 				<!-- <span class="sel_left80_np"> 
 					검색 날짜 : 

@@ -10,7 +10,7 @@ require_once "./head.php";
 	<div class="product_state">
 	<div id="content">
 	
-		<form id="form_search" action="rpt_wl.php" method="get">
+		<form id="form_search" action="rpt_wl.php" method="post">
 			
 
 		<div class="main_contitle">
@@ -41,7 +41,7 @@ require_once "./head.php";
 				</div>
 		<div class="right_bg2 mT_15">
 		<ul id="search_box">
-				<form id="form_mcall" method="get">
+				<form id="form_mcall" method="post">
 					<li>
 					<input type="hidden" name="mode" value="mcall">
 				<input type="hidden" id="RTU_CNT" name="RTU_CNT">

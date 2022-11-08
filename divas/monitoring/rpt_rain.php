@@ -9,7 +9,7 @@ require_once "./head.php";
 	<!--본문내용섹션-->
 		<div class="product_state">
 			<div id="content">
-			<form id="form_search" action="rpt_rain.php" method="get">
+			<form id="form_search" action="rpt_rain.php" method="post">
 				<div class="main_contitle">
 					<div class="tit"><img src="../images/board_icon_aws.png"> <span>강우 보고서</span>
 					<span id="rtu_name" class="sub_tit mL20"></span>
@@ -40,7 +40,7 @@ require_once "./head.php";
 				</div>
 		<div class="right_bg2 mT_15">
 		<ul id="search_box">
-				<form id="form_mcall" method="get">
+				<form id="form_mcall" method="post">
 					<li>
 					<input type="hidden" name="mode" value="mcall">
 				<input type="hidden" id="RTU_CNT" name="RTU_CNT">

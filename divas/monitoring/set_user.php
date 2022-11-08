@@ -15,7 +15,7 @@ require_once "./head.php";
 	5F2GfzJ9BF31y6HByKYiRc8KUxkMNHesR+00ZvGZsHxfHSYvfRztBffd+IRyy1ep
 	wd+TfN++aIZJivncuQIDAQAB
 	-----END PUBLIC KEY-----</textarea>
-		<form id="set_frm" action="set_user.php" method="get">
+		<form id="set_frm" action="set_user.php" method="post">
 		<input type="hidden" id="dup_check" name="dup_check" value="0"><!-- 사용자 아이디 중복 체크 0:실패, 1:성공 -->
 		<input type="hidden" id="C_USER_ID" name="C_USER_ID"><!-- 선택한 사용자 아이디 -->
 		<input type="hidden" id="STR_RTU_ID" name="STR_RTU_ID"><!-- 선택한 방송권한 지역 RTU_ID -->

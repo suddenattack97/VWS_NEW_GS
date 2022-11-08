@@ -10,7 +10,7 @@ require_once "./head.php";
 	<div class="product_state">
 	<div id="content">
 			
-		<form id="set_frm" action="set_organ.php" method="get">
+		<form id="set_frm" action="set_organ.php" method="post">
 		<input type="hidden" id="ORGAN_ID" name="ORGAN_ID" value="<? echo $data_list[0]['ORGAN_ID'] ?>">
 		<input type="hidden" id="AREA_MAIN" name="AREA_MAIN" value="<? echo $data_list[0]['AREA_MAIN'] ?>">
 		<input type="hidden" id="AREA_SUB" name="AREA_SUB" value="<? echo $data_list[0]['AREA_SUB'] ?>">

@@ -16,7 +16,7 @@ require_once "./head.php";
 
 		<div class="right_bg2">
 		<ul id="search_box">
-			<form id="form_search" action="dtm_wl.php" method="get">
+			<form id="form_search" action="dtm_wl.php" method="post">
 			<li>
 				<span class="tit">검색날짜</span>
                                 <button type="button" id="btn_left" class="tb_btn_s w25p"><i class="fa fa-angle-left"></i></button>

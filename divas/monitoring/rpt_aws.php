@@ -10,7 +10,7 @@ require_once "./head.php";
 	<div class="product_state">
 	<div id="content">
 	
-		<form id="form_search" action="rpt_aws.php" method="get">
+		<form id="form_search" action="rpt_aws.php" method="post">
 		<div class="main_contitle">
 					<div class="tit"><img src="../images/board_icon_aws.png"> <span>AWS 보고서</span>
 					<span id="rtu_name" class="sub_tit mL20"></span>
