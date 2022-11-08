@@ -227,24 +227,6 @@ function getDecodedString($str) {
 /******************************************************************************************
  * 암호화
  ******************************************************************************************/
-    function ace_encode($plaintext){
-        $iv_size = mcrypt_get_iv_size(MCRYPT_RIJNDAEL_128, MCRYPT_MODE_ECB);
-        $iv = mcrypt_create_iv($iv_size, MCRYPT_RAND);
-        $key = "a16byteslongkey!";
-        $ciphertext = mcrypt_encrypt(MCRYPT_RIJNDAEL_128, $key, $plaintext, MCRYPT_MODE_ECB, $iv);
-        $ciphertext = base64_encode($ciphertext);
-        return $ciphertext;
-    }
-    function ace_decode($plaintext){
-        $iv_size = mcrypt_get_iv_size(MCRYPT_RIJNDAEL_128, MCRYPT_MODE_ECB);
-        $iv = mcrypt_create_iv($iv_size, MCRYPT_RAND);
-        $key = "a16byteslongkey!";
-        $ciphertext = base64_decode($ciphertext);
-        $plaintext = mcrypt_decrypt(MCRYPT_RIJNDAEL_128, $key, $ciphertext, MCRYPT_MODE_ECB, $iv);
-        return $plaintext;
-    }
-
-
 
     // 엔코드
     function encode($data) {
