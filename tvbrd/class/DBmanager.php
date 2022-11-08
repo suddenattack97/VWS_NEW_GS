@@ -52,6 +52,27 @@ CLASS DBmanager{
                 if(isset($this->db[conn]))@mysql_close($this->db[conn]);
  }
 
+ 	// XSS 보안
+   function html_encode($str){
+		// SQL 과 XSS 공격을 모두 막는 함수
+		// htmlentities는 문자열에서 모든 HTML을 제거한다. 한글이 깨질수 있다.
+		// ENT_QUOTES : 홑따옴표와 겹따옴표 모두 변환
+		// htmlspecialchars, htmlentities 두개다 기본 euc-kr을 지원하지 않는다.
+		return htmlspecialchars($this->mysql_fix_string($this->db['conn'], $str), ENT_QUOTES, "UTF-8");
+	}
+
+	function mysql_fix_string($db, $str){
+		// global $db;
+		// escape variables for security
+		// mysqli_real_escape_string() 함수는 SQL 문에서 특수 문자열을 이스케이프한다.
+		// $firstname = mysqli_real_escape_string($con, $_POST['firstname']);
+		if(get_magic_quotes_gpc()) $str = stripslashes($str);
+		return mysqli_real_escape_string($db,$str);
+	}
+
+	function html_decode($str){
+		return htmlspecialchars_decode(stripslashes($str));
+	}
 
  /******************
          정보
