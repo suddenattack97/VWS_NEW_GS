@@ -752,7 +752,7 @@ Class ClassSetting {
 			$this->DB->QUERYONE($sql);
 			$this->DB->parseFree();
 			
-			if(count($this->DB->html_encode($_REQUEST['IS_SENSOR'])) != 0){
+			if(count($_REQUEST['IS_SENSOR']) != 0){
 				$sql = " INSERT INTO RTU_SENSOR (RTU_ID, SENSOR_TYPE, BASE_RISKLEVEL1, BASE_RISKLEVEL1_OFF, BASE_RISKLEVEL2, BASE_RISKLEVEL2_OFF, ";
 				if(level_cnt == 3){
 					$sql.= " BASE_RISKLEVEL3, BASE_RISKLEVEL3_OFF, ";
@@ -762,7 +762,7 @@ Class ClassSetting {
 					$sql.= " BASE_RISKLEVEL3, BASE_RISKLEVEL3_OFF, BASE_RISKLEVEL4, BASE_RISKLEVEL4_OFF, BASE_RISKLEVEL5, BASE_RISKLEVEL5_OFF, ";
 				}
 				$sql.= " AUTO_EVENT_USE, IS_AVERAGE, LAST_TIME) VALUES ";
-				for($i=0; $i<count($this->DB->html_encode($_REQUEST['IS_SENSOR'])); $i++){
+				for($i=0; $i<count($_REQUEST['IS_SENSOR']); $i++){
 					$LAST_TIME = $this->DB->html_encode($_REQUEST['LAST_TIME_DD'][$i])." ".$this->DB->html_encode($_REQUEST['LAST_TIME_HH'][$i]).":".$this->DB->html_encode($_REQUEST['LAST_TIME_MM'][$i]).":00";
 					
 					if($i != 0) $sql.= " , ";
