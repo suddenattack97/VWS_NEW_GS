@@ -6,7 +6,7 @@ require_once "../../include/class/rainInfo.php";
 require_once "../../include/class/flowInfo.php";
 require_once "../../include/class/awsInfo.php";
 require_once "../../include/class/snowInfo.php";
-require_once "../../include/class/dispInfo.php";
+// require_once "../../include/class/dispInfo.php";
 // require_once "../../include/class/broadcast.php";
 
 $mode = $_REQUEST["mode"];
