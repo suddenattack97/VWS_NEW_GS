@@ -437,7 +437,7 @@ Class ClassAwsInfo {
 	/* 온도(최고) 자료 */
 	function getTempMaxAvg($area_code, $type, $sdate, $edate){
 		if(DB == "0"){
-			if($_REQUEST['mode'] == "temp_save"){
+			if($this->DB->html_encode($_REQUEST['mode']) == "temp_save"){
 				if($type == "M") $col = 'AVR_VAL';
 				else $col = 'MAX_VAL';
 			}else $col = 'MAX_VAL';
@@ -489,7 +489,7 @@ Class ClassAwsInfo {
 	/* 온도(최저) 자료 */
 	function getTempMinAvg($area_code, $type, $sdate, $edate){
 		if(DB == "0"){
-			if($_REQUEST['mode'] == "temp_save"){
+			if($this->DB->html_encode($_REQUEST['mode']) == "temp_save"){
 				if($type == "M") $col = 'AVR_VAL';
 				else $col = 'MIN_VAL';
 			}else $col = 'MIN_VAL';
@@ -636,7 +636,7 @@ Class ClassAwsInfo {
 	/* 풍속(최고) 자료 평균 */
 	function getVelMaxAvg($area_code, $type, $sdate, $edate){
 		if(DB == "0"){
-			if($_REQUEST['mode'] == "vel_save"){
+			if($this->DB->html_encode($_REQUEST['mode']) == "vel_save"){
 				if($type == "M") $col = 'AVR_VEL1';
 				else $col = 'MAX_VEL';
 			}else $col = 'MAX_VEL';
@@ -874,7 +874,7 @@ Class ClassAwsInfo {
 	/* 기압(최고) 자료 평균 */
 	function getAtmoMaxAvg($area_code, $type, $sdate, $edate){
 		if(DB == "0"){
-			if($_REQUEST['mode'] == "atmo_save"){
+			if($this->DB->html_encode($_REQUEST['mode']) == "atmo_save"){
 				if($type == "M") $col = 'AVR_VAL';
 				else $col = 'MAX_VAL';
 			}else $col = 'MAX_VAL';
@@ -926,7 +926,7 @@ Class ClassAwsInfo {
 	/* 기압(최저) 자료 평균 */
 	function getAtmoMinAvg($area_code, $type, $sdate, $edate){
 		if(DB == "0"){
-			if($_REQUEST['mode'] == "atmo_save"){
+			if($this->DB->html_encode($_REQUEST['mode']) == "atmo_save"){
 				if($type == "M") $col = 'AVR_VAL';
 				else $col = 'MIN_VAL';
 			}else $col = 'MIN_VAL';
@@ -1070,7 +1070,7 @@ Class ClassAwsInfo {
 	/* 습도(최고) 자료 */
 	function getHumiMaxAvg($area_code, $type, $sdate, $edate){
 		if(DB == "0"){
-			if($_REQUEST['mode'] == "humi_save"){
+			if($this->DB->html_encode($_REQUEST['mode']) == "humi_save"){
 				if($type == "M") $col = 'AVR_VAL';
 				else $col = 'MAX_VAL';
 			}else $col = 'MAX_VAL';
@@ -1122,7 +1122,7 @@ Class ClassAwsInfo {
 	/* 습도(최저) 자료 */
 	function getHumiMinAvg($area_code, $type, $sdate, $edate){
 		if(DB == "0"){
-			if($_REQUEST['mode'] == "humi_save"){
+			if($this->DB->html_encode($_REQUEST['mode']) == "humi_save"){
 				if($type == "M") $col = 'AVR_VAL';
 				else $col = 'MIN_VAL';
 			}else $col = 'MIN_VAL';

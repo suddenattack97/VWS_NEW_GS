@@ -393,7 +393,7 @@ Class ClassRtuInfo {
 		 	GROUP BY tmp1.RTU_ID) AS c
 		 	ON a.RTU_ID = c.RTU_ID
 			WHERE a.ORGAN_ID = ".ss_organ_id."  
-			AND a.AREA_CODE = '".$_REQUEST['AREA_CODE']."'";
+			AND a.AREA_CODE = '".$this->DB->html_encode($_REQUEST['AREA_CODE'])."'";
 
 			//echo $sql;
 
@@ -478,8 +478,8 @@ Class ClassRtuInfo {
 					LEFT JOIN 
 					STATE_RTU_GROUP c on a.RTU_ID = c.RTU_ID WHERE a.ORGAN_ID = ".ss_organ_id." ";
 			// 전체 선택이 아닐때	
-			if($_REQUEST['GROUP_ID'] != '001'){
-				$sql .=	" AND c.GROUP_ID='".$_REQUEST['GROUP_ID']."' ";
+			if($this->DB->html_encode($_REQUEST['GROUP_ID']) != '001'){
+				$sql .=	" AND c.GROUP_ID='".$this->DB->html_encode($_REQUEST['GROUP_ID'])."' ";
 			}
 /*
 //, ifnull(d.ROOM_TEMP, '-') AS ROOM_TEMP			
@@ -548,8 +548,8 @@ exit;
 			LEFT JOIN 
 				STATE_RTU_GROUP d on a.RTU_ID = d.RTU_ID WHERE a.ORGAN_ID = ".ss_organ_id." ";
 			 // 전체 선택이 아닐때	
-			if($_REQUEST['GROUP_ID'] != '001'){
-				$sql .=	" AND d.GROUP_ID='".$_REQUEST['GROUP_ID']."' ";
+			if($this->DB->html_encode($_REQUEST['GROUP_ID']) != '001'){
+				$sql .=	" AND d.GROUP_ID='".$this->DB->html_encode($_REQUEST['GROUP_ID'])."' ";
 			}
 
 			//echo $sql;
@@ -588,13 +588,13 @@ exit;
 	function getSmartPowerList(){
 		if(DB == "0"){
 			$sql = " SELECT * from SMARTPOWER_HIST
-					WHERE AREA_CODE = '".$_REQUEST['AREA_CODE']."'
+					WHERE AREA_CODE = '".$this->DB->html_encode($_REQUEST['AREA_CODE'])."'
 					AND LOG_DATE < now() 
 					AND LOG_DATE > date_add(now(), interval -24 hour)
 					AND IDX in (
 						SELECT MAX(IDX)
 						from SMARTPOWER_HIST 
-						WHERE AREA_CODE = '".$_REQUEST['AREA_CODE']."'
+						WHERE AREA_CODE = '".$this->DB->html_encode($_REQUEST['AREA_CODE'])."'
 						AND LOG_DATE < now() 
 						AND LOG_DATE > date_add(now(), interval -24 hour)
 						group by HOUR(LOG_DATE)
@@ -639,7 +639,7 @@ exit;
 			$sql = " SELECT * FROM STATE_HIST_NEW 
 					WHERE LOG_DATE < now() 
 					AND LOG_DATE > date_add(now(), interval -24 hour)
-					AND AREA_CODE = '".$_REQUEST['AREA_CODE']."'
+					AND AREA_CODE = '".$this->DB->html_encode($_REQUEST['AREA_CODE'])."'
 					GROUP BY LOG_DATE ";
 					//  ORDER BY LOG_DATE DESC ";
 					
@@ -729,8 +729,8 @@ exit;
 					 LEFT JOIN dn_spot_group AS b ON a.spot_group = b.spot_group
 					 WHERE a.spot_idate BETWEEN CAST('".$sdate." 00:00:00' AS DATETIME) AND CAST('".$edate." 23:59:59' AS DATETIME)
 					 AND a.organ_id = ".ss_organ_id." ";
-			if($_REQUEST['spot_group'] != ""){
-				$sql.= " AND b.spot_group = '".$_REQUEST['spot_group']."'";
+			if($this->DB->html_encode($_REQUEST['spot_group']) != ""){
+				$sql.= " AND b.spot_group = '".$this->DB->html_encode($_REQUEST['spot_group'])."'";
 			}
 			$sql.="	 ORDER BY a.spot_idx DESC ";
 		

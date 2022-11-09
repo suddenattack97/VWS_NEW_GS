@@ -25,6 +25,20 @@ define("TEST_d", "31");
 define("TEST_h", "23");
 define("DISP_GROUP", "0"); // 0 : rtu_info에 변위센서 전부 등록, 1 : rtu_info에는 대표 하나만 등록 후 displacement_group에 자식 센서 등록
 
+//HTMLPurifier
+require_once(ROOT_DIR.'/divas/func/library/HTMLPurifier.auto.php');
+
+// 기본 설정을 불러온 후 적당히 커스터마이징을 해줍니다.
+$config = HTMLPurifier_Config::createDefault();
+$config->set('Attr.EnableID', false);
+$config->set('Attr.DefaultImageAlt', '');
+
+// 다른 인코딩 지원 여부는 확인하지 않았습니다. EUC-KR인 경우 iconv로 UTF-8 변환후 사용하시는 게 좋습니다.
+$config->set('Core.Encoding', 'UTF-8');
+
+// 설정을 저장하고 필터링 라이브러리 초기화
+$purifier = new HTMLPurifier($config);
+
 /**
  *  전체 줄 수
  */

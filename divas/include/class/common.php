@@ -117,7 +117,7 @@ Class ClassCommon {
 				$sql = " SELECT a.user_id, a.user_pwd, a.FAIL_CNT, a.LAST_FAIL_DATE
 						 FROM user_info AS a
 						 LEFT JOIN organ_info AS b ON a.organ_id = b.organ_id
-						 WHERE a.user_id = '".$l_id."' ";
+						 WHERE a.user_id = '".$this->DB->html_encode($l_id)."' ";
 			
 				$rs = $this->DB->execute($sql);
 				
@@ -164,9 +164,9 @@ Class ClassCommon {
 								a.organ_id, b.area_code, b.organ_name, b.sort_base
 						 FROM user_info AS a
 						 LEFT JOIN organ_info AS b ON a.organ_id = b.organ_id
-						 WHERE a.user_id = '".$l_id."' AND a.user_pwd = '".$l_pw."' ";
+						 WHERE a.user_id = '".$this->DB->html_encode($l_id)."' AND a.user_pwd = '".$this->DB->html_encode($l_pw)."' ";
 			}else if(MobileCheck() == "Mobile"){
-				$mynumber = substr($_REQUEST['mynumber'], 0, 3)."-".substr($_REQUEST['mynumber'], 3, 4)."-".substr($_REQUEST['mynumber'], 7, 4);
+				$mynumber = substr($this->DB->html_encode($_REQUEST['mynumber']), 0, 3)."-".substr($this->DB->html_encode($_REQUEST['mynumber']), 3, 4)."-".substr($this->DB->html_encode($_REQUEST['mynumber']), 7, 4);
 				
 				$sql = " SELECT a.user_id, a.user_pwd, a.user_type, a.user_name,
 							a.organ_id, b.area_code, b.organ_name, b.sort_base
@@ -284,7 +284,7 @@ Class ClassCommon {
 				}
 			}
 			
-			$response = $_REQUEST['recaptcha'];
+			$response = $this->DB->html_encode($_REQUEST['recaptcha']);
 			$post_data = "secret=6LdEtlkUAAAAACe6vK4x4BeIR1q3VD81Rip3nck0&response=".$response."&remoteip=".$_SERVER['REMOTE_ADDR'] ;
 			
 			$ch = curl_init();
@@ -303,7 +303,7 @@ Class ClassCommon {
 			$success = objectToArray($decgoogresp);
 			$success = $success['success'];
 		}else if(recaptcha == 2){
-			$recaptcha = $_REQUEST['recaptcha'];
+			$recaptcha = $this->DB->html_encode($_REQUEST['recaptcha']);
 			if( strtolower($recaptcha) == strtolower($_SESSION['random_number']) ){
 				$success = 1;
 			}else{
@@ -682,7 +682,7 @@ Class ClassCommon {
 			$upload_time = time();
 			$upload_name = "file_".$upload_time.".".$file_exe;
 			//$upload_dir = "../img/state/".$upload_name;
-			$upload_dir = "../../divas/images/state/".$upload_name;
+			$upload_dir = ROOT_DIR.IMG_DIR."state/".$upload_name;
 			//$db_dir = "img/state/".$upload_name;
 			$db_dir = $upload_name;
 		}
@@ -701,24 +701,24 @@ Class ClassCommon {
 	function setSetting(){
 		if(DB == "0"){
 			$sql = " UPDATE dn_setting SET ";
-			if($_REQUEST['top_img_check'] == 1){
+			if($this->DB->html_encode($_REQUEST['top_img_check']) == 1){
 				$rs_img = $this->imgUpload(1, "sel_top_img", null);
 				$sql .= " top_img = '".$rs_img[1]."',";
 			}else{
-				$sql .= " top_img = '".$_REQUEST['top_img']."',";
+				$sql .= " top_img = '".$this->DB->html_encode($_REQUEST['top_img'])."',";
 			}
-			$sql .= " top_title = '".$_REQUEST['top_title']."',";
-			$sql .= " top_text = '".$_REQUEST['top_text']."',";
-			$sql .= " recaptcha = ".$_REQUEST['recaptcha'].",";
-			$sql .= " level_cnt = ".$_REQUEST['level_cnt'].",";
-			$sql .= " load_time = ".$_REQUEST['load_time']."";
+			$sql .= " top_title = '".$this->DB->html_encode($_REQUEST['top_title'])."',";
+			$sql .= " top_text = '".$this->DB->html_encode($_REQUEST['top_text'])."',";
+			$sql .= " recaptcha = ".$this->DB->html_encode($_REQUEST['recaptcha']).",";
+			$sql .= " level_cnt = ".$this->DB->html_encode($_REQUEST['level_cnt']).",";
+			$sql .= " load_time = ".$this->DB->html_encode($_REQUEST['load_time'])."";
 			$sql .= " WHERE set_idx = ".ss_organ_id." ";
 
 			//echo $sql;
 			//시스템 지역 코드 설정
-			if($_SESSION['user_type'] == 7 && $_REQUEST['area_code']){
+			if($_SESSION['user_type'] == 7 && $this->DB->html_encode($_REQUEST['area_code'])){
 				$sql = " UPDATE wr_map_setting SET
-				SIG_CD = '".$_REQUEST['area_code']."' ";
+				SIG_CD = '".$this->DB->html_encode($_REQUEST['area_code'])."' ";
 			}
 			
 			if($this->DB->QUERYONE($sql)) $sqlReturn = true;
@@ -745,8 +745,8 @@ Class ClassCommon {
 			$top_use = $_REQUEST['top_use'];
 			foreach($top_idx as $key => $val){
 				// if($top_idx[$key] != '7'){	// 환경설정은 사용 변경하지 않음
-					$sql = " UPDATE dn_menu_top SET menu_use = '".$top_use[$key]."'
-						 WHERE menu_idx = '".$val."' ";
+					$sql = " UPDATE dn_menu_top SET menu_use = '".$this->DB->html_encode($top_use[$key])."'
+						 WHERE menu_idx = '".$this->DB->html_encode($val)."' ";
 					
 					if( $this->DB->QUERYONE($sql) ){
 						$arrReturn[] = true;
@@ -780,8 +780,8 @@ Class ClassCommon {
 				// 		$sub_use[$key] = '1';
 				// 	}
 				// }
-				$sql = " UPDATE dn_menu_in SET menu_level = '".$sub_level[$key]."', menu_use = '".$sub_use[$key]."'
-						 WHERE menu_idx = '".$val."' AND menu_num = '".$sub_num[$key]."' ";
+				$sql = " UPDATE dn_menu_in SET menu_level = '".$this->DB->html_encode($sub_level[$key])."', menu_use = '".$this->DB->html_encode($sub_use[$key])."'
+						 WHERE menu_idx = '".$this->DB->html_encode($val)."' AND menu_num = '".$this->DB->html_encode($sub_num[$key])."' ";
 				//echo $sql;
 				if( $this->DB->QUERYONE($sql) ){
 					$arrReturn[] = true;
@@ -818,8 +818,9 @@ Class ClassCommon {
 				// 		// $popup_url[$key] = $popup_url[$key];
 				// 	}
 				// }
-				$sql = " UPDATE dn_direct_url SET menu_name = '".$popup_name[$key]."' , menu_url = '".$popup_http[$key].$popup_url[$key]."' , menu_use = '".$popup_use[$key]."'
-						 WHERE menu_idx = '".$val."' ";
+				$sql = " UPDATE dn_direct_url SET menu_name = '".$this->DB->html_encode($popup_name[$key])."' , 
+						menu_url = '".$this->DB->html_encode($popup_http[$key]).$this->DB->html_encode($popup_url[$key])."' , menu_use = '".$this->DB->html_encode($popup_use[$key])."'
+						 WHERE menu_idx = '".$this->DB->html_encode($val)."' ";
 
 						 if( $this->DB->QUERYONE($sql) ){
 							$arrReturn[] = true;
@@ -849,9 +850,9 @@ Class ClassCommon {
 			foreach($report_idx as $key => $val){
 				$sql = " UPDATE dn_report_url SET ";		
 				if($report_use){
-					$sql .= "report_use = '".$report_use[$key]."'";
+					$sql .= "report_use = '".$this->DB->html_encode($report_use[$key])."'";
 				}
-					$sql .=	" WHERE report_num = '".$report_num[$key]."' ";
+					$sql .=	" WHERE report_num = '".$this->DB->html_encode($report_num[$key])."' ";
 
 							if( $this->DB->QUERYONE($sql) ){
 							$arrReturn[] = true;
@@ -971,7 +972,7 @@ Class ClassCommon {
 			}
 	
 			$sql = " INSERT INTO dn_layout (lay_idx, lay_case)
-					 VALUES (".ss_organ_id.", ".$_REQUEST['lay_case'].") ";
+					 VALUES (".ss_organ_id.", ".$this->DB->html_encode($_REQUEST['lay_case']).") ";
 			
 			if($this->DB->QUERYONE($sql)) $sqlReturn = true;
 			$this->DB->parseFree();
@@ -985,7 +986,8 @@ Class ClassCommon {
 			foreach($_REQUEST['data'] as $key => $val){
 				foreach($val as $key2 => $val2){
 					$sql = " INSERT INTO dn_layout_item (lay_idx, lay_area, lay_item, lay_ival)
-							 VALUES (".ss_organ_id.", ".($key + 1).", ".($key2 + 1).", ".$val2." ) ";
+							 VALUES (".ss_organ_id.", ".($this->DB->html_encode($key) + 1).",
+							  ".($this->DB->html_encode($key2) + 1).", ".$this->DB->html_encode($val2)." ) ";
 					
 					if( $this->DB->QUERYONE($sql) ){
 						$arrReturn[] = true;

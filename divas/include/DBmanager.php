@@ -1,6 +1,6 @@
 <?php
 
-CLASS DBmanager{
+CLASS DBmanager extends mysqli{
 
 	public $db=array();
 	public $query_result;
@@ -11,35 +11,43 @@ CLASS DBmanager{
 	/************************
 	데이타베이스 초기화
 	************************/
-	FUNCTION DBmanager($DB_HOST, $DB_USER, $DB_PASSWORD, $DB_DATABASE) {
-		$this->db[host]=$DB_HOST;
-		$this->db[user]=$DB_USER;
-		$this->db[passwd]=$DB_PASSWORD;
-		$this->db[database]=$DB_DATABASE;
+	function __construct($HOST, $USER, $PASS, $DB) {
+		if(strpos($HOST, ":") !== false){
+			$arr_h = explode(":", $HOST);
+			$this->db['host']=$arr_h[0];
+			$this->db['port']=$arr_h[1];
+		}else{
+			$this->db['host']=$HOST;
+		}
+		$this->db['user']=$USER;
+		$this->db['passwd']=$PASS;
+		$this->db['database']=$DB;
 		$this->SET_CONNECT();
 		$this->SET_SELECT_DB();
 	}
+	
 	/******************
 	연결        
 	******************/
-	FUNCTION SET_CONNECT(){
-		$this->db[conn] = @mysql_connect($this->db[host], $this->db[user], $this->db[passwd]) or die(mysql_error()); 
-		mysql_query("set names utf8",$this->db[conn]);
+	public FUNCTION SET_CONNECT(){
+		$this->db['conn'] = @mysqli_connect($this->db['host'], $this->db['user'], $this->db['passwd'], $this->db['database'], $this->db['port']);
+		if(!$this->db['conn']){die("연결 실패 : ".mysqli_connect_error());}
+		else{mysqli_set_charset($this->db['conn'],"utf8");}
 	}
 
 	/******************
 	테이블 선택
 	******************/
-	FUNCTION SET_SELECT_DB(){
-		$this->db[slt] = @mysql_select_db($this->db[database], $this->db[conn]) or die(mysql_error());
+	public FUNCTION SET_SELECT_DB(){
+		$this->db['slt'] = @mysqli_select_db($this->db['conn'],$this->db['database']) or die(mysqli_error($this->db['conn']));
 	}
 
 	/******************
 	DB해제
 	******************/
-	FUNCTION close(){
-		if(isset($this->$query_result))$this->FREE_RESULT();
-		if(isset($this->db[conn]))@mysql_close($this->db[conn]);
+	public FUNCTION close(){
+		// if(isset($this->$query_result))$this->FREE_RESULT();
+		if(isset($this->db['conn']))@mysqli_close($this->db['conn']);
 	}
 
 	// XSS 보안
@@ -50,7 +58,7 @@ CLASS DBmanager{
 		// htmlspecialchars, htmlentities 두개다 기본 euc-kr을 지원하지 않는다.
 		return htmlspecialchars($this->mysql_fix_string($this->db['conn'], $str), ENT_QUOTES, "UTF-8");
 	}
-
+	
 	function mysql_fix_string($db, $str){
 		// global $db;
 		// escape variables for security
@@ -59,7 +67,7 @@ CLASS DBmanager{
 		if(get_magic_quotes_gpc()) $str = stripslashes($str);
 		return mysqli_real_escape_string($db,$str);
 	}
-
+	
 	function html_decode($str){
 		return htmlspecialchars_decode(stripslashes($str));
 	}
@@ -67,7 +75,7 @@ CLASS DBmanager{
 	/******************
 	정보 
 	******************/
-	FUNCTION printDBinfo(){
+	public FUNCTION printDBinfo(){
 		echo"<pre>";
 		print_r($this->db);
 		print_r($this->result);
@@ -77,31 +85,48 @@ CLASS DBmanager{
 	/******************
 	메모리 리셑
 	******************/
-	FUNCTION parseFree(){
-		if ($this->query_result)@mysql_free_result($this->query_result);
+	public FUNCTION parseFree(){
+		if ($this->query_result)@mysqli_free_result($this->query_result);
 			unset($this->num_rows);
 	}
 
 	/******************
 	쿼리전송
 	******************/
-	FUNCTION QUERY($sql="") {
-		if(isset($sql))$this->query_result=mysql_query($sql,$this->db[conn]) or die(mysql_error());
-		$this->num_rows = mysql_num_rows($this->query_result);
+	public FUNCTION QUERY_LiNE($sql) {
+		if(isset($sql))$this->query_result=mysqli_query($this->db['conn'],$sql) or die(mysqli_error($this->db['conn']));
+		$this->num_rows = mysqli_num_rows($this->query_result);
 		$this->recordcount = $this->num_rows;
+	}
+	
+	/******************
+	[] limit 리턴
+	******************/
+	public FUNCTION execute($sql){
+		$this->QUERY_LiNE($sql);
+		$i=0;
+		while($row=@mysqli_fetch_array($this->query_result)){
+			$this->result[$i]=$row;
+			$i++;
+		}
+		return $this->result;
 	}
 
 	FUNCTION updaterTrace($sql, $result) {	
 		$result = $result == 1 ? "true" : $result;
 		$btArr = debug_backtrace();
-		$btVal = $btArr[count($btArr)-1]['file'] .",".$btArr[count($btArr)-1]['function'];
+		
+		$rootIdx = !strpos($btArr[count($btArr)-1]['file'], "\\divas\\") ? strpos($btArr[count($btArr)-1]['file'], "\\tvbrd\\") : strpos($btArr[count($btArr)-1]['file'], "\\divas\\");
+		$rootFile = substr($btArr[count($btArr)-1]['file'], $rootIdx+1);
+
+		$btVal = $rootFile .",".$btArr[count($btArr)-1]['function'];
 		$sql2 = " INSERT INTO updater_log (USER_ID, IP, BACKTRACE, UP_SQL, UP_RESULT, LOG_DATE) VALUE 
-				( '".ss_user_id."', '".get_client_ip()."', '".addslashes($btVal)."', '".addslashes($sql)."', '".$result."', DATE_FORMAT(now(), '%Y-%m-%d %H:%i')) "; 
-		$this->query_result=mysql_query($sql2,$this->db[conn]) or die(mysql_error());
+				( '".ss_user_id."', '".get_client_ip()."', '".addslashes($btVal)."', '".addslashes($sql)."', '".$result."', DATE_FORMAT(now(), '%Y-%m-%d %H:%i:%s')) "; 
+		$this->query_result=mysqli_query($this->db['conn'],$sql2) or die(mysqli_error($this->db['conn']));
 	}
 
-	FUNCTION QUERYONE($sql="") {
-		if(isset($sql))$this->query_result=mysql_query($sql,$this->db[conn]) or die(mysql_error());
+	public FUNCTION QUERYONE($sql) {
+		if(isset($sql))$this->query_result=mysqli_query($this->db['conn'],$sql) or die(mysqli_error($this->db['conn']));
 		$this->updaterTrace($sql, $this->query_result);
 		return $this->query_result;
 	}
@@ -109,18 +134,17 @@ CLASS DBmanager{
 	/******************
 	1 limit 리턴
 	******************/
-	FUNCTION FIRST_FETCH_ARRAY($sql="") {
-		$this->QUERY($sql);
-		return @mysql_fetch_array($this->query_result);
+	public FUNCTION FIRST_FETCH_ARRAY($sql) {
+		$this->QUERY_LiNE($sql, $this->db['conn']);
+		return @mysqli_fetch_array($this->query_result);
 	}
 
 	/******************
-	[] limit 리턴
+	연관배열 리턴
 	******************/
-	FUNCTION execute($sql=""){
-		$this->QUERY($sql);
+	public FUNCTION FETCH_ASSOC(){
 		$i=0;
-		while($row=@mysql_fetch_array($this->query_result)){
+		while($row=@mysqli_fetch_assoc($this->query_result)){
 			$this->result[$i]=$row;
 			$i++;
 		}
@@ -130,21 +154,9 @@ CLASS DBmanager{
 	/******************
 	연관배열 리턴
 	******************/
-	FUNCTION FETCH_ASSOC(){
+	public FUNCTION FETCH_ROW() {
 		$i=0;
-		while($row=@mysql_fetch_assoc($this->query_result)){
-			$this->result[$i]=$row;
-			$i++;
-		}
-		return $this->result;
-	}
-
-	/******************
-	연관배열 리턴
-	******************/
-	FUNCTION FETCH_ROW() {
-		$i=0;
-		while($row=@mysql_fetch_row($this->query_result)) {
+		while($row=@mysqli_fetch_row($this->query_result)) {
 			$this->result[$i]=$row;
 			$i++;
 		}
@@ -154,7 +166,7 @@ CLASS DBmanager{
 	/******************
 	총수
 	******************/
-	FUNCTION NUM_ROW(){
+	public FUNCTION NUM_ROW(){
 		return $this->num_rows;
 	}
 }// END DATABASE CLASS

@@ -48,7 +48,7 @@ $dvUtil   = new Divas_Util();
                                 *
                         FROM
                                 wr_map_setting ";
-        $resultArr = $DB->FETCH_ASSOC($sql);
+        $resultArr = $DB->execute($sql);
 
         $returnBody = array( 'result' => true, 'data' => $resultArr );
          echo json_encode( $returnBody );

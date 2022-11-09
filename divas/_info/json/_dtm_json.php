@@ -6,15 +6,19 @@ require_once "../../include/class/rainInfo.php";
 require_once "../../include/class/flowInfo.php";
 require_once "../../include/class/awsInfo.php";
 require_once "../../include/class/snowInfo.php";
-require_once "../../include/class/dispInfo.php";
+// require_once "../../include/class/dispInfo.php";
 // require_once "../../include/class/broadcast.php";
 
-$mode = $_REQUEST["mode"];
-$kind = $_REQUEST["kind"];
-$area_code = $_REQUEST['area_code'];
-$sdate = $_REQUEST['sdate'];
-$hour = $_REQUEST['hour'];
+$mode = $DB->html_encode($_REQUEST["mode"]);
+$kind = $DB->html_encode($_REQUEST["kind"]);
+$area_code = $DB->html_encode($_REQUEST['area_code']);
+$sdate = $DB->html_encode($_REQUEST['sdate']);
+$hour = $DB->html_encode($_REQUEST['hour']);
 $min = $_REQUEST['min'];
+if($min){
+	$min = $purifier->purifyArray($min);
+}
+
 $yy = substr($sdate, 0, 4);
 $mm = substr($sdate, 5, 2);
 $dd = substr($sdate, 8, 2);
