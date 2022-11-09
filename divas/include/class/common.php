@@ -220,7 +220,7 @@ Class ClassCommon {
 				}
 				$_SESSION['is_rtu_id'] = $is_rtu_id;
 				$_SESSION['is_login'] = 1;
-				setcookie("login_kind", $_REQUEST['login_kind_data'], time()+3600*24*30, "/");
+				// setcookie("login_kind", $_REQUEST['login_kind_data'], time()+3600*24*30, "/");
 			}else{
 				$_SESSION['is_login'] = 0;
 
