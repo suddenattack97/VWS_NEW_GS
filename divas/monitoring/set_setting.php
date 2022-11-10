@@ -11,7 +11,7 @@ require_once "./head.php";
 	<div id="content">
 	
 		<form id="set_frm">
-
+		<input type="hidden" name="OTT" value="<? echo $ott; ?>">
 		<div class="main_contitle">
 					<div class="tit"><img src="../images/board_icon_aws.png"> <span>시스템 설정</span>
 					<span id="rtu_name" class="sub_tit mL20"></span>

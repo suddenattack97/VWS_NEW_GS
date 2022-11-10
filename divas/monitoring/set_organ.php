@@ -14,6 +14,7 @@ require_once "./head.php";
 		<input type="hidden" id="ORGAN_ID" name="ORGAN_ID" value="<? echo $data_list[0]['ORGAN_ID'] ?>">
 		<input type="hidden" id="AREA_MAIN" name="AREA_MAIN" value="<? echo $data_list[0]['AREA_MAIN'] ?>">
 		<input type="hidden" id="AREA_SUB" name="AREA_SUB" value="<? echo $data_list[0]['AREA_SUB'] ?>">
+		<input type="hidden" name="OTT" value="<? echo $ott; ?>">
 
 		<div class="main_contitle">
 			<div class="tit"><img src="../images/board_icon_aws.png"> <span>기관정보 설정</span>
@@ -204,7 +205,7 @@ $(document).ready(function(){
 		if(this.id){
 			var l_ORGAN_ID = $("#"+this.id+" #l_ORGAN_ID").text();
 	
-			var param = "mode=organ&ORGAN_ID="+l_ORGAN_ID;
+			var param = "mode=organ&ORGAN_ID="+l_ORGAN_ID+"&OTT="+'<?=$ott?>';
 			$.ajax({
 				type: "POST",
 				url: "../_info/json/_set_json.php",
@@ -409,7 +410,7 @@ $(document).ready(function(){
         ajax: {
             url: "../_info/json/_set_json.php",
             type: "POST",
-            data: { "mode" : "area" },
+            data: { "mode" : "area", "OTT" : "<? echo $ott; ?>" },
             idSrc: "AREA_CODE"
         },
         columns: [

@@ -2,6 +2,9 @@
 require_once "../include/class/rtuInfo.php";
 require_once "../include/class/flowInfo.php";
 
+$ott = getToken();
+$_SESSION["OTT"] = $ott;
+
 $sdate = $_REQUEST['sdate'] ? $_REQUEST['sdate'] : date("Y-m-d"); // 시작 날짜
 
 for($i=0; $i<=23; $i++){

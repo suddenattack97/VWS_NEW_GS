@@ -147,6 +147,7 @@ require_once "./head.php";
 			<input type="hidden" id="p_area_code" name="area_code">
 			<input type="hidden" id="p_sdate" name="sdate">
 			<input type="hidden" id="p_hour" name="hour">
+			<input type="hidden" name="OTT" value="<? echo $ott; ?>">
 			<div class="pop_stitle">
 				수정 일시 : <span id="sel_date"></span>
 			</div>
@@ -249,7 +250,7 @@ $(document).ready(function(){
 		$.ajax({
 	        type: "POST",
 	        url: "../_info/json/_dtm_json.php",
-		    data: { "mode" : "rain", "area_code" : area_code, "sdate" : "<?=$sdate?>", "hour" : hour },
+		    data: { "mode" : "rain", "area_code" : area_code, "sdate" : "<?=$sdate?>", "hour" : hour, "OTT" : "<?=$ott?>"},
 	        cache: false,
 	        dataType: "json",
 	        success : function(data){

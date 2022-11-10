@@ -3,6 +3,9 @@ require_once "../include/class/rtuInfo.php";
 require_once "../include/class/rainInfo.php";
 require_once "../include/class/awsInfo.php";
 
+$ott = getToken();
+$_SESSION["OTT"] = $ott;
+
 $area_code = $_REQUEST['area_code']; // 지역 코드
 $sdate = $_REQUEST['sdate'] ? $_REQUEST['sdate'] : date("Y-m-d"); // 시작 날짜
 

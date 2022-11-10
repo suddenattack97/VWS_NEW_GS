@@ -17,7 +17,7 @@ require_once "./head.php";
 		<input type="hidden" id="C_SIGNAL_ID" name="C_SIGNAL_ID"><!-- 선택한 장비 통신 아이디 -->
 		<input type="hidden" id="C_AREA_CODE" name="C_AREA_CODE"><!-- 선택한 장비 행정 코드 -->
 		<input type="hidden" id="GB_OBSY" name="GB_OBSY"><!-- 재해위험지역 계측기 구분 -->
-
+		<input type="hidden" name="OTT" value="<? echo $ott; ?>">
 
 		<div class="main_contitle">
 					<div class="tit"><img src="../images/board_icon_aws.png"> <span>장비 설정</span>
@@ -651,7 +651,7 @@ $(document).ready(function(){
 			var list_id = '#'+$(this).attr("id");
 			sessionStorage.setItem('list_row', list_id);
 			
-			var param = "mode=equip&RTU_ID="+l_RTU_ID;
+			var param = "mode=equip&RTU_ID="+l_RTU_ID+"&OTT="+'<?=$ott?>';
 			$.ajax({
 				type: "POST",
 				url: "../_info/json/_set_json.php",
@@ -765,7 +765,7 @@ $(document).ready(function(){
 		var l_RTU_ID = $(this).closest("tr").find("#l_RTU_ID").text();
 		$("#S_RTU_ID").val(l_RTU_ID);
 		
-		var param = "mode=equip_sensor&RTU_ID="+l_RTU_ID;
+		var param = "mode=equip_sensor&RTU_ID="+l_RTU_ID+"&OTT="+'<?=$ott?>';
 		$.ajax({
 	        type: "POST",
 	        url: "../_info/json/_set_json.php",
@@ -1133,7 +1133,7 @@ $(document).ready(function(){
 		    swal("체크", "행정 코드를 입력해 주세요.", "warning");
 		    $("#AREA_CODE").focus(); return false;	
 		}else{
-			var param = "mode=equip_dup&AREA_CODE="+$("#AREA_CODE").val()+"&C_RTU_ID="+$("#C_RTU_ID").val();
+			var param = "mode=equip_dup&AREA_CODE="+$("#AREA_CODE").val()+"&C_RTU_ID="+$("#C_RTU_ID").val()+"&OTT="+'<?=$ott?>';
 			$.ajax({
 		        type: "POST",
 		        url: "../_info/json/_set_json.php",
@@ -1187,7 +1187,7 @@ $(document).ready(function(){
         ajax: {
             url: "../_info/json/_set_json.php",
             type: "POST",
-            data: { "mode" : "area" },
+            data: { "mode" : "area", "OTT" : "<? echo $ott; ?>" },
             idSrc: "AREA_CODE"
         },
         columns: [
@@ -1209,12 +1209,12 @@ $(document).ready(function(){
 	});
 
 	// 재해위험지구 조회
-	$("#btn_dngr").click(function(){
-		$("#pop_3").show();
-		$("#pop_1").hide();
-		$("#pop_2").hide();
-		popup_open(); // 레이어 팝업 열기
-	});
+	// $("#btn_dngr").click(function(){
+	// 	$("#pop_3").show();
+	// 	$("#pop_1").hide();
+	// 	$("#pop_2").hide();
+	// 	popup_open(); // 레이어 팝업 열기
+	// });
 	
 	// // 재해위험지구 테이블 호출
 	// var table4 = $("#list_table4").DataTable({

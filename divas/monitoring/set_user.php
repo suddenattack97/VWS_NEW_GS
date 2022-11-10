@@ -20,7 +20,7 @@ require_once "./head.php";
 		<input type="hidden" id="C_USER_ID" name="C_USER_ID"><!-- 선택한 사용자 아이디 -->
 		<input type="hidden" id="STR_RTU_ID" name="STR_RTU_ID"><!-- 선택한 방송권한 지역 RTU_ID -->
 		<input type="hidden" id="mode" name="mode">
-
+		<input type="hidden" name="OTT" value="<? echo $ott; ?>">
 		<div class="main_contitle">
 					<div class="tit"><img src="../images/board_icon_aws.png"> <span>관리자 설정</span>
 					<span id="rtu_name" class="sub_tit mL20"></span>
@@ -363,7 +363,7 @@ crypt.setKey(key);
 		if(this.id){
 			var l_USER_ID = $("#"+this.id+" #l_USER_ID").text();
 			
-			var param = "mode=user&USER_ID="+l_USER_ID;
+			var param = "mode=user&USER_ID="+l_USER_ID+"&OTT="+'<?=$ott?>';
 			$.ajax({
 				type: "POST",
 				url: "../_info/json/_set_json.php",
@@ -682,7 +682,7 @@ crypt.setKey(key);
 		    swal("체크", "사용자 ID를 입력해 주세요.", "warning");
 		    $("#USER_ID").focus(); return false;	
 		}else{
-			var param = "mode=user_dup&USER_ID="+$("#USER_ID").val()+"&C_USER_ID="+$("#C_USER_ID").val();
+			var param = "mode=user_dup&USER_ID="+$("#USER_ID").val()+"&C_USER_ID="+$("#C_USER_ID").val()+"&OTT="+'<?=$ott?>';
 			$.ajax({
 		        type: "POST",
 		        url: "../_info/json/_set_json.php",
