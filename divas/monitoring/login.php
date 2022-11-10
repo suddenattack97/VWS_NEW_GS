@@ -2,6 +2,8 @@
 require_once "../_conf/_common.php";
 
 $login_kind = $_COOKIE['login_kind'] ? $_COOKIE['login_kind'] : 1;
+$ott = getToken();
+$_SESSION["OTT"] = $ott;
 ?>
 
 <!DOCTYPE html>
@@ -56,6 +58,7 @@ if(recaptcha == 0){
 	<input type="hidden" id="target" name="target" value="<?=$_REQUEST['target']?>">
 	<input type="hidden" id="l_id" name="l_id">
 	<input type="hidden" id="l_pw" name="l_pw">
+	<input type="hidden" name="OTT" value="<?=$ott?>">
 	<div id="login_wrapper" class="login_wrapper<?=$tmp?>">
 		<div class="login_title">
 			<div class="txt_box">

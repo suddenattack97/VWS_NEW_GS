@@ -13,31 +13,36 @@ $mode = $_REQUEST["mode"];
 switch($mode){
 	// 로그인 세션 처리
 	case 'login':
-		$IdInfo = $ClassCommon->getLoginIdInfo();
-		if( $IdInfo['result'] ){
-			if(recaptcha == 0){
-				if( $ClassCommon->setLogin() ){
-					$result = 0;
-				}else{
-					$result = 1;
-				}
-			}else{
-				if( $ClassCommon->setCaptcha() ){ // 리캡차 체크
+		// 검증
+		if($_SESSION["OTT"] == $_POST["OTT"]){
+			$IdInfo = $ClassCommon->getLoginIdInfo();
+			if( $IdInfo['result'] ){
+				if(recaptcha == 0){
 					if( $ClassCommon->setLogin() ){
 						$result = 0;
 					}else{
 						$result = 1;
 					}
 				}else{
-					$result = 2;
+					if( $ClassCommon->setCaptcha() ){ // 리캡차 체크
+						if( $ClassCommon->setLogin() ){
+							$result = 0;
+						}else{
+							$result = 1;
+						}
+					}else{
+						$result = 2;
+					}
+				}
+			} else {
+				if($IdInfo['msg']){
+					$result = 4;
+				}else{
+					$result = 3;
 				}
 			}
-		} else {
-			if($IdInfo['msg']){
-				$result = 4;
-			}else{
-				$result = 3;
-			}
+		}else{
+			$result = 3;
 		}
 		
 		$returnBody = array( 'result' => $result , "msg" => $IdInfo['msg']);
