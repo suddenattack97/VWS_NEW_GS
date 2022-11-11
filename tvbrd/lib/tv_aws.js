@@ -764,53 +764,53 @@ function aws(kind, arr_area_code){ // AWS - AWS 장비
 					if(tmp_arr_area_code[i].length != 0){
 						if(i == "alarm"){
 							//$.post( "controll/alarm.php", { "mode" : "alarm", "arr_area_code" : tmp_arr_area_code[i], "check" : "aws" }, function(response){
-							$.post( "controll/alarm.php", { "mode" : "alarm", "arr_area_code" : tmp_arr_area_code[i], "arr_rtu_id" : tmp_arr_rtu_id, "check" : "aws" }, function(response){
-								$.each(response.list, function(index, item){
-									if(arr_rtu[item.area_code]['alert_state'] || arr_rtu[item.area_code]['alert_error'][0]){
-										var tmp_process = '';
-										for(var i = 0; i <= 5; i++){
-											if(i <= arr_rtu[item.area_code]['alert_step']){
-												tmp_process += '<img src="img/ok.png">';
-											}else{
-												tmp_process += '<img src="img/ok_n.png">';
-											}
-										}
-										$("#aws_"+item.area_code+"_process").html(tmp_process);
+							// $.post( "controll/alarm.php", { "mode" : "alarm", "arr_area_code" : tmp_arr_area_code[i], "arr_rtu_id" : tmp_arr_rtu_id, "check" : "aws" }, function(response){
+							// 	$.each(response.list, function(index, item){
+							// 		if(arr_rtu[item.area_code]['alert_state'] || arr_rtu[item.area_code]['alert_error'][0]){
+							// 			var tmp_process = '';
+							// 			for(var i = 0; i <= 5; i++){
+							// 				if(i <= arr_rtu[item.area_code]['alert_step']){
+							// 					tmp_process += '<img src="img/ok.png">';
+							// 				}else{
+							// 					tmp_process += '<img src="img/ok_n.png">';
+							// 				}
+							// 			}
+							// 			$("#aws_"+item.area_code+"_process").html(tmp_process);
 										
-										if(arr_rtu[item.area_code]['alert_error'][0]){
-											$("#alarm_"+item.area_code+" .dat_right").html('방송 에러<br/>'+arr_rtu[item.area_code]['alert_error'][1]);
-										}else{
-											if(arr_rtu[item.area_code]['alert_step'] >= 5){
-												$("#alarm_"+item.area_code+" .dat_right").html('<img src="img/d1.gif"><br/>방송 완료');
-											}else if(arr_rtu[item.area_code]['alert_step'] == 4){
-												$("#alarm_"+item.area_code+" .dat_right").html('<img src="img/d1.gif"><br/>방송중(경보)');
-											}else if(arr_rtu[item.area_code]['alert_step'] == 3){
-												$("#alarm_"+item.area_code+" .dat_right").html('<img src="img/spinner.gif"><br/>정보 전송중');
-											}else if(arr_rtu[item.area_code]['alert_step'] == 2){
-												$("#alarm_"+item.area_code+" .dat_right").html('<img src="img/spinner.gif"><br/>장비 접속중');
-											}else if(arr_rtu[item.area_code]['alert_step'] == 1){
-												$("#alarm_"+item.area_code+" .dat_right").html('<img src="img/spinner.gif"><br/>SMS 전송중');
-											}else if(arr_rtu[item.area_code]['alert_step'] == 0){
-												$("#alarm_"+item.area_code+" .dat_right").html('<img src="img/spinner.gif"><br/>전송 대기중');
-											}
-										}
-									}else{
-										$("#aws_"+item.area_code+"_process").empty();
+							// 			if(arr_rtu[item.area_code]['alert_error'][0]){
+							// 				$("#alarm_"+item.area_code+" .dat_right").html('방송 에러<br/>'+arr_rtu[item.area_code]['alert_error'][1]);
+							// 			}else{
+							// 				if(arr_rtu[item.area_code]['alert_step'] >= 5){
+							// 					$("#alarm_"+item.area_code+" .dat_right").html('<img src="img/d1.gif"><br/>방송 완료');
+							// 				}else if(arr_rtu[item.area_code]['alert_step'] == 4){
+							// 					$("#alarm_"+item.area_code+" .dat_right").html('<img src="img/d1.gif"><br/>방송중(경보)');
+							// 				}else if(arr_rtu[item.area_code]['alert_step'] == 3){
+							// 					$("#alarm_"+item.area_code+" .dat_right").html('<img src="img/spinner.gif"><br/>정보 전송중');
+							// 				}else if(arr_rtu[item.area_code]['alert_step'] == 2){
+							// 					$("#alarm_"+item.area_code+" .dat_right").html('<img src="img/spinner.gif"><br/>장비 접속중');
+							// 				}else if(arr_rtu[item.area_code]['alert_step'] == 1){
+							// 					$("#alarm_"+item.area_code+" .dat_right").html('<img src="img/spinner.gif"><br/>SMS 전송중');
+							// 				}else if(arr_rtu[item.area_code]['alert_step'] == 0){
+							// 					$("#alarm_"+item.area_code+" .dat_right").html('<img src="img/spinner.gif"><br/>전송 대기중');
+							// 				}
+							// 			}
+							// 		}else{
+							// 			$("#aws_"+item.area_code+"_process").empty();
 										
-										if(item.date == "-"){
-											$("#alarm_"+item.area_code+" .dat_right").html("&nbsp;<br>&nbsp;");
-										}else{
-											if(item.call == 7){ // VHF 방송 종료 시
-												var tmp_str = item.date.substr(0, 10).replace(/-/gi, ".")+'<br>'+item.date.substr(10, 6)+' <sapn style="font-size:11px;">VHF</span>';
-												$("#alarm_"+item.area_code+" .dat_right").html(tmp_str);
-											}else{
-												var tmp_str = item.date.substr(0, 10).replace(/-/gi, ".")+'<br>'+item.date.substr(10, 6)+' <sapn style="font-size:11px;">CDMA</span>';
-												$("#alarm_"+item.area_code+" .dat_right").html(tmp_str);
-											}
-										}
-									}
-								});
-							}, "json");	
+							// 			if(item.date == "-"){
+							// 				$("#alarm_"+item.area_code+" .dat_right").html("&nbsp;<br>&nbsp;");
+							// 			}else{
+							// 				if(item.call == 7){ // VHF 방송 종료 시
+							// 					var tmp_str = item.date.substr(0, 10).replace(/-/gi, ".")+'<br>'+item.date.substr(10, 6)+' <sapn style="font-size:11px;">VHF</span>';
+							// 					$("#alarm_"+item.area_code+" .dat_right").html(tmp_str);
+							// 				}else{
+							// 					var tmp_str = item.date.substr(0, 10).replace(/-/gi, ".")+'<br>'+item.date.substr(10, 6)+' <sapn style="font-size:11px;">CDMA</span>';
+							// 					$("#alarm_"+item.area_code+" .dat_right").html(tmp_str);
+							// 				}
+							// 			}
+							// 		}
+							// 	});
+							// }, "json");	
 						}else if(i == "rain"){
 							rain_ajax[1] = $.post( "controll/rain.php", { "mode" : "rain", "arr_area_code" : tmp_arr_area_code[i], "check" : "aws" }, function(response){
 								$.each(response.list, function(index, item){
