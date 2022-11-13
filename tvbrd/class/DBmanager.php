@@ -125,7 +125,7 @@ CLASS DBmanager extends mysqli{
 		$btVal = $rootFile .",".$btArr[count($btArr)-1]['function'];
 
 		$sql2 = " INSERT INTO updater_log (USER_ID, IP, BACKTRACE, UP_SQL, UP_RESULT, LOG_DATE) VALUE 
-				( '".$_COOKIE['keyUserID']."', '".$this->client_ip."', '".addslashes($btVal)."', '".addslashes($sql)."', '".$result."', DATE_FORMAT(now(), '%Y-%m-%d %H:%i:%s')) "; 
+				( '".user_id."', '".$this->client_ip."', '".addslashes($btVal)."', '".addslashes($sql)."', '".$result."', DATE_FORMAT(now(), '%Y-%m-%d %H:%i:%s')) "; 
 		$this->query_result=mysqli_query($this->db['conn'],$sql2) or die(mysqli_error($this->db['conn']));
 	}
 

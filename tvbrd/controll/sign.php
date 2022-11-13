@@ -159,7 +159,7 @@ switch($mode) {
 		$arr_idx = $_REQUEST["idx"];
 		$arr_rtu_id = explode("-", $_REQUEST["str_rtu_id"]); // 전광판
 		$arr_msg_idx = explode("@", $_REQUEST["str_msg_idx"]); // 메세지
-		$userID = $_COOKIE["keyUserID"];
+		$userID = user_id;
 		
 		// 전광판
 		for($i = 0; $i < count($arr_rtu_id); $i ++){

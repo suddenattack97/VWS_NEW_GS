@@ -7,6 +7,7 @@
  * 소    속 : (주)화진티엔아이 기술연구소                  *
  * 작성목적 : 장비정보                                       *
  ***********************************************************/
+require_once "../_common.php";
 
 Class RtuInfo {
 
@@ -227,14 +228,14 @@ Class RtuInfo {
         $this->DB->parseFree();
     }
 
-
  /*
   * Divas RTU 정보
   */
     function getDivasRtuInfo($localcode=null) {
+        $organid_session = organ_id;
 
-        if(empty($_COOKIE['keyOrganID'])) $organid = 1;
-        else                              $organid = $_COOKIE['keyOrganID'];
+        if(empty($organid_session)) $organid = 1;
+        else                        $organid = $organid_session;
 
         unset($this->AREA_CODE,$this->RTU_NAME,$this->RTU_TYPE,$this->MODEL_TYPE,$this->IP_ADDRESS,$this->FLOW_DANGER,$this->FLOW_WARNING,$this->LINE_TYPE,$this->PORT,$this->BAUD_RATE,$this->AVR_TYPE,$this->FONT_IDX,$this->SORT_FLAG,$this->CALL_LAST,$this->MODEL_ID, $this->rsCnt);
         if($localcode!==null){
