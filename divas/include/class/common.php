@@ -190,6 +190,7 @@ Class ClassCommon {
 				$_SESSION['user_id'] = $rs[0]['user_id'];
 				if(MobileCheck() == "Computer"){
 					$_SESSION['user_pwd'] = $this->rsa_encrypt($rs[0]['user_pwd'], public_key);
+					$_SESSION['user_pwd_de'] = $rs[0]['user_pwd'];
 				}else if(MobileCheck() == "Mobile"){
 					$_SESSION['user_pwd'] = $rs[0]['user_pwd'];
 				}
@@ -220,6 +221,13 @@ Class ClassCommon {
 				}
 				$_SESSION['is_rtu_id'] = $is_rtu_id;
 				$_SESSION['is_login'] = 1;
+
+				$user_set = array(
+					'id' =>	$_SESSION['user_id'],
+					'organ_id' => $_SESSION['organ_id'],
+					'is_rtu_id' => $_SESSION['is_rtu_id']
+				);
+				$_SESSION['user_setting'] = $this->rsa_encrypt(json_encode($user_set),public_key);
 			}else{
 				$_SESSION['is_login'] = 0;
 
