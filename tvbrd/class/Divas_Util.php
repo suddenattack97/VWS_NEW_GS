@@ -560,6 +560,44 @@ function getDecodedString($str) {
             $ipaddress = 'UNKNOWN';
         return $ipaddress;
     }
+
+    function rsa_encrypt($plaintext, $public_key){
+
+		// 공개키를 사용하여 암호화한다.
+		$pubkey_decoded = @openssl_pkey_get_public($public_key);
+		if ($pubkey_decoded === false) return false;
+		
+		$ciphertext = false;
+		$status = @openssl_public_encrypt($plaintext, $ciphertext, $pubkey_decoded);
+		if (!$status || $ciphertext === false) return false;
+		
+		// 암호문을 base64로 인코딩하여 반환한다.
+		return base64_encode($ciphertext);
+	}
+
+	function rsa_decrypt($ciphertext){
+		
+		// 암호문을 base64로 디코딩한다.
+		$ciphertext = @base64_decode($ciphertext, true);
+		if ($ciphertext === false) return false;
+		
+		// 개인키를 읽어온다.
+		$private_key = @file_get_contents('private.key');
+		// 개인키를 사용하여 복호화한다.
+		
+		$privkey_decoded = @openssl_pkey_get_private($private_key);
+		if ($privkey_decoded === false)	return false;
+		
+		$plaintext = false;
+		$status = @openssl_private_decrypt($ciphertext, $plaintext, $privkey_decoded);
+		
+		@openssl_pkey_free($privkey_decoded);
+		if (!$status || $plaintext === false) return false;
+		// 이상이 없는 경우 평문을 반환한다.
+		
+		return $plaintext;
+	}
+
     
 }//End Class
 ?>
