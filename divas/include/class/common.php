@@ -225,7 +225,8 @@ Class ClassCommon {
 				$user_set = array(
 					'id' =>	$_SESSION['user_id'],
 					'organ_id' => $_SESSION['organ_id'],
-					'is_rtu_id' => $_SESSION['is_rtu_id']
+					'is_rtu_id' => $_SESSION['is_rtu_id'],
+					'organ_name' => $_SESSION['organ_name']
 				);
 				$_SESSION['user_setting'] = $this->rsa_encrypt(json_encode($user_set),public_key);
 			}else{

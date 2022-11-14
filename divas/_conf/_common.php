@@ -82,6 +82,15 @@ if(MobileCheck() == "Mobile" && $_SESSION['is_login'] != 1){
 $ClassCommon->getSession();
 $ClassCommon->getSetting();
 
+if($_SESSION['is_login'] != 1){
+}else{
+	$user_setting = (array) json_decode($ClassCommon->rsa_decrypt($_SESSION['user_setting']));
+	define("user_id", $user_setting['id']);
+	define("organ_id", $user_setting['organ_id']);
+	define("is_rtu_id", $user_setting['is_rtu_id']);
+	define("organ_name", $user_setting['organ_name']);
+}
+
 function round_data($data=0, $num=0.01, $fl=10){
 	if($data == "-"){
 		return $data;
