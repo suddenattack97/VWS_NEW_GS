@@ -130,7 +130,7 @@ CLASS DBmanager extends mysqli{
 		
 		// 개행문자, tab 제거
 		$sql = preg_replace('/\r\n|\r|\n|\t/','',$sql);
-		$str = user_id." | ".get_client_ip()." | ".addslashes($btVal)." | ".addslashes($sql)." | ".$result;
+		$str = $_SESSION['user_id']." | ".$this->client_ip." | ".addslashes($btVal)." | ".addslashes($sql)." | ".$result;
 
 		$sysIdx = strpos($btArr[count($btArr)-1]['file'], "\\APM_Setup\\");
 		$log_dir = substr($btArr[count($btArr)-1]['file'], 0, $sysIdx+1)."bin\\web_log\\".date("Ym");
