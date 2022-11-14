@@ -72,7 +72,7 @@ require_once "../_info/_set_setting.php";
         <!-- <div id="session" class="pB_13"> -->
         <div id="session" class="pB_13">
           <span id="user_id_front" class="aR col_mint font_700 ">
-            <span id="user_id" class="pL_5 pR_15"> 사용자 : <?=ss_user_id?>(<?=ss_organ_name;?>)</span>
+            <span id="user_id" class="pL_5 pR_15"> 사용자 : <?=ss_user_id?>(<?=ss_organ_name?>)</span>
           </span>
             <!-- <i id="session_time_front" class="fa fa-chevron-right pB_15 "></i>
             <span id="session_time" class="pB_13 pL_5 pR_15 "></span> -->
