@@ -120,11 +120,38 @@ CLASS DBmanager extends mysqli{
 		$rootFile = substr($btArr[count($btArr)-1]['file'], $rootIdx+1);
 
 		$btVal = $rootFile .",".$btArr[count($btArr)-1]['function'];
-		$sql2 = " INSERT INTO updater_log (USER_ID, IP, BACKTRACE, UP_SQL, UP_RESULT, LOG_DATE) VALUE 
-				( '".ss_user_id."', '".get_client_ip()."', '".addslashes($btVal)."', '".addslashes($sql)."', '".$result."', DATE_FORMAT(now(), '%Y-%m-%d %H:%i:%s')) "; 
-		$this->query_result=mysqli_query($this->db['conn'],$sql2) or die(mysqli_error($this->db['conn']));
-	}
+		// $sql2 = " INSERT INTO updater_log (USER_ID, IP, BACKTRACE, UP_SQL, UP_RESULT, LOG_DATE) VALUE 
+		// 		( '".ss_user_id."', '".get_client_ip()."', '".addslashes($btVal)."', '".addslashes($sql)."', '".$result."', DATE_FORMAT(now(), '%Y-%m-%d %H:%i:%s')) "; 
+		// $this->query_result=mysqli_query($this->db['conn'],$sql2) or die(mysqli_error($this->db['conn']));
+		
+		// 개행문자, tab 제거
+		$sql = preg_replace('/\r\n|\r|\n|\t/','',$sql);
+		$str = ss_user_id." | ".get_client_ip()." | ".addslashes($btVal)." | ".addslashes($sql)." | ".$result;
 
+		$sysIdx = strpos($btArr[count($btArr)-1]['file'], "\\APM_Setup\\");
+		$log_dir = substr($btArr[count($btArr)-1]['file'], 0, $sysIdx+1)."bin\\web_log\\".date("Ym");
+		
+		// 경로에 폴더 없으면 만들어 준다.
+		if (!is_dir($log_dir)) {
+			@mkdir($log_dir, 0777, true);
+			@chmod($log_dir, 0777);
+		}
+	
+		$first_txt = ' [ 일 시 ] 사용자 ID | ip 주소 | 함수추적( 파일명,함수명 ) | 실행한 쿼리 | 실행결과 ';
+		$log_txt = '[' . date("Y-m-d H:i:s") . '] ';
+		$log_txt .= $str;
+		
+		$file_name = date('Ymd').".txt";
+		$is_file_exist = file_exists($log_dir."/".$file_name);
+		$log_file = fopen($log_dir."/".$file_name, "a");
+		// 파일이 없으면 첫줄에 설명을 넣는다.
+		if(!$is_file_exist){
+			fwrite($log_file, $first_txt."\r\n");
+		}
+		fwrite($log_file, $log_txt."\r\n");
+		fclose($log_file);
+	}
+	
 	public FUNCTION QUERYONE($sql) {
 		if(isset($sql))$this->query_result=mysqli_query($this->db['conn'],$sql) or die(mysqli_error($this->db['conn']));
 		$this->updaterTrace($sql, $this->query_result);
