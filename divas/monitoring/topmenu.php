@@ -119,7 +119,7 @@ require_once "../_info/_set_setting.php";
 <script type="text/javascript">
 
   var ms_token = localStorage.getItem("ms");
-	var login_token = getCookie("set_login_"+ms_token);
+	var login_token = "<?=login_kind?>";
 	var sesstiontime_token = getCookie("session_time_"+ms_token);
 
   if(login_token != 1){

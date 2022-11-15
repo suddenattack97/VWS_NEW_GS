@@ -89,6 +89,7 @@ if($_SESSION['is_login'] != 1){
 	define("organ_id", $user_setting['organ_id']);
 	define("is_rtu_id", $user_setting['is_rtu_id']);
 	define("organ_name", $user_setting['organ_name']);
+	define("login_kind", $user_setting['login_kind']);
 }
 
 function round_data($data=0, $num=0.01, $fl=10){
