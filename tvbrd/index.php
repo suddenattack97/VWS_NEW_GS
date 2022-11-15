@@ -24,7 +24,7 @@ require_once "./head.php";
 	        <ul>
               <li class="conte_gry">
 				<!-- <span class="fL w70">현재 접속자 : <?=strrev($_COOKIE['keyUserID'])?></span> -->
-                <span class="fL w70">현재 접속자 : <?=user_id?></span>
+                <span class="fL w70">현재 접속자 : <?=keyUserID?></span>
                 <!-- <span class="fR">
               		<div class="file_input">
               			<label id="btn_logout">로그아웃</label>

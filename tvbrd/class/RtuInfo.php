@@ -232,7 +232,7 @@ Class RtuInfo {
   * Divas RTU 정보
   */
     function getDivasRtuInfo($localcode=null) {
-        $organid_session = organ_id;
+        $organid_session = keyOrganID;
 
         if(empty($organid_session)) $organid = 1;
         else                        $organid = $organid_session;

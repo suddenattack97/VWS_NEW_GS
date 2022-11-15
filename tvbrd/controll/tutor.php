@@ -128,7 +128,7 @@ switch($mode) {
 		}
 		$arr_rtu = array();
 		if($data){
-			$keyTosRtuID = is_rtu_id;
+			$keyTosRtuID = keyTosRtuID;
 			$arr_keyTosRtuID = split(",", $keyTosRtuID);
 
 			foreach($data as $key => $val){
