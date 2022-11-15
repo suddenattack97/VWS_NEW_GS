@@ -223,7 +223,7 @@ Class ClassCommon {
 				$_SESSION['is_login'] = 1;
 
 				$user_set = array(
-					'id' =>	$_SESSION['user_id'],
+					'user_id' =>	$_SESSION['user_id'],
 					'organ_id' => $_SESSION['organ_id'],
 					'is_rtu_id' => $_SESSION['is_rtu_id'],
 					'organ_name' => $_SESSION['organ_name'],
