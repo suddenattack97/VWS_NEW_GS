@@ -227,7 +227,7 @@ Class ClassCommon {
 					'organ_id' => $_SESSION['organ_id'],
 					'is_rtu_id' => $_SESSION['is_rtu_id'],
 					'organ_name' => $_SESSION['organ_name'],
-					'login_kind' => $_SESSION['is_login']
+					'is_login' => $_SESSION['is_login']
 				);
 				$_SESSION['user_setting'] = $this->rsa_encrypt(json_encode($user_set),public_key);
 			}else{

@@ -11,6 +11,6 @@ if($_SESSION['is_login'] != 1){
 	define("keyOrganID", $user_setting['organ_id']);
 	define("keyTosRtuID", $user_setting['is_rtu_id']);
 	define("keyOrganName", $user_setting['organ_name']);
-	define("keyLoginKind", $user_setting['login_kind']);
+	define("keyIsLogin", $user_setting['is_login']);
 }
 ?>
