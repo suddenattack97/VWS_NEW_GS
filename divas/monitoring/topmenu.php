@@ -142,7 +142,31 @@ require_once "../_info/_set_setting.php";
 
   $(".column").click(function(){
     sessionStorage.clear();
+    if(login_token == 1){
+    sessionCheck();
+    }
   });
+
+  // 세션 유효시간 한시간 뒤 로그아웃
+    function sessionCheck(){
+      localStorage.setItem("top_time", new Date().getTime());
+
+      if(localStorage.getItem("time") < localStorage.getItem("top_time")){
+        $.ajax({
+          type: "POST",
+          url: "../_info/json/_tms_json.php",
+          data: { "mode" : "logout" },
+          cache: false,
+          dataType: "json",
+          success : function(data){
+            console.log("!@#");
+            localStorage.removeItem("top_time");
+            location.href = "./main.php"; return false;
+          }
+        });
+
+      }
+  }
 
   //쿠키 가져오기 함수
 function getCookie(cName) {

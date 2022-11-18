@@ -266,7 +266,7 @@ document.oncontextmenu = function(){return false;}
 function setToggle(sets){
 
 	var ms_token = localStorage.getItem("ms");
-	var login_token = getCookie("set_login_"+ms_token);
+	var login_token = "<?=keyIsLogin?>";
 	var sesstiontime_token = getCookie("session_time_"+ms_token);
 
 	var _vDate = new Date(sesstiontime_token); // 전달 받은 일자

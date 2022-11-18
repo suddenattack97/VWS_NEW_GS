@@ -84,7 +84,7 @@ $(document).ready(function(){
 	var session_cookie = getCookie("session_time");
 
 	var ms_token = localStorage.getItem("ms");
-	var login_token = getCookie("set_login_"+ms_token);
+	var login_token = "<?=keyIsLogin?>";
 	var sesstiontime_token = getCookie("session_time_"+ms_token);
 
 	// const countDownTimer = function (id, date) {
@@ -264,7 +264,7 @@ $(document).ready(function(){
 		var tmp_href = $(this).attr("target");
 
 		ms_token = localStorage.getItem("ms");
-		login_token = getCookie("set_login_"+ms_token);
+		login_token = "<?=keyIsLogin?>";
 		sesstiontime_token = getCookie("session_time_"+ms_token);
 
 		if(login_token != "1"){ //0: 로그인X 1:로그인O
@@ -293,7 +293,7 @@ $(document).ready(function(){
 		var checkLogin = getCookie("set_login");
 
 		ms_token = localStorage.getItem("ms");
-		login_token = getCookie("set_login_"+ms_token);
+		login_token = "<?=keyIsLogin?>";
 		sesstiontime_token = getCookie("session_time_"+ms_token);
 
 		if(login_token != "1"){
@@ -316,7 +316,7 @@ $(document).ready(function(){
 		var checkLogin = getCookie("set_login");
 		
 		ms_token = localStorage.getItem("ms");
-		login_token = getCookie("set_login_"+ms_token);
+		login_token = "<?=keyIsLogin?>";
 		sesstiontime_token = getCookie("session_time_"+ms_token);
 
 		if(login_token != "1"){
@@ -335,7 +335,6 @@ $(document).ready(function(){
     //아이프레임 로드 시
 	$("#main").load(function(){
 		var tmp_src = $(this).attr("src");
-		
 		if(login_token == "1" && login_token) {
 			if(tmp_src == "tms_main.php"){
 				$("#btn_layout").removeClass("dp0");

@@ -183,6 +183,11 @@ $(document).ready(function(){
 		var user_pwd = $("#user_pwd").val();
 		var login_kind = $("#login_kind input:checked").val();
 		var recaptcha = $("#recaptcha").val();
+		var date = new Date();
+		
+		date = date.setMinutes(date.getMinutes() + 1);
+		// date_test = date.setMinutes(date.getMinutes() + 1);
+		localStorage.setItem("time", date);
 		
 		if(!user_id){
 		    swal("체크", "아이디를 입력해 주세요.", "warning");

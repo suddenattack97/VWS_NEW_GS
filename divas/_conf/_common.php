@@ -1,6 +1,4 @@
 <? // 환경 설정
-ini_set("session.cache_expire", 180); // 세션 유효시간 (분단위)
-ini_set("session.gc_maxlifetime", 3600); // 세션 로그인 후 지속시간 (초단위)
 session_start();
 require_once ("_lib.php");
 
