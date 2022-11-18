@@ -159,7 +159,6 @@ require_once "../_info/_set_setting.php";
           cache: false,
           dataType: "json",
           success : function(data){
-            console.log("!@#");
             localStorage.removeItem("top_time");
             location.href = "./main.php"; return false;
           }
