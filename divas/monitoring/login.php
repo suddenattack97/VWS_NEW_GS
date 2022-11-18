@@ -185,8 +185,7 @@ $(document).ready(function(){
 		var recaptcha = $("#recaptcha").val();
 		var date = new Date();
 		
-		date = date.setMinutes(date.getMinutes() + 1);
-		// date_test = date.setMinutes(date.getMinutes() + 1);
+		date = date.setHours(date.getHours() + 1); // 세션 유효시간 (시간단위)
 		localStorage.setItem("time", date);
 		
 		if(!user_id){
