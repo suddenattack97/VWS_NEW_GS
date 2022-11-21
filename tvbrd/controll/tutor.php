@@ -128,16 +128,16 @@ switch($mode) {
 		}
 		$arr_rtu = array();
 		if($data){
-			$keyTosRtuID = keyTosRtuID;
-			$arr_keyTosRtuID = split(",", $keyTosRtuID);
-
+			// $keyTosRtuID = keyTosRtuID;
+			// $arr_keyTosRtuID = split(",", $keyTosRtuID);
+			
 			foreach($data as $key => $val){
 				// 쿠키 값에 따른 방송 장비 표시 제한
-				if($keyTosRtuID){
-// 					if($val['rtu_type'] == "B00"){
-						if( !in_array($val['rtu_id'], $arr_keyTosRtuID) ) continue;
-// 					}
-				}
+// 				if($keyTosRtuID){
+// // 					if($val['rtu_type'] == "B00"){
+// 						if( !in_array($val['rtu_id'], $arr_keyTosRtuID) ) continue;
+// // 					}
+// 				}
 				$arr_rtu[ $val['area_code'] ]['ctprvn_cd'] = $val['ctprvn_cd'];
 				$arr_rtu[ $val['area_code'] ]['sig_cd'] = $val['sig_cd'];
 				$arr_rtu[ $val['area_code'] ]['emd_cd'] = $val['emd_cd'];
