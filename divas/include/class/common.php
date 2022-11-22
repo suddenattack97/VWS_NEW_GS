@@ -274,6 +274,7 @@ Class ClassCommon {
 	 *   로그아웃 세션 처리
 	 */
 	function setLogout(){
+		session_regenerate_id(); 
 		session_destroy();
 	}
 	
