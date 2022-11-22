@@ -960,7 +960,7 @@ function aws_event(area_code,state,level,type) {
 				tmp_cnt++;
 			}
 			if( (map_kind == 1 || map_kind == 2) && jQuery.inArray("4", map_data) != "-1" ){
-				tmp_cnt = tmp_cnt + 5;
+				tmp_cnt = tmp_cnt + 3;
 			}
 
 			if(tmp_cnt == 0) {
