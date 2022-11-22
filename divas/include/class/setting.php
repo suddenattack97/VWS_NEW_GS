@@ -273,11 +273,6 @@ Class ClassSetting {
 	 */
 	function getUserView(){
 		if(DB == "0"){
-			// $sql = " SELECT a.ORGAN_ID, (SELECT ORGAN_NAME FROM ORGAN_INFO WHERE ORGAN_ID = a.ORGAN_ID ) AS ORGAN_NAME,
-			// 				a.USER_TYPE, a.MENU_TYPE, a.USER_ID, a.USER_PWD, a.USER_NAME, a.EMAIL, AES_DECRYPT(UNHEX(MOBILE), MD5(".ss_organ_code.")) as MOBILE, a.IS_PERMIT, 
-			// 				AES_DECRYPT(UNHEX(SMART_MOBILE), MD5(".ss_organ_code.")) as SMART_MOBILE , a.SMART_USE  
-			// 		 FROM USER_INFO AS a 
-			// 		 WHERE a.USER_ID = '".$this->DB->html_encode($_REQUEST['USER_ID']."' ";
 			$sql = " SELECT a.ORGAN_ID, (SELECT ORGAN_NAME FROM ORGAN_INFO WHERE ORGAN_ID = a.ORGAN_ID ) AS ORGAN_NAME,
 			a.USER_TYPE, a.MENU_TYPE, a.USER_ID, a.USER_PWD, a.USER_NAME, a.EMAIL, MOBILE as MOBILE, a.IS_PERMIT, 
 			SMART_MOBILE as SMART_MOBILE , a.SMART_USE  
@@ -374,9 +369,6 @@ Class ClassSetting {
 			if($MOBILE == "010--" || $MOBILE == "011--" || $MOBILE == "016--" || $MOBILE == "017--" || $MOBILE == "019--" || $MOBILE == "1") $MOBILE = "";
 			if($SMART_MOBILE == "010--" || $SMART_MOBILE == "011--" || $SMART_MOBILE == "016--" || $SMART_MOBILE == "017--" || $SMART_MOBILE == "019--" || $SMART_MOBILE == "1") $SMART_MOBILE = "";
 			
-			// $sql = " INSERT INTO USER_INFO (ORGAN_ID,AREA_CODE, USER_TYPE, MENU_TYPE, USER_ID, USER_PWD, USER_NAME, EMAIL, MOBILE, IS_PERMIT, SMART_MOBILE, SMART_USE, REG_DATE)
-			// 		 VALUES (".$this->DB->html_encode($_REQUEST['ORGAN_ID'].",(SELECT area_code FROM organ_info WHERE organ_id = ".$this->DB->html_encode($_REQUEST['ORGAN_ID']."),'".$this->DB->html_encode($_REQUEST['USER_TYPE']."', '".$this->DB->html_encode($_REQUEST['MENU_TYPE']."', '".$this->DB->html_encode($_REQUEST['USER_ID']."', '".$l_pw."',
-			// 		 '".$this->DB->html_encode($_REQUEST['USER_NAME']."', '".$EMAIL."', HEX(AES_ENCRYPT('".$MOBILE."', MD5(".ss_organ_code."))), '".$this->DB->html_encode($_REQUEST['IS_PERMIT']."',  HEX(AES_ENCRYPT('".$SMART_MOBILE."', MD5(".ss_organ_code."))), '".$this->DB->html_encode($_REQUEST['SMART_USE']."', NOW()) ";
 			$sql = " INSERT INTO USER_INFO (ORGAN_ID,AREA_CODE, USER_TYPE, MENU_TYPE, USER_ID, USER_PWD, USER_NAME, EMAIL, MOBILE, IS_PERMIT, SMART_MOBILE, SMART_USE, REG_DATE)
 					VALUES (".$this->DB->html_encode($_REQUEST['ORGAN_ID']).",
 					(SELECT area_code FROM organ_info WHERE organ_id = ".$this->DB->html_encode($_REQUEST['ORGAN_ID'])."),'".$this->DB->html_encode($_REQUEST['USER_TYPE'])."', '".$this->DB->html_encode($_REQUEST['MENU_TYPE'])."', '".$this->DB->html_encode($_REQUEST['USER_ID'])."', '".$this->DB->html_encode($l_pw)."',
@@ -402,10 +394,6 @@ Class ClassSetting {
 			if($MOBILE == "010--" || $MOBILE == "011--" || $MOBILE == "016--" || $MOBILE == "017--" || $MOBILE == "019--" || $MOBILE == "1") $MOBILE = "";
 			if($SMART_MOBILE == "010--" || $SMART_MOBILE == "011--" || $SMART_MOBILE == "016--" || $SMART_MOBILE == "017--" || $SMART_MOBILE == "019--" || $SMART_MOBILE == "1") $SMART_MOBILE = "";
 			
-			// $sql = " UPDATE USER_INFO SET ORGAN_ID = ".$this->DB->html_encode($_REQUEST['ORGAN_ID'].", USER_TYPE = '".$this->DB->html_encode($_REQUEST['USER_TYPE']."', MENU_TYPE = '".$this->DB->html_encode($_REQUEST['MENU_TYPE']."',
-			// 		 USER_PWD = '".$l_pw."', USER_NAME = '".$this->DB->html_encode($_REQUEST['USER_NAME']."', EMAIL = '".$EMAIL."', MOBILE = HEX(AES_ENCRYPT('".$MOBILE."', MD5(".ss_organ_code."))), 
-			// 		 IS_PERMIT = '".$this->DB->html_encode($_REQUEST['IS_PERMIT']."', SMART_MOBILE = HEX(AES_ENCRYPT('".$SMART_MOBILE."', MD5(".ss_organ_code."))), SMART_USE = '".$this->DB->html_encode($_REQUEST['SMART_USE']."'
-			// 		 WHERE USER_ID = '".$this->DB->html_encode($_REQUEST['C_USER_ID']."' ";
 			$sql = " UPDATE USER_INFO SET ORGAN_ID = ".$this->DB->html_encode($_REQUEST['ORGAN_ID']).", USER_TYPE = '".$this->DB->html_encode($_REQUEST['USER_TYPE'])."', MENU_TYPE = '".$this->DB->html_encode($_REQUEST['MENU_TYPE'])."',
 					 USER_PWD = '".$this->DB->html_encode($l_pw)."', USER_NAME = '".$this->DB->html_encode($_REQUEST['USER_NAME'])."', EMAIL = '".$EMAIL."', MOBILE = '".$MOBILE."', 
 					 IS_PERMIT = '".$this->DB->html_encode($_REQUEST['IS_PERMIT'])."', SMART_MOBILE = '".$SMART_MOBILE."', SMART_USE = '".$this->DB->html_encode($_REQUEST['SMART_USE'])."'
@@ -574,11 +562,6 @@ Class ClassSetting {
 	 */
 	function getEquipList(){
 		if(DB == "0"){
-			// $sql = " SELECT a.* , b.LINE_NAME, c.MODEL_NAME, AES_DECRYPT(UNHEX(a.CONNECTION_INFO), MD5(".ss_organ_code.")) as decryt_con_info
-			// 		 FROM RTU_INFO AS a
-			// 		 LEFT JOIN LINE_INFO AS b ON a.LINE_NO = b.LINE_TYPE
-			// 		 LEFT JOIN MODEL_INFO AS c ON a.MODEL_NO = c.MODEL_TYPE
-			// 		 ORDER BY a.".sort." ";
 			$sql = " SELECT a.* , b.LINE_NAME, c.MODEL_NAME, a.CONNECTION_INFO as decryt_con_info
 					 FROM RTU_INFO AS a
 					 LEFT JOIN LINE_INFO AS b ON a.LINE_NO = b.LINE_TYPE
@@ -848,13 +831,6 @@ Class ClassSetting {
 				$FLOW_DANGER_OFF = $this->DB->html_encode($_REQUEST['FLOW_DANGER_OFF'])*100;
 			}
 			
-			// $sql = " INSERT INTO RTU_INFO (RTU_ID, SIGNAL_ID, AREA_CODE, RTU_NAME, ORGAN_ID, LINE_NO, MODEL_NO, RTU_TYPE, CONNECTION_INFO,
-			// 							CALL_LAST, SORT_FLAG, PORT, BAUD_RATE, VHF_USE, VHF_SYSTEM_ID, VHF_RTU_ID, VHF_TRANS_ID, REG_DATE, FLOW_DANGER, FLOW_WARNING)
-			// 		 VALUES ('".$this->DB->html_encode($_REQUEST['RTU_ID']."', '".$this->DB->html_encode($_REQUEST['SIGNAL_ID']."', '".$this->DB->html_encode($_REQUEST['AREA_CODE']."', '".$this->DB->html_encode($_REQUEST['RTU_NAME']."', '".$this->DB->html_encode($_REQUEST['ORGAN_ID']."',
-			// 		 '".$this->DB->html_encode($_REQUEST['LINE_NO']."', '".$this->DB->html_encode($_REQUEST['MODEL_NO']."', '".$this->DB->html_encode($_REQUEST['RTU_TYPE']."', HEX(AES_ENCRYPT('".$this->DB->html_encode($_REQUEST['CONNECTION_INFO']."',MD5('".ss_organ_code."'))) ,
-			// 		 '".$CALL_LAST."', '".$this->DB->html_encode($_REQUEST['SORT_FLAG']."', '".$this->DB->html_encode($_REQUEST['PORT']."', '".$this->DB->html_encode($_REQUEST['BAUDRATE']."', '".$this->DB->html_encode($_REQUEST['VHF_USE']."', 
-			// 		 '".$this->DB->html_encode($_REQUEST['VHF_SYSTEM_ID']."', '".$this->DB->html_encode($_REQUEST['VHF_RTU_ID']."', '".$this->DB->html_encode($_REQUEST['VHF_TRANS_ID']."',
-			// 		 NOW(), '".$this->DB->html_encode($_REQUEST['FLOW_DANGER']."', '".$this->DB->html_encode($_REQUEST['FLOW_WARNING']."') ";
 			$sql = " INSERT INTO RTU_INFO (RTU_ID, SIGNAL_ID, AREA_CODE, RTU_NAME, ORGAN_ID, LINE_NO, MODEL_NO, RTU_TYPE, CONNECTION_INFO,
 					 CALL_LAST, SORT_FLAG, PORT, BAUD_RATE, VHF_USE, VHF_SYSTEM_ID, VHF_RTU_ID, VHF_TRANS_ID, REG_DATE, FLOW_DANGER, FLOW_WARNING, FLOW_DANGER_OFF, FLOW_WARNING_OFF, DANGER_USE)
 					 VALUES ('".$this->DB->html_encode($_REQUEST['RTU_ID'])."', '".$this->DB->html_encode($_REQUEST['SIGNAL_ID'])."', '".$this->DB->html_encode($_REQUEST['AREA_CODE'])."', '".$this->DB->html_encode($_REQUEST['RTU_NAME'])."', '".$this->DB->html_encode($_REQUEST['ORGAN_ID'])."',
@@ -894,13 +870,6 @@ Class ClassSetting {
 				$FLOW_DANGER_OFF = $this->DB->html_encode($_REQUEST['FLOW_DANGER_OFF'])*100;
 			}
 			
-			// $sql = " UPDATE RTU_INFO SET SIGNAL_ID = '".$this->DB->html_encode($_REQUEST['SIGNAL_ID']."', AREA_CODE = '".$this->DB->html_encode($_REQUEST['AREA_CODE']."', RTU_NAME = '".$this->DB->html_encode($_REQUEST['RTU_NAME']."',
-			// 		 ORGAN_ID = '".$this->DB->html_encode($_REQUEST['ORGAN_ID']."', LINE_NO = '".$this->DB->html_encode($_REQUEST['LINE_NO']."', MODEL_NO = '".$this->DB->html_encode($_REQUEST['MODEL_NO']."', RTU_TYPE = '".$this->DB->html_encode($_REQUEST['RTU_TYPE']."',
-			// 		 CONNECTION_INFO = HEX(AES_ENCRYPT('".$this->DB->html_encode($_REQUEST['CONNECTION_INFO']."',MD5('".ss_organ_code."'))), CALL_LAST = '".$CALL_LAST."',
-			// 		 SORT_FLAG = '".$this->DB->html_encode($_REQUEST['SORT_FLAG']."', PORT = '".$this->DB->html_encode($_REQUEST['PORT']."', BAUD_RATE = '".$this->DB->html_encode($_REQUEST['BAUDRATE']."', VHF_USE = '".$this->DB->html_encode($_REQUEST['VHF_USE']."', 
-			// 		 VHF_SYSTEM_ID = '".$this->DB->html_encode($_REQUEST['VHF_SYSTEM_ID']."', VHF_RTU_ID = '".$this->DB->html_encode($_REQUEST['VHF_RTU_ID']."', VHF_TRANS_ID = '".$this->DB->html_encode($_REQUEST['VHF_TRANS_ID']."',
-			// 		 FLOW_DANGER = '".$this->DB->html_encode($_REQUEST['FLOW_DANGER']."', FLOW_WARNING = '".$this->DB->html_encode($_REQUEST['FLOW_WARNING']."'
-			// 		 WHERE RTU_ID = '".$this->DB->html_encode($_REQUEST['C_RTU_ID']."' ";
 			$sql = " UPDATE RTU_INFO SET SIGNAL_ID = '".$this->DB->html_encode($_REQUEST['SIGNAL_ID'])."', AREA_CODE = '".$this->DB->html_encode($_REQUEST['AREA_CODE'])."', RTU_NAME = '".$this->DB->html_encode($_REQUEST['RTU_NAME'])."',
 					 ORGAN_ID = '".$this->DB->html_encode($_REQUEST['ORGAN_ID'])."', LINE_NO = '".$this->DB->html_encode($_REQUEST['LINE_NO'])."', MODEL_NO = '".$this->DB->html_encode($_REQUEST['MODEL_NO'])."', RTU_TYPE = '".$this->DB->html_encode($_REQUEST['RTU_TYPE'])."',
 					 CONNECTION_INFO = '".$this->DB->html_encode($_REQUEST['CONNECTION_INFO'])."', CALL_LAST = '".$CALL_LAST."',

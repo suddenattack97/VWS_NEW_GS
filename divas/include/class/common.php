@@ -172,16 +172,7 @@ Class ClassCommon {
 							a.organ_id, b.area_code, b.organ_name, b.sort_base
 						 FROM user_info AS a
 						 LEFT JOIN organ_info AS b ON a.organ_id = b.organ_id ";
-					// $sql .= " WHERE a.smart_use = 1 AND a.smart_mobile = HEX(AES_ENCRYPT('".$mynumber."', MD5('".ss_organ_code."'))) ";
 					$sql .= " WHERE a.smart_use = 1 AND a.smart_mobile = '".$mynumber."'";
-					
-					/*
-				if($_REQUEST['device_id'] == "null"){
-					$sql .= " WHERE a.smart_use = 1 AND a.smart_mobile = '".$mynumber."' ";
-				}else{
-					$sql .= " WHERE a.user_id = 'admin' ";
-				}
-				*/
 			}
 			
 			$rs = $this->DB->execute($sql);
