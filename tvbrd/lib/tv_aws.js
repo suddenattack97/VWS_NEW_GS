@@ -541,7 +541,7 @@ function aws(kind, arr_area_code){ // AWS - AWS 장비
 				var tmp_last = "";
 
 
-				if( (map_kind == 1 || map_kind == 2) && jQuery.inArray("4", map_data) != "-1" ){
+				if( jQuery.inArray("4", map_data) != "-1" ){
 
 					$("#aws_"+item).show();
 					$("#aws_label_"+item).show();
@@ -569,7 +569,7 @@ function aws(kind, arr_area_code){ // AWS - AWS 장비
 						$("#temp_"+item).hide();
 						$("#pres_"+item).hide();
 					}
-					if( (map_kind == 1 || map_kind == 2) && jQuery.inArray("1", map_data) != "-1" ){
+					if( jQuery.inArray("1", map_data) != "-1" ){
 						// 상황판이나 장비상태 선택, 강우 버튼 선택
 						if($("#wave_"+item).css('display') == 'none'){
 							$("#aws_"+item).show();
@@ -605,7 +605,7 @@ function aws(kind, arr_area_code){ // AWS - AWS 장비
 							$("#rain_"+item).hide();
 						}
 	    			}
-					if( (map_kind == 1 || map_kind == 2) && jQuery.inArray("2", map_data) != "-1" ){
+					if( jQuery.inArray("2", map_data) != "-1" ){
 						// 상황판이나 장비상태 선택, 수위 버튼 선택
 						$("#flow_"+item).show(); 
 						if( $("#flow_"+item).length != 0 ){
@@ -618,7 +618,7 @@ function aws(kind, arr_area_code){ // AWS - AWS 장비
 							$("#flow_"+item).hide();
 						}
 	    			}
-					if( (map_kind == 1 || map_kind == 2) && jQuery.inArray("3", map_data) != "-1" ){
+					if( jQuery.inArray("3", map_data) != "-1" ){
 						// 상황판이나 장비상태 선택, 적설 버튼 선택
 						if($("#wave_"+item).css('display') == 'none'){
 							// $("#aws_"+item).show();
@@ -763,54 +763,6 @@ function aws(kind, arr_area_code){ // AWS - AWS 장비
 				for(var i in tmp_arr_area_code){
 					if(tmp_arr_area_code[i].length != 0){
 						if(i == "alarm"){
-							//$.post( "controll/alarm.php", { "mode" : "alarm", "arr_area_code" : tmp_arr_area_code[i], "check" : "aws" }, function(response){
-							// $.post( "controll/alarm.php", { "mode" : "alarm", "arr_area_code" : tmp_arr_area_code[i], "arr_rtu_id" : tmp_arr_rtu_id, "check" : "aws" }, function(response){
-							// 	$.each(response.list, function(index, item){
-							// 		if(arr_rtu[item.area_code]['alert_state'] || arr_rtu[item.area_code]['alert_error'][0]){
-							// 			var tmp_process = '';
-							// 			for(var i = 0; i <= 5; i++){
-							// 				if(i <= arr_rtu[item.area_code]['alert_step']){
-							// 					tmp_process += '<img src="img/ok.png">';
-							// 				}else{
-							// 					tmp_process += '<img src="img/ok_n.png">';
-							// 				}
-							// 			}
-							// 			$("#aws_"+item.area_code+"_process").html(tmp_process);
-										
-							// 			if(arr_rtu[item.area_code]['alert_error'][0]){
-							// 				$("#alarm_"+item.area_code+" .dat_right").html('방송 에러<br/>'+arr_rtu[item.area_code]['alert_error'][1]);
-							// 			}else{
-							// 				if(arr_rtu[item.area_code]['alert_step'] >= 5){
-							// 					$("#alarm_"+item.area_code+" .dat_right").html('<img src="img/d1.gif"><br/>방송 완료');
-							// 				}else if(arr_rtu[item.area_code]['alert_step'] == 4){
-							// 					$("#alarm_"+item.area_code+" .dat_right").html('<img src="img/d1.gif"><br/>방송중(경보)');
-							// 				}else if(arr_rtu[item.area_code]['alert_step'] == 3){
-							// 					$("#alarm_"+item.area_code+" .dat_right").html('<img src="img/spinner.gif"><br/>정보 전송중');
-							// 				}else if(arr_rtu[item.area_code]['alert_step'] == 2){
-							// 					$("#alarm_"+item.area_code+" .dat_right").html('<img src="img/spinner.gif"><br/>장비 접속중');
-							// 				}else if(arr_rtu[item.area_code]['alert_step'] == 1){
-							// 					$("#alarm_"+item.area_code+" .dat_right").html('<img src="img/spinner.gif"><br/>SMS 전송중');
-							// 				}else if(arr_rtu[item.area_code]['alert_step'] == 0){
-							// 					$("#alarm_"+item.area_code+" .dat_right").html('<img src="img/spinner.gif"><br/>전송 대기중');
-							// 				}
-							// 			}
-							// 		}else{
-							// 			$("#aws_"+item.area_code+"_process").empty();
-										
-							// 			if(item.date == "-"){
-							// 				$("#alarm_"+item.area_code+" .dat_right").html("&nbsp;<br>&nbsp;");
-							// 			}else{
-							// 				if(item.call == 7){ // VHF 방송 종료 시
-							// 					var tmp_str = item.date.substr(0, 10).replace(/-/gi, ".")+'<br>'+item.date.substr(10, 6)+' <sapn style="font-size:11px;">VHF</span>';
-							// 					$("#alarm_"+item.area_code+" .dat_right").html(tmp_str);
-							// 				}else{
-							// 					var tmp_str = item.date.substr(0, 10).replace(/-/gi, ".")+'<br>'+item.date.substr(10, 6)+' <sapn style="font-size:11px;">CDMA</span>';
-							// 					$("#alarm_"+item.area_code+" .dat_right").html(tmp_str);
-							// 				}
-							// 			}
-							// 		}
-							// 	});
-							// }, "json");	
 						}else if(i == "rain"){
 							rain_ajax[1] = $.post( "controll/rain.php", { "mode" : "rain", "arr_area_code" : tmp_arr_area_code[i], "check" : "aws" }, function(response){
 								$.each(response.list, function(index, item){
@@ -879,12 +831,23 @@ function aws_event(area_code,state,level,type) {
 		// circle[area_code].setVisible(true);
 		if(level == 1){
 			if(!$("#wave_"+area_code).hasClass('waves')){
-				$("#aws_"+item).parent().parent().css('z-index', 121);
-				$("#aws_"+area_code).show();
+				$("#aws_"+area_code).parent().parent().css('z-index', 121);
+				$("#aws_"+area_code+"_marker").parent().parent().css('z-index',112);
+				// $("#aws_"+area_code).show();
+				
+				// $("#aws_"+area_code).show();
+				if( jQuery.inArray("1", map_data) != "-1" ){
+					$("#rain_"+area_code).show();
+				}
+				if( jQuery.inArray("3", map_data) != "-1" ){
+					$("#snow_"+area_code).show();
+				}
+				if( jQuery.inArray("4", map_data) != "-1" ){
+					$("#aws_"+area_code).show();
+				}
 				$("#aws_"+area_code).next().show();
 				$("#aws_"+area_code+"_marker").show();
-				$("#aws_"+area_code+"_marker").parent().parent().css('z-index',112);
-				$("#aws_"+area_code+" li").show();
+				// $("#aws_"+area_code+" li").show();
 
 				if($("#aws_"+area_code).css('display') == 'block'){
 					$("#wave_"+area_code).removeClass('waves2');
@@ -896,11 +859,21 @@ function aws_event(area_code,state,level,type) {
 		}else if (level == 2){
 			if(!$("#wave_"+area_code).hasClass('waves2')){
 				$("#aws_"+area_code).parent().parent().css('z-index',121);
-				$("#aws_"+area_code).show();
+				$("#aws_"+area_code+"_marker").parent().parent().css('z-index', 112);
+
+				// $("#aws_"+area_code).show();
+				if( jQuery.inArray("1", map_data) != "-1" ){
+					$("#rain_"+area_code).show();
+				}
+				if( jQuery.inArray("3", map_data) != "-1" ){
+					$("#snow_"+area_code).show();
+				}
+				if( jQuery.inArray("4", map_data) != "-1" ){
+					$("#aws_"+area_code).show();
+				}
 				$("#aws_"+area_code).next().show();
 				$("#aws_"+area_code+"_marker").show();
-				$("#aws_"+area_code+"_marker").parent().parent().css('z-index', 112);
-				$("#aws_"+area_code+" li").show();
+				// $("#aws_"+area_code+" li").show();
 
 				if($("#aws_"+area_code).css('display') == 'block'){
 					$("#wave_"+area_code).removeClass('waves');
@@ -911,45 +884,45 @@ function aws_event(area_code,state,level,type) {
 			}
 		}
 
-					$.post( "controll/rain.php", { "mode" : "rain", "arr_area_code" : [area_code], "check" : "aws" }, function(response){
-						$.each(response.list, function(index, item){
-							$("#rain_"+area_code+" .dat_right").text(item.day);
-						});
-					}, "json");
+		$.post( "controll/rain.php", { "mode" : "rain", "arr_area_code" : [area_code], "check" : "aws" }, function(response){
+			$.each(response.list, function(index, item){
+				$("#rain_"+area_code+" .dat_right").text(item.day);
+			});
+		}, "json");
 
-					$.post( "controll/snow.php", { "mode" : "snow", "arr_area_code" : [area_code], "check" : "aws" }, function(response){
-						$.each(response.list, function(index, item){
-							$("#snow_"+area_code+" .dat_right").html(item.day);
-						});
-					}, "json");
-					$.post( "controll/wind.php", { "mode" : "wind", "arr_area_code" : [area_code], "check" : "aws" }, function(response){
-						$.each(response.list, function(index, item){
-							if(item.day == "-"){
-								$("#wind_"+area_code+" .dat_right").html('<span style="font-size: 25px; letter-spacing: 0; font-weight: 600 !important;">-</span>');
-							}else{
-								$("#wind_"+area_code+" .dat_right").html(item.day);
-							}
-						});
-					}, "json");
-					$.post( "controll/damp.php", { "mode" : "damp", "arr_area_code" : [area_code], "check" : "aws" }, function(response){
-						$.each(response.list, function(index, item){
-							$("#damp_"+area_code+" .dat_right").html(item.day);
-						});
-					}, "json");
-					$.post( "controll/temp.php", { "mode" : "temp", "arr_area_code" : [area_code], "check" : "aws" }, function(response){
-						$.each(response.list, function(index, item){
-							$("#temp_"+area_code+" .dat_right").html(item.day);
-						});
-					}, "json");
-					$.post( "controll/pres.php", { "mode" : "pres", "arr_area_code" : [area_code], "check" : "aws" }, function(response){
-						$.each(response.list, function(index, item){
-							if(item.day == "-"){
-								$("#pres_"+area_code+" .dat_right").html('<span style="font-size: 25px; letter-spacing: 0; font-weight: 600 !important;">-</span>');
-							}else{
-								$("#pres_"+area_code+" .dat_right").html(item.day);
-							}
-						});
-					}, "json");
+		$.post( "controll/snow.php", { "mode" : "snow", "arr_area_code" : [area_code], "check" : "aws" }, function(response){
+			$.each(response.list, function(index, item){
+				$("#snow_"+area_code+" .dat_right").html(item.day);
+			});
+		}, "json");
+		$.post( "controll/wind.php", { "mode" : "wind", "arr_area_code" : [area_code], "check" : "aws" }, function(response){
+			$.each(response.list, function(index, item){
+				if(item.day == "-"){
+					$("#wind_"+area_code+" .dat_right").html('<span style="font-size: 25px; letter-spacing: 0; font-weight: 600 !important;">-</span>');
+				}else{
+					$("#wind_"+area_code+" .dat_right").html(item.day);
+				}
+			});
+		}, "json");
+		$.post( "controll/damp.php", { "mode" : "damp", "arr_area_code" : [area_code], "check" : "aws" }, function(response){
+			$.each(response.list, function(index, item){
+				$("#damp_"+area_code+" .dat_right").html(item.day);
+			});
+		}, "json");
+		$.post( "controll/temp.php", { "mode" : "temp", "arr_area_code" : [area_code], "check" : "aws" }, function(response){
+			$.each(response.list, function(index, item){
+				$("#temp_"+area_code+" .dat_right").html(item.day);
+			});
+		}, "json");
+		$.post( "controll/pres.php", { "mode" : "pres", "arr_area_code" : [area_code], "check" : "aws" }, function(response){
+			$.each(response.list, function(index, item){
+				if(item.day == "-"){
+					$("#pres_"+area_code+" .dat_right").html('<span style="font-size: 25px; letter-spacing: 0; font-weight: 600 !important;">-</span>');
+				}else{
+					$("#pres_"+area_code+" .dat_right").html(item.day);
+				}
+			});
+		}, "json");
 
 		var tmp_cnt = 0;
 		if($("#wave_"+area_code).hasClass('waves1') || $("#wave_"+area_code).hasClass('waves2')){
@@ -964,13 +937,13 @@ function aws_event(area_code,state,level,type) {
 			}
 
 			if(tmp_cnt == 0) {
-				$("#aws_"+area_code).css('margin-top','-285px'); 
+				$("#aws_"+area_code).css('margin-top','-215px'); 
 				$("#rain_"+area_code).show();
-				$("#snow_"+area_code).show();
 				$("#wind_"+area_code).show();
 				$("#damp_"+area_code).show();
 				$("#temp_"+area_code).show();
-				$("#pres_"+area_code).show();
+				// $("#snow_"+area_code).show();
+				// $("#pres_"+area_code).show();
 			} // 아무것도 선택 안했을 경우
 			else if(tmp_cnt == 1) {$("#aws_"+area_code).css('margin-top','-110px');} //tmp_yAnchor = -146;
 			else if(tmp_cnt == 2) {$("#aws_"+area_code).css('margin-top','-145px');} //tmp_yAnchor = -146;
