@@ -973,12 +973,12 @@ function aws_event(area_code,state,level,type) {
 				$("#pres_"+area_code).show();
 			} // 아무것도 선택 안했을 경우
 			else if(tmp_cnt == 1) {$("#aws_"+area_code).css('margin-top','-110px');} //tmp_yAnchor = -146;
-			else if(tmp_cnt == 2) {$("#aws_"+area_code).css('margin-top','-180px');} //tmp_yAnchor = -146;
-			else if(tmp_cnt == 3) {$("#aws_"+area_code).css('margin-top','-215px');} // tmp_yAnchor = -181;
-			else if(tmp_cnt == 4) {$("#aws_"+area_code).css('margin-top','-250px');} //tmp_yAnchor = -216;
-			else if(tmp_cnt == 5) {$("#aws_"+area_code).css('margin-top','-285px');} //tmp_yAnchor = -251;
-			else if(tmp_cnt == 6) {$("#aws_"+area_code).css('margin-top','-320px');} //tmp_yAnchor = -286;
-			else if(tmp_cnt == 7) {$("#aws_"+area_code).css('margin-top','-355px');} //tmp_yAnchor = -321;
+			else if(tmp_cnt == 2) {$("#aws_"+area_code).css('margin-top','-145px');} //tmp_yAnchor = -146;
+			else if(tmp_cnt == 3) {$("#aws_"+area_code).css('margin-top','-180px');} // tmp_yAnchor = -181;
+			else if(tmp_cnt == 4) {$("#aws_"+area_code).css('margin-top','-215px');} //tmp_yAnchor = -216;
+			else if(tmp_cnt == 5) {$("#aws_"+area_code).css('margin-top','-250px');} //tmp_yAnchor = -251;
+			else if(tmp_cnt == 6) {$("#aws_"+area_code).css('margin-top','-285px');} //tmp_yAnchor = -286;
+			else if(tmp_cnt == 7) {$("#aws_"+area_code).css('margin-top','-320px');} //tmp_yAnchor = -321;
 		}
 	}else if(state == 0){
 		if($("#aws_"+area_code).css('display') != 'none'){
