@@ -16,7 +16,9 @@ $sdate = $DB->html_encode($_REQUEST['sdate']);
 $hour = $DB->html_encode($_REQUEST['hour']);
 $min = $_REQUEST['min'];
 if($min){
-	$min = $purifier->purifyArray($min);
+	foreach($min as $key => $val){
+		$min[$key] = $DB->html_encode($val);
+	}
 }
 
 $yy = substr($sdate, 0, 4);
