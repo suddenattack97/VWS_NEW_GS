@@ -703,30 +703,18 @@ $(document).ready(function(){
 
 		// 현재 센서 종류 RETURN 센서종류 TEXT
 	function getGraphKind(){
-		if($("#option").val() == 0){
+		if("<?=$option?>" == 0){
 			return "bar";
-		}else if($("#option").val() == 1){
-			return "line";
-		}else if($("#option").val() == 2){
-			return "line";
-		}else if($("#option").val() == 3){
-			return "line";
-		}else if($("#option").val() == 4){
+		}else{
 			return "line";
 		}
 	}
 
 			// 현재 센서 종류 RETURN 센서종류 TEXT
 	function getGraphBarKind(){
-		if($("#option").val() == 0){
+		if("<?=$option?>" == 0){
 			return true;
-		}else if($("#option").val() == 1){
-			return false;
-		}else if($("#option").val() == 2){
-			return false;
-		}else if($("#option").val() == 3){
-			return false;
-		}else if($("#option").val() == 4){
+		}else{
 			return false;
 		}
 	}
@@ -1121,14 +1109,14 @@ $(document).ready(function(){
 					//console.log("MAX:"+MAX, "MIN:"+MIN, "INC:"+INCRE);
 
 					chart = new Chart($("#graph"), {
-						type: ($("#option option:selected").val() == '0' ? 'bar' : 'line'),
+						type: ("<?=$option?>" == '0' ? 'bar' : 'line'),
 						data: {
 							labels: LEG,
 							datasets: [{
 								label: '<?=$chart_name?>',
 								data: DATA,
 								yAxisID: 'y_aws',
-								backgroundColor: ($("#option option:selected").val() == '0' ? '#c3dcf5' : 'rgba(255,255,255,0.1)'),
+								backgroundColor: ("<?=$option?>" == '0' ? '#c3dcf5' : 'rgba(255,255,255,0.1)'),
 								borderColor: '#69F',
 								borderWidth: 0
 							}]
