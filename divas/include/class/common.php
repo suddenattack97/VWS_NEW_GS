@@ -55,7 +55,7 @@ Class ClassCommon {
 		if ($ciphertext === false) return false;
 		
 		// 개인키를 읽어온다.
-		$private_key = @file_get_contents('private.key');
+		$private_key = @file_get_contents(str_replace("/", "\\", $_SERVER['DOCUMENT_ROOT']).'/divas/_info/json/private.key');
 		// 개인키를 사용하여 복호화한다.
 		
 		$privkey_decoded = @openssl_pkey_get_private($private_key);
