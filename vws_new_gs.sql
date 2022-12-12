@@ -123,7 +123,7 @@ CREATE TABLE `dn_direct_url` (
 
 LOCK TABLES `dn_direct_url` WRITE;
 /*!40000 ALTER TABLE `dn_direct_url` DISABLE KEYS */;
-INSERT INTO `dn_direct_url` VALUES (1,'원격재난음성경보 시스템','#',1,0,0),(2,'경기도 홍수정보시스템 다운로드','#',1,0,0),(3,'기상관측현황판','#',1,0,0),(4,'강우상황판','#',1,0,0),(5,'TV상황판','#',1,0,0),(6,'기상관측현황판','#',1,0,0),(7,'종합상황판','#',1,0,0),(8,'적설상황판','#',1,0,0),(9,'CCTV','#',1,0,0),(10,'팝업경보/이력조회','http://localhost/new/index2.php',1,0,1),(11,'팝업경보/이벤트설정','http://localhost/vws/template/eventConfig/rf_set_event_config.php',1,0,1),(12,'팝업경보/경광등설정','http://localhost/vws/template/eventConfig/rf_set_lamp_config.php',1,0,1);
+INSERT INTO `dn_direct_url` VALUES (1,'원격재난음성경보 시스템','#',1,0,0),(2,'경기도 홍수정보시스템 다운로드','#',1,0,0),(3,'기상관측현황판','#',1,0,0),(4,'강우상황판','#',1,0,0),(5,'TV상황판','#',1,0,0),(6,'기상관측현황판','#',1,0,0),(7,'종합상황판','#',1,0,0),(8,'적설상황판','#',1,0,0),(9,'CCTV','#',1,0,0),(10,'팝업경보/이력조회','http://localhost/new/index2.php',1,0,0),(11,'팝업경보/이벤트설정','http://localhost/vws/template/eventConfig/rf_set_event_config.php',1,0,0),(12,'팝업경보/경광등설정','http://localhost/vws/template/eventConfig/rf_set_lamp_config.php',1,0,0);
 /*!40000 ALTER TABLE `dn_direct_url` ENABLE KEYS */;
 UNLOCK TABLES;
 

@@ -97,17 +97,10 @@ require_once "../_info/_set_setting.php";
            if($data_url){
              foreach($data_url as $key => $val){
                if($val['menu_use'] == "1"){
-              // if($_COOKIE['set_login'] == 1 || $val['login_check'] == 0){ //로그인 돼있을때랑 login_check가 0일때
-                if($val['login_check'] == 0){ //로그인 돼있을때랑 login_check가 0일때
-        ?>
-         <li><a href="<?=$val['menu_url']?>" data-num="<?=$val['menu_idx']?>" target='_blank'><span><?=$val['menu_name']?></span></a><span><img src="../img/quick_btn_icon.png"></span></li>
-         <? 
-                 }else{
-        ?>
-        <li><a data-num="<?=$val['menu_idx']?>" target='#'><span><?=$val['menu_name']?></span></a><span><img src="../img/quick_btn_icon.png"></span></li>
-        <? 
+              ?>
+              <li><a href="<?=$val['menu_url']?>" data-num="<?=$val['menu_idx']?>" target='_blank'><span><?=$val['menu_name']?></span></a><span><img src="../img/quick_btn_icon.png"></span></li>
+              <? 
               }
-            }
           }
         }
         ?>
