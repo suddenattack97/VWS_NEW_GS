@@ -26,7 +26,7 @@ Class ClassRtuInfo {
 			Switch($this->SENSERTYPE){
 				Case "0"  : $w_sensertype = "'0'"; $w_rtutype = "'B00','BR0','BA0','R00','RF0','RS0'"; break;
 				Case "1"  : $w_sensertype = "'1'"; $w_rtutype = "'B00','BF0','BA0','F00','RF0'"; break;
-				Case "2"  : $w_sensertype = "'2'"; $w_rtutype = "'S00'"; break;
+				Case "2"  : $w_sensertype = "'2'"; $w_rtutype = "'S00','A00','RS0'"; break;
 				Case "3"  : $w_sensertype = "'0','A','T','W','H','R','S'"; $w_rtutype = "'A00'"; break;
 				Case "4"  : $w_sensertype = "'DP'"; $w_rtutype = "'DP0'"; break;
 				default: $w_sensertype = "'0'"; break;
