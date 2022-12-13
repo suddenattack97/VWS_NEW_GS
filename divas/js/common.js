@@ -712,11 +712,11 @@
 					lay_html += ' <table class="main_table m20"> ';
 					lay_html += ' 	<thead><tr> ';
 					lay_html += ' 	<th width="20%">지역</th> ';
-					lay_html += ' 	<th width="14%">전일최심적설</th> ';
-					lay_html += ' 	<th width="14%">전일적설</th> ';
-					lay_html += ' 	<th width="14%">금일신적설</th> ';
-					lay_html += ' 	<th width="14%">현재적설</th> ';
-					lay_html += ' 	<th width="14%">금일최심적설</th> ';
+					lay_html += ' 	<th width="14%">전일최심적설 <img style="margin:0 0 -2px 0" src="../images/snow_info.png" title="전일최심적설 : 전일 내린 적설 중 가장 높은 값"></th> ';
+					lay_html += ' 	<th width="14%">전일적설 <img style="margin:0 0 -2px 0" src="../images/snow_info.png"  title="전일적설 : 전일 내린 적설(전일 23:50) 마지막 수집된 적설)"></th> ';
+					lay_html += ' 	<th width="14%">금일신적설 <img style="margin:0 0 -2px 0" src="../images/snow_info.png" title="금일신적설 : 금일 내린 적설(금일 최심적설 - 전일적설)"></th> ';
+					lay_html += ' 	<th width="14%">현재적설 <img style="margin:0 0 -2px 0" src="../images/snow_info.png"  title="현재적설 : 현시간적설 - 전시간 적설"></th> ';
+					lay_html += ' 	<th width="14%">금일최심적설 <img style="margin:0 0 -2px 0" src="../images/snow_info.png" title="금일최심적설 : 금일 내린 적설 중 가장 높은 값"></th> ';
 					// lay_html += ' 	<th width="10%">통신상태</th> ';
 					lay_html += ' 	</tr></thead>';
 	
