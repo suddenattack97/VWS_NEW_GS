@@ -292,7 +292,7 @@ div#new{
 .bg_act{background:#2251ca !important;}
 
 /* 위성, 레이더 */
-.radar_btn {background-color: #000000; height: 25px;margin: 8px;position: absolute;border-radius: 5px;color: #8ef5ff;border: 1px solid #5acece;}
+.radar_btn {background-color: #000000; height: 25px;margin: 8px;position: absolute;border-radius: 5px;color: #8ef5ff;border: 1px solid #5acece; cursor: pointer;}
 .radar_btn:hover {background-color: #2fb1bd; height: 25px;margin: 8px;position: absolute;border-radius: 5px;color: #fff;border: 1px solid #5acece;}
 
 /*범례*/
@@ -305,7 +305,7 @@ div#new{
 #legend2 img{-webkit-user-drag: none;}
 
 /*지도 우측 데이터표출-2단*/
-.tv_unit_s{width:100%; height:49.9%; float:left; cursor: pointer;}
+.tv_unit_s{width:100%; height:49.9%; float:left;}
 
 .tv_blue{background:#333; border-bottom:1px solid #999; text-align:center;}
 .tv_subcon{width:100%; height:90%; float:left; background:#fff;}
