@@ -214,7 +214,7 @@ function get_client_ip() {
 /* 일회용 토큰 생성 */
 function getToken(){
 	require_once "_enc_lib.php";
-    return create_hash(date("smYiHd"));
+    return preg_replace("/[ #\&\+%@=\/\\\:;,\.'\"\^`~\!\?\*$#<>()\[\]\{\}]/i", "", create_hash(date("smYiHd")));
 }
 
 
