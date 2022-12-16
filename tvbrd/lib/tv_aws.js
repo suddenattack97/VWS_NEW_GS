@@ -539,222 +539,78 @@ function aws(kind, arr_area_code){ // AWS - AWS 장비
 			$.each(arr_area_code, function(index, item){
 				var tmp_cnt = 0;
 				var tmp_last = "";
-
-
+				
+				//AWS 장비 표시 우선 체크
 				if( jQuery.inArray("4", map_data) != "-1" ){
-
 					$("#aws_"+item).show();
 					$("#aws_label_"+item).show();
 					$("#aws_"+item+"_marker").show();
+					$("#wind_"+item).show();
+					$("#damp_"+item).show();
+					$("#temp_"+item).show();
+					$("#rain_"+item).show();
+					$("#aws_"+item).css('margin-top','-215px');//tmp_yAnchor = -111;
+					
 					$("#aws_"+item+"_marker img").attr('src','img/icon_s_03.png');
-					$("#aws_"+item+" .label_top").css('background','#0ca629 url(img/icon_label_04.png) left top no-repeat');
-
-					tmp_cnt = 0;
-					// 상황판이나 장비상태 선택, AWS 버튼 선택
+					$("#aws_"+item+" .label_top").css('background','#0ca629 url(img/icon_label_04.png) left top no-repeat');	
+					
 					$.each(arr_rtu[item]['sensor_kind'], function(index2, item2){
 						$("#"+item2+"_"+item).show(); 
 						tmp_arr_area_code[item2].push(item); 
 						tmp_cnt++;
 						tmp_last = item2;
 					});
-				}else{
+				}else if(jQuery.inArray("4", map_data) == "-1" && jQuery.inArray("1", map_data) == "-1"){
 					if($("#wave_"+item).css('display') == 'none'){
-
 						$("#aws_"+item).hide();
 						$("#aws_label_"+item).hide();
 						$("#aws_"+item+"_marker").hide();
-
 						$("#wind_"+item).hide();
 						$("#damp_"+item).hide();
 						$("#temp_"+item).hide();
-						$("#pres_"+item).hide();
+						$("#rain_"+item).hide();
 					}
-					if( jQuery.inArray("1", map_data) != "-1" ){
-						// 상황판이나 장비상태 선택, 강우 버튼 선택
-						if($("#wave_"+item).css('display') == 'none'){
-							$("#aws_"+item).show();
-							$("#aws_label_"+item).show();
-							$("#aws_"+item+"_marker").show();
-	
-							$("#rain_"+item).show();
-							$("#aws_"+item+"_marker img").attr('src','img/icon_s_01.png');
-							$("#aws_"+item+" .label_top").css('background','#2782ff url(img/icon_label_04.png) left top no-repeat');
-							 $("#aws_"+item).css('margin-top','-115px');//tmp_yAnchor = -111;
-
-							if( $("#rain_"+item).length != 0 ){
-								tmp_arr_area_code['rain'].push(item); 
-								tmp_cnt++;
-								tmp_last = "rain";
-							}
-							// $.each(arr_rtu[item]['sensor_kind'], function(index2, item2){
-							// 	$("#"+item2+"_"+item).show();
-							// });
-						}else{
-							$("#aws_"+item).show();
-							$("#aws_label_"+item).show();
-							$("#aws_"+item+"_marker").show();
-							$.each(arr_rtu[item]['sensor_kind'], function(index2, item2){
-								$("#"+item2+"_"+item).hide(); 
-								tmp_cnt = 1;
-							});
-							$("#rain_"+item).show();
-						}
-	    			}else{
-						tmp_arr_area_code['rain'].push(item); // 폴리곤 컬러 변경을 위해
-						if($("#wave_"+item).css('display') == 'none'){
-							$("#rain_"+item).hide();
-						}
-	    			}
-					if( jQuery.inArray("2", map_data) != "-1" ){
-						// 상황판이나 장비상태 선택, 수위 버튼 선택
-						$("#flow_"+item).show(); 
-						if( $("#flow_"+item).length != 0 ){
-							tmp_arr_area_code['flow'].push(item); 
-							tmp_cnt++;
-							tmp_last = "flow";
-						}
-	    			}else{
-						if($("#wave_"+item).css('display') == 'none'){
-							$("#flow_"+item).hide();
-						}
-	    			}
-					if( jQuery.inArray("3", map_data) != "-1" ){
-						// 상황판이나 장비상태 선택, 적설 버튼 선택
-						if($("#wave_"+item).css('display') == 'none'){
-							// $("#aws_"+item).show();
-							// $("#aws_label_"+item).show();
-							// $("#aws_"+item+"_marker").show();
-							// $("#aws_"+item+"_marker img").attr('src','img/icon_s_03.png');
-							// $("#aws_"+item+" .label_top").css('background','#0ca629 url(img/icon_label_04.png) left top no-repeat');
-
-							$("#snow_"+item).show();
-							for(var i in tmp_arr_area_code){
-								if(tmp_arr_area_code[i].length != 0){
-									$.post( "controll/snow.php", { "mode" : "snow", "arr_area_code" : tmp_arr_area_code[i], "check" : "aws" }, function(response){
-										$.each(response.list, function(index, item2){
-											$("#snow_"+item2.area_code+" .dat_right").html(item2.day);
-										});
-									}, "json");
-								}
-							}
-							if( $("#snow_"+item).length != 0 ){
-								tmp_arr_area_code['rain'].push(item); 
-								tmp_cnt++;
-								tmp_last = "rain";
-							}
-							// $.each(arr_rtu[item]['sensor_kind'], function(index2, item2){
-							// 	$("#"+item2+"_"+item).show();
-							// });
-						}else{
-							// $("#aws_"+item).show();
-							// $("#aws_label_"+item).show();
-							// $("#aws_"+item+"_marker").show();
-							// $("#aws_"+item+"_marker img").attr('src','img/icon_s_03.png');
-							// $("#aws_"+item+" .label_top").css('background','#0ca629 url(img/icon_label_04.png) left top no-repeat');
-	
-							$.each(arr_rtu[item]['sensor_kind'], function(index2, item2){
-								$("#"+item2+"_"+item).hide(); 
-								tmp_cnt = 1;
-							});
-							$("#snow_"+item).show();
-						}
-	    			}else{
-						if($("#wave_"+item).css('display') == 'none'){
-							$("#snow_"+item).hide();
-						}
-	    			}
-    			}
-				
-				if(tmp_cnt == 1){
-					// $("#"+tmp_last+"_"+item).removeClass("bb");
 				}else{
-					$("#aws_"+item+" li").not(":first").addClass("bb");
-					// $("#"+tmp_last+"_"+item).removeClass("bb");
-				}
-
-				for(var i = 0; i < arr_rtu[item]['sensor_cnt']; i++){
-					if(arr_rtu[item]['sensor_kind'][i] == "snow" || arr_rtu[item]['sensor_kind'][i] == "pres") {
-						tmp_cnt--;
+					if($("#wave_"+item).css('display') !== 'none'){
+						$("#aws_"+item).hide();
+						$("#aws_label_"+item).hide();
+						$("#aws_"+item+"_marker").hide();
+						$("#wind_"+item).hide();
+						$("#damp_"+item).hide();
+						$("#temp_"+item).hide();
+						$("#rain_"+item).hide();
 					}
-				}
+					// 강우 선택시 AWS 강우가 포함되어있을 시
+					if( jQuery.inArray("1", map_data) != "-1" ){
+						$("#aws_"+item).show();
+						$("#aws_label_"+item).show();
+						$("#aws_"+item+"_marker").show();
+						$("#rain_"+item).show();
+						$("#wind_"+item).hide();
+						$("#damp_"+item).hide();
+						$("#temp_"+item).hide();
 
-				var tmp_yAnchor = 0;
-				if(tmp_cnt == 1) $("#aws_"+item).css('margin-top','-110px');//tmp_yAnchor = -111;
-				else if(tmp_cnt == 2) $("#aws_"+item).css('margin-top','-145px'); //tmp_yAnchor = -146;
-				else if(tmp_cnt == 3) $("#aws_"+item).css('margin-top','-180px'); // tmp_yAnchor = -181;
-				else if(tmp_cnt == 4) $("#aws_"+item).css('margin-top','-215px'); //tmp_yAnchor = -216;
-				else if(tmp_cnt == 5) $("#aws_"+item).css('margin-top','-250px'); //tmp_yAnchor = -251;
-				else if(tmp_cnt == 6) $("#aws_"+item).css('margin-top','-285px'); //tmp_yAnchor = -286;
-				else if(tmp_cnt == 7) $("#aws_"+item).css('margin-top','-320px'); //tmp_yAnchor = -321;
-				else if(tmp_cnt == 8) $("#aws_"+item).css('margin-top','-355px'); //tmp_yAnchor = -356;
-
-				if(map_kind == 1){
-					if( jQuery.inArray("5", map_data) != "-1" ){
-						if( arr_rtu[item]['alert_state'] || arr_rtu[item]['alert_error'][0] ){
-							tmp_yAnchor = tmp_yAnchor + 17;
-							// arr_rtu[item]['overlay'].setOffset(tmp_yAnchor);
-						}else if( !arr_rtu[item]['alert_state'] && !arr_rtu[item]['alert_error'][0] ){
-							// arr_rtu[item]['overlay'].setOffset(tmp_yAnchor);
+						$("#aws_"+item).css('margin-top','-110px');//tmp_yAnchor = -111;
+						
+						$("#aws_"+item+"_marker img").attr('src','img/icon_s_01.png');
+						$("#aws_"+item+" .label_top").css('background','#2782ff url(img/icon_label_04.png) left top no-repeat');
+						if( $("#rain_"+item).length != 0 ){
+							tmp_arr_area_code['rain'].push(item); 
+							tmp_cnt++;
+							tmp_last = "rain";
 						}
 					}else{
-						// arr_rtu[item]['overlay'].setOffset(tmp_yAnchor);
-					}
-				}
-				if(map_kind == 2){
-					// arr_rtu[item]['overlay'].setOffset(-76);
-					if($("#wave_"+item).css('display') == 'none'){
-						if( jQuery.inArray("5", map_data) == "-1" ) $("#alarm_"+item).hide();
-						if( jQuery.inArray("1", map_data) == "-1" ) $("#rain_"+item).hide();
-						if( jQuery.inArray("2", map_data) == "-1" ) $("#flow_"+item).hide();
-						if( jQuery.inArray("3", map_data) == "-1" ) $("#snow_"+item).hide();
-						$("#wind_"+item).hide();
-						$("#damp_"+item).hide();
-						$("#temp_"+item).hide();
-						$("#pres_"+item).hide();
-						$("#aws_"+item).css("height", "28px");
-					}
-				}
-				
-				if(tmp_cnt != 0){
-					arr_clus_marker.push( arr_rtu[item]['marker'] ); // 클러스터 추가
-					
-					// $("#aws_"+item).hide();
-					// $("#aws_label_"+item).hide();
-					// $("#aws_"+item+"_marker").hide();
-					
-					
-					// 줌레벨에 따른 오버레이 표시
-					if( Number(map_level) < Number(over_level) ){
-						if(arr_rtu[item]['overlay_on']){
-							$("#aws_"+item).show();
-							$("#aws_label_"+item).show();
-
-							if( (map_kind == 1 || map_kind == 2) && jQuery.inArray("1", map_data) != "-1" ){
-								$("#rain_"+item).show();
-							}
-							if( (map_kind == 1 || map_kind == 2) && jQuery.inArray("2", map_data) != "-1" ){
-								$("#flow_"+item).show();
-							}
-							if( (map_kind == 1 || map_kind == 2) && jQuery.inArray("3", map_data) != "-1" ){
-								$("#snow_"+item).show();
-							}
-							if( (map_kind == 1 || map_kind == 2) && jQuery.inArray("4", map_data) != "-1" ){
-								$.each(arr_rtu[item]['sensor_kind'], function(index2, item2){
-									$("#"+item2+"_"+item).show();
-								});
-							}
-
-	    	    		}else{
+						if($("#wave_"+item).css('display') == 'none'){
 							$("#aws_"+item).hide();
 							$("#aws_label_"+item).hide();
-	    	    		}
-					}else{
-		    		}
-				}else{
-					if($("#wave_"+item).css('display') == 'none'){
-						$("#aws_"+item).hide();
-						$("#aws_label_"+item).hide();
-						$("#aws_"+item+"_marker").hide();
+							$("#aws_"+item+"_marker").hide();
+						}else{
+							$("#aws_"+item).css('margin-top','-215px');//tmp_yAnchor = -111;
+							$("#aws_"+item).show();
+							$("#aws_label_"+item).show();
+							$("#aws_"+item+"_marker").show();
+							$("#rain_"+item).show();
+						}
 					}
 				}
 			}); // $.each(arr_area_code, function(index, item) end
@@ -762,8 +618,7 @@ function aws(kind, arr_area_code){ // AWS - AWS 장비
 			if(map_kind != 2){
 				for(var i in tmp_arr_area_code){
 					if(tmp_arr_area_code[i].length != 0){
-						if(i == "alarm"){
-						}else if(i == "rain"){
+						if(i == "rain"){
 							rain_ajax[1] = $.post( "controll/rain.php", { "mode" : "rain", "arr_area_code" : tmp_arr_area_code[i], "check" : "aws" }, function(response){
 								$.each(response.list, function(index, item){
 									$("#rain_"+item.area_code+" .dat_right").html(item.day);
@@ -864,16 +719,20 @@ function aws_event(area_code,state,level,type) {
 				// $("#aws_"+area_code).show();
 				if( jQuery.inArray("1", map_data) != "-1" ){
 					$("#rain_"+area_code).show();
+					if( jQuery.inArray("4", map_data) != "-1" ){
+						$("#aws_"+area_code).show();
+						$("#aws_"+area_code).next().show();
+						$("#aws_"+area_code+"_marker").show();
+					}
 				}
 				if( jQuery.inArray("3", map_data) != "-1" ){
 					$("#snow_"+area_code).show();
 				}
 				if( jQuery.inArray("4", map_data) != "-1" ){
 					$("#aws_"+area_code).show();
+					$("#aws_"+area_code).next().show();
+					$("#aws_"+area_code+"_marker").show();
 				}
-				$("#aws_"+area_code).next().show();
-				$("#aws_"+area_code+"_marker").show();
-				// $("#aws_"+area_code+" li").show();
 
 				if($("#aws_"+area_code).css('display') == 'block'){
 					$("#wave_"+area_code).removeClass('waves');
@@ -883,77 +742,6 @@ function aws_event(area_code,state,level,type) {
 				}
 			}
 		}
-
-		$.post( "controll/rain.php", { "mode" : "rain", "arr_area_code" : [area_code], "check" : "aws" }, function(response){
-			$.each(response.list, function(index, item){
-				$("#rain_"+area_code+" .dat_right").text(item.day);
-			});
-		}, "json");
-
-		$.post( "controll/snow.php", { "mode" : "snow", "arr_area_code" : [area_code], "check" : "aws" }, function(response){
-			$.each(response.list, function(index, item){
-				$("#snow_"+area_code+" .dat_right").html(item.day);
-			});
-		}, "json");
-		$.post( "controll/wind.php", { "mode" : "wind", "arr_area_code" : [area_code], "check" : "aws" }, function(response){
-			$.each(response.list, function(index, item){
-				if(item.day == "-"){
-					$("#wind_"+area_code+" .dat_right").html('<span style="font-size: 25px; letter-spacing: 0; font-weight: 600 !important;">-</span>');
-				}else{
-					$("#wind_"+area_code+" .dat_right").html(item.day);
-				}
-			});
-		}, "json");
-		$.post( "controll/damp.php", { "mode" : "damp", "arr_area_code" : [area_code], "check" : "aws" }, function(response){
-			$.each(response.list, function(index, item){
-				$("#damp_"+area_code+" .dat_right").html(item.day);
-			});
-		}, "json");
-		$.post( "controll/temp.php", { "mode" : "temp", "arr_area_code" : [area_code], "check" : "aws" }, function(response){
-			$.each(response.list, function(index, item){
-				$("#temp_"+area_code+" .dat_right").html(item.day);
-			});
-		}, "json");
-		$.post( "controll/pres.php", { "mode" : "pres", "arr_area_code" : [area_code], "check" : "aws" }, function(response){
-			$.each(response.list, function(index, item){
-				if(item.day == "-"){
-					$("#pres_"+area_code+" .dat_right").html('<span style="font-size: 25px; letter-spacing: 0; font-weight: 600 !important;">-</span>');
-				}else{
-					$("#pres_"+area_code+" .dat_right").html(item.day);
-				}
-			});
-		}, "json");
-
-		var tmp_cnt = 0;
-		if($("#wave_"+area_code).hasClass('waves1') || $("#wave_"+area_code).hasClass('waves2')){
-			if( (map_kind == 1 || map_kind == 2) && jQuery.inArray("1", map_data) != "-1" ){
-				tmp_cnt++;
-			}
-			if( (map_kind == 1 || map_kind == 2) && jQuery.inArray("3", map_data) != "-1" ){
-				// tmp_cnt++;
-				tmp_cnt = tmp_cnt + 2;
-			}
-			if( (map_kind == 1 || map_kind == 2) && jQuery.inArray("4", map_data) != "-1" ){
-				// tmp_cnt = tmp_cnt + 3;
-			}
-
-			if(tmp_cnt == 0) {
-				$("#aws_"+area_code).css('margin-top','-215px'); 
-				$("#rain_"+area_code).show();
-				$("#wind_"+area_code).show();
-				$("#damp_"+area_code).show();
-				$("#temp_"+area_code).show();
-				// $("#snow_"+area_code).show();
-				// $("#pres_"+area_code).show();
-			} // 아무것도 선택 안했을 경우
-			else if(tmp_cnt == 1) {$("#aws_"+area_code).css('margin-top','-110px');} //tmp_yAnchor = -146;
-			else if(tmp_cnt == 2) {$("#aws_"+area_code).css('margin-top','-145px');} //tmp_yAnchor = -146;
-			else if(tmp_cnt == 3) {$("#aws_"+area_code).css('margin-top','-180px');} // tmp_yAnchor = -181;
-			else if(tmp_cnt == 4) {$("#aws_"+area_code).css('margin-top','-215px');} //tmp_yAnchor = -216;
-			else if(tmp_cnt == 5) {$("#aws_"+area_code).css('margin-top','-250px');} //tmp_yAnchor = -251;
-			else if(tmp_cnt == 6) {$("#aws_"+area_code).css('margin-top','-285px');} //tmp_yAnchor = -286;
-			else if(tmp_cnt == 7) {$("#aws_"+area_code).css('margin-top','-320px');} //tmp_yAnchor = -321;
-		}
 	}else if(state == 0){
 		if($("#aws_"+area_code).css('display') != 'none'){
 			$("#wave_"+area_code).removeClass('waves');
@@ -961,9 +749,6 @@ function aws_event(area_code,state,level,type) {
 			$("#wave_"+area_code).hide();
 			$("#aws_"+area_code).parent().parent().css('z-index',110);
 			$("#aws_"+area_code+"_marker").parent().parent().css('z-index',105);
-			// $("#aws_"+area_code).hide();
-			// $("#aws_"+area_code).next().hide();
-			// $("#aws_"+area_code+"_marker").hide();
 		}
 	}
 }
