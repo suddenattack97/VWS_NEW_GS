@@ -42,7 +42,7 @@ switch($mode){
 				}
 			}
 		}else{
-			$result = 3;
+			$result = 5;
 		}
 		
 		$returnBody = array( 'result' => $result , "msg" => $IdInfo['msg']);

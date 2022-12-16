@@ -309,6 +309,8 @@ $(document).ready(function(){
 					swal("체크", "로그인 시도 횟수 초과입니다. 5분 후에 다시 시도해 주세요.", "warning");
 				}else if(data.result == 4){
 					swal("체크", data.msg, "warning");
+				}else if(data.result == 5){
+					location.reload(); // 토큰 매칭 실패
 		    	}else{
 					swal("체크", "로그인에 실패하였습니다.", "warning");
 				}
