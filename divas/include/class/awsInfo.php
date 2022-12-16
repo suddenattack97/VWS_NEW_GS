@@ -79,7 +79,7 @@ Class ClassAwsInfo {
 			if($this->DB->num_rows){
 				$this->WIND_VEL = $rs[0]['WIND_VEL'] == "-" ? "-" : $rs[0]['WIND_VEL'];
 
-				if($rs[0]['WIND_DEG'] == "" || $rs[0]['WIND_DEG'] == 0 || $rs[0]['WIND_DEG'] == '-' ||
+				if($rs[0]['WIND_DEG'] == "" || $rs[0]['WIND_DEG'] == '-' ||
 					$rs[0]['WIND_VEL'] == "" || $rs[0]['WIND_VEL'] == 0 || $rs[0]['WIND_VEL'] == '-'){
 					$this->WIND_DEG = '-';
 				}else{
@@ -109,7 +109,7 @@ Class ClassAwsInfo {
 			if($this->DB->num_rows){
 				$this->WIND_MAX_VEL = $rs[0]['WIND_MAX_VEL'] == "-" ? "-" : $rs[0]['WIND_MAX_VEL'];
 
-				if($rs[0]['WIND_MAX_DEG'] == "" || $rs[0]['WIND_MAX_DEG'] == 0 || $rs[0]['WIND_MAX_DEG'] == '-' ||
+				if($rs[0]['WIND_MAX_DEG'] == "" || $rs[0]['WIND_MAX_DEG'] == '-' ||
 					$rs[0]['WIND_MAX_VEL'] == "" || $rs[0]['WIND_MAX_VEL'] == 0 || $rs[0]['WIND_MAX_VEL'] == '-'){
 					$this->WIND_MAX_DEG = '-';
 				}else{
