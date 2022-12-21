@@ -842,6 +842,11 @@
 			    beforeShow: function(input, inst){
 			    },
 			    onSelect: function(dateText, inst){
+					if(inst.id=="sdate") $("#edate").datepicker("option", "minDate", dateText);
+					else $("#sdate").datepicker("option", "maxDate", dateText);
+					
+					// datepicker 옵션 변경시 hide 상태 풀려서
+					if(!$('#edate').is(':visible'))	$('#edate').next().hide();
 		        }
 			});
 		}else if(type == 2){
