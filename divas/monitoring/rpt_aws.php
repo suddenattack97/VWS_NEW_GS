@@ -945,6 +945,10 @@ $(document).ready(function(){
 					}
 
 					if(data.list){
+						if($("#option").val() == 1 || $("#option").val() == 4){
+							DATA2 = data.list.map(function(a){ return a.DATA2 });
+							DATA3 = data.list.map(function(a){ return a.DATA3 });
+						}
 						// LEGD = Object.keys(data.list);
 						// 객체 -> 배열로 변환 map 함수
 						DATAD = data.list.map(function(a){ return a.DATA });
@@ -976,21 +980,54 @@ $(document).ready(function(){
 						MIN = Number(MIN) - Number(INCRE);
 					}
 					MIN = MIN < 0 ? 0 : MIN;
-	
+
+					var dtset = [{
+						label: getSensorKind(),
+						data: DATAD,
+						yAxisID: 'y_aws',
+						backgroundColor: ($("#option").val() == '0' ? '#c3dcf5' : 'rgba(255,255,255,0.1)'),
+						borderColor: '#69F',
+						borderWidth: ("<?=$option?>" == '0' ? 1 : 0),
+						lineTension: 0 ,
+						fill: getGraphBarKind()
+					}];
+
+					// 온도, 습도 그래프는 현재, 최저, 최고 같이 보여주도록
+					if($("#option").val() == 1 || $("#option").val() == 4){
+						dtset = 
+							[{
+								label: getSensorKind()+"(현재)",
+								data: DATAD,
+								yAxisID: 'y_aws',
+								backgroundColor: ($("#option").val() == '0' ? '#c3dcf5' : 'rgba(255,255,255,0.1)'),
+								borderColor: '#69F',
+								borderWidth: 0,
+								lineTension: 0 ,
+								fill: getGraphBarKind()
+							}, {
+								label: '최고',
+								data: DATA3,
+								yAxisID: 'y_aws',
+								backgroundColor: '#ff8017',
+								borderColor: '#ff8017',
+								borderWidth: 2,
+								fill: false
+							}, {
+								label: '최저',
+								data: DATA2,
+								yAxisID: 'y_aws',
+								backgroundColor: '#98FB98',
+								borderColor: '#00FF7F',
+								borderWidth: 2,
+								fill: false,
+								pointRadius: 0
+							}];
+					}
 					chart = new Chart($("#graph"), {
 						type: getGraphKind(),
 						data: {
 							labels: LEGD,
-							datasets: [{
-								label: getSensorKind(),
-								data: DATAD,
-								yAxisID: 'y_aws',
-								backgroundColor: '#c3dcf5',
-								borderColor: '#c3dcf5',
-								borderWidth: 1,
-								lineTension: 0 ,
-								fill: getGraphBarKind()
-							}]
+							datasets: dtset
 						},
 						options: {
 							legend: {
@@ -1013,9 +1050,28 @@ $(document).ready(function(){
 								},
 								callbacks: {
 									labelColor: function(tooltipItem, chart){
-										return {
-											borderColor: '#9bc9f7',
-											backgroundColor : '#9bc9f7'
+										if($("#option").val() == 1 || $("#option").val() == 4){
+											if(tooltipItem.datasetIndex == 1){
+												return {
+													backgroundColor : '#ff8017',
+													borderColor: '#ff8017'
+												}
+											}else if(tooltipItem.datasetIndex == 2){
+												return {
+													backgroundColor : '#00FF7F',
+													borderColor: '#00FF7F'
+												}
+											}else{
+												return {
+													backgroundColor : '#69F',
+													borderColor: '#69F'
+												}
+											}
+										}else{
+											return {
+												backgroundColor : '#69F',
+												borderColor: '#69F'
+											}
 										}
 									}
 								}
@@ -1080,11 +1136,15 @@ $(document).ready(function(){
 				cache: false,
 				dataType: "json",
 				success : function(data){
-					//console.log(data);
-					var LEG, DATA = [];		
+					// console.log(data.list);
+					var LEG, DATA, DATA2, DATA3 = [];		
 					var MAX, MIN, INCRE = null;
 
 					if(data.list){
+						if($("#option").val() == 1 || $("#option").val() == 4){
+							DATA2 = data.list.DATA2;
+							DATA3 = data.list.DATA3;
+						}
 						LEG = data.list.LEG;
 						DATA = data.list.DATA;
 						MAX = data.list.MAX;
@@ -1107,19 +1167,55 @@ $(document).ready(function(){
 					MIN = MIN < 0 ? 0 : MIN;
 					// <? if($option != "1"){ ?> MIN = MIN < 0 ? 0 : MIN; <? } ?>
 					//console.log("MAX:"+MAX, "MIN:"+MIN, "INC:"+INCRE);
+					var dtset = [{
+						label: '<?=$chart_name?>',
+						data: DATA,
+						yAxisID: 'y_aws',
+						backgroundColor: ("<?=$option?>" == '0' ? '#c3dcf5' : 'rgba(255,255,255,0.1)'),
+						borderColor: '#69F',
+						borderWidth: ("<?=$option?>" == '0' ? 1 : 0),
+						lineTension: 0 ,
+						fill: getGraphBarKind()
+					}];
+
+					// 온도, 습도 그래프는 현재, 최저, 최고 같이 보여주도록
+					if($("#option").val() == 1 || $("#option").val() == 4){
+						dtset = 
+							[{
+								label: '<?=$chart_name?>'+"(현재)",
+								data: DATA,
+								yAxisID: 'y_aws',
+								backgroundColor: ("<?=$option?>" == '0' ? '#c3dcf5' : 'rgba(255,255,255,0.1)'),
+								borderColor: '#69F',
+								borderWidth: 0,
+								lineTension: 0 ,
+								fill: getGraphBarKind()
+							}, {
+								label: '최고',
+								data: DATA3,
+								yAxisID: 'y_aws',
+								backgroundColor: '#ff8017',
+								borderColor: '#ff8017',
+								borderWidth: 2,
+								fill: false,
+								pointRadius: 0
+							}, {
+								label: '최저',
+								data: DATA2,
+								yAxisID: 'y_aws',
+								backgroundColor: '#98FB98',
+								borderColor: '#00FF7F',
+								borderWidth: 2,
+								fill: false,
+								pointRadius: 0
+							}];
+					}
 
 					chart = new Chart($("#graph"), {
 						type: ("<?=$option?>" == '0' ? 'bar' : 'line'),
 						data: {
 							labels: LEG,
-							datasets: [{
-								label: '<?=$chart_name?>',
-								data: DATA,
-								yAxisID: 'y_aws',
-								backgroundColor: ("<?=$option?>" == '0' ? '#c3dcf5' : 'rgba(255,255,255,0.1)'),
-								borderColor: '#69F',
-								borderWidth: 0
-							}]
+							datasets: dtset
 						},
 						options: {
 							elements: {
@@ -1147,9 +1243,28 @@ $(document).ready(function(){
 								},
 								callbacks: {
 									labelColor: function(tooltipItem, chart){
-										return {
-											borderColor: '#9bc9f7',
-											backgroundColor : '#9bc9f7'
+										if($("#option").val() == 1 || $("#option").val() == 4){
+											if(tooltipItem.datasetIndex == 1){
+												return {
+													backgroundColor : '#ff8017',
+													borderColor: '#ff8017'
+												}
+											}else if(tooltipItem.datasetIndex == 2){
+												return {
+													backgroundColor : '#00FF7F',
+													borderColor: '#00FF7F'
+												}
+											}else{
+												return {
+													backgroundColor : '#69F',
+													borderColor: '#69F'
+												}
+											}
+										}else{
+											return {
+												backgroundColor : '#69F',
+												borderColor: '#69F'
+											}
 										}
 									}
 								}

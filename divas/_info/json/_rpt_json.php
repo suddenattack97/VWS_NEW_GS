@@ -598,10 +598,12 @@ switch($mode){
 						$sub_date = substr($val['TEMP_DATE'], 8,2);
 						if($data_list[ $i ]['LEG'] == $sub_date){
 							$data_list[ $i ]['DATA'] = round_data($val['TEMP'], 0.01, 10);
+							$data_list[ $i ]['DATA2'] = round_data($val['TEMP_MIN'], 0.01, 10);
+							$data_list[ $i ]['DATA3'] = round_data($val['TEMP_MAX'], 0.01, 10);
 						};
 						if($val['TEMP'] != "-"){
-							$area_data['MAX'] = ($area_data['MAX'] < round_data($val['TEMP'], 0.01, 10) || !$area_data['MAX']) ? round_data($val['TEMP'], 0.01, 10) : $area_data['MAX'];
-							$area_data['MIN'] = ($area_data['MIN'] > round_data($val['TEMP'], 0.01, 10) || !$area_data['MIN']) ? round_data($val['TEMP'], 0.01, 10) : $area_data['MIN'];
+							$area_data['MAX'] = ($area_data['MAX'] < round_data($val['TEMP_MAX'], 0.01, 10) || !$area_data['MAX']) ? round_data($val['TEMP_MAX'], 0.01, 10) : $area_data['MAX'];
+							$area_data['MIN'] = ($area_data['MIN'] > round_data($val['TEMP_MIN'], 0.01, 10) || !$area_data['MIN']) ? round_data($val['TEMP_MIN'], 0.01, 10) : $area_data['MIN'];
 						}
 					}
 					$i++;
@@ -612,9 +614,11 @@ switch($mode){
 				foreach($ClassAwsInfo->rsTemp10m as $key => $val){
 					$data_list[ $val['TEMP_DATE'] ]['LEG'] = $val['TEMP_DATE'];
 					$data_list[ $val['TEMP_DATE'] ]['DATA'] = round_data($val['TEMP'], 0.01, 10);
+					$data_list[ $val['TEMP_DATE'] ]['DATA2'] = round_data($val['TEMP_MIN'], 0.01, 10);
+					$data_list[ $val['TEMP_DATE'] ]['DATA3'] = round_data($val['TEMP_MAX'], 0.01, 10);
 					if(round_data($val['TEMP'], 0.01, 10) != "-"){
-						$area_data['MAX'] = ($area_data['MAX'] < round_data($val['TEMP'], 0.01, 10) || !$area_data['MAX']) ? round_data($val['TEMP'], 0.01, 10) : $area_data['MAX'];
-						$area_data['MIN'] = ($area_data['MIN'] > round_data($val['TEMP'], 0.01, 10) || !$area_data['MIN']) ? round_data($val['TEMP'], 0.01, 10) : $area_data['MIN'];
+						$area_data['MAX'] = ($area_data['MAX'] < round_data($val['TEMP_MAX'], 0.01, 10) || !$area_data['MAX']) ? round_data($val['TEMP_MAX'], 0.01, 10) : $area_data['MAX'];
+						$area_data['MIN'] = ($area_data['MIN'] > round_data($val['TEMP_MIN'], 0.01, 10) || !$area_data['MIN']) ? round_data($val['TEMP_MIN'], 0.01, 10) : $area_data['MIN'];
 					}
 				}
 			}
@@ -774,10 +778,12 @@ switch($mode){
 						$sub_date = substr($val['HUMI_DATE'], 8,2);
 						if($data_list[ $i ]['LEG'] == $sub_date){
 							$data_list[ $i ]['DATA'] = round_data($val['HUMI'], 0.01, 10);
+							$data_list[ $i ]['DATA2'] = round_data($val['HUMI_MIN'], 0.01, 10);
+							$data_list[ $i ]['DATA3'] = round_data($val['HUMI_MAX'], 0.01, 10);
 						};
 						if($val['HUMI'] != "-"){
-							$area_data['MAX'] = ($area_data['MAX'] < round_data($val['HUMI'], 0.01, 10) || !$area_data['MAX']) ? round_data($val['HUMI'], 0.01, 10) : $area_data['MAX'];
-							$area_data['MIN'] = ($area_data['MIN'] > round_data($val['HUMI'], 0.01, 10) || !$area_data['MIN']) ? round_data($val['HUMI'], 0.01, 10) : $area_data['MIN'];
+							$area_data['MAX'] = ($area_data['MAX'] < round_data($val['HUMI_MAX'], 0.01, 10) || !$area_data['MAX']) ? round_data($val['HUMI_MAX'], 0.01, 10) : $area_data['MAX'];
+							$area_data['MIN'] = ($area_data['MIN'] > round_data($val['HUMI_MIN'], 0.01, 10) || !$area_data['MIN']) ? round_data($val['HUMI_MIN'], 0.01, 10) : $area_data['MIN'];
 						}
 					}
 					$i++;
@@ -788,9 +794,12 @@ switch($mode){
 				foreach($ClassAwsInfo->rsHumi10m as $key => $val){
 					$data_list[ $val['HUMI_DATE'] ]['LEG'] = $val['HUMI_DATE'];
 					$data_list[ $val['HUMI_DATE'] ]['DATA'] = round_data($val['HUMI'], 0.01, 10);
+					$data_list[ $val['HUMI_DATE'] ]['DATA2'] = round_data($val['HUMI_MIN'], 0.01, 10);
+					$data_list[ $val['HUMI_DATE'] ]['DATA3'] = round_data($val['HUMI_MAX'], 0.01, 10);
+					
 					if(round_data($val['HUMI'], 0.01, 10) != "-"){
-						$area_data['MAX'] = ($area_data['MAX'] < round_data($val['HUMI'], 0.01, 10) || !$area_data['MAX']) ? round_data($val['HUMI'], 0.01, 10) : $area_data['MAX'];
-						$area_data['MIN'] = ($area_data['MIN'] > round_data($val['HUMI'], 0.01, 10) || !$area_data['MIN']) ? round_data($val['HUMI'], 0.01, 10) : $area_data['MIN'];
+						$area_data['MAX'] = ($area_data['MAX'] < round_data($val['HUMI_MAX'], 0.01, 10) || !$area_data['MAX']) ? round_data($val['HUMI_MAX'], 0.01, 10) : $area_data['MAX'];
+						$area_data['MIN'] = ($area_data['MIN'] > round_data($val['HUMI_MIN'], 0.01, 10) || !$area_data['MIN']) ? round_data($val['HUMI_MIN'], 0.01, 10) : $area_data['MIN'];
 					}
 				}
 			}
@@ -819,9 +828,11 @@ switch($mode){
 			foreach($ClassAwsInfo->rsTempRpt as $key => $val){
 				$data_list['LEG'][] = $val['NUM'];
 				$data_list['DATA'][] = (round_data($val['TEMP'], 0.01, 10) == "-") ? null : round_data($val['TEMP'], 0.01, 10);
+				$data_list['DATA2'][] = (round_data($val['TEMP_MIN'], 0.01, 10) == "-") ? null : round_data($val['TEMP_MIN'], 0.01, 10);
+				$data_list['DATA3'][] = (round_data($val['TEMP_MAX'], 0.01, 10) == "-") ? null : round_data($val['TEMP_MAX'], 0.01, 10);
 				if(round_data($val['TEMP'], 0.01, 10) != "-"){
-					$data_list['MAX'] = ($data_list['MAX'] < round_data($val['TEMP'], 0.01, 10) || !$data_list['MAX']) ? round_data($val['TEMP'], 0.01, 10) : $data_list['MAX'];
-					$data_list['MIN'] = ($data_list['MIN'] > round_data($val['TEMP'], 0.01, 10) || !$data_list['MIN']) ? round_data($val['TEMP'], 0.01, 10) : $data_list['MIN'];
+					$data_list['MAX'] = ($data_list['MAX'] < round_data($val['TEMP_MAX'], 0.01, 10) || !$data_list['MAX']) ? round_data($val['TEMP_MAX'], 0.01, 10) : $data_list['MAX'];
+					$data_list['MIN'] = ($data_list['MIN'] > round_data($val['TEMP_MIN'], 0.01, 10) || !$data_list['MIN']) ? round_data($val['TEMP_MIN'], 0.01, 10) : $data_list['MIN'];
 				}
 			}
 		}
@@ -971,9 +982,11 @@ switch($mode){
 			foreach($ClassAwsInfo->rsHumiRpt as $key => $val){
 				$data_list['LEG'][] = $val['NUM'];
 				$data_list['DATA'][] = (round_data($val['HUMI'], 0.01, 10) == "-") ? null : round_data($val['HUMI'], 0.01, 10);
+				$data_list['DATA2'][] = (round_data($val['HUMI_MIN'], 0.01, 10) == "-") ? null : round_data($val['HUMI_MIN'], 0.01, 10);
+				$data_list['DATA3'][] = (round_data($val['HUMI_MAX'], 0.01, 10) == "-") ? null : round_data($val['HUMI_MAX'], 0.01, 10);
 				if(round_data($val['HUMI'], 0.01, 10) != "-"){
-					$data_list['MAX'] = ($data_list['MAX'] < round_data($val['HUMI'], 0.01, 10) || !$data_list['MAX']) ? round_data($val['HUMI'], 0.01, 10) : $data_list['MAX'];
-					$data_list['MIN'] = ($data_list['MIN'] > round_data($val['HUMI'], 0.01, 10) || !$data_list['MIN']) ? round_data($val['HUMI'], 0.01, 10) : $data_list['MIN'];
+					$data_list['MAX'] = ($data_list['MAX'] < round_data($val['HUMI_MAX'], 0.01, 10) || !$data_list['MAX']) ? round_data($val['HUMI_MAX'], 0.01, 10) : $data_list['MAX'];
+					$data_list['MIN'] = ($data_list['MIN'] > round_data($val['HUMI_MIN'], 0.01, 10) || !$data_list['MIN']) ? round_data($val['HUMI_MIN'], 0.01, 10) : $data_list['MIN'];
 				}
 			}
 		}
