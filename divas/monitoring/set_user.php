@@ -430,7 +430,7 @@ crypt.setKey(key);
 						$("#btn_check").hide();
 						$("#btn_in").css('display', 'none');
 					}else{
-						swal("체크", "사용자 상세 조회중 오류가 발생 했습니다.", "warning");
+						swal("체크", "관리자 상세 조회중 오류가 발생 했습니다.", "warning");
 					}
 				}
 			});
@@ -475,8 +475,8 @@ crypt.setKey(key);
 			var param = $("#set_frm").serializeObject();
 
 			swal({
-				title: '<div class="alpop_top_b">사용자 등록 확인</div><div class="alpop_mes_b">사용자를 등록하실 겁니까?</div>',
-				text: '확인 시 사용자가 등록 됩니다.',
+				title: '<div class="alpop_top_b">관리자 등록 확인</div><div class="alpop_mes_b">관리자를 등록하실 겁니까?</div>',
+				text: '확인 시 관리자가 등록 됩니다.',
 				showCancelButton: true,
 				confirmButtonColor: '#5b7fda',
 				confirmButtonText: '확인',
@@ -504,7 +504,7 @@ crypt.setKey(key);
 						        if(data.msg){
 							    	swal("체크", data.msg, "warning");
 						        }else{
-								    swal("체크", "사용자 등록중 오류가 발생 했습니다.", "warning");
+								    swal("체크", "관리자 등록중 오류가 발생 했습니다.", "warning");
 						        }
 								doubleSubmitFlag = false;
 					        }
@@ -587,8 +587,8 @@ crypt.setKey(key);
 			var param = $("#set_frm").serializeObject();
 
 			swal({
-				title: '<div class="alpop_top_b">사용자 수정 확인</div><div class="alpop_mes_b">['+C_USER_ID+']을 수정하실 겁니까?</div>',
-				text: '확인 시 사용자가 수정 됩니다.',
+				title: '<div class="alpop_top_b">관리자 수정 확인</div><div class="alpop_mes_b">['+C_USER_ID+']을 수정하실 겁니까?</div>',
+				text: '확인 시 관리자가 수정 됩니다.',
 				showCancelButton: true,
 				confirmButtonColor: '#5b7fda',
 				confirmButtonText: '확인',
@@ -616,7 +616,7 @@ crypt.setKey(key);
 						        if(data.msg){
 							    	swal("체크", data.msg, "warning");
 						        }else{
-								    swal("체크", "사용자 수정중 오류가 발생 했습니다.", "warning");
+								    swal("체크", "관리자 수정중 오류가 발생 했습니다.", "warning");
 						        }
 								doubleSubmitFlag = false;
 					        }
@@ -633,8 +633,8 @@ crypt.setKey(key);
 			$("#mode").val("user_de");
 			var C_USER_ID = $("#C_USER_ID").val();
 			swal({
-				title: '<div class="alpop_top_b">사용자 삭제 확인</div><div class="alpop_mes_b">['+C_USER_ID+']을 삭제하실 겁니까?</div>',
-				text: '확인 시 사용자가 삭제 됩니다.',
+				title: '<div class="alpop_top_b">관리자 삭제 확인</div><div class="alpop_mes_b">['+C_USER_ID+']을 삭제하실 겁니까?</div>',
+				text: '확인 시 관리자가 삭제 됩니다.',
 				showCancelButton: true,
 				confirmButtonColor: '#5b7fda',
 				confirmButtonText: '확인',
@@ -659,7 +659,7 @@ crypt.setKey(key);
 			                	popup_main_close(); // 레이어 좌측 및 상단 닫기
 					    		location.reload(); return false;
 					        }else{
-							    swal("체크", "사용자 삭제중 오류가 발생 했습니다.", "warning");
+							    swal("체크", "관리자 삭제중 오류가 발생 했습니다.", "warning");
 								doubleSubmitFlag = false;
 					        }
 				        }
@@ -681,10 +681,10 @@ crypt.setKey(key);
 		var id_check = /^[a-zA-Z0-9]{5,15}$/; // 영어 대소문자 또는 숫자이며 5~15자리
 
 		if( !$("#USER_ID").val() ){
-		    swal("체크", "사용자 ID를 입력해 주세요.", "warning");
+		    swal("체크", "관리자 ID를 입력해 주세요.", "warning");
 		    $("#USER_ID").focus(); return false;	
 		}else if( !id_check.test( $("#USER_ID").val() ) ){
-			swal("체크", "사용자 ID는 영어와 숫자만 사용하여 5~15자리로 입력해 주세요.", "warning"); 
+			swal("체크", "관리자 ID는 영어와 숫자만 사용하여 5~15자리로 입력해 주세요.", "warning"); 
 			$("#USER_ID").focus(); return false;	
 		}else{
 			var param = "mode=user_dup&USER_ID="+$("#USER_ID").val()+"&C_USER_ID="+$("#C_USER_ID").val()+"&OTT="+'<?=$ott?>';
@@ -728,10 +728,10 @@ crypt.setKey(key);
 		
 		if(kind == "I"){
 			if( !$("#USER_ID").val() ){
-			    swal("체크", "사용자 ID를 입력해 주세요.", "warning");
+			    swal("체크", "관리자 ID를 입력해 주세요.", "warning");
 			    $("#USER_ID").focus(); return false;	
 			}else if( !id_check.test( $("#USER_ID").val() ) ){
-			    swal("체크", "사용자 ID는 영어와 숫자만 사용하여 5~15자리로 입력해 주세요.", "warning"); 
+			    swal("체크", "관리자 ID는 영어와 숫자만 사용하여 5~15자리로 입력해 주세요.", "warning"); 
 			    $("#USER_ID").focus(); return false;	
 			}else if( $("#USER_ID").val() == $("#C_USER_ID").val() ){
 			    swal("체크", "이미 사용중인 아이디 입니다.", "warning");
@@ -742,7 +742,7 @@ crypt.setKey(key);
 			    swal("체크", "비밀번호를 입력해 주세요.", "warning");
 			    $("#USER_PWD").focus(); return false;	
 			}else if( !$("#USER_NAME").val() ){
-			    swal("체크", "사용자명을 입력해 주세요.", "warning"); 
+			    swal("체크", "관리자명을 입력해 주세요.", "warning"); 
 			    $("#USER_NAME").focus(); return false;
 			}else if( !$("#EMAIL1").val() || !$("#EMAIL3").val() ){
 				swal("체크", "이메일 주소를 입력해 주세요.", "warning"); 
@@ -762,12 +762,12 @@ crypt.setKey(key);
 			}
 		}else if(kind == "U"){
 			if( !$("#C_USER_ID").val() ){
-			    swal("체크", "사용자를 선택해 주세요.", "warning"); return false;
+			    swal("체크", "관리자를 선택해 주세요.", "warning"); return false;
 			}else if( !$("#USER_ID").val() ){
-			    swal("체크", "사용자 ID를 입력해 주세요.", "warning");
+			    swal("체크", "관리자 ID를 입력해 주세요.", "warning");
 			    $("#USER_ID").focus(); return false;	
 			}else if( !id_check.test( $("#USER_ID").val() ) ){
-			    swal("체크", "사용자 ID는 영어와 숫자만 사용하여 5~15자리로 입력해 주세요.", "warning"); 
+			    swal("체크", "관리자 ID는 영어와 숫자만 사용하여 5~15자리로 입력해 주세요.", "warning"); 
 			    $("#USER_ID").focus(); return false;	
 			// }else if( $("#dup_check").val() == "0" ){
 			//     swal("체크", "아이디 중복체크를 진행해 주세요.", "warning"); return false;
@@ -775,7 +775,7 @@ crypt.setKey(key);
 			    swal("체크", "비밀번호를 입력해 주세요.", "warning");
 			    $("#USER_PWD").focus(); return false;	
 			}else if( !$("#USER_NAME").val() ){
-			    swal("체크", "사용자명을 입력해 주세요.", "warning"); 
+			    swal("체크", "관리자명을 입력해 주세요.", "warning"); 
 			    $("#USER_NAME").focus(); return false;	
 			}else if( !$("#EMAIL1").val() || !$("#EMAIL3").val() ){
 				swal("체크", "이메일 주소를 입력해 주세요.", "warning"); 
@@ -795,7 +795,7 @@ crypt.setKey(key);
 			}
 		}else if(kind == "D"){
 			if( !$("#C_USER_ID").val() ){
-			    swal("체크", "사용자를 선택해 주세요.", "warning"); return false;
+			    swal("체크", "관리자를 선택해 주세요.", "warning"); return false;
 			}
 		}
 		return true;
