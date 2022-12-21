@@ -475,11 +475,11 @@ switch($mode){
 					foreach($ClassFlowInfo->rsFlow10m as $key => $val){
 						$sub_date = substr($val['FLOW_DATE'], 8,2);
 						if($data_list[ $i ]['LEG'] == $sub_date){
-							$data_list[ $i ]['DATA'] = round_data($val['FLOW'], 0.01, 10);
+							$data_list[ $i ]['DATA'] = round_data($val['FLOW'], 0.01, 100);
 						};
 						if($val['FLOW'] != "-"){
-							$area_data['MAX'] = ($area_data['MAX'] < round_data($val['FLOW'], 0.01, 10) || !$area_data['MAX']) ? round_data($val['FLOW'], 0.01, 10) : $area_data['MAX'];
-							$area_data['MIN'] = ($area_data['MIN'] > round_data($val['FLOW'], 0.01, 10) || !$area_data['MIN']) ? round_data($val['FLOW'], 0.01, 10) : $area_data['MIN'];
+							$area_data['MAX'] = ($area_data['MAX'] < round_data($val['FLOW'], 0.01, 100) || !$area_data['MAX']) ? round_data($val['FLOW'], 0.01, 100) : $area_data['MAX'];
+							$area_data['MIN'] = ($area_data['MIN'] > round_data($val['FLOW'], 0.01, 100) || !$area_data['MIN']) ? round_data($val['FLOW'], 0.01, 100) : $area_data['MIN'];
 						}
 					}
 					$i++;
