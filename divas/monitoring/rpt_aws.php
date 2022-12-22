@@ -35,6 +35,7 @@ require_once "./head.php";
 
 				<div class="right_bg2">
 				<canvas id="graph" class="pT_10"></canvas><!-- 그래프 -->
+				<div class="guide_txt"> <ul><li class="icon"><i class="fa fa-paperclip"></i></li><li class="txt02">단위 [mm]</li></ul></div>
 				</div>
 				<div class="right_bg2 mT_15">
 				<ul id="search_box">
@@ -71,11 +72,12 @@ require_once "./head.php";
 					--> 
 				</span>
 					</li>
-					</ul>
-					<!-- <ul class="stitle_box">
-		             <li><?=$sdate?></li>
-		             <li></li>
-		         </ul> -->
+				</ul>
+				<ul class="stitle_box">
+		             <!-- <li><?=$sdate?></li> -->
+		             <li class="txt03">[단위 : mm]</li>
+		         </ul>
+
 		<ul class="set_ulwrap_nh">
 			<? if($option == "0"){ // 강우 ########################################################################### ?>
 			<li class="li100_nor">
@@ -680,6 +682,20 @@ $(document).ready(function(){
 	}
 	
 	var timestamp = makeTimestamp();
+
+	if($("#option").val() == 0){
+		$('.txt02').text('단위[mm]');
+		$('.txt03').text('[단위 : mm]');
+	}else if($("#option").val() == 1){
+		$('.txt02').text('단위[℃]');
+		$('.txt03').text('[단위 : ℃]');
+	}else if($("#option").val() == 2){
+		$('.txt02').text('단위[㎧]');
+		$('.txt03').text('[단위 : ㎧]');
+	}else if($("#option").val() == 4){
+		$('.txt02').text('단위[%]');
+		$('.txt03').text('[단위 : %]');
+	}
 			
 	// 현재 센서 종류 RETURN 센서종류 TEXT
 	function getSensorKind(){
@@ -948,6 +964,8 @@ $(document).ready(function(){
 						if($("#option").val() == 1 || $("#option").val() == 4){
 							DATA2 = data.list.map(function(a){ return a.DATA2 });
 							DATA3 = data.list.map(function(a){ return a.DATA3 });
+						}else if($("#option").val() == 2){
+							DATA3 = data.list.map(function(a){ return a.DATA3 });
 						}
 						// LEGD = Object.keys(data.list);
 						// 객체 -> 배열로 변환 map 함수
@@ -999,7 +1017,7 @@ $(document).ready(function(){
 								label: getSensorKind()+"(현재)",
 								data: DATAD,
 								yAxisID: 'y_aws',
-								backgroundColor: ($("#option").val() == '0' ? '#c3dcf5' : 'rgba(255,255,255,0.1)'),
+								backgroundColor: 'rgba(255,255,255,0.1)',
 								borderColor: '#69F',
 								borderWidth: 0,
 								lineTension: 0 ,
@@ -1016,11 +1034,31 @@ $(document).ready(function(){
 								label: '최저',
 								data: DATA2,
 								yAxisID: 'y_aws',
-								backgroundColor: '#98FB98',
-								borderColor: '#00FF7F',
+								backgroundColor: '#7ecd00',
+								borderColor: '#7ecd00',
 								borderWidth: 2,
 								fill: false,
 								pointRadius: 0
+							}];
+					}else if($("#option").val() == 2){
+						dtset = 
+							[{
+								label: getSensorKind()+"(현재)",
+								data: DATAD,
+								yAxisID: 'y_aws',
+								backgroundColor: 'rgba(255,255,255,0.1)',
+								borderColor: '#69F',
+								borderWidth: 0,
+								lineTension: 0 ,
+								fill: getGraphBarKind()
+							}, {
+								label: '최고',
+								data: DATA3,
+								yAxisID: 'y_aws',
+								backgroundColor: '#ff8017',
+								borderColor: '#ff8017',
+								borderWidth: 2,
+								fill: false
 							}];
 					}
 					chart = new Chart($("#graph"), {
@@ -1058,8 +1096,20 @@ $(document).ready(function(){
 												}
 											}else if(tooltipItem.datasetIndex == 2){
 												return {
-													backgroundColor : '#00FF7F',
-													borderColor: '#00FF7F'
+													backgroundColor : '#7ecd00',
+													borderColor: '#7ecd00'
+												}
+											}else{
+												return {
+													backgroundColor : '#69F',
+													borderColor: '#69F'
+												}
+											}
+										}else if($("#option").val() == 2){
+											if(tooltipItem.datasetIndex == 1){
+												return {
+													backgroundColor : '#ff8017',
+													borderColor: '#ff8017'
 												}
 											}else{
 												return {
@@ -1144,6 +1194,8 @@ $(document).ready(function(){
 						if($("#option").val() == 1 || $("#option").val() == 4){
 							DATA2 = data.list.DATA2;
 							DATA3 = data.list.DATA3;
+						}else if($("#option").val() == 2){
+							DATA3 = data.list.DATA3;
 						}
 						LEG = data.list.LEG;
 						DATA = data.list.DATA;
@@ -1185,7 +1237,7 @@ $(document).ready(function(){
 								label: '<?=$chart_name?>'+"(현재)",
 								data: DATA,
 								yAxisID: 'y_aws',
-								backgroundColor: ("<?=$option?>" == '0' ? '#c3dcf5' : 'rgba(255,255,255,0.1)'),
+								backgroundColor: 'rgba(255,255,255,0.1)',
 								borderColor: '#69F',
 								borderWidth: 0,
 								lineTension: 0 ,
@@ -1203,8 +1255,29 @@ $(document).ready(function(){
 								label: '최저',
 								data: DATA2,
 								yAxisID: 'y_aws',
-								backgroundColor: '#98FB98',
-								borderColor: '#00FF7F',
+								backgroundColor: '#7ecd00',
+								borderColor: '#7ecd00',
+								borderWidth: 2,
+								fill: false,
+								pointRadius: 0
+							}];
+					}else if($("#option").val() == 2){
+						dtset = 
+							[{
+								label: '<?=$chart_name?>'+"(현재)",
+								data: DATA,
+								yAxisID: 'y_aws',
+								backgroundColor: 'rgba(255,255,255,0.1)',
+								borderColor: '#69F',
+								borderWidth: 0,
+								lineTension: 0 ,
+								fill: getGraphBarKind()
+							}, {
+								label: '최고',
+								data: DATA3,
+								yAxisID: 'y_aws',
+								backgroundColor: '#ff8017',
+								borderColor: '#ff8017',
 								borderWidth: 2,
 								fill: false,
 								pointRadius: 0
@@ -1251,8 +1324,20 @@ $(document).ready(function(){
 												}
 											}else if(tooltipItem.datasetIndex == 2){
 												return {
-													backgroundColor : '#00FF7F',
-													borderColor: '#00FF7F'
+													backgroundColor : '#7ecd00',
+													borderColor: '#7ecd00'
+												}
+											}else{
+												return {
+													backgroundColor : '#69F',
+													borderColor: '#69F'
+												}
+											}
+										}else if($("#option").val() == 2){
+											if(tooltipItem.datasetIndex == 1){
+												return {
+													backgroundColor : '#ff8017',
+													borderColor: '#ff8017'
 												}
 											}else{
 												return {
