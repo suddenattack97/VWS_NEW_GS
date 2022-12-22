@@ -295,7 +295,7 @@ require_once "./head.php";
 					</thead>
 			        <tbody>
 						<tr class="hh">
-							<td class="bg_lb">상단바 로고</td>
+							<td>상단바 로고</td>
 							<td colspan="6">
 								<input type="text" id="top_img" name="top_img" class="w95 f333_12" value="<?=top_img?>">
 								<input type="file" id="sel_top_img" name="sel_top_img" style="display: none;">
@@ -304,13 +304,13 @@ require_once "./head.php";
 							</td>
 						</tr>
 						<tr class="hh">
-							<td class="bg_lb">상단바 제목</td>
+							<td>상단바 제목</td>
 							<td colspan="6">
 								<input type="text" id="top_title" name="top_title" class="w95 f333_12" value="<?=top_title?>" maxlength="12">
 							</td>
 						</tr>
 						<!-- <tr class="hh">
-							<td class="bg_lb">상단바 내용</td>
+							<td>상단바 내용</td>
 							<td colspan="6">
 								<input type="text" id="top_text" name="top_text" class="w95 f333_12" value="<?=top_text?>">
 							</td>
