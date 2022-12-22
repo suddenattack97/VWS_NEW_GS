@@ -1412,7 +1412,7 @@ $(document).ready(function(){
 			}else if( !num_check.test( $("#SIGNAL_ID").val() ) ){
 			    swal("체크", "통신 ID는 숫자만 사용해 주세요.", "warning"); 
 			    $("#SIGNAL_ID").focus(); return false;	
-			}else if( cid_arr.indexOf($("#SIGNAL_ID").val()) > -1 ){
+			}else if( cid_arr.indexOf($("#SIGNAL_ID").val()) > -1 && !($("#SIGNAL_ID").val() == $("#C_SIGNAL_ID").val())){
 			    swal("체크", "이미 사용중인 통신 ID 입니다.", "warning");
 			    $("#SIGNAL_ID").focus(); return false;	
 			}else if( !$("#AREA_CODE").val() ){
