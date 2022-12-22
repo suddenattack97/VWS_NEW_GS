@@ -339,12 +339,12 @@ require_once "./head.php";
                 <th class="bL_1blue2">50-59분</th>
               </tr>
               <tr id="input">
-                <td><input type="text" id="min_1" name="min[]" class="f333_12 al_c" oninput="inputCheck(this,'onlyNumber','0~9999')"></td>
-                <td class="bL_1black"><input type="text" id="min_2" name="min[]" class="f333_12 al_c" oninput="inputCheck(this,'onlyNumber','0~9999')"></td>
-                <td class="bL_1black"><input type="text" id="min_3" name="min[]" class="f333_12 al_c" oninput="inputCheck(this,'onlyNumber','0~9999')"></td>
-                <td class="bL_1black"><input type="text" id="min_4" name="min[]" class="f333_12 al_c" oninput="inputCheck(this,'onlyNumber','0~9999')"></td>
-                <td class="bL_1black"><input type="text" id="min_5" name="min[]" class="f333_12 al_c" oninput="inputCheck(this,'onlyNumber','0~9999')"></td>
-                <td class="bL_1black"><input type="text" id="min_6" name="min[]" class="f333_12 al_c" oninput="inputCheck(this,'onlyNumber','0~9999')"></td>
+                <td><input type="text" id="min_1" name="min[]" class="f333_12 al_c" oninput="inputCheck(this,'onlyNumber','0.1~9999')"></td>
+                <td class="bL_1black"><input type="text" id="min_2" name="min[]" class="f333_12 al_c" oninput="inputCheck(this,'onlyNumber','0.1~9999')"></td>
+                <td class="bL_1black"><input type="text" id="min_3" name="min[]" class="f333_12 al_c" oninput="inputCheck(this,'onlyNumber','0.1~9999')"></td>
+                <td class="bL_1black"><input type="text" id="min_4" name="min[]" class="f333_12 al_c" oninput="inputCheck(this,'onlyNumber','0.1~9999')"></td>
+                <td class="bL_1black"><input type="text" id="min_5" name="min[]" class="f333_12 al_c" oninput="inputCheck(this,'onlyNumber','0.1~9999')"></td>
+                <td class="bL_1black"><input type="text" id="min_6" name="min[]" class="f333_12 al_c" oninput="inputCheck(this,'onlyNumber','0.1~9999')"></td>
               </tr>
               <tr id="select">
               	<? for($i=1; $i<=6; $i++){ ?>

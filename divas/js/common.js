@@ -998,6 +998,19 @@
 			if(range.length > 1) {
 				range = range.split('~');
 				if(range.length == 2){
+
+					// 소숫점 자릿수 제한 추가 - range[0] 부분의 소숫점 자릿수 체크
+					if(range[0].indexOf('.')!= -1){
+						var r_len = range[0].substring(range[0].indexOf('.')+1).length;
+						if(obj.value.indexOf('.')!= -1){
+							var obj_len = obj.value.substring(obj.value.indexOf('.')+1).length;
+							// range[0] 부분의 소숫점 자릿수 보다 크면 잘라냄
+							if( r_len < obj_len ) {
+								obj.value = obj.value.slice(0, obj.value.length-1);
+							}
+						}
+					}
+
 					range[0] = parseInt(range[0]);
 					range[1] = parseInt(range[1]);
 				}else{

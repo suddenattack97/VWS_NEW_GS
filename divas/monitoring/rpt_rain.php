@@ -470,7 +470,7 @@ $(document).ready(function(){
 								data: DATAD,
 								yAxisID: 'y_rain',
 								backgroundColor: '#c3dcf5',
-								borderColor: '#c3dcf5',
+								borderColor: '#69F',
 								borderWidth: 1
 							}]
 						},
@@ -598,7 +598,7 @@ $(document).ready(function(){
 								data: DATA,
 								yAxisID: 'y_rain',
 								backgroundColor: '#c3dcf5',
-								borderColor: '#c3dcf5',
+								borderColor: '#69F',
 								borderWidth: 1
 							}]
 						},
