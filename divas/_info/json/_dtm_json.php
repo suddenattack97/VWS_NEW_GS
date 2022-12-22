@@ -62,6 +62,8 @@ if($_SESSION["OTT"] == $_POST["OTT"]){
 				// 분단위 데이터
 				for($i=0; $i<6; $i++){
 					$where_date = $sdate." ".$hour.":".$i."0:00";
+					// 현재보다 미래시간은 자료수정 안되도록
+					if($where_date > date("Y-m-d H:i:00")) continue;
 					if($min[$i] != null){
 						$min[$i] = $min[$i]*100;
 					}else{
@@ -132,6 +134,8 @@ if($_SESSION["OTT"] == $_POST["OTT"]){
 				// 분단위 데이터
 				for($i=0; $i<6; $i++){
 					$where_date = $sdate." ".$hour.":".$i."0:00";
+					// 현재보다 미래시간은 자료수정 안되도록
+					if($where_date > date("Y-m-d H:i:00")) continue;
 					if($min[$i] != null){
 						$min[$i] = $min[$i]*100;
 					}else{
@@ -202,6 +206,8 @@ if($_SESSION["OTT"] == $_POST["OTT"]){
 				// 분단위 데이터
 				for($i=0; $i<6; $i++){
 					$where_date = $sdate." ".$hour.":".$i."0:00";
+					// 현재보다 미래시간은 자료수정 안되도록
+					if($where_date > date("Y-m-d H:i:00")) continue;
 					if($min[$i] != null){
 						$min[$i] = $min[$i]*1000;
 					}else{
@@ -272,6 +278,8 @@ if($_SESSION["OTT"] == $_POST["OTT"]){
 				// 분단위 데이터
 				for($i=0; $i<6; $i++){
 					$where_date = $sdate." ".$hour.":".$i."0:00";
+					// 현재보다 미래시간은 자료수정 안되도록
+					if($where_date > date("Y-m-d H:i:00")) continue;
 					if($min[$i] != null){
 						$min[$i] = $min[$i]*100;
 					}else{
@@ -378,6 +386,8 @@ if($_SESSION["OTT"] == $_POST["OTT"]){
 				// 분단위 데이터
 				for($i=0; $i<6; $i++){
 					$where_date = $sdate." ".$hour.":".$i."0:00";
+					// 현재보다 미래시간은 자료수정 안되도록
+					if($where_date > date("Y-m-d H:i:00")) continue;
 					if($min[$i] != null){
 						$min[$i] = $min[$i]*100;
 					}else{
@@ -430,6 +440,8 @@ if($_SESSION["OTT"] == $_POST["OTT"]){
 				// 분단위 데이터
 				for($i=0; $i<6; $i++){
 					$where_date = $sdate." ".$hour.":".$i."0:00";
+					// 현재보다 미래시간은 자료수정 안되도록
+					if($where_date > date("Y-m-d H:i:00")) continue;
 					if($min[$i] != null){
 						$min[$i] = $min[$i]*100;
 					}else{
@@ -504,6 +516,8 @@ if($_SESSION["OTT"] == $_POST["OTT"]){
 				// 분단위 데이터
 				for($i=0; $i<6; $i++){
 					$where_date = $sdate." ".$hour.":".$i."0:00";
+					// 현재보다 미래시간은 자료수정 안되도록
+					if($where_date > date("Y-m-d H:i:00")) continue;
 					if($min[$i] != null){
 						$min[$i] = $min[$i]*100;
 					}else{
@@ -583,6 +597,8 @@ if($_SESSION["OTT"] == $_POST["OTT"]){
 				// 분단위 데이터
 				for($i=0; $i<6; $i++){
 					$where_date = $sdate." ".$hour.":".$i."0:00";
+					// 현재보다 미래시간은 자료수정 안되도록
+					if($where_date > date("Y-m-d H:i:00")) continue;
 					if($min[$i] != null){
 						$min[$i] = $min[$i]*100;
 					}else{
@@ -635,6 +651,8 @@ if($_SESSION["OTT"] == $_POST["OTT"]){
 				// 분단위 데이터
 				for($i=0; $i<6; $i++){
 					$where_date = $sdate." ".$hour.":".$i."0:00";
+					// 현재보다 미래시간은 자료수정 안되도록
+					if($where_date > date("Y-m-d H:i:00")) continue;
 					if($min[$i] != "-"){
 						$min[$i] = $ClassAwsInfo->getNumDegree($min[$i]);
 					}else{
@@ -687,6 +705,8 @@ if($_SESSION["OTT"] == $_POST["OTT"]){
 				// 분단위 데이터
 				for($i=0; $i<6; $i++){
 					$where_date = $sdate." ".$hour.":".$i."0:00";
+					// 현재보다 미래시간은 자료수정 안되도록
+					if($where_date > date("Y-m-d H:i:00")) continue;
 					if($min[$i] != "-"){
 						$min[$i] = $ClassAwsInfo->getNumDegree($min[$i]);
 					}else{
@@ -757,6 +777,8 @@ if($_SESSION["OTT"] == $_POST["OTT"]){
 				// 분단위 데이터
 				for($i=0; $i<6; $i++){
 					$where_date = $sdate." ".$hour.":".$i."0:00";
+					// 현재보다 미래시간은 자료수정 안되도록
+					if($where_date > date("Y-m-d H:i:00")) continue;
 					if($min[$i] != null){
 						$min[$i] = $min[$i]*100;
 					}else{
@@ -809,6 +831,8 @@ if($_SESSION["OTT"] == $_POST["OTT"]){
 				// 분단위 데이터
 				for($i=0; $i<6; $i++){
 					$where_date = $sdate." ".$hour.":".$i."0:00";
+					// 현재보다 미래시간은 자료수정 안되도록
+					if($where_date > date("Y-m-d H:i:00")) continue;
 					if($min[$i] != null){
 						$min[$i] = $min[$i]*100;
 					}else{
@@ -861,6 +885,8 @@ if($_SESSION["OTT"] == $_POST["OTT"]){
 				// 분단위 데이터
 				for($i=0; $i<6; $i++){
 					$where_date = $sdate." ".$hour.":".$i."0:00";
+					// 현재보다 미래시간은 자료수정 안되도록
+					if($where_date > date("Y-m-d H:i:00")) continue;
 					if($min[$i] != null){
 						$min[$i] = $min[$i]*100;
 					}else{
@@ -931,6 +957,8 @@ if($_SESSION["OTT"] == $_POST["OTT"]){
 				// 분단위 데이터
 				for($i=0; $i<6; $i++){
 					$where_date = $sdate." ".$hour.":".$i."0:00";
+					// 현재보다 미래시간은 자료수정 안되도록
+					if($where_date > date("Y-m-d H:i:00")) continue;
 					if($min[$i] != null){
 						$min[$i] = $min[$i]*100;
 					}else{
@@ -1037,6 +1065,8 @@ if($_SESSION["OTT"] == $_POST["OTT"]){
 				// 분단위 데이터
 				for($i=0; $i<6; $i++){
 					$where_date = $sdate." ".$hour.":".$i."0:00";
+					// 현재보다 미래시간은 자료수정 안되도록
+					if($where_date > date("Y-m-d H:i:00")) continue;
 					if($min[$i] != null){
 						$min[$i] = $min[$i]*100;
 					}else{
@@ -1089,6 +1119,8 @@ if($_SESSION["OTT"] == $_POST["OTT"]){
 				// 분단위 데이터
 				for($i=0; $i<6; $i++){
 					$where_date = $sdate." ".$hour.":".$i."0:00";
+					// 현재보다 미래시간은 자료수정 안되도록
+					if($where_date > date("Y-m-d H:i:00")) continue;
 					if($min[$i] != null){
 						$min[$i] = $min[$i]*100;
 					}else{
@@ -1159,6 +1191,8 @@ if($_SESSION["OTT"] == $_POST["OTT"]){
 				// 분단위 데이터
 				for($i=0; $i<6; $i++){
 					$where_date = $sdate." ".$hour.":".$i."0:00";
+					// 현재보다 미래시간은 자료수정 안되도록
+					if($where_date > date("Y-m-d H:i:00")) continue;
 					if($min[$i] != null){
 						$min[$i] = $min[$i]*100;
 					}else{
@@ -1229,6 +1263,8 @@ if($_SESSION["OTT"] == $_POST["OTT"]){
 				// 분단위 데이터
 				for($i=0; $i<6; $i++){
 					$where_date = $sdate." ".$hour.":".$i."0:00";
+					// 현재보다 미래시간은 자료수정 안되도록
+					if($where_date > date("Y-m-d H:i:00")) continue;
 					if($min[$i] != null){
 						$min[$i] = $min[$i]*100;
 					}else{
