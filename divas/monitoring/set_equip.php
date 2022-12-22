@@ -1303,15 +1303,23 @@ $(document).ready(function(){
 		var num_check = /^[0-9]*$/; // 숫자만
 		var num_length_check = /^[0-9]{1,4}$/; // 숫자이면서 10자리
 		var area_check = /^[0-9]*$/; // 숫자만
+		var id_arr = [];
+		var cid_arr = [];
+		var code_arr = [];
+		$.each($('#list_table tbody tr'), function(i,v){
+			id_arr.push($(v).find('td').eq(1).text());
+			cid_arr.push($(v).find('td').eq(2).text());
+			code_arr.push($(v).find('td').eq(5).text());
+		});
 		
 		if(kind == "I"){
 			if( !$("#RTU_ID").val() ){
 			    swal("체크", "장비 ID를 입력해 주세요.", "warning");
 			    $("#RTU_ID").focus(); return false;	
-			}else if( !num_length_check.test( $("#RTU_ID").val() ) ){
-			    swal("체크", "장비 ID는 1~9999까지 숫자만 사용해 주세요.", "warning"); 
+			// }else if( !num_length_check.test( $("#RTU_ID").val() ) ){
+			//     swal("체크", "장비 ID는 1~9999까지 숫자만 사용해 주세요.", "warning"); 
 			    $("#RTU_ID").focus(); return false;	
-			}else if( $("#RTU_ID").val() == $("#C_RTU_ID").val() ){
+			}else if( id_arr.indexOf($("#RTU_ID").val()) > -1 ){
 			    swal("체크", "이미 사용중인 장비 ID 입니다.", "warning");
 			    $("#RTU_ID").focus(); return false;	
 			}else if( !$("#SIGNAL_ID").val() ){
@@ -1320,7 +1328,7 @@ $(document).ready(function(){
 			}else if( !num_check.test( $("#SIGNAL_ID").val() ) ){
 			    swal("체크", "통신 ID는 숫자만 사용해 주세요.", "warning"); 
 			    $("#SIGNAL_ID").focus(); return false;	
-			}else if( $("#SIGNAL_ID").val() == $("#C_SIGNAL_ID").val() ){
+			}else if( cid_arr.indexOf($("#SIGNAL_ID").val()) > -1 ){
 			    swal("체크", "이미 사용중인 통신 ID 입니다.", "warning");
 			    $("#SIGNAL_ID").focus(); return false;	
 			}else if( !$("#AREA_CODE").val() ){
@@ -1329,7 +1337,7 @@ $(document).ready(function(){
 			}else if( !area_check.test( $("#AREA_CODE").val() ) ){
 			    swal("체크", "행정 코드는  숫자만 사용하여 10자리로 입력해 주세요.", "warning"); 
 			    $("#AREA_CODE").focus(); return false;	
-			}else if( $("#AREA_CODE").val() == $("#C_AREA_CODE").val() ){
+			}else if( code_arr.indexOf($("#AREA_CODE").val()) > -1 ){
 			    swal("체크", "이미 사용중인 행정 코드 입니다.", "warning");
 			    $("#AREA_CODE").focus(); return false;	
 			}else if( $("#dup_check").val() == "0" ){
@@ -1395,14 +1403,17 @@ $(document).ready(function(){
 			}else if( !$("#RTU_ID").val() ){
 			    swal("체크", "장비 ID를 입력해 주세요.", "warning");
 			    $("#RTU_ID").focus(); return false;	
-			}else if( !num_length_check.test( $("#RTU_ID").val() ) ){
-			    swal("체크", "장비 ID는 1~9999까지 숫자만 사용해 주세요.", "warning"); 
+			// }else if( !num_length_check.test( $("#RTU_ID").val() ) ){
+			//     swal("체크", "장비 ID는 1~9999까지 숫자만 사용해 주세요.", "warning"); 
 			    $("#RTU_ID").focus(); return false;	
 			}else if( !$("#SIGNAL_ID").val() ){
 			    swal("체크", "통신 ID를 입력해 주세요.", "warning");
 			    $("#SIGNAL_ID").focus(); return false;	
 			}else if( !num_check.test( $("#SIGNAL_ID").val() ) ){
 			    swal("체크", "통신 ID는 숫자만 사용해 주세요.", "warning"); 
+			    $("#SIGNAL_ID").focus(); return false;	
+			}else if( cid_arr.indexOf($("#SIGNAL_ID").val()) > -1 ){
+			    swal("체크", "이미 사용중인 통신 ID 입니다.", "warning");
 			    $("#SIGNAL_ID").focus(); return false;	
 			}else if( !$("#AREA_CODE").val() ){
 			    swal("체크", "행정 코드를 입력해 주세요.", "warning");

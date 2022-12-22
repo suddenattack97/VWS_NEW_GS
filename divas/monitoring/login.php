@@ -197,13 +197,13 @@ $(document).ready(function(){
 		}else if(!login_kind){
 		    // swal("체크", "라디오 버튼을 선택해 주세요.", "warning");
 			// return false;
-		}else if(!recaptcha){
-			<? if(recaptcha == 1){ ?>
-		    	swal("체크", "하단 리캡차를 체크해 주세요.", "warning");
-	    	<? }else if(recaptcha == 2){ ?>
-		    	swal("체크", "하단 리캡차를 입력해 주세요.", "warning");
-	    	<? } ?>
-			return false;
+		// }else if(!recaptcha){
+		// 	<? if(recaptcha == 1){ ?>
+		//     	swal("체크", "하단 리캡차를 체크해 주세요.", "warning");
+	    // 	<? }else if(recaptcha == 2){ ?>
+		//     	swal("체크", "하단 리캡차를 입력해 주세요.", "warning");
+	    // 	<? } ?>
+		// 	return false;
 		}
 
 		// 객체 생성
