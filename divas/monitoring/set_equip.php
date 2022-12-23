@@ -173,15 +173,15 @@ require_once "./head.php";
 						</td>
 						<td class="bg_lb w10 bold al_C dngr">경계치 / 위험치</td>
 						<td class="">
-							<input type="text" id="FLOW_WARNING" name="FLOW_WARNING" class="warn f333_12" size="10" maxlength="10" oninput="inputCheck(this,'onlyNumber','0~9999')">
+							<input type="text" id="FLOW_WARNING" name="FLOW_WARNING" class="warn f333_12" size="10" maxlength="5" oninput="inputCheck(this,'onlyNumber','0.1~9999')">
 							 / 
-							<input type="text" id="FLOW_DANGER" name="FLOW_DANGER" class="warn f333_12" size="10" maxlength="10" oninput="inputCheck(this,'onlyNumber','0~9999')">
+							<input type="text" id="FLOW_DANGER" name="FLOW_DANGER" class="warn f333_12" size="10" maxlength="5" oninput="inputCheck(this,'onlyNumber','0.1~9999')">
 						</td>
 						<td class="bg_lb w10 bold al_C dngr">경계치 해제 / 위험치 해제</td>
 						<td class=""  colspan="3">
-							<input type="text" id="FLOW_WARNING_OFF" name="FLOW_WARNING_OFF" class="warn f333_12" size="10" maxlength="10" oninput="inputCheck(this,'onlyNumber','0~9999')">
+							<input type="text" id="FLOW_WARNING_OFF" name="FLOW_WARNING_OFF" class="warn f333_12" size="10" maxlength="5" oninput="inputCheck(this,'onlyNumber','0.1~9999')">
 							 / 
-							<input type="text" id="FLOW_DANGER_OFF" name="FLOW_DANGER_OFF" class="warn f333_12" size="10" maxlength="10" oninput="inputCheck(this,'onlyNumber','0~9999')">
+							<input type="text" id="FLOW_DANGER_OFF" name="FLOW_DANGER_OFF" class="warn f333_12" size="10" maxlength="5" oninput="inputCheck(this,'onlyNumber','0.1~9999')">
 						</td>
 					</tr>
 					<tr>

@@ -339,12 +339,12 @@ require_once "./head.php";
                 <th class="bL_1blue2">50-59분</th>
               </tr>
               <tr id="input">
-                <td><input type="text" id="min_1" name="min[]" class="f333_12 al_c" oninput="inputCheck(this,'onlyNumber','0.1~9999')"></td>
-                <td class="bL_1black"><input type="text" id="min_2" name="min[]" class="f333_12 al_c" oninput="inputCheck(this,'onlyNumber','0.1~9999')"></td>
-                <td class="bL_1black"><input type="text" id="min_3" name="min[]" class="f333_12 al_c" oninput="inputCheck(this,'onlyNumber','0.1~9999')"></td>
-                <td class="bL_1black"><input type="text" id="min_4" name="min[]" class="f333_12 al_c" oninput="inputCheck(this,'onlyNumber','0.1~9999')"></td>
-                <td class="bL_1black"><input type="text" id="min_5" name="min[]" class="f333_12 al_c" oninput="inputCheck(this,'onlyNumber','0.1~9999')"></td>
-                <td class="bL_1black"><input type="text" id="min_6" name="min[]" class="f333_12 al_c" oninput="inputCheck(this,'onlyNumber','0.1~9999')"></td>
+                <td><input type="text" id="min_1" name="min[]" class="f333_12 al_c" maxlength="5" oninput="inputCheck(this,'onlyNumber','0.1~9999')"></td>
+                <td class="bL_1black"><input type="text" id="min_2" name="min[]" class="f333_12 al_c" maxlength="5" oninput="inputCheck(this,'onlyNumber','0.1~9999')"></td>
+                <td class="bL_1black"><input type="text" id="min_3" name="min[]" class="f333_12 al_c" maxlength="5" oninput="inputCheck(this,'onlyNumber','0.1~9999')"></td>
+                <td class="bL_1black"><input type="text" id="min_4" name="min[]" class="f333_12 al_c" maxlength="5" oninput="inputCheck(this,'onlyNumber','0.1~9999')"></td>
+                <td class="bL_1black"><input type="text" id="min_5" name="min[]" class="f333_12 al_c" maxlength="5" oninput="inputCheck(this,'onlyNumber','0.1~9999')"></td>
+                <td class="bL_1black"><input type="text" id="min_6" name="min[]" class="f333_12 al_c" maxlength="5" oninput="inputCheck(this,'onlyNumber','0.1~9999')"></td>
               </tr>
               <tr id="select">
               	<? for($i=1; $i<=6; $i++){ ?>
@@ -460,12 +460,12 @@ $(document).ready(function(){
 			mode_val = "rain_save";
 			mode_text = "강우 자료 수정";
 			
-			$("#min_1").attr('oninput', "inputCheck(this,'onlyNumber','0~9999')");
-			$("#min_2").attr('oninput', "inputCheck(this,'onlyNumber','0~9999')");
-			$("#min_3").attr('oninput', "inputCheck(this,'onlyNumber','0~9999')");
-			$("#min_4").attr('oninput', "inputCheck(this,'onlyNumber','0~9999')");
-			$("#min_5").attr('oninput', "inputCheck(this,'onlyNumber','0~9999')");
-			$("#min_6").attr('oninput', "inputCheck(this,'onlyNumber','0~9999')");
+			$("#min_1").attr('oninput', "inputCheck(this,'onlyNumber','0.1~9999')");
+			$("#min_2").attr('oninput', "inputCheck(this,'onlyNumber','0.1~9999')");
+			$("#min_3").attr('oninput', "inputCheck(this,'onlyNumber','0.1~9999')");
+			$("#min_4").attr('oninput', "inputCheck(this,'onlyNumber','0.1~9999')");
+			$("#min_5").attr('oninput', "inputCheck(this,'onlyNumber','0.1~9999')");
+			$("#min_6").attr('oninput', "inputCheck(this,'onlyNumber','0.1~9999')");
 
 		}else if(mode == "temp"){
 			if(kind == "TEMP"){
@@ -479,24 +479,24 @@ $(document).ready(function(){
 				mode_text = "온도(최저) 자료 수정";
 			}
 
-			$("#min_1").attr('oninput', "inputCheck(this,'onlyNumber','-100~100')");
-			$("#min_2").attr('oninput', "inputCheck(this,'onlyNumber','-100~100')");
-			$("#min_3").attr('oninput', "inputCheck(this,'onlyNumber','-100~100')");
-			$("#min_4").attr('oninput', "inputCheck(this,'onlyNumber','-100~100')");
-			$("#min_5").attr('oninput', "inputCheck(this,'onlyNumber','-100~100')");
-			$("#min_6").attr('oninput', "inputCheck(this,'onlyNumber','-100~100')");
+			$("#min_1").attr('oninput', "inputCheck(this,'onlyNumber','-100.1~100')");
+			$("#min_2").attr('oninput', "inputCheck(this,'onlyNumber','-100.1~100')");
+			$("#min_3").attr('oninput', "inputCheck(this,'onlyNumber','-100.1~100')");
+			$("#min_4").attr('oninput', "inputCheck(this,'onlyNumber','-100.1~100')");
+			$("#min_5").attr('oninput', "inputCheck(this,'onlyNumber','-100.1~100')");
+			$("#min_6").attr('oninput', "inputCheck(this,'onlyNumber','-100.1~100')");
 
 		}else if(mode == "wind"){
 			if(kind == "VEL"){
 				mode_val = "vel_save";
 				mode_text = "풍속 자료 수정";
 				
-				$("#min_1").attr('oninput', "inputCheck(this,'onlyNumber','0~100')");
-				$("#min_2").attr('oninput', "inputCheck(this,'onlyNumber','0~100')");
-				$("#min_3").attr('oninput', "inputCheck(this,'onlyNumber','0~100')");
-				$("#min_4").attr('oninput', "inputCheck(this,'onlyNumber','0~100')");
-				$("#min_5").attr('oninput', "inputCheck(this,'onlyNumber','0~100')");
-				$("#min_6").attr('oninput', "inputCheck(this,'onlyNumber','0~100')");
+				$("#min_1").attr('oninput', "inputCheck(this,'onlyNumber','0.1~100')");
+				$("#min_2").attr('oninput', "inputCheck(this,'onlyNumber','0.1~100')");
+				$("#min_3").attr('oninput', "inputCheck(this,'onlyNumber','0.1~100')");
+				$("#min_4").attr('oninput', "inputCheck(this,'onlyNumber','0.1~100')");
+				$("#min_5").attr('oninput', "inputCheck(this,'onlyNumber','0.1~100')");
+				$("#min_6").attr('oninput', "inputCheck(this,'onlyNumber','0.1~100')");
 				
 			}else if(kind == "VEL_MAX"){
 				mode_val = "vel_max_save";
@@ -529,12 +529,12 @@ $(document).ready(function(){
 				mode_text = "기압(최저) 자료 수정";
 			}
 			
-			$("#min_1").attr('oninput', "inputCheck(this,'onlyNumber','0~9999')");
-			$("#min_2").attr('oninput', "inputCheck(this,'onlyNumber','0~9999')");
-			$("#min_3").attr('oninput', "inputCheck(this,'onlyNumber','0~9999')");
-			$("#min_4").attr('oninput', "inputCheck(this,'onlyNumber','0~9999')");
-			$("#min_5").attr('oninput', "inputCheck(this,'onlyNumber','0~9999')");
-			$("#min_6").attr('oninput', "inputCheck(this,'onlyNumber','0~9999')");
+			$("#min_1").attr('oninput', "inputCheck(this,'onlyNumber','0.1~9999')");
+			$("#min_2").attr('oninput', "inputCheck(this,'onlyNumber','0.1~9999')");
+			$("#min_3").attr('oninput', "inputCheck(this,'onlyNumber','0.1~9999')");
+			$("#min_4").attr('oninput', "inputCheck(this,'onlyNumber','0.1~9999')");
+			$("#min_5").attr('oninput', "inputCheck(this,'onlyNumber','0.1~9999')");
+			$("#min_6").attr('oninput', "inputCheck(this,'onlyNumber','0.1~9999')");
 			
 		}else if(mode == "humi"){
 			if(kind == "HUMI"){
@@ -548,12 +548,12 @@ $(document).ready(function(){
 				mode_text = "습도(최저) 자료 수정";
 			}
 			
-			$("#min_1").attr('oninput', "inputCheck(this,'onlyNumber','0~100')");
-			$("#min_2").attr('oninput', "inputCheck(this,'onlyNumber','0~100')");
-			$("#min_3").attr('oninput', "inputCheck(this,'onlyNumber','0~100')");
-			$("#min_4").attr('oninput', "inputCheck(this,'onlyNumber','0~100')");
-			$("#min_5").attr('oninput', "inputCheck(this,'onlyNumber','0~100')");
-			$("#min_6").attr('oninput', "inputCheck(this,'onlyNumber','0~100')");
+			$("#min_1").attr('oninput', "inputCheck(this,'onlyNumber','0.1~100')");
+			$("#min_2").attr('oninput', "inputCheck(this,'onlyNumber','0.1~100')");
+			$("#min_3").attr('oninput', "inputCheck(this,'onlyNumber','0.1~100')");
+			$("#min_4").attr('oninput', "inputCheck(this,'onlyNumber','0.1~100')");
+			$("#min_5").attr('oninput', "inputCheck(this,'onlyNumber','0.1~100')");
+			$("#min_6").attr('oninput', "inputCheck(this,'onlyNumber','0.1~100')");
 
 		}else if(mode == "radi"){
 			mode_val = "radi_save";
