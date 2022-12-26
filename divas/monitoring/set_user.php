@@ -354,6 +354,7 @@ crypt.setKey(key);
 	$("#list_table tbody tr").click(function(){
 		// $("#tree").jstree("deselect_all"); // jstree 전체 체크 해제
 		$("#dup_check").val(1); // 아이디 중복체크 리셋
+		pwFlag = false;	// 비밀번호 체크 리셋
 		// $("#btn_check").css("display","none"); // 아이디 중복체크 버튼 비활성화
 		// $("#USER_ID").attr("readonly","true"); // 아이디 중복체크 버튼 비활성화
 		
@@ -442,37 +443,6 @@ crypt.setKey(key);
 		if( form_check("I") ){
 
 			$("#mode").val("user_in");
-			if(pwFlag){
-				var user_pwd = $("#USER_PWD").val();
-				// 암호화
-				var tmp_pw = crypt.encrypt(user_pwd);
-
-				$("#USER_PWD").val(tmp_pw);
-
-				$("#USER_PWD_LEN").val("");
-			}
-
-			// frm.serialize() 대신 serializeArray() 써서 JSON으로 생성 
-			jQuery.fn.serializeObject = function() {
-				var obj = null;
-				try {
-					if (this[0].tagName && this[0].tagName.toUpperCase() == "FORM") {
-						var arr = this.serializeArray();
-						if (arr) {
-							obj = {};
-							jQuery.each(arr, function() {
-								obj[this.name] = this.value;
-							});
-						}//if ( arr ) {
-					}
-				} catch (e) {
-					alert(e.message);
-				} finally {
-				}
-				return obj;
-			};
-
-			var param = $("#set_frm").serializeObject();
 
 			swal({
 				title: '<div class="alpop_top_b">관리자 등록 확인</div><div class="alpop_mes_b">관리자를 등록하실 겁니까?</div>',
@@ -485,7 +455,39 @@ crypt.setKey(key);
 				html: true
 			}, function(isConfirm){
 				
-				if(isConfirm){					
+				if(isConfirm){			
+					
+					if(pwFlag){
+						var user_pwd = $("#USER_PWD").val();
+						// 암호화
+						var tmp_pw = crypt.encrypt(user_pwd);
+
+						$("#USER_PWD").val(tmp_pw);
+
+						$("#USER_PWD_LEN").val("");
+					}
+
+					// frm.serialize() 대신 serializeArray() 써서 JSON으로 생성 
+					jQuery.fn.serializeObject = function() {
+						var obj = null;
+						try {
+							if (this[0].tagName && this[0].tagName.toUpperCase() == "FORM") {
+								var arr = this.serializeArray();
+								if (arr) {
+									obj = {};
+									jQuery.each(arr, function() {
+										obj[this.name] = this.value;
+									});
+								}//if ( arr ) {
+							}
+						} catch (e) {
+							alert(e.message);
+						} finally {
+						}
+						return obj;
+					};
+
+					var param = $("#set_frm").serializeObject();
 					
 					//중복 submit 방지
 					if(doubleSubmitCheck()) return;
@@ -554,38 +556,7 @@ crypt.setKey(key);
 			var C_USER_ID = $("#C_USER_ID").val();
 
 			$("#mode").val("user_up");
-			if(pwFlag){
-				var user_pwd = $("#USER_PWD").val();
-				// 암호화
-				var tmp_pw = crypt.encrypt(user_pwd);
-
-				$("#USER_PWD").val(tmp_pw);
-
-				$("#USER_PWD_LEN").val("");
-			}
-
-			// frm.serialize() 대신 serializeArray() 써서 JSON으로 생성 
-			jQuery.fn.serializeObject = function() {
-				var obj = null;
-				try {
-					if (this[0].tagName && this[0].tagName.toUpperCase() == "FORM") {
-						var arr = this.serializeArray();
-						if (arr) {
-							obj = {};
-							jQuery.each(arr, function() {
-								obj[this.name] = this.value;
-							});
-						}//if ( arr ) {
-					}
-				} catch (e) {
-					alert(e.message);
-				} finally {
-				}
-				return obj;
-			};
-
-			var param = $("#set_frm").serializeObject();
-
+			
 			swal({
 				title: '<div class="alpop_top_b">관리자 수정 확인</div><div class="alpop_mes_b">['+C_USER_ID+']을 수정하실 겁니까?</div>',
 				text: '확인 시 관리자가 수정 됩니다.',
@@ -597,8 +568,40 @@ crypt.setKey(key);
 				html: true
 			}, function(isConfirm){
 				
-				if(isConfirm){					
+				if(isConfirm){			
 					
+					if(pwFlag){
+						var user_pwd = $("#USER_PWD").val();
+						// 암호화
+						var tmp_pw = crypt.encrypt(user_pwd);
+
+						$("#USER_PWD").val(tmp_pw);
+
+						$("#USER_PWD_LEN").val("");
+					}
+
+					// frm.serialize() 대신 serializeArray() 써서 JSON으로 생성 
+					jQuery.fn.serializeObject = function() {
+						var obj = null;
+						try {
+							if (this[0].tagName && this[0].tagName.toUpperCase() == "FORM") {
+								var arr = this.serializeArray();
+								if (arr) {
+									obj = {};
+									jQuery.each(arr, function() {
+										obj[this.name] = this.value;
+									});
+								}//if ( arr ) {
+							}
+						} catch (e) {
+							alert(e.message);
+						} finally {
+						}
+						return obj;
+					};
+
+					var param = $("#set_frm").serializeObject();
+
 					//중복 submit 방지
 					if(doubleSubmitCheck()) return;
 					// var param = "mode=user_up&"+$("#set_frm").serialize();

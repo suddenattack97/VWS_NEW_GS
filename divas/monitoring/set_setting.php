@@ -343,7 +343,7 @@ require_once "./head.php";
 						<tr class="hh hd">
 							<td>현황 Refresh 간격</td>
 							<td>
-								시간 : <input type="text" id="load_time" name="load_time" class="f333_12" style="width: 50px" value="<?=load_time*0.001?>" oninput="inputCheck(this,'onlyNumber','1~99999')"> 초
+								시간 : <input type="text" id="load_time" name="load_time" class="f333_12" style="width: 50px" maxlength="6" value="<?=load_time*0.001?>" oninput="inputCheck(this,'onlyNumber','0.1~99999')"> 초
 							</td>
 						</tr>
 
