@@ -142,6 +142,7 @@ $(document).ready(function(){
 	// 	}
 	// 		timer = setInterval(showRemaining, 1000);
 	// }
+	var login_time = localStorage.getItem('time');
 
 	setInt_time = setInterval(function(){
 		var now_client_time = new Date();
@@ -164,13 +165,21 @@ $(document).ready(function(){
 		var tmp_src = $("#main").attr("src");
 
 		// countDownTimer('session_time', session_time);
-
-		if(login_token !== "1" || !login_token){
-			if(tmp_src == "dtm_rain.php" || tmp_src == "dtm_wl.php" || tmp_src == "dtm_aws.php" || tmp_src == "dtm_snow.php" || tmp_src == "dtm_mcall.php" ||
-			tmp_src == "rpt_ori.php" || tmp_src == "set_setting.php" || tmp_src == "set_organ.php" || tmp_src == "set_user.php" || tmp_src == "set_equip.php"){
-				location.href = "./main.php";
-				return false;
-			}
+		if(login_time < Date.now()){
+			$("#btn_logout").addClass('dp0');
+			$("#btn_layout").addClass('dp0');
+			$("#user_id_front").addClass('dp0');
+			$("#user_id").addClass('dp0');
+			$("#session_time_front").addClass('dp0');
+			$("#session_time").addClass('dp0');
+			$("#btn_login").removeClass('dp0');
+			// if(login_token !== "1"){
+				if(tmp_src == "dtm_rain.php" || tmp_src == "dtm_wl.php" || tmp_src == "dtm_aws.php" || tmp_src == "dtm_snow.php" || tmp_src == "dtm_mcall.php" ||
+				tmp_src == "rpt_ori.php" || tmp_src == "set_setting.php" || tmp_src == "set_organ.php" || tmp_src == "set_user.php" || tmp_src == "set_equip.php"){
+					location.reload();
+					return false;
+				}
+			// }
 		}
 		
 	}, 1000);

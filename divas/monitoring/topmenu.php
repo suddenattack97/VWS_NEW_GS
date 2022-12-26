@@ -135,6 +135,7 @@ require_once "../_info/_set_setting.php";
 
   $(".column").click(function(){
     sessionStorage.clear();
+    login_token = "<?=keyIsLogin?>";
     if(login_token == 1){
     sessionCheck();
     }
@@ -153,7 +154,7 @@ require_once "../_info/_set_setting.php";
           dataType: "json",
           success : function(data){
             localStorage.removeItem("top_time");
-            location.href = "./main.php"; return false;
+            location.reload(); return false;
           }
         });
 
