@@ -316,6 +316,24 @@ Class ClassCommon {
 		if($success == 1){
 			return true;
 		}else{
+			
+			// 리캡챠 fail_cnt 추가
+			$IdInfo = $this->getLoginIdInfo();
+				
+			$tmp_id = $IdInfo['user_id'];
+			$FAIL_CNT = $IdInfo['FAIL_CNT'] + 1;
+			$LAST_FAIL_DATE = $IdInfo['LAST_FAIL_DATE'];
+
+			if( strtotime($LAST_FAIL_DATE) < strtotime(date("Y-m-d H:i", strtotime('-5 minutes')).":00") ){ // 얼마안에 fail_cnt를 초기화할 것인지
+				$FAIL_CNT = 1;
+				$sql = " UPDATE user_info SET FAIL_CNT = ".$FAIL_CNT.", LAST_FAIL_DATE = DATE_FORMAT(now(), '%Y-%m-%d %H:%i')
+						 WHERE user_id = '".$tmp_id."' ";
+			}else{
+				$sql = " UPDATE user_info SET FAIL_CNT = ".$FAIL_CNT."
+						 WHERE user_id = '".$tmp_id."' ";
+			}
+			if($this->DB->QUERYONE($sql)) $sqlReturn = true;
+
 			return false;
 		}
 	}
