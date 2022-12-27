@@ -154,7 +154,7 @@ require_once "../_info/_set_setting.php";
           dataType: "json",
           success : function(data){
             localStorage.removeItem("top_time");
-            location.reload(); return false;
+            location.href = "./main.php"; return false;
           }
         });
 

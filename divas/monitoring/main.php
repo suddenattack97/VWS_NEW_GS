@@ -176,7 +176,7 @@ $(document).ready(function(){
 			// if(login_token !== "1"){
 				if(tmp_src == "dtm_rain.php" || tmp_src == "dtm_wl.php" || tmp_src == "dtm_aws.php" || tmp_src == "dtm_snow.php" || tmp_src == "dtm_mcall.php" ||
 				tmp_src == "rpt_ori.php" || tmp_src == "set_setting.php" || tmp_src == "set_organ.php" || tmp_src == "set_user.php" || tmp_src == "set_equip.php"){
-					location.reload();
+					location.href = "./main.php";
 					return false;
 				}
 			// }
