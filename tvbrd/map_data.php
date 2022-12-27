@@ -9,19 +9,15 @@
         <span class="tv_subtitle tv_blue">레이더
           <button type="button" id="btn_board" class="radar_btn mR5" onclick="onfullscreen(this)"><i class="fa fa-clone"></i></button>
         </span>
-        <span class="tv_subcon radar"  >
-        <!-- <img class='raderloading' src='http://www.weather.go.kr/cgi-bin/rdr_new/nph-rdr_sfc_pty_img?&cmp=SFC&obs=HSR&qcd=PTY&acc=&aws=1&map=HR&color=C4&legend=1&size=640&zoom_level=0&zoom_x=0000000&zoom_y=0000000&ZRa=200&ZRb=1.6&rand=12160&gis=&rnexdisp=0&griddisp=0' width='100%' height='100%'> -->
-        <img class='raderloading' src='#' width='100%' height='100%'>
-        </span>
+        <span class="tv_subcon radar" id="radar"><img class='raderloading' src='http://www.weather.go.kr/cgi-bin/rdr_new/nph-rdr_sfc_pty_img?&cmp=SFC&obs=HSR&qcd=PTY&acc=&aws=1&map=HR&color=C4&legend=1&size=640&zoom_level=0&zoom_x=0000000&zoom_y=0000000&ZRa=200&ZRb=1.6&rand=12160&gis=&rnexdisp=0&griddisp=0' width='100%' height='100%'></span>
       </div>
       <!--레이더-->
       <div class="tv_unit_s">
         <span class="tv_subtitle tv_blue">위성
           <button type="button" id="btn_board" class="radar_btn mR5" onclick="onfullscreen(this)"><i class="fa fa-clone"></i></button>
         </span>
-        <span class="tv_subcon heroes"   >
-        <!-- <img class='raderloading' src='http://www.weather.go.kr/cgi-bin/rdr_new/nph-rdr_sfc_pty_img?&cmp=SFC&obs=HSR&qcd=PTY&acc=&aws=1&map=HR&color=C4&legend=1&size=640&zoom_level=0&zoom_x=0000000&zoom_y=0000000&ZRa=200&ZRb=1.6&rand=12160&gis=&rnexdisp=0&griddisp=0' width='100%' height='100%'> -->
-        <img class='raderloading' src='#' width='100%' height='100%'>
+        <span class="tv_subcon heroes">
+          <img id='heroesImg' class='raderloading' src='./img/heroes/def_sat.png' width='100%' height='100%'>
         </span>
       </div>
 </div>
@@ -36,7 +32,7 @@
       <!--레이더-->
       <div class="tv_unit_s mB05p">
         <span class="tv_subtitle tv_blue">레이더</span>
-        <span class="tv_subcon radar"></span>
+        <span class="tv_subcon radar" id="radar"><img class='raderloading' src='http://www.weather.go.kr/cgi-bin/rdr_new/nph-rdr_sfc_pty_img?&cmp=SFC&obs=HSR&qcd=PTY&acc=&aws=1&map=HR&color=C4&legend=1&size=640&zoom_level=0&zoom_x=0000000&zoom_y=0000000&ZRa=200&ZRb=1.6&rand=12160&gis=&rnexdisp=0&griddisp=0' width='100%' height='100%'></span>
       </div>
       <!--태풍-->
       <div class="tv_unit_s">

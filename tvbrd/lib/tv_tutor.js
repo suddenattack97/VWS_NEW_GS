@@ -318,10 +318,10 @@
 			    	$("#map_data").load("map_data.php?sel_sub="+map_sub, function(response, status, xhr){
             			if(status == "success"){
 	                        if(map_sub == 1){
-	                        	radar();
+	                        	callRadar();
 	                        	heroes();
 	                        }else if(map_sub == 2){
-	                        	radar();
+	                        	callRadar();
 	                        }else if(map_sub == 3){
 	                        	heroes();
 	                        }else if(map_sub == 4){
@@ -1986,6 +1986,50 @@
 
     }); // $(document).ready end
     
+	Date.prototype.getFromFormat = function(format) {
+	    var yyyy = this.getFullYear().toString();
+	    format = format.replace(/yyyy/g, yyyy)
+	    var mm = (this.getMonth()+1).toString(); 
+	    format = format.replace(/mm/g, (mm[1]?mm:"0"+mm[0]));
+	    var dd  = this.getDate().toString();
+	    format = format.replace(/dd/g, (dd[1]?dd:"0"+dd[0]));
+	    var hh = this.getHours().toString();
+	    format = format.replace(/hh/g, (hh[1]?hh:"0"+hh[0]));
+	    var ii = this.getMinutes().toString();
+	    format = format.replace(/ii/g, (ii[1]?ii:"0"+ii[0]));
+
+	    return format;
+	};
+
+	// 이미지 존재여부 판단 
+	function callRadarImg(time, now) {
+		var url_pre = "https://www.weather.go.kr/repositary/image/rdr/img/RDR_CMP_WRC_";
+		var url_post = ".png";
+		var image = new Image(200, 200);
+		image.src = url_pre + time + url_post;
+		$("#r_img").append(image);
+
+		image.onload = function(e){
+			$("#radar img").attr("src", image.src);
+			$("#r_img img").remove();
+		};
+
+		image.onerror = function(e) {
+			$("#r_img img").remove();
+			now = new Date(now.getTime() - 10 * 60000);
+			var time = now.getFromFormat("yyyymmddhhii").substring(0, 11) + "0";
+			// console.log("error : ",image.src);
+			callRadarImg(time, now);
+		};
+		//console.log(image.src);
+	}
+
+	function callRadar(){
+		var now = new Date();
+		now = new Date(now.getTime());
+		var time = now.getFromFormat("yyyymmddhhii").substring(0, 11) + "0";
+		callRadarImg(time, now);
+	}
 
     // 서버 시간
 	function srvTime(){
