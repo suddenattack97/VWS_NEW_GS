@@ -9,9 +9,11 @@ require_once "./head_popup.php";
 	    </div> -->
 		<div id="map_data">
 			<div class="tv_unit_s mB05p">
-				<span class="tv_subtitle tv_blue"></span>
+				<span id="r_img" style="display:none;"></span>
+				<span class="tv_subtitle tv_blue">
+				</span>
 				<span class="tv_subcon">
-				<img class='raderloading' src='#' width='100%' height='100%'>
+					<img src=""  width='100%' height='100%'/>
 				</span>
 			  </div>
 		</div>
@@ -23,10 +25,13 @@ $(document).ready(function(){
 	// console.log(type);
 	
 	$(".tv_subcon").addClass(type);
-	
+	var radar = setInterval(function(){
+		callRadar();
+	},180000);
 	if(type == "radar"){
 		$(".tv_subtitle").text("레이더");
-		radar();
+		callRadar();
+		radar;
 	}else if(type == "heroes"){
 		$(".tv_subtitle").text("위성");
 		heroes();
@@ -35,6 +40,57 @@ $(document).ready(function(){
 	}
 
 });
+
+	Date.prototype.getFromFormat = function(format) {
+	    var yyyy = this.getFullYear().toString();
+	    format = format.replace(/yyyy/g, yyyy)
+	    var mm = (this.getMonth()+1).toString(); 
+	    format = format.replace(/mm/g, (mm[1]?mm:"0"+mm[0]));
+	    var dd  = this.getDate().toString();
+	    format = format.replace(/dd/g, (dd[1]?dd:"0"+dd[0]));
+	    var hh = this.getHours().toString();
+	    format = format.replace(/hh/g, (hh[1]?hh:"0"+hh[0]));
+	    var ii = this.getMinutes().toString();
+	    format = format.replace(/ii/g, (ii[1]?ii:"0"+ii[0]));
+
+	    return format;
+	};
+
+	// 이미지 존재여부 판단 
+	function callRadarImg(time, now) {
+		var url_pre = "https://www.weather.go.kr/repositary/image/rdr/img/RDR_CMP_WRC_";
+		var url_post = ".png";
+		var image = new Image(200, 200);
+		image.src = url_pre + time + url_post;
+		$("#r_img").append(image);
+		
+		image.onload = function(e){
+			if($(".radar").html().trim() == ""){
+				$(".radar").html("<img class='raderloading' src='"+image.src+"' width='100%' height='100%'>");
+			}else{
+				$(".radar img").attr("src", image.src);
+			}
+			$("#r_img img").remove();
+		};
+
+		image.onerror = function(e) {
+			$("#r_img img").remove();
+			now = new Date(now.getTime() - 10 * 60000);
+			var time = now.getFromFormat("yyyymmddhhii").substring(0, 11) + "0";
+			// console.log("error : ",image.src);
+			callRadarImg(time, now);
+		};
+		//console.log(image.src);
+	}
+
+	function callRadar(){
+		var now = new Date();
+		now = new Date(now.getTime());
+		var time = now.getFromFormat("yyyymmddhhii").substring(0, 11) + "0";
+		callRadarImg(time, now);
+	}
+
+
 // // 환경설정 토글
 // function setToggle(sets){
 // 	var set = document.getElementById(sets);
