@@ -206,7 +206,7 @@
 #slideToggle{margin:200px 0 0 -15px; padding-right:10px;}
 
 /* 우측 슬라이드추가 W:910 */
-.product_state {/*display:inline-flex;*/position: fixed;top: 100px;left: 0px;right: 0;bottom: 0; overflow: scroll; padding: 0px 15px 15px 15px;margin:0;}
+.product_state {/*display:inline-flex;*/position: fixed;top: 100px;left: 0px;right: 0;bottom: 0; overflow-y: scroll; padding: 0px 15px 15px 15px;margin:0;}
 .product_state .slide {width:910px;background-color:#050505;margin: 12px 0 0 -10px;padding: 20px;}
 
 .s_box01 {border-radius: 3px;display: inline-flex;width: 100%; position: relative; margin-bottom: 10px;}
@@ -555,6 +555,11 @@
 .bg_blue02 {background:#ecf1ff !important}
 .bg_td_gry{background: #898989 !important;}
 
+.allv tr th:nth-child(4){background: #edf8e1 !important;}
+.allv tr td:nth-child(4){background: #f9fff3 !important;}
+.allv tr th:nth-child(5){background: #faeee2 !important;}
+.allv tr td:nth-child(5){background: #fffaf2 !important;}
+
 .pointer{cursor:pointer;}
 .chkbox, .btn_radio{/*position:relative;*/ top:3px; margin-left:0; cursor:pointer;}
 .top5px{position:relative; top:5px;}
@@ -695,7 +700,7 @@
 
 	/* .map_bg {width: 100%; height: 495px; margin-bottom: 10px; float: left;  background-color: #fff; border-radius: 10px; box-shadow: 1px 3px 4px 1px rgba(0,0,0,0.2);}	 */
 
-	#right {top:95px; left: 0px; width: 100%; position: fixed; padding:0 20px; overflow:scroll; bottom: 0;}
+	#right {top:95px; left: 0px; width: 100%; position: fixed; padding:0 20px; overflow-y:scroll; bottom: 0;}
 	
 /*검색box*/
 
@@ -1317,7 +1322,7 @@ filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/tvbrd_
 
 
 @media all and (min-width:1024px) and (max-width:1159px){
-	tv_logo{width:50px; height:49px;  float:left; margin:3% 1% 2% 3%;}
+	.tv_logo{width:50px; height:49px;  float:left; margin:3% 1% 2% 3%;}
 	.tv_title{width:45%; color:#fff; font-size:2.5em; float:left; margin-top:3%;}
 	.tv_time{width:35%; color:#ddff93; font-size:1.2em; float:right; margin:4% 3% 1% 0; text-align:right;}
 	.tv_thumb_con{width:94%; height:78%; float:left; margin-left:3%;}

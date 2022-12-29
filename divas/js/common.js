@@ -396,7 +396,7 @@
 					lay_html += ' <img src="../images/quick_link.png" onclick="quick_button(2);"></span>';
 					lay_html += ' </div>';
 					lay_html += ' </div> <div class="right_bg2">';
-					lay_html += ' <table class="main_table m20"> ';
+					lay_html += ' <table class="main_table m20 allv"> ';
 					lay_html += ' 	<thead><tr> ';
 						lay_html += ' 	<th width="20%">지역</th> ';
 						lay_html += ' 	<th width="17.5%">전시간</th> ';
@@ -516,14 +516,14 @@
 					lay_html += ' 	<tr> ';
 					lay_html += ' 	<th rowspan="2" width="15%">지역</th> ';
 					lay_html += ' 	<th colspan="2" width="15%">우량(㎜)</th> ';
-					lay_html += ' 	<th colspan="3" width="20%">온도(℃)</th> ';
-					lay_html += ' 	<th colspan="2" width="15%">풍향/풍속(㎧)</th>';
+					lay_html += ' 	<th colspan="3" width="22%">온도(℃)</th> ';
+					lay_html += ' 	<th colspan="2" width="26%">풍향/풍속(㎧)</th>';
 					// if(data.sensor.ATMO){
 						// if(data.sensor.ATMO >= 1){
 						// 	lay_html += ' 	<th colspan="3" width="20%">기압(hPa)</th> ';
 						// }
 					// }
-					lay_html += ' 	<th colspan="3" width="20%">습도(%)</th> ';
+					lay_html += ' 	<th colspan="3" width="22%">습도(%)</th> ';
 					// if(data.sensor.RADI){
 						// if(data.sensor.RADI >= 1){
 						// 	lay_html += ' 	<th colspan="3" width="20%">일사(W/m2)</th> ';
