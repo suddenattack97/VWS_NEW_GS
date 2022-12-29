@@ -160,6 +160,24 @@ function aws(kind, arr_area_code){ // AWS - AWS 장비
 						$("#aws_"+item).hide();
 						$("#aws_label_"+item).hide();
     	    		}
+				}else{
+					$("#aws_"+item).hide();
+					$("#aws_label_"+item).hide();
+					
+					if( (map_kind == 1 || map_kind == 2) && jQuery.inArray("1", map_data) != "-1" ){
+						$("#rain_"+item).hide();
+					}
+					if( (map_kind == 1 || map_kind == 2) && jQuery.inArray("2", map_data) != "-1" ){
+						$("#flow_"+item).hide();
+					}
+					if( (map_kind == 1 || map_kind == 2) && jQuery.inArray("3", map_data) != "-1" ){
+						$("#snow_"+item).hide();
+					}
+					if( (map_kind == 1 || map_kind == 2) && jQuery.inArray("4", map_data) != "-1" ){
+						$.each(arr_rtu[item]['sensor_kind'], function(index2, item2){
+							$("#"+item2+"_"+item).hide();
+						});
+					}
 				}
 				
 				var tmp_cnt = 0;
@@ -613,6 +631,60 @@ function aws(kind, arr_area_code){ // AWS - AWS 장비
 						}
 					}
 				}
+				// 줌레벨에 따른 오버레이 표시
+				if( Number(map_level) < Number(over_level) ){
+					if(arr_rtu[item]['overlay_on']){
+						$("#aws_"+item).show();
+						$("#aws_label_"+item).show();
+						$("#aws_"+item).next().show();
+						
+					}else{
+						$("#aws_"+item).hide();
+						$("#aws_label_"+item).hide();
+						$("#aws_"+item).next().hide();
+					}
+				}else{
+				}
+				// //줌레벨에 따른 오버레이 표시
+				// if( Number(map_level) < Number(over_level) ){
+				// 	console.log(111);
+				// 		$("#aws_"+item).show();
+				// 		$("#aws_label_"+item).show();
+						
+				// 		if( (map_kind == 1 || map_kind == 2) && jQuery.inArray("1", map_data) != "-1" ){
+				// 			$("#rain_"+item).show();
+				// 		}
+				// 		if( (map_kind == 1 || map_kind == 2) && jQuery.inArray("2", map_data) != "-1" ){
+				// 			$("#flow_"+item).show();
+				// 		}
+				// 		if( (map_kind == 1 || map_kind == 2) && jQuery.inArray("3", map_data) != "-1" ){
+				// 			$("#snow_"+item).show();
+				// 		}
+				// 		if( (map_kind == 1 || map_kind == 2) && jQuery.inArray("4", map_data) != "-1" ){
+				// 			$.each(arr_rtu[item]['sensor_kind'], function(index2, item2){
+				// 				$("#"+item2+"_"+item).show();
+				// 			});
+				// 		}
+				// }else{
+				// 	console.log(211);
+				// 	$("#aws_"+item).hide();
+				// 	$("#aws_label_"+item).hide();
+					
+				// 	if( (map_kind == 1 || map_kind == 2) && jQuery.inArray("1", map_data) != "-1" ){
+				// 		$("#rain_"+item).hide();
+				// 	}
+				// 	if( (map_kind == 1 || map_kind == 2) && jQuery.inArray("2", map_data) != "-1" ){
+				// 		$("#flow_"+item).hide();
+				// 	}
+				// 	if( (map_kind == 1 || map_kind == 2) && jQuery.inArray("3", map_data) != "-1" ){
+				// 		$("#snow_"+item).hide();
+				// 	}
+				// 	if( (map_kind == 1 || map_kind == 2) && jQuery.inArray("4", map_data) != "-1" ){
+				// 		$.each(arr_rtu[item]['sensor_kind'], function(index2, item2){
+				// 			$("#"+item2+"_"+item).hide();
+				// 		});
+				// 	}
+				// }
 			}); // $.each(arr_area_code, function(index, item) end
 			
 			if(map_kind != 2){
