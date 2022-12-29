@@ -191,11 +191,18 @@ $(document).ready(function(){
         var now = new Date(now_y, now_m, now_d);
         now.setDate(now.getDate() + 1);
 
-		var sel_y = now.getFullYear();
-		var sel_m = now.getMonth() + 1;
-		var sel_d = now.getDate();
-        $("#sdate").datepicker("setDate", sel_y+"-"+sel_m+"-"+sel_d);
-        $("#form_search").submit();
+		// 내일로 넘어가지 않도록 제한
+		var today = new Date();
+		if(today.getDate() >= now.getDate()){
+			var sel_y = now.getFullYear();
+			var sel_m = now.getMonth() + 1;
+			var sel_d = now.getDate();
+			$("#sdate").datepicker("setDate", sel_y+"-"+sel_m+"-"+sel_d);
+			
+			$("#form_search").submit();
+		}else{
+			swal("체크", "미래는 검색할 수 없습니다!", "warning");
+		}
 	});
 
 	// 텍스트
