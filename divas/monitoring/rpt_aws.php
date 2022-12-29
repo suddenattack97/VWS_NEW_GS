@@ -1037,8 +1037,7 @@ $(document).ready(function(){
 								backgroundColor: '#7ecd00',
 								borderColor: '#7ecd00',
 								borderWidth: 2,
-								fill: false,
-								pointRadius: 0
+								fill: false
 							}];
 					}else if($("#option").val() == 2){
 						dtset = 
@@ -1249,8 +1248,7 @@ $(document).ready(function(){
 								backgroundColor: '#ff8017',
 								borderColor: '#ff8017',
 								borderWidth: 2,
-								fill: false,
-								pointRadius: 0
+								fill: false
 							}, {
 								label: '최저',
 								data: DATA2,
@@ -1258,8 +1256,7 @@ $(document).ready(function(){
 								backgroundColor: '#7ecd00',
 								borderColor: '#7ecd00',
 								borderWidth: 2,
-								fill: false,
-								pointRadius: 0
+								fill: false
 							}];
 					}else if($("#option").val() == 2){
 						dtset = 
@@ -1279,8 +1276,7 @@ $(document).ready(function(){
 								backgroundColor: '#ff8017',
 								borderColor: '#ff8017',
 								borderWidth: 2,
-								fill: false,
-								pointRadius: 0
+								fill: false
 							}];
 					}
 
