@@ -149,13 +149,6 @@ require_once "./head.php";
 								<option value="daum.net">daum.net</option>
 								<option value="nate.com">nate.com</option>
 								<option value="gmail.com">gmail.com</option>
-								<option value="hotmail.com">hotmail.com</option>
-								<option value="lycos.co.kr">lycos.co.kr</option>
-								<option value="empal.com">empal.com</option>
-								<option value="cyworld.com">cyworld.com</option>
-								<option value="yahoo.com">yahoo.com</option>
-								<option value="paran.com">paran.com</option>
-								<option value="dreamwiz.com">dreamwiz.com</option>
 								<option value="0">직접입력</option>
 							</select> / 
 							<input id="EMAIL3" name="EMAIL3" type="text" class="f333_12" size="32" maxlength="20" onblur="inputCheck(this,'onlyEmail','')">
