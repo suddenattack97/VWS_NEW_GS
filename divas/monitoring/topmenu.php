@@ -132,6 +132,13 @@ require_once "../_info/_set_setting.php";
   $("i").click(function(){
       history.replaceState({}, null, location.pathname);
   });
+  
+  // 서브매뉴 길이에 따라 파란색 영역 높이 조절
+  var maxLen = 0;
+  $.each($('.row .column'), function(i,v){
+    if(maxLen < $(v).children().length) maxLen = $(v).children().length;
+  });
+  $('.dropdown-content').css('height', (50*maxLen)+'px');
 
   $(".column").click(function(){
     sessionStorage.clear();
