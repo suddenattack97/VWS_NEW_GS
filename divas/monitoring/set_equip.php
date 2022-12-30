@@ -914,7 +914,7 @@ $(document).ready(function(){
 	$("#btn_in").click(function(){
 		if( form_check("I") ){
 			swal({
-				title: '<div class="alpop_top_b">장비 등록 확인</div><div class="alpop_mes_b">장비를 등록 하시겠습니까?</div>',
+				title: '<div class="alpop_top_b">장비 등록 확인</div><div class="alpop_mes_b">등록 하시겠습니까?</div>',
 				text: '확인 시 장비가 등록 됩니다.',
 				showCancelButton: true,
 				confirmButtonColor: '#5b7fda',
@@ -1017,7 +1017,7 @@ $(document).ready(function(){
 		if( form_check("U") ){
 			var C_RTU_ID = $("#C_RTU_ID").val();
 			swal({
-				title: '<div class="alpop_top_b">장비 수정 확인</div><div class="alpop_mes_b">장비 ID ['+C_RTU_ID+']을 수정 하시겠습니까?</div>',
+				title: '<div class="alpop_top_b">장비 수정 확인</div><div class="alpop_mes_b">수정 하시겠습니까?</div>',
 				text: '확인 시 장비가 수정 됩니다.',
 				showCancelButton: true,
 				confirmButtonColor: '#5b7fda',
@@ -1084,7 +1084,7 @@ $(document).ready(function(){
 		if( form_check("D") ){
 			var C_RTU_ID = $("#C_RTU_ID").val();
 			swal({
-				title: '<div class="alpop_top_b">장비 삭제 확인</div><div class="alpop_mes_b">장비 ID ['+C_RTU_ID+']을 삭제하실 겁니까?</div>',
+				title: '<div class="alpop_top_b">장비 삭제 확인</div><div class="alpop_mes_b">삭제 하시겠습니까?</div>',
 				text: '확인 시 장비가 삭제 됩니다.',
 				showCancelButton: true,
 				confirmButtonColor: '#5b7fda',
@@ -1108,6 +1108,7 @@ $(document).ready(function(){
 				        dataType: "json",
 				        success : function(data){
 					        if(data.result){
+								sessionStorage.setItem('list_row', '');
 			                	popup_main_close(); // 레이어 좌측 및 상단 닫기
 					    		location.reload(); return false;
 					        }else{
