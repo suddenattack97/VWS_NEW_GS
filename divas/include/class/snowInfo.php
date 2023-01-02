@@ -19,7 +19,7 @@ Class ClassSnowInfo {
 	function getSnowBBHValue($localcode){
 		$sql = " SELECT IFNULL(MAX(SNOW), '-') AS SNOW_BBM 
 				 FROM SNOW_HIST 
-				 WHERE SNOW_DATE BETWEEN ".R_BBDAY_START." AND ".R_BBDAY_END." 
+				 WHERE DATA_TYPE = 'M' AND SNOW_DATE BETWEEN ".R_BBDAY_START." AND ".R_BBDAY_END." 
 				 AND AREA_CODE = '".$localcode."' ";
 		
 		if(DB == "0"){
@@ -42,7 +42,7 @@ Class ClassSnowInfo {
 	function getSnowBHValue($localcode){
 		$sql = " SELECT IFNULL(SNOW, '-') AS SNOW_BM
 				 FROM SNOW_HIST
-				 WHERE SNOW_DATE BETWEEN ".R_BDAY_START." AND ".R_BDAY_END." 
+				 WHERE DATA_TYPE = 'M' AND SNOW_DATE BETWEEN ".R_BDAY_START." AND ".R_BDAY_END." 
 				 AND AREA_CODE = '".$localcode."'
 				 ORDER BY SNOW_DATE DESC LIMIT 1 ";
 		
@@ -66,7 +66,7 @@ Class ClassSnowInfo {
 	function getSnowBMAXValue($localcode){
 		$sql = " SELECT IFNULL(MAX(SNOW), '-') AS SNOW_BMAX
 				 FROM SNOW_HIST
-				 WHERE SNOW_DATE BETWEEN ".R_BDAY_START." AND ".R_BDAY_END." 
+				 WHERE DATA_TYPE = 'M' AND SNOW_DATE BETWEEN ".R_BDAY_START." AND ".R_BDAY_END." 
 				 AND AREA_CODE = '".$localcode."' ";
 		
 		if(DB == "0"){
