@@ -276,11 +276,11 @@ $(document).ready(function(){
 		login_token = "<?=keyIsLogin?>";
 		sesstiontime_token = getCookie("session_time_"+ms_token);
 
-		if(login_token != "1"){ //0: 로그인X 1:로그인O
-			if(tmp_num == 10 || tmp_num == 11 || tmp_num == 12){
-				login(tmp_href);
-			}
-		}	
+		// if(login_token != "1"){ //0: 로그인X 1:로그인O
+		// 	if(tmp_num == 10 || tmp_num == 11 || tmp_num == 12){
+		// 		login(tmp_href);
+		// 	}
+		// }	
 	});
 
 	// 부모 창에서 레이어 팝업 닫기
