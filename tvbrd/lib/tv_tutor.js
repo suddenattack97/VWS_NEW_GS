@@ -515,7 +515,7 @@
 	      				state_slide(slide_value[0], slide_value[1]);
 	      			}
 	      			if(slide_state[1]){
-	 	 		    	graph_slide(slide_value[0], slide_value[1]);
+	 	 		    	// graph_slide(slide_value[0], slide_value[1]);
 	      			}
 	      			if(slide_state[2]){
 	      				spot_slide();
