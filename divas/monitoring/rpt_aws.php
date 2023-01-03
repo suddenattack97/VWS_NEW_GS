@@ -1014,7 +1014,7 @@ $(document).ready(function(){
 					if($("#option").val() == 1 || $("#option").val() == 4){
 						dtset = 
 							[{
-								label: getSensorKind()+"(현재)",
+								label: getSensorKind()+"(평균)",
 								data: DATAD,
 								yAxisID: 'y_aws',
 								backgroundColor: 'rgba(255,255,255,0.1)',
@@ -1042,7 +1042,7 @@ $(document).ready(function(){
 					}else if($("#option").val() == 2){
 						dtset = 
 							[{
-								label: getSensorKind()+"(현재)",
+								label: getSensorKind()+"(평균)",
 								data: DATAD,
 								yAxisID: 'y_aws',
 								backgroundColor: 'rgba(255,255,255,0.1)',
@@ -1233,7 +1233,7 @@ $(document).ready(function(){
 					if($("#option").val() == 1 || $("#option").val() == 4){
 						dtset = 
 							[{
-								label: '<?=$chart_name?>'+"(현재)",
+								label: '<?=$chart_name?>'+"(평균)",
 								data: DATA,
 								yAxisID: 'y_aws',
 								backgroundColor: 'rgba(255,255,255,0.1)',
@@ -1261,7 +1261,7 @@ $(document).ready(function(){
 					}else if($("#option").val() == 2){
 						dtset = 
 							[{
-								label: '<?=$chart_name?>'+"(현재)",
+								label: '<?=$chart_name?>'+"(평균)",
 								data: DATA,
 								yAxisID: 'y_aws',
 								backgroundColor: 'rgba(255,255,255,0.1)',
