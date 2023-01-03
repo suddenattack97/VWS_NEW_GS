@@ -1714,12 +1714,10 @@
 			var change_ajax = [];
 			
 			var tmp_cent = map.getView().getCenter();
-			console.log(tmp_cent);
-
-      		map_cent = ol.proj.transform([tmp_cent[0], tmp_cent[1]], 'EPSG:900913', 'EPSG:4326'),
+			var tmp_map_cent;
+			tmp_map_cent = ol.proj.transform([tmp_cent[0], tmp_cent[1]], 'EPSG:900913', 'EPSG:4326'),
 			
-			console.log(map_cent);
-      		change_ajax[0] = $.post("controll/tutor.php", { "mode" : "map_setting", "sub_mode" : "map_cent", "data" : map_cent }, function(){ });
+      		change_ajax[0] = $.post("controll/tutor.php", { "mode" : "map_setting", "sub_mode" : "map_cent", "data" : tmp_map_cent }, function(){ });
       		
       		change_ajax[1] = $.post("controll/tutor.php", { "mode" : "map_setting", "sub_mode" : "map_level", "data" : map_level }, function(){ });
       		
