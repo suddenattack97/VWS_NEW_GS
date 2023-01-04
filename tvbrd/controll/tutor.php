@@ -575,6 +575,7 @@ switch($mode) {
 		}
 		$rs = $DB->queryone($qry);
 			$DB->close();
+			$DB->rs_unset();
 		$array = array( 'result' => true );
 		echo json_encode( $array );
 		exit;

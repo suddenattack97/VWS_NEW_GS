@@ -188,6 +188,7 @@ switch($mode) {
 		'AWS_CANCEL' => $event['AWS_CANCEL']
 		 );
 		echo json_encode( $returnBody );
+		$DB->close();
 		exit;
 	break;
 

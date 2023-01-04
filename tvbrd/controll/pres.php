@@ -93,6 +93,7 @@ $arr_area_code = $_REQUEST["arr_area_code"];
 		
 		$returnBody = array( 'result' => true, 'list' => $arr_data);
 		echo json_encode( $returnBody );
+		$DB->close();
 		exit;
 	break;
 }
