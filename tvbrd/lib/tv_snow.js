@@ -116,8 +116,8 @@ function snow(kind, arr_area_code){ // 강우 - 강우만 있는 장비
 				$(document).on("mouseover", "#snow_"+item, function(e){
 					$(".ol-overlaycontainer .overlay").css('z-index', "110");
 					$(".ol-overlaycontainer .marker").css('z-index', "105");
-					$("#flow_"+item).parent().parent().css('z-index', 120);
-					$("#flow_"+item+"_marker").parent().parent().css('z-index', 111);
+					$("#snow_"+item).parent().parent().css('z-index', 120);
+					$("#snow_"+item+"_marker").parent().parent().css('z-index', 111);
 				});
 				$(document).on("mouseout", "#snow_"+item, function(e){
 				});
