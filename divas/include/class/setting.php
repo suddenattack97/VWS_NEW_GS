@@ -334,22 +334,28 @@ Class ClassSetting {
 			if($MOBILE == "010--" || $MOBILE == "011--" || $MOBILE == "016--" || $MOBILE == "017--" || $MOBILE == "019--" || $MOBILE == "1" || $MOBILE == "--") $MOBILE = "";
 			if($SMART_MOBILE == "010--" || $SMART_MOBILE == "011--" || $SMART_MOBILE == "016--" || $SMART_MOBILE == "017--" || $SMART_MOBILE == "019--" || $SMART_MOBILE == "1" || $SMART_MOBILE == "--") $SMART_MOBILE = "";
 			
-			$sql = " SELECT COUNT(*) AS CNT FROM USER_INFO
-						 WHERE (USER_ID = '".$this->DB->html_encode($_REQUEST['USER_ID'])."' ";
-			if($MOBILE != ""){
-				$sql.= " OR MOBILE = '".$MOBILE."' ";
+			// 아이디 체크
+			$result1 = true;
+			if($this->DB->html_encode($_REQUEST['mode']) == "user_in"){
+				$sql = " SELECT COUNT(*) AS CNT FROM USER_INFO ";
+
+				$sql.= " WHERE USER_ID = '".$this->DB->html_encode($_REQUEST['USER_ID'])."' ";
+				$rs = $this->DB->execute($sql);
+				$result1 = $rs[0]['CNT'] == 0 ? true : false;
 			}
-			if($SMART_MOBILE != ""){
-				$sql.= " OR SMART_MOBILE = '".$SMART_MOBILE."' ";
-			}
-			$sql.= " ) ";
-			if($this->DB->html_encode($_REQUEST['mode']) == "user_up"){
-				$sql.= " AND USER_ID != '".$this->DB->html_encode($_REQUEST['C_USER_ID'])."' ";
-			}
-			// echo $sql;
+
+			unset($rs);
+			// 모바일 체크
+			$sql = " SELECT MOBILE FROM USER_INFO ";
 			$rs = $this->DB->execute($sql);
 			
-			return $rs[0]['CNT'] == 0 ? true : false;
+			$cnt = 0;
+			foreach($rs as $key => $val){
+				if($this->rsa_decrypt($val['MOBILE']) == $MOBILE) $cnt++;
+			}
+			$result2 = $cnt > 0 ? false : true;
+
+			return ($result1 && $result2) ? true : false;
 			
 			$this->DB->parseFree();
 		}else if(DB == "1"){
