@@ -27,6 +27,8 @@
 <script type="text/javascript" src="../js/Chart.bundle.min.js"></script>
 <script type="text/javascript" src="../js/common.js?time=<?=time()?>"></script>
 <script type="text/javascript" src="../js/jsencrypt.min.js"></script>
+<script type="text/javascript" src="../js/core.js"></script>
+<script type="text/javascript" src="../js/sha256.js"></script>
 <script type="text/javascript" src="../js/datatables.min.js"></script>
 <script type="text/javascript" src="../js/datatables.buttons.min.js"></script>
 <script type="text/javascript" src="../js/datatables.buttons.jszip.min.js"></script>

@@ -26,9 +26,8 @@ $_SESSION["OTT"] = $ott;
 <script type="text/javascript" src="../js/spin.min.js"></script>
 <script type="text/javascript" src="../js/common.js"></script>
 <script type="text/javascript" src="../js/jsencrypt.min.js"></script>
-<? if(recaptcha == 1){ ?>
-<script type="text/javascript" src="https://www.google.com/recaptcha/api.js"></script>
-<? } ?>
+<script type="text/javascript" src="../js/core.js"></script>
+<script type="text/javascript" src="../js/sha256.js"></script>
 
 </head>
 <body>
@@ -85,13 +84,6 @@ if(recaptcha == 0){
 			<button type="button" id="login_ok" class="submit">LOGIN</button>
 <? if(recaptcha == 0){ ?>
 			<input type="hidden" id="recaptcha" name="recaptcha" value="1" maxlength="5">
-<? }else if(recaptcha == 1){ ?>
-			<input type="hidden" id="recaptcha" name="recaptcha" maxlength="5">
-			<div class="g-recaptcha" 
-				 data-theme="light"
-				 data-sitekey="6LdEtlkUAAAAAOerofVbokb6VG7QqZnO3bPhWl_W" 
-				 data-callback="recaptcha" 
-				 data-expired-callback="recaptcha_re"></div>
 <? }else if(recaptcha == 2){ ?>
 			<div class="g-recaptcha2">
 				<img src="../func/get_captcha.php" id="captcha" style="" />
@@ -216,8 +208,10 @@ $(document).ready(function(){
 
         // 암호화
         var l_id = crypt.encrypt(user_id);
-        var l_pw = crypt.encrypt(user_pwd);
-		// console.log(l_id);
+		var l_pw = CryptoJS.CRT(user_pwd).toString();
+		// console.log(l_pw);
+        l_pw = crypt.encrypt(l_pw);
+		// console.log(l_pw);
 		$("#user_id").val("");
 		$("#user_pwd").val("");
 

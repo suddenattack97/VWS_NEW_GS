@@ -453,11 +453,12 @@ crypt.setKey(key);
 					if(pwFlag){
 						var user_pwd = $("#USER_PWD").val();
 						// 암호화
-						var tmp_pw = crypt.encrypt(user_pwd);
+						var tmp_pw = CryptoJS.CRT($("#USER_PWD").val()).toString();
+						// tmp_pw = crypt.encrypt(tmp_pw);
 
 						$("#USER_PWD").val(tmp_pw);
 
-						$("#USER_PWD_LEN").val("");
+						$("#USER_PWD_LEN").val(user_pwd.length);
 					}
 
 					// frm.serialize() 대신 serializeArray() 써서 JSON으로 생성 
@@ -547,7 +548,6 @@ crypt.setKey(key);
 	$("#btn_up").click(function(){
 		if( form_check("U") ){
 			var C_USER_ID = $("#C_USER_ID").val();
-
 			$("#mode").val("user_up");
 			
 			swal({
@@ -565,14 +565,16 @@ crypt.setKey(key);
 					
 					if(pwFlag){
 						var user_pwd = $("#USER_PWD").val();
+						$("#USER_PWD_LEN").val($("#USER_PWD").val().length);
 						// 암호화
-						var tmp_pw = crypt.encrypt(user_pwd);
+						var tmp_pw = CryptoJS.CRT(user_pwd).toString();
+						// tmp_pw = crypt.encrypt(tmp_pw);
 
 						$("#USER_PWD").val(tmp_pw);
-
-						$("#USER_PWD_LEN").val("");
+					}else{
+						$("#USER_PWD_LEN").val($("#USER_PWD_LEN").val().length)
 					}
-
+					
 					// frm.serialize() 대신 serializeArray() 써서 JSON으로 생성 
 					jQuery.fn.serializeObject = function() {
 						var obj = null;

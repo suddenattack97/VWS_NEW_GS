@@ -244,7 +244,7 @@ Class ClassSetting {
 				$data[$i]['USER_NAME'] = $rs[$i]['USER_NAME'];
 				$data[$i]['ORGAN_NAME'] = $rs[$i]['ORGAN_NAME'];
 				$data[$i]['USER_TYPE'] = $rs[$i]['USER_TYPE'];
-				$data[$i]['MOBILE'] = $rs[$i]['MOBILE'];
+				$data[$i]['MOBILE'] = $this->rsa_decrypt($rs[$i]['MOBILE']);
 				if($rs[$i]['USER_TYPE'] == "0"){
 					$data[$i]['USER_TYPE_NAME'] = "관리자";
 				}else if($rs[$i]['USER_TYPE'] == "1"){
@@ -274,15 +274,15 @@ Class ClassSetting {
 	function getUserView(){
 		if(DB == "0"){
 			$sql = " SELECT a.ORGAN_ID, (SELECT ORGAN_NAME FROM ORGAN_INFO WHERE ORGAN_ID = a.ORGAN_ID ) AS ORGAN_NAME,
-			a.USER_TYPE, a.MENU_TYPE, a.USER_ID, a.USER_PWD, a.USER_NAME, a.EMAIL, MOBILE as MOBILE, a.IS_PERMIT, 
+			a.USER_TYPE, a.MENU_TYPE, a.USER_ID, a.USER_PWD, a.USER_PWD_LEN, a.USER_NAME, a.EMAIL, MOBILE as MOBILE, a.IS_PERMIT, 
 			SMART_MOBILE as SMART_MOBILE , a.SMART_USE  
 	 		FROM USER_INFO AS a 
 	 		WHERE a.USER_ID = '".$this->DB->html_encode($_REQUEST['USER_ID'])."' ";
 			
 			$rs = $this->DB->execute($sql);
 
-			$tmp_pw_len = strlen($rs[0]['USER_PWD']);
-			$tmp_pw = $this->rsa_encrypt($rs[0]['USER_PWD'], public_key);
+			$tmp_pw_len = $rs[0]['USER_PWD_LEN'];
+			$tmp_pw = $rs[0]['USER_PWD'];
 
 			$data['ORGAN_ID'] = $rs[0]['ORGAN_ID'];
 			$data['ORGAN_NAME'] = $rs[0]['ORGAN_NAME'];
@@ -293,9 +293,9 @@ Class ClassSetting {
 			$data['USER_PWD_LEN'] = $tmp_pw_len;
 			$data['USER_NAME'] = $rs[0]['USER_NAME'];
 			$data['EMAIL'] = $rs[0]['EMAIL'];
-			$data['MOBILE'] = $rs[0]['MOBILE'];
+			$data['MOBILE'] = $this->rsa_decrypt($rs[0]['MOBILE']);
 			$data['IS_PERMIT'] = $rs[0]['IS_PERMIT'];
-			$data['SMART_MOBILE'] = $rs[0]['SMART_MOBILE'];
+			$data['SMART_MOBILE'] = $this->rsa_decrypt($rs[0]['SMART_MOBILE']);
 			$data['SMART_USE'] = $rs[0]['SMART_USE'];
 			
 			$this->rsUserView = $data;
@@ -362,16 +362,18 @@ Class ClassSetting {
 	 */
 	function setUserIn(){
 		if(DB == "0"){
-			$l_pw = $this->rsa_decrypt($_REQUEST['USER_PWD']);
+			$l_pw = $_REQUEST['USER_PWD'];
 			$EMAIL = $this->DB->html_encode($_REQUEST['EMAIL1'])."@".$this->DB->html_encode($_REQUEST['EMAIL3']);
 			$MOBILE = $this->DB->html_encode($_REQUEST['MOBILE1'])."-".$this->DB->html_encode($_REQUEST['MOBILE2'])."-".$this->DB->html_encode($_REQUEST['MOBILE3']);
 			$SMART_MOBILE = $this->DB->html_encode($_REQUEST['SMART_MOBILE1'])."-".$this->DB->html_encode($_REQUEST['SMART_MOBILE2'])."-".$this->DB->html_encode($_REQUEST['SMART_MOBILE3']);
 			if($MOBILE == "010--" || $MOBILE == "011--" || $MOBILE == "016--" || $MOBILE == "017--" || $MOBILE == "019--" || $MOBILE == "1") $MOBILE = "";
 			if($SMART_MOBILE == "010--" || $SMART_MOBILE == "011--" || $SMART_MOBILE == "016--" || $SMART_MOBILE == "017--" || $SMART_MOBILE == "019--" || $SMART_MOBILE == "1") $SMART_MOBILE = "";
-			
-			$sql = " INSERT INTO USER_INFO (ORGAN_ID,AREA_CODE, USER_TYPE, MENU_TYPE, USER_ID, USER_PWD, USER_NAME, EMAIL, MOBILE, IS_PERMIT, SMART_MOBILE, SMART_USE, REG_DATE)
+			$MOBILE = $this->rsa_encrypt($MOBILE, public_key);
+			$SMART_MOBILE = $this->rsa_encrypt($SMART_MOBILE, public_key);
+			$sql = " INSERT INTO USER_INFO (ORGAN_ID,AREA_CODE, USER_TYPE, MENU_TYPE, USER_ID, USER_PWD, USER_PWD_LEN, USER_NAME, EMAIL, MOBILE, IS_PERMIT, SMART_MOBILE, SMART_USE, REG_DATE)
 					VALUES (".$this->DB->html_encode($_REQUEST['ORGAN_ID']).",
 					(SELECT area_code FROM organ_info WHERE organ_id = ".$this->DB->html_encode($_REQUEST['ORGAN_ID'])."),'".$this->DB->html_encode($_REQUEST['USER_TYPE'])."', '".$this->DB->html_encode($_REQUEST['MENU_TYPE'])."', '".$this->DB->html_encode($_REQUEST['USER_ID'])."', '".$this->DB->html_encode($l_pw)."',
+					'".$this->DB->html_encode($_REQUEST['USER_PWD_LEN'])."',
 					'".$this->DB->html_encode($_REQUEST['USER_NAME'])."', '".$EMAIL."', '".$MOBILE."', '".$this->DB->html_encode($_REQUEST['IS_PERMIT'])."', '".$SMART_MOBILE."', '".$this->DB->html_encode($_REQUEST['SMART_USE'])."', NOW()) ";
 			//echo $sql;
 			if($this->DB->QUERYONE($sql)) $sqlReturn = true;
@@ -387,15 +389,16 @@ Class ClassSetting {
 	 */
 	function setUserUp(){
 		if(DB == "0"){
-			$l_pw = $this->rsa_decrypt($_REQUEST['USER_PWD']);
+			$l_pw = $_REQUEST['USER_PWD'];
 			$EMAIL = $this->DB->html_encode($_REQUEST['EMAIL1'])."@".$this->DB->html_encode($_REQUEST['EMAIL3']);
 			$MOBILE = $this->DB->html_encode($_REQUEST['MOBILE1'])."-".$this->DB->html_encode($_REQUEST['MOBILE2'])."-".$this->DB->html_encode($_REQUEST['MOBILE3']);
 			$SMART_MOBILE = $this->DB->html_encode($_REQUEST['SMART_MOBILE1'])."-".$this->DB->html_encode($_REQUEST['SMART_MOBILE2'])."-".$this->DB->html_encode($_REQUEST['SMART_MOBILE3']);
 			if($MOBILE == "010--" || $MOBILE == "011--" || $MOBILE == "016--" || $MOBILE == "017--" || $MOBILE == "019--" || $MOBILE == "1") $MOBILE = "";
 			if($SMART_MOBILE == "010--" || $SMART_MOBILE == "011--" || $SMART_MOBILE == "016--" || $SMART_MOBILE == "017--" || $SMART_MOBILE == "019--" || $SMART_MOBILE == "1") $SMART_MOBILE = "";
-			
+			$MOBILE = $this->rsa_encrypt($MOBILE, public_key);
+			$SMART_MOBILE = $this->rsa_encrypt($SMART_MOBILE, public_key);
 			$sql = " UPDATE USER_INFO SET ORGAN_ID = ".$this->DB->html_encode($_REQUEST['ORGAN_ID']).", USER_TYPE = '".$this->DB->html_encode($_REQUEST['USER_TYPE'])."', MENU_TYPE = '".$this->DB->html_encode($_REQUEST['MENU_TYPE'])."',
-					 USER_PWD = '".$this->DB->html_encode($l_pw)."', USER_NAME = '".$this->DB->html_encode($_REQUEST['USER_NAME'])."', EMAIL = '".$EMAIL."', MOBILE = '".$MOBILE."', 
+					 USER_PWD = '".$this->DB->html_encode($l_pw)."', USER_PWD_LEN = '".$this->DB->html_encode($_REQUEST['USER_PWD_LEN'])."', USER_NAME = '".$this->DB->html_encode($_REQUEST['USER_NAME'])."', EMAIL = '".$EMAIL."', MOBILE = '".$MOBILE."', 
 					 IS_PERMIT = '".$this->DB->html_encode($_REQUEST['IS_PERMIT'])."', SMART_MOBILE = '".$SMART_MOBILE."', SMART_USE = '".$this->DB->html_encode($_REQUEST['SMART_USE'])."'
 					 WHERE USER_ID = '".$this->DB->html_encode($_REQUEST['C_USER_ID'])."' ";		 
 			
