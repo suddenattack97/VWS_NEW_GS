@@ -90,10 +90,9 @@ $dvUtil   = new Divas_Util();
 				}
 			}
 		}
-		
+		$DB->close();
 		$returnBody = array( 'result' => true, 'list' => $arr_data);
 		echo json_encode( $returnBody );
-		$DB->close();
 		exit;
 	break;
 }
