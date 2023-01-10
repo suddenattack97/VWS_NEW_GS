@@ -115,9 +115,17 @@ require_once "./head.php";
 					?>
 					<tr class="hh tr_rtu" data-id="<?=$val['AREA_CODE']?>">
 						<td class=" bR_1gry"><?=$val['RTU_NAME']?></td>
-						<? foreach($val['RAIN'] as $key2 => $val2){ ?>
-						<td class=""><?=$val2?></td>
-						<? } ?>
+						<? if($val['RAIN']){ ?>
+							<? foreach($val['RAIN'] as $key2 => $val2){ ?>
+							<td class=""><?=$val2?></td>
+							<? } ?>
+						<? } else {
+							$inhtml = "";
+							for($i=$scnt; $i<=$ecnt; $i++){
+								$inhtml .= "<td>-</td>";
+							}
+							echo $inhtml;
+						} ?>
 						<td class=" bL_1gry"><?=$val['RAIN_SUM']?></td>
 						<!-- <td class=" bL_1gry"><?=$val['RAIN_AVR']?></td> -->
 					</tr>
@@ -226,27 +234,51 @@ require_once "./head.php";
 					<tr class="hh tr_rtu" data-id="<?=$val['AREA_CODE']?>">
 						<td class="realName bR_1gry" rowspan="3"><?=$val['RTU_NAME']?></td>
 						<td class=" bR_1gry">현재</td>
-						<? foreach($val['TEMP'] as $key2 => $val2){ ?>
-						<td class=""><?=$val2?></td>
-						<? } ?>
+						<? if($val['TEMP']){ ?>
+							<? foreach($val['TEMP'] as $key2 => $val2){ ?>
+							<td class=""><?=$val2?></td>
+							<? } ?>
+						<? } else {
+							$inhtml = "";
+							for($i=$scnt; $i<=$ecnt; $i++){
+								$inhtml .= "<td>-</td>";
+							}
+							echo $inhtml;
+						} ?>
 						<!-- <td class=" bL_1gry"><?=$val['TEMP_SUM']?></td> -->
 						<td class=" bL_1gry"><?=$val['TEMP_AVR']?></td>
 					</tr>
 					<tr class="hh tr_rtu" data-id="<?=$val['AREA_CODE']?>">
 						<td class="dp0 dp3"><?=$val['RTU_NAME']?></td>
 						<td class=" bR_1gry">최고</td>
-						<? foreach($val['TEMP_MAX'] as $key2 => $val2){ ?>
-						<td class=""><?=$val2?></td>
-						<? } ?>
+						<? if($val['TEMP_MAX']){ ?>
+							<? foreach($val['TEMP_MAX'] as $key2 => $val2){ ?>
+							<td class=""><?=$val2?></td>
+							<? } ?>
+						<? } else {
+							$inhtml = "";
+							for($i=$scnt; $i<=$ecnt; $i++){
+								$inhtml .= "<td>-</td>";
+							}
+							echo $inhtml;
+						} ?>
 						<!-- <td class=" bL_1gry"><?=$val['TEMP_MAX_SUM']?></td> -->
 						<td class=" bL_1gry"><?=$val['TEMP_MAX_AVR']?></td>
 					</tr>
 					<tr class="hh tr_rtu" data-id="<?=$val['AREA_CODE']?>">
 						<td class="dp0 dp3"><?=$val['RTU_NAME']?></td>
 						<td class=" bR_1gry">최저</td>
-						<? foreach($val['TEMP_MIN'] as $key2 => $val2){ ?>
-						<td class=""><?=$val2?></td>
-						<? } ?>
+						<? if($val['TEMP_MIN']){ ?>
+							<? foreach($val['TEMP_MIN'] as $key2 => $val2){ ?>
+							<td class=""><?=$val2?></td>
+							<? } ?>
+						<? } else {
+							$inhtml = "";
+							for($i=$scnt; $i<=$ecnt; $i++){
+								$inhtml .= "<td>-</td>";
+							}
+							echo $inhtml;
+						} ?>
 						<!-- <td class=" bL_1gry"><?=$val['TEMP_MIN_SUM']?></td> -->
 						<td class=" bL_1gry"><?=$val['TEMP_MIN_AVR']?></td>
 					</tr>
@@ -318,9 +350,17 @@ require_once "./head.php";
 						<td class="realName2 bR_1gry" rowspan="4"><?=$val['RTU_NAME']?></td>
 						<td class="realDepth bR_1gry" rowspan="2">현재</td>
 						<td class="bR_1gry" rowspan="1">풍향</td>
-						<? foreach($val['DEG'] as $key2 => $val2){ ?>
-						<td class=""><?=$val2?></td>
-						<? } ?>
+						<? if($val['DEG']){ ?>
+							<? foreach($val['DEG'] as $key2 => $val2){ ?>
+							<td class=""><?=$val2?></td>
+							<? } ?>
+						<? } else {
+							$inhtml = "";
+							for($i=$scnt; $i<=$ecnt; $i++){
+								$inhtml .= "<td>-</td>";
+							}
+							echo $inhtml;
+						} ?>
 						<!-- <td class=" bL_1gry"><?=$val['DEG_SUM']?></td> -->
 						<td class=" bL_1gry"><?=$val['DEG_AVR']?></td>
 					</tr>
@@ -328,9 +368,17 @@ require_once "./head.php";
 						<td class="dp0 dp3"><?=$val['RTU_NAME']?></td>
 						<td class="dp0 dp3">현재</td>
 						<td class="bR_1gry" rowspan="1">풍속</td>
-						<? foreach($val['VEL'] as $key2 => $val2){ ?>
-						<td class=""><?=$val2?></td>
-						<? } ?>
+						<? if($val['VEL']){ ?>
+							<? foreach($val['VEL'] as $key2 => $val2){ ?>
+							<td class=""><?=$val2?></td>
+							<? } ?>
+						<? } else {
+							$inhtml = "";
+							for($i=$scnt; $i<=$ecnt; $i++){
+								$inhtml .= "<td>-</td>";
+							}
+							echo $inhtml;
+						} ?>
 						<!-- <td class=" bL_1gry"><?=$val['VEL_SUM']?></td> -->
 						<td class=" bL_1gry"><?=$val['VEL_AVR']?></td>
 					</tr>
@@ -338,9 +386,17 @@ require_once "./head.php";
 						<td class="dp0 dp3"><?=$val['RTU_NAME']?></td>
 						<td class="realDepth bR_1gry" rowspan="2">최고</td>
 						<td class="bR_1gry" rowspan="1">풍향</td>
-						<? foreach($val['DEG_MAX'] as $key2 => $val2){ ?>
-						<td class=""><?=$val2?></td>
-						<? } ?>
+						<? if($val['DEG_MAX']){ ?>
+							<? foreach($val['DEG_MAX'] as $key2 => $val2){ ?>
+							<td class=""><?=$val2?></td>
+							<? } ?>
+						<? } else {
+							$inhtml = "";
+							for($i=$scnt; $i<=$ecnt; $i++){
+								$inhtml .= "<td>-</td>";
+							}
+							echo $inhtml;
+						} ?>
 						<!-- <td class=" bL_1gry"><?=$val['DEG_MAX_SUM']?></td> -->
 						<td class=" bL_1gry"><?=$val['DEG_MAX_AVR']?></td>
 					</tr>
@@ -348,9 +404,17 @@ require_once "./head.php";
 						<td class="dp0 dp3"><?=$val['RTU_NAME']?></td>
 						<td class="dp0 dp3">최고</td>
 						<td class="bR_1gry" rowspan="1">풍속</td>
-						<? foreach($val['VEL_MAX'] as $key2 => $val2){ ?>
-						<td class=""><?=$val2?></td>
-						<? } ?>
+						<? if($val['VEL_MAX']){ ?>
+							<? foreach($val['VEL_MAX'] as $key2 => $val2){ ?>
+							<td class=""><?=$val2?></td>
+							<? } ?>
+						<? } else {
+							$inhtml = "";
+							for($i=$scnt; $i<=$ecnt; $i++){
+								$inhtml .= "<td>-</td>";
+							}
+							echo $inhtml;
+						} ?>
 						<!-- <td class=" bL_1gry"><?=$val['VEL_MAX_SUM']?></td> -->
 						<td class=" bL_1gry"><?=$val['VEL_MAX_AVR']?></td>
 					</tr>
@@ -375,74 +439,6 @@ require_once "./head.php";
 							for($i=0; $i<($rowCnt-$rowNum); $i++){
 								echo $inhtml;
 							}
-						}
-					}
-					?>
-			        </tbody>
-				</table>
-			</li>
-			
-			<? }else if($option == "3"){ // 기압 ########################################################################### ?>
-			<li class="li100_nor">
-				<table id="list_table" class="tb_data p0">
-					<thead class="tb_data_tbg">
-						<tr>
-							<th class="w10i bR_1gry">구분</th>
-							<th class=" bR_1gry">종류</th>
-							<? 
-							if($type == "A"){
-								foreach($data_nums['NUM'] as $key => $val){ 		
-									if($key == 0 || $val == "01"){
-										?>
-											<th class="li3"><?echo $data_nums['MON'][$key] ." / ". $val?></th>
-										<?
-										}else{
-									?>
-									<th class="li3"><?=$val?></th>
-									<? }
-									} 
-							}else{
-								for($i=$scnt; $i<=$ecnt; $i++){ 		
-							?>
-							<th class=""><?=($i < 10) ? "0".$i : $i?></th>
-							<? } } ?>
-							<!-- <th class=" bL_1gry">누계</th> -->
-							<th class=" bL_1gry">평균</th>
-						</tr>	
-					</thead>
-			        <tbody>
-					<? 
-					if($data_list){
-						foreach($data_list as $key => $val){ 
-					?>
-					<tr class="hh tr_rtu" data-id="<?=$val['AREA_CODE']?>">
-						<td class="realName bR_1gry" rowspan="3"><?=$val['RTU_NAME']?></td>
-						<td class=" bR_1gry">현재</td>
-						<? foreach($val['ATMO'] as $key2 => $val2){ ?>
-						<td class=""><?=$val2?></td>
-						<? } ?>
-						<!-- <td class=" bL_1gry"><?=$val['ATMO_SUM']?></td> -->
-						<td class=" bL_1gry"><?=$val['ATMO_AVR']?></td>
-					</tr>
-					<tr class="hh tr_rtu" data-id="<?=$val['AREA_CODE']?>">
-						<td class="dp0 dp3"><?=$val['RTU_NAME']?></td>
-						<td class=" bR_1gry">최고</td>
-						<? foreach($val['ATMO_MAX'] as $key2 => $val2){ ?>
-						<td class=""><?=$val2?></td>
-						<? } ?>
-						<!-- <td class=" bL_1gry"><?=$val['ATMO_MAX_SUM']?></td> -->
-						<td class=" bL_1gry"><?=$val['ATMO_MAX_AVR']?></td>
-					</tr>
-					<tr class="hh tr_rtu" data-id="<?=$val['AREA_CODE']?>">
-						<td class="dp0 dp3"><?=$val['RTU_NAME']?></td>
-						<td class=" bR_1gry">최저</td>
-						<? foreach($val['ATMO_MIN'] as $key2 => $val2){ ?>
-						<td class=""><?=$val2?></td>
-						<? } ?>
-						<!-- <td class=" bL_1gry"><?=$val['ATMO_MIN_SUM']?></td> -->
-						<td class=" bL_1gry"><?=$val['ATMO_MIN_AVR']?></td>
-					</tr>
-					<? 
 						}
 					}
 					?>
@@ -488,27 +484,51 @@ require_once "./head.php";
 					<tr class="hh tr_rtu" data-id="<?=$val['AREA_CODE']?>">
 						<td class="realName bR_1gry" rowspan="3"><?=$val['RTU_NAME']?></td>
 						<td class=" bR_1gry">현재</td>
-						<? foreach($val['HUMI'] as $key2 => $val2){ ?>
-						<td class=""><?=$val2?></td>
-						<? } ?>
+						<? if($val['HUMI']){ ?>
+							<? foreach($val['HUMI'] as $key2 => $val2){ ?>
+							<td class=""><?=$val2?></td>
+							<? } ?>
+						<? } else {
+							$inhtml = "";
+							for($i=$scnt; $i<=$ecnt; $i++){
+								$inhtml .= "<td>-</td>";
+							}
+							echo $inhtml;
+						} ?>
 						<!-- <td class=" bL_1gry"><?=$val['HUMI_SUM']?></td> -->
 						<td class=" bL_1gry"><?=$val['HUMI_AVR']?></td>
 					</tr>
 					<tr class="hh tr_rtu" data-id="<?=$val['AREA_CODE']?>">
 						<td class="dp0 dp3"><?=$val['RTU_NAME']?></td>
 						<td class=" bR_1gry">최고</td>
-						<? foreach($val['HUMI_MAX'] as $key2 => $val2){ ?>
-						<td class=""><?=$val2?></td>
-						<? } ?>
+						<? if($val['HUMI_MAX']){ ?>
+							<? foreach($val['HUMI_MAX'] as $key2 => $val2){ ?>
+							<td class=""><?=$val2?></td>
+							<? } ?>
+						<? } else {
+							$inhtml = "";
+							for($i=$scnt; $i<=$ecnt; $i++){
+								$inhtml .= "<td>-</td>";
+							}
+							echo $inhtml;
+						} ?>
 						<!-- <td class=" bL_1gry"><?=$val['HUMI_MAX_SUM']?></td> -->
 						<td class=" bL_1gry"><?=$val['HUMI_MAX_AVR']?></td>
 					</tr>
 					<tr class="hh tr_rtu" data-id="<?=$val['AREA_CODE']?>">
 						<td class="dp0 dp3"><?=$val['RTU_NAME']?></td>
 						<td class=" bR_1gry">최저</td>
-						<? foreach($val['HUMI_MIN'] as $key2 => $val2){ ?>
-						<td class=""><?=$val2?></td>
-						<? } ?>
+						<? if($val['HUMI_MIN']){ ?>
+							<? foreach($val['HUMI_MIN'] as $key2 => $val2){ ?>
+							<td class=""><?=$val2?></td>
+							<? } ?>
+						<? } else {
+							$inhtml = "";
+							for($i=$scnt; $i<=$ecnt; $i++){
+								$inhtml .= "<td>-</td>";
+							}
+							echo $inhtml;
+						} ?>
 						<!-- <td class=" bL_1gry"><?=$val['HUMI_MIN_SUM']?></td> -->
 						<td class=" bL_1gry"><?=$val['HUMI_MIN_AVR']?></td>
 					</tr>
@@ -533,102 +553,6 @@ require_once "./head.php";
 							for($i=0; $i<($rowCnt-$rowNum); $i++){
 								echo $inhtml;
 							}
-						}
-					}
-					?>
-			        </tbody>
-				</table>
-			</li>
-			
-			<? }else if($option == "5"){ // 일사 ########################################################################### ?>
-			<li class="li100_nor">
-				<table id="list_table" class="tb_data p0">
-					<thead class="tb_data_tbg">
-						<tr>
-							<th class="w10i bR_1gry">구분</th>
-							<? 
-							if($type == "A"){
-								foreach($data_nums['NUM'] as $key => $val){ 		
-									if($key == 0 || $val == "01"){
-										?>
-											<th class="li3"><?echo $data_nums['MON'][$key] ." / ". $val?></th>
-										<?
-										}else{
-									?>
-									<th class="li3"><?=$val?></th>
-									<? }
-									} 
-							}else{
-								for($i=$scnt; $i<=$ecnt; $i++){ 		
-							?>
-							<th class=""><?=($i < 10) ? "0".$i : $i?></th>
-							<? } } ?>
-							<!-- <th class=" bL_1gry">누계</th> -->
-							<th class=" bL_1gry">평균</th>
-						</tr>	
-					</thead>
-			        <tbody>
-					<? 
-					if($data_list){
-						foreach($data_list as $key => $val){ 
-					?>
-					<tr class="hh tr_rtu" data-id="<?=$val['AREA_CODE']?>">
-						<td class=" bR_1gry"><?=$val['RTU_NAME']?></td>
-						<? foreach($val['RADI'] as $key2 => $val2){ ?>
-						<td class=""><?=$val2?></td>
-						<? } ?>
-						<!-- <td class=" bL_1gry"><?=$val['RADI_SUM']?></td> -->
-						<td class=" bL_1gry"><?=$val['RADI_AVR']?></td>
-					</tr>
-					<? 
-						}
-					}
-					?>
-			        </tbody>
-				</table>
-			</li>
-			
-			<? }else if($option == "6"){ // 일조 ########################################################################### ?>
-			<li class="li100_nor">
-				<table id="list_table" class="tb_data p0">
-					<thead class="tb_data_tbg">
-						<tr>
-							<th class="w10i bR_1gry">구분</th>
-							<? 
-							if($type == "A"){
-								foreach($data_nums['NUM'] as $key => $val){ 		
-									if($key == 0 || $val == "01"){
-										?>
-											<th class="li3"><?echo $data_nums['MON'][$key] ." / ". $val?></th>
-										<?
-										}else{
-									?>
-									<th class="li3"><?=$val?></th>
-									<? }
-									} 
-							}else{
-								for($i=$scnt; $i<=$ecnt; $i++){ 		
-							?>
-							<th class=""><?=($i < 10) ? "0".$i : $i?></th>
-							<? } } ?>
-							<!-- <th class=" bL_1gry">누계</th> -->
-							<th class=" bL_1gry">평균</th>
-						</tr>	
-					</thead>
-			        <tbody>
-					<? 
-					if($data_list){
-						foreach($data_list as $key => $val){ 
-					?>
-					<tr class="hh tr_rtu" data-id="<?=$val['AREA_CODE']?>">
-						<td class=" bR_1gry"><?=$val['RTU_NAME']?></td>
-						<? foreach($val['SUNS'] as $key2 => $val2){ ?>
-						<td class=""><?=$val2?></td>
-						<? } ?>
-						<!-- <td class=" bL_1gry"><?=$val['SUNS_SUM']?></td> -->
-						<td class=" bL_1gry"><?=$val['SUNS_AVR']?></td>
-					</tr>
-					<? 
 						}
 					}
 					?>

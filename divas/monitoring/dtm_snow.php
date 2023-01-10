@@ -78,7 +78,13 @@ require_once "./head.php";
 							<? foreach($val['LIST'] as $key2 => $val2){ ?>
 							<td id="data" data-area_code="<?=$val['AREA_CODE']?>" data-hour="<?=$key2?>" data-name="<?=$val['RTU_NAME']?>"><?=$val2?></td>
 							<? } ?>
-						<? } ?>
+						<? } else {
+							$inhtml = "";
+							for($i=$scnt; $i<=$ecnt; $i++){
+								$inhtml .= "<td>-</td>";
+							}
+							echo $inhtml;
+						} ?>
 						<td class="mint_L"><?=$val['SUM']?></td>
 					</tr>
 					<? 

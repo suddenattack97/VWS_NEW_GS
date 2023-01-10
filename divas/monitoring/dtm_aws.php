@@ -94,8 +94,13 @@ require_once "./head.php";
 										<td id="data" data-mode="rain" data-hour="<?=$key?>"><?=$val?></td>
 									<? 
 										}
-									}
-									?>	
+									} else {
+										$inhtml = "";
+										for($i=$scnt; $i<=$ecnt; $i++){
+											$inhtml .= "<td>-</td>";
+										}
+										echo $inhtml;
+									} ?>	
 										<td class="mint_L"><?=$data_list['RAIN_SUM']?></td>
 									</tr>
 									<tr class="hh_aws">
@@ -107,8 +112,13 @@ require_once "./head.php";
 										<td id="data" data-mode="temp" data-kind="TEMP" data-hour="<?=$key?>"><?=$val?></td>
 									<? 
 										}
-									}
-									?>	
+									} else {
+										$inhtml = "";
+										for($i=$scnt; $i<=$ecnt; $i++){
+											$inhtml .= "<td>-</td>";
+										}
+										echo $inhtml;
+									} ?>
 										<td class="mint_L"><?=$data_list['TEMP_AVR']?></td>
 									</tr>
 									<!-- <tr>
@@ -120,8 +130,13 @@ require_once "./head.php";
 										<td id="data" data-mode="temp" data-kind="TEMP_MAX" data-hour="<?=$key?>"><?=$val?></td>
 									<? 
 										}
-									}
-									?>	
+									} else {
+										$inhtml = "";
+										for($i=$scnt; $i<=$ecnt; $i++){
+											$inhtml .= "<td>-</td>";
+										}
+										echo $inhtml;
+									} ?>	
 										<td class="mint_L"><?=$data_list['TEMP_MAX_AVR']?></td>
 									</tr>
 									<tr>
@@ -133,8 +148,13 @@ require_once "./head.php";
 										<td id="data" data-mode="temp" data-kind="TEMP_MIN" data-hour="<?=$key?>"><?=$val?></td>
 									<? 
 										}
-									}
-									?>	
+									} else {
+										$inhtml = "";
+										for($i=$scnt; $i<=$ecnt; $i++){
+											$inhtml .= "<td>-</td>";
+										}
+										echo $inhtml;
+									} ?>	
 										<td class="mint_L"><?=$data_list['TEMP_MIN_AVR']?></td>
 									</tr> -->
 									<tr class="hh_aws"> 
@@ -146,8 +166,13 @@ require_once "./head.php";
 										<td id="data" data-mode="wind" data-kind="DEG" data-hour="<?=$key?>"><?=$val?></td>
 									<? 
 										}
-									}
-									?>	
+									} else {
+										$inhtml = "";
+										for($i=$scnt; $i<=$ecnt; $i++){
+											$inhtml .= "<td>-</td>";
+										}
+										echo $inhtml;
+									} ?>	
 										<td class="mint_L"><?=$data_list['DEG_AVR']?></td>
 									</tr>
 									<tr class="hh_aws">
@@ -158,8 +183,13 @@ require_once "./head.php";
 										<td id="data" data-mode="wind" data-kind="VEL" data-hour="<?=$key?>"><?=$val?></td>
 									<? 
 										}
-									}
-									?>	
+									} else {
+										$inhtml = "";
+										for($i=$scnt; $i<=$ecnt; $i++){
+											$inhtml .= "<td>-</td>";
+										}
+										echo $inhtml;
+									} ?>	
 										<td class="mint_L"><?=$data_list['VEL_AVR']?></td>
 									</tr>
 									<!-- <tr>
@@ -171,8 +201,13 @@ require_once "./head.php";
 										<td id="data" data-mode="wind" data-kind="DEG_MAX" data-hour="<?=$key?>"><?=$val?></td>
 									<? 
 										}
-									}
-									?>	
+									} else {
+										$inhtml = "";
+										for($i=$scnt; $i<=$ecnt; $i++){
+											$inhtml .= "<td>-</td>";
+										}
+										echo $inhtml;
+									} ?>	
 										<td class="mint_L"><?=$data_list['DEG_MAX_AVR']?></td>
 									</tr>
 									<tr>
@@ -183,48 +218,14 @@ require_once "./head.php";
 										<td id="data" data-mode="wind" data-kind="VEL_MAX" data-hour="<?=$key?>"><?=$val?></td>
 									<? 
 										}
-									}
-									?>	
+									} else {
+										$inhtml = "";
+										for($i=$scnt; $i<=$ecnt; $i++){
+											$inhtml .= "<td>-</td>";
+										}
+										echo $inhtml;
+									} ?>	
 										<td class="mint_L"><?=$data_list['VEL_MAX_AVR']?></td>
-									</tr> -->
-									<!-- <tr class="hh_aws"> 
-										<td colspan="2" class="blue_L_1 line14">기압 (hPa)</td>
-									<? 
-									if($data_list['ATMO']){
-										foreach($data_list['ATMO'] as $key => $val){ 
-									?>
-										<td id="data" data-mode="atmo" data-kind="ATMO" data-hour="<?=$key?>"><?=$val?></td>
-									<? 
-										}
-									}
-									?>	
-										<td class="mint_L"><?=$data_list['ATMO_AVR']?></td>
-									</tr>
-									<tr>
-										<td class="blue_L_1">최고</td>
-									<? 
-									if($data_list['ATMO_MAX']){
-										foreach($data_list['ATMO_MAX'] as $key => $val){ 
-									?>
-										<td id="data" data-mode="atmo" data-kind="ATMO_MAX" data-hour="<?=$key?>"><?=$val?></td>
-									<? 
-										}
-									}
-									?>	
-										<td class="mint_L"><?=$data_list['ATMO_MAX_AVR']?></td>
-									</tr>
-									<tr>
-										<td class="blue_L_1">최저</td>
-									<? 
-									if($data_list['ATMO_MIN']){
-										foreach($data_list['ATMO_MIN'] as $key => $val){ 
-									?>
-										<td id="data" data-mode="atmo" data-kind="ATMO_MIN" data-hour="<?=$key?>"><?=$val?></td>
-									<? 
-										}
-									}
-									?>	
-										<td class="mint_L"><?=$data_list['ATMO_MIN_AVR']?></td>
 									</tr> -->
 									<tr class="hh_aws">
 										<td colspan="2" class="blue_L_1 line14">습도 (%)</td>
@@ -235,8 +236,13 @@ require_once "./head.php";
 										<td id="data" data-mode="humi" data-kind="HUMI" data-hour="<?=$key?>"><?=$val?></td>
 									<? 
 										}
-									}
-									?>	
+									} else {
+										$inhtml = "";
+										for($i=$scnt; $i<=$ecnt; $i++){
+											$inhtml .= "<td>-</td>";
+										}
+										echo $inhtml;
+									} ?>	
 										<td class="mint_L"><?=$data_list['HUMI_AVR']?></td>
 									</tr>
 									<!-- <tr>
@@ -248,8 +254,13 @@ require_once "./head.php";
 										<td id="data" data-mode="humi" data-kind="HUMI_MAX" data-hour="<?=$key?>"><?=$val?></td>
 									<? 
 										}
-									}
-									?>	
+									} else {
+										$inhtml = "";
+										for($i=$scnt; $i<=$ecnt; $i++){
+											$inhtml .= "<td>-</td>";
+										}
+										echo $inhtml;
+									} ?>	
 										<td class="mint_L"><?=$data_list['HUMI_MAX_AVR']?></td>
 									</tr>
 									<tr>
@@ -261,35 +272,14 @@ require_once "./head.php";
 										<td id="data" data-mode="humi" data-kind="HUMI_MIN" data-hour="<?=$key?>"><?=$val?></td>
 									<? 
 										}
-									}
-									?>	
+									} else {
+										$inhtml = "";
+										for($i=$scnt; $i<=$ecnt; $i++){
+											$inhtml .= "<td>-</td>";
+										}
+										echo $inhtml;
+									} ?>	
 										<td class="mint_L"><?=$data_list['HUMI_MIN_AVR']?></td>
-									</tr> -->
-									<!-- <tr class="hh">
-										<td colspan="2" class="blue_L_1">일사 (MJ/m2)</td>
-									<? 
-									if($data_list['RADI']){
-										foreach($data_list['RADI'] as $key => $val){ 
-									?>
-										<td id="data" data-mode="radi" data-hour="<?=$key?>"><?=$val?></td>
-									<? 
-										}
-									}
-									?>	
-										<td class="mint_L"><?=$data_list['RADI_AVR']?></td>
-									</tr>
-									<tr class="hh">
-										<td colspan="2" class="blue_L_1"> 일조(hr)</td>
-									<? 
-									if($data_list['SUNS']){
-										foreach($data_list['SUNS'] as $key => $val){ 
-									?>
-										<td id="data" data-mode="suns" data-hour="<?=$key?>"><?=$val?></td>
-									<? 
-										}
-									}
-									?>	
-										<td class="mint_L"><?=$data_list['SUNS_AVR']?></td>
 									</tr> -->
 								<? } else{	?>
 									<tr>

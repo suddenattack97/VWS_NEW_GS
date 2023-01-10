@@ -109,7 +109,13 @@ require_once "./head.php";
 							<? foreach($val['LIST'] as $key2 => $val2){ ?>
 							<td class="li3_75"><?=$val2?></td>
 							<? } ?>
-						<? } ?>
+						<? } else {
+							$inhtml = "";
+							for($i=$scnt; $i<=$ecnt; $i++){
+								$inhtml .= "<td>-</td>";
+							}
+							echo $inhtml;
+						} ?>
 					</tr>
 					<? 
 							$rowNum++;

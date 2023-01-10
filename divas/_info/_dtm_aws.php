@@ -6,6 +6,9 @@ require_once "../include/class/awsInfo.php";
 $ott = getToken();
 $_SESSION["OTT"] = $ott;
 
+$scnt = 0;
+$ecnt = 23;
+
 $area_code = $_REQUEST['area_code']; // 지역 코드
 $sdate = $_REQUEST['sdate'] ? $_REQUEST['sdate'] : date("Y-m-d"); // 시작 날짜
 

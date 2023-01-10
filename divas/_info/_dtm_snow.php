@@ -5,6 +5,9 @@ require_once "../include/class/snowInfo.php";
 $ott = getToken();
 $_SESSION["OTT"] = $ott;
 
+$scnt = 0;
+$ecnt = 23;
+
 $sdate = $_REQUEST['sdate'] ? $_REQUEST['sdate'] : date("Y-m-d"); // 시작 날짜
 
 for($i=0; $i<=23; $i++){

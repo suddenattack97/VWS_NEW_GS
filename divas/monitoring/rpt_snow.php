@@ -107,7 +107,13 @@ require_once "./head.php";
 							<? foreach($val['LIST'] as $key2 => $val2){ ?>
 							<td class="li3"><?=$val2?></td>
 							<? } ?>
-						<? } ?>
+						<? } else {
+							$inhtml = "";
+							for($i=$scnt; $i<=$ecnt; $i++){
+								$inhtml .= "<td>-</td>";
+							}
+							echo $inhtml;
+						} ?>
 						<td class="li3 bL_1gry"><?=$val['SUM']?></td>
 					</tr>
 					<? 
