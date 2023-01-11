@@ -97,7 +97,7 @@ require_once "./head.php";
 									} else {
 										$inhtml = "";
 										for($i=$scnt; $i<=$ecnt; $i++){
-											$inhtml .= "<td>-</td>";
+											$inhtml .= '<td id="data" data-area_code="'.$val['AREA_CODE'].'" data-hour="'.$i.'" data-name="'.$val['RTU_NAME'].'">-</td>';
 										}
 										echo $inhtml;
 									} ?>	
@@ -115,7 +115,7 @@ require_once "./head.php";
 									} else {
 										$inhtml = "";
 										for($i=$scnt; $i<=$ecnt; $i++){
-											$inhtml .= "<td>-</td>";
+											$inhtml .= '<td id="data" data-area_code="'.$val['AREA_CODE'].'" data-hour="'.$i.'" data-name="'.$val['RTU_NAME'].'">-</td>';
 										}
 										echo $inhtml;
 									} ?>
@@ -133,7 +133,7 @@ require_once "./head.php";
 									} else {
 										$inhtml = "";
 										for($i=$scnt; $i<=$ecnt; $i++){
-											$inhtml .= "<td>-</td>";
+											$inhtml .= '<td id="data" data-area_code="'.$val['AREA_CODE'].'" data-hour="'.$i.'" data-name="'.$val['RTU_NAME'].'">-</td>';
 										}
 										echo $inhtml;
 									} ?>	
@@ -151,7 +151,7 @@ require_once "./head.php";
 									} else {
 										$inhtml = "";
 										for($i=$scnt; $i<=$ecnt; $i++){
-											$inhtml .= "<td>-</td>";
+											$inhtml .= '<td id="data" data-area_code="'.$val['AREA_CODE'].'" data-hour="'.$i.'" data-name="'.$val['RTU_NAME'].'">-</td>';
 										}
 										echo $inhtml;
 									} ?>	
@@ -169,7 +169,7 @@ require_once "./head.php";
 									} else {
 										$inhtml = "";
 										for($i=$scnt; $i<=$ecnt; $i++){
-											$inhtml .= "<td>-</td>";
+											$inhtml .= '<td id="data" data-area_code="'.$val['AREA_CODE'].'" data-hour="'.$i.'" data-name="'.$val['RTU_NAME'].'">-</td>';
 										}
 										echo $inhtml;
 									} ?>	
@@ -186,7 +186,7 @@ require_once "./head.php";
 									} else {
 										$inhtml = "";
 										for($i=$scnt; $i<=$ecnt; $i++){
-											$inhtml .= "<td>-</td>";
+											$inhtml .= '<td id="data" data-area_code="'.$val['AREA_CODE'].'" data-hour="'.$i.'" data-name="'.$val['RTU_NAME'].'">-</td>';
 										}
 										echo $inhtml;
 									} ?>	
@@ -204,7 +204,7 @@ require_once "./head.php";
 									} else {
 										$inhtml = "";
 										for($i=$scnt; $i<=$ecnt; $i++){
-											$inhtml .= "<td>-</td>";
+											$inhtml .= '<td id="data" data-area_code="'.$val['AREA_CODE'].'" data-hour="'.$i.'" data-name="'.$val['RTU_NAME'].'">-</td>';
 										}
 										echo $inhtml;
 									} ?>	
@@ -221,7 +221,7 @@ require_once "./head.php";
 									} else {
 										$inhtml = "";
 										for($i=$scnt; $i<=$ecnt; $i++){
-											$inhtml .= "<td>-</td>";
+											$inhtml .= '<td id="data" data-area_code="'.$val['AREA_CODE'].'" data-hour="'.$i.'" data-name="'.$val['RTU_NAME'].'">-</td>';
 										}
 										echo $inhtml;
 									} ?>	
@@ -239,7 +239,7 @@ require_once "./head.php";
 									} else {
 										$inhtml = "";
 										for($i=$scnt; $i<=$ecnt; $i++){
-											$inhtml .= "<td>-</td>";
+											$inhtml .= '<td id="data" data-area_code="'.$val['AREA_CODE'].'" data-hour="'.$i.'" data-name="'.$val['RTU_NAME'].'">-</td>';
 										}
 										echo $inhtml;
 									} ?>	
@@ -257,7 +257,7 @@ require_once "./head.php";
 									} else {
 										$inhtml = "";
 										for($i=$scnt; $i<=$ecnt; $i++){
-											$inhtml .= "<td>-</td>";
+											$inhtml .= '<td id="data" data-area_code="'.$val['AREA_CODE'].'" data-hour="'.$i.'" data-name="'.$val['RTU_NAME'].'">-</td>';
 										}
 										echo $inhtml;
 									} ?>	
@@ -275,7 +275,7 @@ require_once "./head.php";
 									} else {
 										$inhtml = "";
 										for($i=$scnt; $i<=$ecnt; $i++){
-											$inhtml .= "<td>-</td>";
+											$inhtml .= '<td id="data" data-area_code="'.$val['AREA_CODE'].'" data-hour="'.$i.'" data-name="'.$val['RTU_NAME'].'">-</td>';
 										}
 										echo $inhtml;
 									} ?>	
