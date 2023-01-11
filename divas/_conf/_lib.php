@@ -213,8 +213,17 @@ function get_client_ip() {
 
 /* 일회용 토큰 생성 */
 function getToken(){
-	require_once "_enc_lib.php";
-    return preg_replace("/[ #\&\+%@=\/\\\:;,\.'\"\^`~\!\?\*$#<>()\[\]\{\}]/i", "", create_hash(date("smYiHd")));
+	$iterations = 10001;
+    $salt = random_bytes(16); 
+    /*
+    $password = 'yOuR-pAs5w0rd-hERe';
+    $salt = openssl_random_pseudo_bytes(12);
+    $keyLength = 40;
+    $iterations = 10000;
+    $generated_key = openssl_pbkdf2($password, $salt, $keyLength, $iterations, 'sha256');
+     */
+    $hash = hash_pbkdf2("sha256", date("smYiHd"), $salt, $iterations, 20);
+    return base64_encode($hash);
 }
 
 

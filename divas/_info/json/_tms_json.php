@@ -68,7 +68,7 @@ switch($mode){
 		$data_common['alert_cnt'] = alert_cnt;
 		$data_common['board_type'] = board_type;
 		$data_common['board_url'] = board_url;
-		$data_common['root_dir'] = root_dir;
+		$data_common['root_dir'] = ROOT_DIR;
 		$data_common['vhf_use'] = vhf_use;
 		
 		$returnBody = array( 'common' => $data_common );
@@ -306,9 +306,9 @@ switch($mode){
 		$ClassRainInfo = new ClassRainInfo($DB);
 		//aws자료
 		$ClassAwsInfo = new ClassAwsInfo($DB);
-		$data_sensor['ATMO'] = "";
-		$data_sensor['RADI'] = "";
-		$data_sensor['SUNS'] = "";
+		$data_sensor['ATMO'] = 0;
+		$data_sensor['RADI'] = 0;
+		$data_sensor['SUNS'] = 0;
 		for($i=0; $i<$AwsLocalDB->rsCnt; $i++) {
 			//지역코드
 			$data_aws[$i]['AREA_CODE'] = $AwsLocalDB->AREA_CODE[$i];

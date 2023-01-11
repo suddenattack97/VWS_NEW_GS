@@ -3,7 +3,7 @@ Class ClassRtuInfo {
 
 	private $DB;
 
-	function ClassRtuInfo($DB, $senser_type=null, $main_check=null){
+	function __construct($DB, $senser_type=null, $main_check=null){
 		$this->DB = $DB;
 		$this->SENSERTYPE = $senser_type;
 		$this->MAINTYPE = $main_check;

@@ -3,7 +3,7 @@ Class ClassSetting {
 
 	private $DB;
 
-	function ClassSetting($DB){
+	function __construct($DB){
 		$this->DB = $DB;
 	}
 	
