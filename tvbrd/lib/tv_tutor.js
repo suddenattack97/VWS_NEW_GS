@@ -77,7 +77,7 @@
 	var checkInput;
 	var box_polygon_feature = [];
 	var polygon_feature = [];
-	var get_option = get_option ? get_option : "M";
+	var get_option = "M";
 
 			
 	$.fn.getUrlParameter = function (sParam) {

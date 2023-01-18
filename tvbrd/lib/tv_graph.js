@@ -4,6 +4,7 @@
 //# content : 기상상황판 js
 //################################################################################################################################
     function graph_slide(get_kind, get_area_code){
+		var chart = null;
 		$.ajax({
             type: "POST",
             url: "controll/graph.php",
@@ -22,6 +23,7 @@
 				$("#con_forec").css("background-repeat","");
 				$("#con_forec").css("background-position","");
 				$("#changeOption").click(function(){
+					if(chart) chart.destroy();	// 차트 중복생성 방지
 					get_option = get_option == "M" ? "H" : "M" ;
 					graph_slide(get_kind, get_area_code);
 				});
@@ -80,14 +82,16 @@
 				}
 				$("#sidr-id-chart_title").html(tmp_title);
 
+				if($("#changeOption").length > 0) $("#changeOption").remove();
+				var tmp_ht = '<button id="changeOption" class="sidr-class-text_btn2 sidr-class-btn_lbb80 sidr-class-fR" style="margin:12px 0;">';
 				if(get_option == "M"){
-					$("#sidr-id-chart_title").append('<button id="changeOption">1시간</button>');
+					$("#sidr-id-btn_graph_detail").after(tmp_ht+'1시간</button>');
 				}else{
-					$("#sidr-id-chart_title").append('<button id="changeOption">10분</button>');
+					$("#sidr-id-btn_graph_detail").after(tmp_ht+'10분</button>');
 				}
 
 				tmp_html += '<tr>';
-				tmp_html += '	<th>시간</th>';
+				tmp_html += '	<th class="sidr-class-w50">시간</th>';
 				tmp_html += '	<th>'+tmp_title + tmp_unit+'</th>';
 				tmp_html += '</tr>';
 
@@ -206,6 +210,10 @@
 										maxTicksLimit: 10
 									}
 								}]
+							},
+							elements:{ 
+								line: {tension: 0},
+								point:{radius : 2} 
 							}
 						}
 					});	
@@ -247,7 +255,7 @@
 								backgroundColor: 'rgb(54, 162, 235)',
 								borderColor: 'rgb(54, 162, 235)',
 								fill: false,
-								borderWidth: 1
+								borderWidth: 2
 							}]
 						},
 						options: {
@@ -261,6 +269,10 @@
 										maxTicksLimit: 10
 									}
 								}]
+							},
+							elements:{ 
+								line: {tension: 0},
+								point:{radius : 1} 
 							}
 						}
 					});	
