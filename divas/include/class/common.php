@@ -84,7 +84,7 @@ Class ClassCommon {
 				$_SERVER['PHP_SELF'] == ROOT."/divas/monitoring/test.php" ){
 			}else{
 				if( !preg_match("/".$_SERVER['HTTP_HOST']."/i", $_SERVER['HTTP_REFERER']) ){
-					// exit("No direct access allowed.");
+					exit("No direct access allowed.");
 				}
 				if( (!$_SESSION['is_login'] || $_SESSION['is_login'] == 0) && !strpos($_SERVER["PHP_SELF"], "_json") ){
 					// $str = ' <script> ';
