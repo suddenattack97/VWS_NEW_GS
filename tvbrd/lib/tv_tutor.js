@@ -1968,16 +1968,14 @@
         	source: '#con_forec',
         	onOpen: function onOpenEnd(){
 				$(".menu_left").attr("style", "left: 460px;");
+				$(".menu_left").hide();
 				$(".layer_top").css("left", "530px");
-				if(map_control_type == 1){
-					$("#con_forec").css("top",'0px');
-				}else{
-					$("#con_forec").css("top",'42px');
-				}
 				
         	},
         	onClose: function onCloseEnd(){
 				$(".menu_left").attr("style", "right: 460px;");
+				$(".menu_left").hide();
+				
 				$(".layer_top").css("left", "80px");
         	}
         });
