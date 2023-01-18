@@ -129,20 +129,26 @@ Class FlowInfo {
 	
 	/* 시간 범위 수위량 */
 	function getTimeListValue($area_code, $type, $startdate, $enddate) {
-		$sql = " SELECT IFNULL(b.flow_date, '-') AS flow_date, IFNULL(b.flow_avr, '-') AS flow_avr, a.num
-				 FROM statistics_tmp AS a
-				 LEFT JOIN (
+		$sql = " SELECT IFNULL(b.flow_date, '-') AS flow_date, IFNULL(b.flow_avr, '-') AS flow_avr,
+				 concat(LPAD(t1.num,2,'0'), concat(':', LPAD(t2.num,2,'0'))) as numC
+				 FROM (select num from statistics_tmp where type = 'H') as t1
+				 join (select num from statistics_tmp where type = 'M') as t2	
+				 RIGHT JOIN (
 				 SELECT * FROM flow_hist
-				 WHERE area_code = '" . $area_code . "' AND data_type = '".$type."' AND flow_date BETWEEN {ts '".$startdate."'} AND {ts '".$enddate."'}
-				 ) AS b ON a.num = DATE_FORMAT(b.flow_date, '%k')
-				 WHERE a.type = 'H'
-				 ORDER BY a.num ASC ";
+				 WHERE area_code = '" . $area_code . "' AND data_type = '".$type."' 
+				 AND flow_date BETWEEN {ts '".$startdate."'} AND {ts '".$enddate."'}
+				 order by flow_date desc
+				 ) AS b 
+				 ON t1.num = DATE_FORMAT(b.flow_date, '%k') 
+				 AND t2.num = DATE_FORMAT(b.flow_date, '%i') 
+				 group by numC
+				 ORDER BY b.flow_date DESC";
 		$rs = $this->DB->execute($sql);
 
 		for($i=0; $i<$this->DB->NUM_ROW(); $i++){
 			$this->TimeListValue[$i]     = ($rs[$i]['flow_avr'] != "-") ? $rs[$i]['flow_avr']*$this->getCalc : "-";
 			$this->TimeListDateValue[$i] = $rs[$i]['flow_date'];
-			$this->Num[$i] 				 = $rs[$i]['num'];
+			$this->Num[$i] 				 = $rs[$i]['numC'];
 		}
 	
 		unset($rs);

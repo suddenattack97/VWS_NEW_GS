@@ -221,20 +221,26 @@ Class SnowInfo {
 	
 	/* 시간 범위 적설량 */
 	function getTimeListValue($area_code, $type, $startdate, $enddate) {
-		$sql = " SELECT IFNULL(b.snow_date, '-') AS snow_date, IFNULL(b.snow, '-') AS snow, a.num
-				 FROM statistics_tmp AS a
-				 LEFT JOIN (
+		$sql = " SELECT IFNULL(b.snow_date, '-') AS snow_date, IFNULL(b.snow, '-') AS snow,
+				concat(LPAD(t1.num,2,'0'), concat(':', LPAD(t2.num,2,'0'))) as numC
+				FROM (select num from statistics_tmp where type = 'H') as t1
+				join (select num from statistics_tmp where type = 'M') as t2
+				RIGHT JOIN (
 				 SELECT * FROM snow_hist
-				 WHERE area_code = '" . $area_code . "' AND data_type = '".$type."' AND snow_date BETWEEN {ts '".$startdate."'} AND {ts '".$enddate."'}
-				 ) AS b ON a.num = DATE_FORMAT(b.snow_date, '%k')
-				 WHERE a.type = 'H'
-				 ORDER BY a.num ASC ";
+				 WHERE area_code = '" . $area_code . "' AND data_type = '".$type."' 
+				 AND snow_date BETWEEN {ts '".$startdate."'} AND {ts '".$enddate."'}
+				 order by snow_date desc
+				 ) AS b 
+				 ON t1.num = DATE_FORMAT(b.snow_date, '%k') 
+				 AND t2.num = DATE_FORMAT(b.snow_date, '%i') 
+				 group by numC
+				 ORDER BY b.snow_date DESC ";
 		$rs = $this->DB->execute($sql);
 	
 		for($i=0; $i<$this->DB->NUM_ROW(); $i++){
 			$this->TimeListValue[$i]     = ($rs[$i]['snow'] != "-") ? $rs[$i]['snow']*$this->getCalc : "-";
 			$this->TimeListDateValue[$i] = $rs[$i]['snow_date'];
-			$this->Num[$i] 				 = $rs[$i]['num'];
+			$this->Num[$i] 				 = $rs[$i]['numC'];
 		}
 	
 		unset($rs);

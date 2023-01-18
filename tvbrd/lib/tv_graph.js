@@ -8,7 +8,7 @@
             type: "POST",
             url: "controll/graph.php",
             cache: false,
-            data: { "mode" : "graph_slide", "kind" : get_kind, "area_code" : get_area_code },
+            data: { "mode" : "graph_slide", "kind" : get_kind, "option" : get_option, "area_code" : get_area_code },
             dataType: "json",
             beforeSend: function(data){
                 $("#con_forec").css("background-image","url('./img/loddingbar.gif')");
@@ -21,6 +21,10 @@
 				$("#con_forec").css("background-size","");
 				$("#con_forec").css("background-repeat","");
 				$("#con_forec").css("background-position","");
+				$("#changeOption").click(function(){
+					get_option = get_option == "M" ? "H" : "M" ;
+					graph_slide(get_kind, get_area_code);
+				});
             },
             success : function(response) {
 				//console.log(response);
@@ -76,22 +80,28 @@
 				}
 				$("#sidr-id-chart_title").html(tmp_title);
 
+				if(get_option == "M"){
+					$("#sidr-id-chart_title").append('<button id="changeOption">1시간</button>');
+				}else{
+					$("#sidr-id-chart_title").append('<button id="changeOption">10분</button>');
+				}
+
 				tmp_html += '<tr>';
 				tmp_html += '	<th>시간</th>';
 				tmp_html += '	<th>'+tmp_title + tmp_unit+'</th>';
 				tmp_html += '</tr>';
 
 				$.each(hour, function(index, item){
-					//console.log(item['num'], item['date']);
-					var tmp_num = Number(item['num']);
+					// console.log(hour.length);
+					var tmp_num = Number(hour.length - index); // 그래프 인덱스 거꾸로
 					var tmp_date = item['date'];
-					tmp_date = (tmp_num < 10) ? "0"+item['num'] : item['num'];
+					// tmp_date = (tmp_num < 10) ? "0"+item['num'] : item['num'];
 					var tmp_data = item['data'] == "-" ? "-" : Number(item['data']);
 
 					data1[tmp_num] = item['data1'] == "-" ? "-" : Number(item['data1']);
 					data2[tmp_num] = item['data2'] == "-" ? "-" : Number(item['data2']);
 
-					graph_leg[tmp_num] = (tmp_num < 10) ? "0"+item['num'] : item['num'];
+					graph_leg[tmp_num] =  item['num'];
 					graph_data[tmp_num] = (tmp_data == "-") ? null : tmp_data;
 					
 					if(tmp_data != "-"){
@@ -131,7 +141,7 @@
 				$("#sidr-id-graph_tbody").html(tmp_html);
 				
 				// 그래프 호출
-				var CTYPE = (get_kind == "flow") ? "line" : "bar";
+				var CTYPE = (get_kind == "rain" || get_kind == "snow" ) ? "bar" : "line";
 				var LEG, DATA = [];		
 				var MAX, MIN, INCRE = null;
 				
@@ -199,6 +209,33 @@
 							}
 						}
 					});	
+				}else if(get_kind == "rain" || get_kind == "snow"){
+					chart = new Chart($("#sidr-id-graph"), {
+						type: CTYPE,
+						data: {
+							labels: LEG,
+							datasets: [{
+								label: tmp_title,
+								data: DATA,
+								backgroundColor: 'rgb(54, 162, 235)',
+								borderColor: 'rgb(54, 162, 235)',
+								borderWidth: 1
+							}]
+						},
+						options: {
+							scales: {
+								yAxes: [{
+									ticks: {
+										beginAtZero: true,
+										suggestedMin: MIN,
+										suggestedMax: MAX,
+										//stepSize: INCRE,
+										maxTicksLimit: 10
+									}
+								}]
+							}
+						}
+					});	
 				}else{
 					chart = new Chart($("#sidr-id-graph"), {
 						type: CTYPE,
@@ -209,6 +246,7 @@
 								data: DATA,
 								backgroundColor: 'rgb(54, 162, 235)',
 								borderColor: 'rgb(54, 162, 235)',
+								fill: false,
 								borderWidth: 1
 							}]
 						},

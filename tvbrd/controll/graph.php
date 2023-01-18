@@ -40,6 +40,7 @@ $dvUtil   = new Divas_Util();
 
     $mode =  $dvUtil->xss_clean($_REQUEST["mode"]);
     $kind =  $dvUtil->xss_clean($_REQUEST["kind"]);
+    $option =  $dvUtil->xss_clean($_REQUEST["option"]);
     $area_code =  $dvUtil->xss_clean($_REQUEST["area_code"]);
 
     if(!isset($mode) && empty($mode)){
@@ -58,7 +59,7 @@ $dvUtil   = new Divas_Util();
 			$RtuInfo->getRtuName($area_code);
 		}
 	    
-	    $startdate = $DM->getStartHour( date("Y-m-d 00") );
+	    $startdate = $DM->getStartHour( date("Y-m-d 00", strtotime("-1 days")) );
 	    $enddate = $DM->getEndHour( date("Y-m-d 23") );
 	    
 	    if(TEST == "1"){
@@ -100,7 +101,7 @@ $dvUtil   = new Divas_Util();
 				if($kind == "disp"){
 					$calc = 0.01;
 				}
-				$tmpInfo->getTimeListValue( $area_code, "H", $startdate, $enddate);
+				$tmpInfo->getTimeListValue( $area_code, $option, $startdate, $enddate);
 				for($i=0; $i<$tmpInfo->rsCnt; $i++){
 					$arr_data[$i]['num'] = $tmpInfo->Num[$i];
 					$arr_data[$i]['date'] = $tmpInfo->TimeListDateValue[$i];
@@ -109,7 +110,7 @@ $dvUtil   = new Divas_Util();
 					$arr_data[$i]['data2'] = $RtuInfo->level2*$calc;
 				}
 			}else{
-				$tmpInfo->getTimeListValue( $area_code, "H", $startdate, $enddate);
+				$tmpInfo->getTimeListValue( $area_code, $option, $startdate, $enddate);
 				for($i=0; $i<$tmpInfo->rsCnt; $i++){
 					$arr_data[$i]['num'] = $tmpInfo->Num[$i];
 					$arr_data[$i]['date'] = $tmpInfo->TimeListDateValue[$i];
