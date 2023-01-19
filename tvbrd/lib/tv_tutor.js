@@ -480,7 +480,7 @@
             	$.when(null, event_ajax).done(function(){
             		box_update();
             	});
-				var time = (map_control_type == 1 ? 30000 : 5000);
+				var time = (map_control_type == 1 ? 30000 : 10000);
           		// 5초에 한번 데이터 업데이트
           		setInt_data1 = setInterval(function(){
           			//event_update();
