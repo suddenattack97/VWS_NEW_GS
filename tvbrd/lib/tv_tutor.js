@@ -2111,6 +2111,11 @@
     // 슬라이드 오픈
     function slide_on(kind, data){
         //console.log(kind+": "+data);
+		if(map_control_type == 1){
+			$("#con_forec").css("top",'0px');
+		}else{
+			$("#con_forec").css("top",'42px');
+		}
     	slide_state[0] = false; // state
     	slide_state[1] = false; // graph
     	slide_state[2] = false; // spot
@@ -2132,12 +2137,7 @@
  		        	name: 'con_forec',
  		        	source: '#con_forec',
  		        	onOpen: function onOpenEnd(){
-						
-						if(map_control_type == 1){
-							$("#con_forec").css("top",'0px');
-						}else{
-							$("#con_forec").css("top",'42px');
-						}
+					
 						$(".menu_left").attr("style", "left: 460px;");
 						$(".layer_top").css("left", "530px");
 						 
