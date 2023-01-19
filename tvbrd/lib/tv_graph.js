@@ -97,7 +97,7 @@
 
 				$.each(hour, function(index, item){
 					// console.log(hour.length);
-					var tmp_num = Number(hour.length - index); // 그래프 인덱스 거꾸로
+					var tmp_num = Number(hour.length - (index+1)); // 그래프 인덱스 거꾸로
 					var tmp_date = item['date'];
 					// tmp_date = (tmp_num < 10) ? "0"+item['num'] : item['num'];
 					var tmp_data = item['data'] == "-" ? "-" : Number(item['data']);
