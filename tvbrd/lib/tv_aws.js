@@ -552,6 +552,14 @@ function aws(kind, arr_area_code){ // AWS - AWS 장비
 		
 	// 업데이트	
 	}else if(kind == 2){
+		tmp_arr_area_code['alarm'] = [];
+		tmp_arr_area_code['rain'] = [];
+		tmp_arr_area_code['flow'] = [];
+		tmp_arr_area_code['snow'] = [];
+		tmp_arr_area_code['wind'] = [];
+		tmp_arr_area_code['damp'] = [];
+		tmp_arr_area_code['temp'] = [];
+		tmp_arr_area_code['pres'] = [];
 		// 표시 여부
 		if(arr_area_code){
 			$.each(arr_area_code, function(index, item){
