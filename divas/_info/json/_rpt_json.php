@@ -540,7 +540,7 @@ switch($mode){
 						if($data_list[ $i ]['LEG'] == $sub_date){
 							$data_list[ $i ]['DATA'] = round_data($val['SNOW'], 0.001, 10);
 						};
-						if($val['RAIN'] != "-"){
+						if($val['SNOW'] != "-"){
 							$area_data['MAX'] = ($area_data['MAX'] < round_data($val['SNOW'], 0.001, 10) || !$area_data['MAX']) ? round_data($val['SNOW'], 0.001, 10) : $area_data['MAX'];
 							$area_data['MIN'] = ($area_data['MIN'] > round_data($val['SNOW'], 0.001, 10) || !$area_data['MIN']) ? round_data($val['SNOW'], 0.001, 10) : $area_data['MIN'];
 						}
@@ -1000,7 +1000,8 @@ switch($mode){
 		
 	// 구분에 따른 지역 리스트
 	case 'option':
-		$LocalDB = new ClassRtuInfo($DB, $_REQUEST['option']);
+		$option = $_REQUEST['option'] > 3 ? 3 : $_REQUEST['option'];
+		$LocalDB = new ClassRtuInfo($DB, $option);
 		$LocalDB->getRtuInfo();
 		
 		for($i=0; $i<$LocalDB->rsCnt; $i++) {
