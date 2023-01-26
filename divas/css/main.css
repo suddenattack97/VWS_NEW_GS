@@ -1196,7 +1196,7 @@ div#top_img img{padding: 5px;} */
 
 	/* 10분 자료 */
 	.li100_nor_left{float:left;width:72%; height:620px;}
-	.li100_nor_left canvas{ height:100%; margin-top: 3%;}
+	.li100_nor_left canvas{ height:100%; margin-top: 2%;}
 	.li100_nor_rignt{float:right;width:28%; height:620px; overflow-y:auto !important;}
 	
 /*경보방송페이지 input스타일*/

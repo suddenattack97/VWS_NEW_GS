@@ -5,9 +5,9 @@ require_once "./head.php";
 ?>
 
 <!--우측섹션-->
-<div id="right">
+<div id="right" style="overflow-y: hidden;">
 	<!--본문내용섹션-->
-	<div class="product_state">
+	<div class="product_state" style="overflow-y: hidden;">
 	<div id="content">
 		
 		<form id="form_search" action="rpt_10m.php" method="post">
@@ -545,6 +545,7 @@ $(document).ready(function(){
 		}); // ajax end
 	}
 
+	$("#graph10m").attr('height', '290');
 
 	// 구분에 따른 지역 호출
 	$("#option").change(function(){
@@ -615,8 +616,8 @@ $(document).ready(function(){
                 action: function(dt){
 					var sd = new Date($("#sdate").val());
 					var ed = new Date($("#edate").val());
-					if((ed - sd)/(1000*60*60*24) > 92){
-						alert("3개월 이상 검색할 수 없습니다.");
+					if((ed - sd)/(1000*60*60*24) > 30){
+						alert("한달 이상 검색할 수 없습니다.");
 						return false;
 					}else{
 						$("#form_search").submit();
@@ -635,10 +636,6 @@ $(document).ready(function(){
                     $(win.document.body).find("table").css("font-size", "12px");
                     $(win.document.body).find("tr").css("text-align", "center");
 				},  action: function(dt){
-					var checkCss = localStorage.getItem("dark");
-					if(checkCss == 1){
-						$("#maincss").attr("href", "../css/main.css");
-					}
 					$(".print_hd").hide();
 					makeDivToImageFile($("#content")); // 보고서 캡쳐인쇄 함수호출
                 }
