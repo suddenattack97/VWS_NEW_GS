@@ -96,7 +96,6 @@
 				tmp_html += '</tr>';
 
 				$.each(hour, function(index, item){
-					// console.log(hour.length);
 					var tmp_num = Number(hour.length - (index+1)); // 그래프 인덱스 거꾸로
 					var tmp_date = item['date'];
 					// tmp_date = (tmp_num < 10) ? "0"+item['num'] : item['num'];
@@ -108,25 +107,27 @@
 					graph_leg[tmp_num] =  item['num'];
 					graph_data[tmp_num] = (tmp_data == "-") ? null : tmp_data;
 					
-					if(tmp_data != "-"){
-						time_cnt += 1;
-						time_sum += tmp_data;
-						if(time_max == "-"){
-							time_max = tmp_data;
-						}else{
-							time_max = (time_max < tmp_data) ? tmp_data : time_max;
+					if(index != (hour.length -1)){
+						if(tmp_data != "-"){
+							time_cnt += 1;
+							time_sum += tmp_data;
+							if(time_max == "-"){
+								time_max = tmp_data;
+							}else{
+								time_max = (time_max < tmp_data) ? tmp_data : time_max;
+							}
+							if(time_min == "-"){
+								time_min = tmp_data;
+							}else{
+								time_min = (time_min > tmp_data) ? tmp_data : time_min;
+							}
 						}
-						if(time_min == "-"){
-							time_min = tmp_data;
-						}else{
-							time_min = (time_min > tmp_data) ? tmp_data : time_min;
-						}
+						
+						tmp_html += '<tr>';
+						tmp_html += '	<td class="gbg name Lh63">'+tmp_date+'</td>';
+						tmp_html += '	<td>'+tmp_data+'</td>';
+						tmp_html += '</tr>';
 					}
-					
-					tmp_html += '<tr>';
-					tmp_html += '	<td class="gbg name Lh63">'+tmp_date+'</td>';
-					tmp_html += '	<td>'+tmp_data+'</td>';
-					tmp_html += '</tr>';
 				});
 				time_avg = (time_cnt == 0) ? "-" : (time_sum / time_cnt).toFixedOf(2);
 				
@@ -153,6 +154,19 @@
 				DATA = graph_data;
 				MAX = time_max;
 				MIN = time_min;
+				var idxLeg = [];
+				
+				if(graph_leg.length > 100){
+					for(el in graph_leg){
+						if( el % 8 == 0 ) idxLeg.push(graph_leg[Number(el)]);
+					}
+				}else{
+					idxLeg = graph_leg;
+				}
+				// idxLeg.push(graph_leg[graph_leg.length - 1]);
+				// console.log(idxLeg);
+				// idxLeg.reverse();
+
 					
 				if( isNaN(MAX) || MAX == 0 ){
 					MAX = 1;
@@ -201,6 +215,20 @@
 						},
 						options: {
 							scales: {
+								xAxes: [{
+									ticks: {
+										autoSkip : true
+									},
+									afterTickToLabelConversion: function(data){
+										var xLabels = data.ticks;
+										// console.log(xLabels);
+										var num = 0;
+										for(let i = 0; i<xLabels.length;i++){
+											if(idxLeg[num] != xLabels[i]) xLabels[i] = '';
+											else num++;
+										}
+									}
+								}],
 								yAxes: [{
 									ticks: {
 										beginAtZero: true,
@@ -232,6 +260,20 @@
 						},
 						options: {
 							scales: {
+								xAxes: [{
+									ticks: {
+										autoSkip : true
+									},
+									afterTickToLabelConversion: function(data){
+										var xLabels = data.ticks;
+										// console.log(xLabels);
+										var num = 0;
+										for(let i = 0; i<xLabels.length;i++){
+											if(idxLeg[num] != xLabels[i]) xLabels[i] = '';
+											else num++;
+										}
+									}
+								}],
 								yAxes: [{
 									ticks: {
 										beginAtZero: true,
@@ -260,6 +302,20 @@
 						},
 						options: {
 							scales: {
+								xAxes: [{
+									ticks: {
+										autoSkip : true
+									},
+									afterTickToLabelConversion: function(data){
+										var xLabels = data.ticks;
+										// console.log(xLabels);
+										var num = 0;
+										for(let i = 0; i<xLabels.length;i++){
+											if(idxLeg[num] != xLabels[i]) xLabels[i] = '';
+											else num++;
+										}
+									}
+								}],
 								yAxes: [{
 									ticks: {
 										beginAtZero: true,
