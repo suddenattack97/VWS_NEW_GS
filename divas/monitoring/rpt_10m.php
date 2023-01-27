@@ -427,9 +427,11 @@ $(document).ready(function(){
 						},
 						options: {
 							onClick: function(evt, activeElements) {
-								var elementIndex = activeElements[0]._index;
 								// console.log(this.data.labels[elementIndex]);
-								goTarget(elementIndex);
+								if(activeElements.length > 0){
+									var elementIndex = activeElements[0]._index;
+									goTarget(elementIndex);
+								}
 							// this.data.datasets[0].backgroundColor[elementIndex] = 'red';
 							// this.update();
 							},

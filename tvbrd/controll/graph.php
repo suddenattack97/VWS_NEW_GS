@@ -117,6 +117,11 @@ $dvUtil   = new Divas_Util();
 					$arr_data[$i]['data'] = $tmpInfo->TimeListValue[$i];
 				}
 			}
+			if(count($arr_data) % 2 == 0) {
+				$arr_data[$i]['num'] = '';
+				$arr_data[$i]['date'] = '';
+				$arr_data[$i]['data'] = '-';
+			}
 	    }
 	    
 	    $resultArr["rtuname"] = $RtuInfo->RTU_NAME;
