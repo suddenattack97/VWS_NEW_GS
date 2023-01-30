@@ -631,7 +631,7 @@ $(document).ready(function(){
 	            text: "인쇄",
 	            className: "btn_lbb80_s",
 	            autoPrint: true,
-	            title: "10분 자료",
+	            title: "상세 보고서",
                 customize: function(win){
                     $(win.document.body).find("body").css("overflow", "visible");
                     $(win.document.body).find("h1").css("text-align", "center").css("font-size", "18px");
@@ -646,7 +646,7 @@ $(document).ready(function(){
 	        	extend: "excel",
 	            text: "엑셀변환",
 		        className: "btn_lbb80_s",
-				filename: '10분자료_' + timestamp, 
+				filename: '상세 보고서_' + timestamp, 
 	            title: "",
 				messageTop: seText,
 	            customize: function(xlsx){
