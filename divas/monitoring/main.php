@@ -306,7 +306,7 @@ $(document).ready(function(){
 		sesstiontime_token = getCookie("session_time_"+ms_token);
 
 		if(login_token != "1"){
-			if(tmp_num == 2 || tmp_num == 4 || tmp_href == "rpt_ori.php"){
+			if(tmp_num == 3 || tmp_num == 4 || tmp_href == "rpt_ori.php"){
 				// $("#main").attr("src", ");
 				// window.open("./login.php?target="+tmp_href, "로그인을 해주세요.", "width=533, height=533 , status=no");
 				login(tmp_href);
@@ -329,7 +329,7 @@ $(document).ready(function(){
 		sesstiontime_token = getCookie("session_time_"+ms_token);
 
 		if(login_token != "1"){
-			if(tmp_num == 2 || tmp_num == 4 || tmp_href == "rpt_ori.php"){
+			if(tmp_num == 3 || tmp_num == 4 || tmp_href == "rpt_ori.php"){
 				// $("#main").attr("src", ");
 				// window.open("./login.php?target="+tmp_href, "로그인을 해주세요.", "width=533, height=533, toolbar=no,status=no,menubar=no,resizable=yes, location=no");
 				login(tmp_href);

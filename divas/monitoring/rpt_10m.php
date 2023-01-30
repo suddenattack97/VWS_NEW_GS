@@ -13,7 +13,7 @@ require_once "./head.php";
 		<form id="form_search" action="rpt_10m.php" method="post">
 		
 		<div class="main_contitle">
-			<div class="tit"><img src="../images/board_icon_aws.png"> <span>10분 자료</span></div>
+			<div class="tit"><img src="../images/board_icon_aws.png"> <span>상세 보고서</span></div>
             <!-- <div class="unit">[강우 : mm] [수위 : m] [적설 : cm]</div>
 			<div class="unit2" style="float:right; margin-right: 10px;">※ 데이터 클릭시 해당 보고서로 이동합니다.</div> -->
 		</div>
