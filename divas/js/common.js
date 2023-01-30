@@ -817,14 +817,13 @@
 
 
 	function quick_button(mode){
-		if(mode == 1) location.href = "../monitoring/rpt_rain.php"; //강우현황
-		if(mode == 2) location.href = "../monitoring/rpt_wl.php"; //수위현황
-		if(mode == 3) location.href = "../monitoring/rpt_aws.php"; //AWS현황
-		if(mode == 4) location.href = "../monitoring/rpt_snow.php"; // 적설현황
+		if(mode == 1) location.href = "../monitoring/rpt_10m.php"; //강우현황
+		if(mode == 2) location.href = "../monitoring/rpt_10m.php?option=1"; //수위현황
+		if(mode == 3) location.href = "../monitoring/rpt_10m.php?option=3"; //AWS현황
+		if(mode == 4) location.href = "../monitoring/rpt_10m.php?option=2"; // 적설현황
 		if(mode == 5) location.href = "../monitoring/rpt_brhist.php"; // 방송현황
 		if(mode == 6) location.href = "../monitoring/rpt_alarmlog.php"; // 경보현황
 		if(mode == 7) location.href = "../monitoring/tms_equip.php"; // 장비상태
-		if(mode == 8) location.href = "../monitoring/rpt_displace.php"; // 변위현황
 	}
 
 		function datepicker(type, target, image, format, submit){

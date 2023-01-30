@@ -57,28 +57,28 @@
 
 				if(get_kind == "rain"){
 					tmp_title = "강우"; tmp_unit = "(mm)";
-					$("#sidr-id-btn_graph_detail").attr("href", "../divas/monitoring/main.php?url=tms_rain.php&num=1");
+					$("#sidr-id-btn_graph_detail").attr("href", "../divas/monitoring/main.php?url=rpt_10m.php");
 				}else if(get_kind == "flow"){
 					tmp_title = "수위"; tmp_unit = "(m)";
-					$("#sidr-id-btn_graph_detail").attr("href", "../divas/monitoring/main.php?url=tms_flow.php&num=1");
+					$("#sidr-id-btn_graph_detail").attr("href", "../divas/monitoring/main.php?url=rpt_10m.php&option=1");
 				}else if(get_kind == "snow"){
 					tmp_title = "적설"; tmp_unit = "(cm)";
-					$("#sidr-id-btn_graph_detail").attr("href", "../divas/monitoring/main.php?url=tms_snow.php&num=1");
+					$("#sidr-id-btn_graph_detail").attr("href", "../divas/monitoring/main.php?url=rpt_10m.php&option=2");
 				}else if(get_kind == "disp"){
 					tmp_title = "변위"; tmp_unit = "( ˚ )";
 					$("#sidr-id-btn_graph_detail").attr("href", "../divas/monitoring/main.php?url=tms_displace.php&num=1");
 				}else if(get_kind == "wind"){
 					tmp_title = "풍속"; tmp_unit = "(m/s)";
-					$("#sidr-id-btn_graph_detail").attr("href", "../divas/monitoring/main.php?url=tms_aws.php&num=1");
+					$("#sidr-id-btn_graph_detail").attr("href", "../divas/monitoring/main.php?url=rpt_10m.php&option=4");
 				}else if(get_kind == "damp"){
 					tmp_title = "습도"; tmp_unit = "(%)";
-					$("#sidr-id-btn_graph_detail").attr("href", "../divas/monitoring/main.php?url=tms_aws.php&num=1");
+					$("#sidr-id-btn_graph_detail").attr("href", "../divas/monitoring/main.php?url=rpt_10m.php&option=5");
 				}else if(get_kind == "temp"){
 					tmp_title = "온도"; tmp_unit = "(°C)";
-					$("#sidr-id-btn_graph_detail").attr("href", "../divas/monitoring/main.php?url=tms_aws.php&num=1");
+					$("#sidr-id-btn_graph_detail").attr("href", "../divas/monitoring/main.php?url=rpt_10m.php&option=3");
 				}else if(get_kind == "pres"){
 					tmp_title = "기압"; tmp_unit = "(hPa)";
-					$("#sidr-id-btn_graph_detail").attr("href", "../divas/monitoring/main.php?url=tms_aws.php&num=1");
+					$("#sidr-id-btn_graph_detail").attr("href", "../divas/monitoring/main.php?url=rpt_10m.php&option=6");
 				}
 				$("#sidr-id-chart_title").html(tmp_title);
 
