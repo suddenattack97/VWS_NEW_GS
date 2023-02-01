@@ -880,7 +880,7 @@ div#new{
 .sidr-class-fL{float:left;}
 .sidr-class-fR{float:right;}
 .sidr-class-m_10{margin:10px;}
-.sidr-class-m_12{margin:12px;}
+.sidr-class-m_12{margin: 12px 8px;}
 .sidr-class-mT1{margin-top:1px;}
 .sidr-class-mT3{margin-top:3px;}
 .sidr-class-mT5{margin-top:5px;}
@@ -986,10 +986,12 @@ div#new{
 /*슬라이드바 버튼*/
 .sidr-class-btn_bs60{height: 22px; display:inline-block; background-color:#2861c0; border:1px solid #1955b9; padding:5px; font-size:12px; color:#fff; float:right; line-height:12px;}
 .sidr-class-btn_bb80{height:32px; font-size:12px; line-height:12px; display:inline-block; background-color:#2861c0; border:1px solid #1955b9; padding:10px 5px 10px 5px; color:#fff; font-weight:700;}
+.sidr-class-btn_bb70{height:32px; font-size:12px; line-height:12px; display:inline-block; background-color:#2861c0; border:1px solid #1955b9; padding:7px 4px; color:#fff; font-weight:700;}
 .sidr-class-btn_bs60:hover, .sidr-class-btn_bb80:hover{cursor:pointer; background-color:#3782dc; border:1px solid #3063cb;}
 .sidr-class-btn_lbs60{display:inline-block; background-color:#e1eef5; border:1px solid #b8d9f0; padding:5px; color:#2466e0; font-weight:400;font-size:12px; line-height:12px;height:22px;}
-.sidr-class-btn_lbb80{display:inline-block; background-color:#e1eef5; border:1px solid #b8d9f0; padding:10px 5px 10px 5px; color:#2466e0; font-weight:700;font-size:12px; line-height:12px;height:32px;}
-.sidr-class-btn_lbs60:hover, .sidr-class-btn_lbb80:hover, .sidr-class-btn_lbb80_l:hover, .sidr-class-btn_lbb80_s:hover, .sidr-class-btn_lbb20p:hover, .sidr-class-btn_lbb130_s:hover, .sidr-class-btn_lbs_arr:hover{cursor:pointer; background-color:#b8d9f0; border:1px solid #9cc5e2;}
+.sidr-class-btn_lbb80{display:inline-block; background-color:#e1eef5; border:1px solid #b8d9f0; padding:7px 4px; color:#2466e0; font-weight:700;font-size:12px; line-height:12px;height:32px;}
+.sidr-class-btn_lg80{display:inline-block; background-color:#f4f4f4; border:1px solid #ccc; padding:7px 4px; color:#777; font-weight:700;font-size:12px; line-height:12px;height:32px;}
+.sidr-class-btn_lg80:hover, .sidr-class-btn_lbs60:hover, .sidr-class-btn_lbb80:hover, .sidr-class-btn_lbb80_l:hover, .sidr-class-btn_lbb80_s:hover, .sidr-class-btn_lbb20p:hover, .sidr-class-btn_lbb130_s:hover, .sidr-class-btn_lbs_arr:hover{cursor:pointer; background-color:#b8d9f0; border:1px solid #9cc5e2;}
 .sidr-class-btn_wgb110{float:right; display:inline-block; background-color:#fff ; border:1px solid #e0e0e0; padding:10px; color:#333; font-weight:700; font-size:12px; line-height:12px;width:110px; height:32px;}
 
 .sidr-class-btn_wbb{height: 32px; display:inline-block; background-color:#fff; border:1px solid #1955b9; padding:5px; font-size:12px; color:#1955b9; line-height:12px; font-weight:700;}
@@ -1009,7 +1011,7 @@ div#new{
 /*텍스트 버튼*/
 .sidr-class-text_btn1{text-align: center; line-height:10px !important;}
 .sidr-class-text_btn1 span{line-height: 2;}
-.sidr-class-text_btn2{text-align: center; line-height: 10px !important;}
+.sidr-class-text_btn2{text-align: center; line-height: 14px !important;}
 .sidr-class-text_btn2 span{}
 
 

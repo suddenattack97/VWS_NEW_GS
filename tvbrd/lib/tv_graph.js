@@ -82,13 +82,16 @@
 				}
 				$("#sidr-id-chart_title").html(tmp_title);
 
-				if($("#changeOption").length > 0) $("#changeOption").remove();
-				var tmp_ht = '<button id="changeOption" class="sidr-class-text_btn2 sidr-class-btn_lbb80 sidr-class-fR" style="margin:12px 0;">';
+				if($("#changeOption").length > 0) $("#sidr-id-btn_graph_detail").nextAll().remove();
+
 				if(get_option == "M"){
-					$("#sidr-id-btn_graph_detail").after(tmp_ht+'1시간</button>');
+					var tmp_ht = '<button id="changeOption" class="sidr-class-text_btn2 sidr-class-btn_lg80 sidr-class-fR" style="margin:12px 0;">1시간</button>';
+					tmp_ht += '<button id="" class="sidr-class-text_btn2 sidr-class-btn_bb70 sidr-class-fR" style="margin:12px 0;">';
 				}else{
-					$("#sidr-id-btn_graph_detail").after(tmp_ht+'10분</button>');
+					var tmp_ht = '<button id="" class="sidr-class-text_btn2 sidr-class-btn_bb70 sidr-class-fR" style="margin:12px 0;">1시간</button>';
+					tmp_ht += '<button id="changeOption" class="sidr-class-text_btn2 sidr-class-btn_lg80 sidr-class-fR" style="margin:12px 0;">';
 				}
+				$("#sidr-id-btn_graph_detail").after(tmp_ht+'10분</button>');
 
 				tmp_html += '<tr>';
 				tmp_html += '	<th class="sidr-class-w50">시간</th>';
