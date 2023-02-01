@@ -2190,6 +2190,7 @@
 						 
  		        	}
  		        });
+				 $("body").css('width','100%');
  		    	// 슬라이드 닫기 버튼
  		    	$(".sidr-class-btn_close").click(function(e){
 					e.preventDefault();
