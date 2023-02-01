@@ -113,7 +113,7 @@ require_once "./head.php";
 							<? } else { ?>
 								<td class="li50 bL_1gry">
 							<? } ?>
-								<?=$val['DATA']?>
+								<span class="effect"><?=$val['DATA']?></span>
 							</td>
 						</tr>
 						<? 
@@ -168,6 +168,10 @@ $(document).ready(function(){
 		var offset = $("#list_table tr").eq(idx+1).offset();
 		// console.log($("#list_table tr").eq(idx+1).html());
 		$('.li100_nor_rignt').animate({scrollTop : offset.top - firstOffset.top}, 400);
+		
+		// 전체 blink 클래스 삭제 후 blink 클래스 추가
+		$("#list_table tr .effect").removeClass('blink');
+		$("#list_table tr").eq(idx+1).find('.effect').addClass('blink');
 	}
 
 	// 그래프 호출
