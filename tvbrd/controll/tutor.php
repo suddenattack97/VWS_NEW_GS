@@ -44,7 +44,7 @@ switch($mode) {
 		// 지도 기본 세팅
 		$qry = " SELECT
 					setval, x_organ, y_organ, top_text, top_img, map_skin, map_type, map_sub, x_cent, y_cent,
-					map_level, map_move, map_size, map_box, map_data, map_kind, over_level, clus_level, sig_cd, api_key
+					map_level, map_move, map_size, map_box, map_data, map_kind, over_level, clus_level, sig_cd, api_key, udate
 				 FROM
 					wr_map_setting
 				 LIMIT 1 ";
@@ -72,6 +72,7 @@ switch($mode) {
 		$arr_setting['clus_level'] = $data[0]['clus_level'];
 		$arr_setting['sig_cd'] = $data[0]['sig_cd'];
 		$arr_setting['api_key'] = $data[0]['api_key'];
+		$arr_setting['udate'] = $data[0]['udate'];
 
 		// 폴리곤 세팅 및 json 파일 체크
 		$qry = " SELECT ctprvn_cd, sig_cd, emd_cd, emd_kor_nm, x_cent, y_cent 
@@ -489,6 +490,9 @@ switch($mode) {
 		// 클러스터 줌레벨
 		}else if($sub_mode == "clus_level"){
 			$qry = " UPDATE wr_map_setting SET clus_level = '".$data."' ";
+			$rs = $DB->queryone($qry);
+		}else if($sub_mode == "update_time"){
+			$qry = " UPDATE wr_map_setting SET udate = '".$data."' ";
 			$rs = $DB->queryone($qry);
 		}
 

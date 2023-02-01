@@ -38,7 +38,7 @@
     var over_level = ""; // 오버레이가 사라지는 확대 레벨
     var clus_level = ""; // 클러스터가 생기는 확대 레벨
 	var api_key = "";
-
+	var udate = "";
 	var add_zindex = 1; // 오버레이 최고 zindex
     var move_state = false; // 장비 마커 이동 상태
     var moveCheck = false; // 예보 오버레이 이동 상태
@@ -137,11 +137,13 @@
         	over_level = response.setting.over_level;
             clus_level = response.setting.clus_level;
 			api_key = response.setting.api_key;
+			udate = (response.setting.udate) ? response.setting.udate : 60000;
 
             localStorage.setItem('API_KEY',api_key);
-
+			console.log(udate);
         	// $("#view_top_img").val(top_img);
         	$("#sel_top_text").val(top_text);
+			$("#update_time").val(udate * 0.001);
         	// if(top_img != null){
         		// top_img = '<img src="'+top_img+'" alt="로고"/>';
             	// $("#top_img").html(top_img);
@@ -488,7 +490,7 @@
                 	$.when(null, event_ajax).done(function(){
 						box_update();
                 	});
-        		}, time);
+        		}, udate);
 
           		// 10초에 한번 상태 업데이트
           		setInt_data2 = setInterval(function(){
@@ -1710,6 +1712,29 @@
     		});
     	});
 		
+		// 현재 상황판 새로고침 주기 변경
+		$("#update_button").click(function(){
+			var change_ajax;
+
+			var tmp_udate = $("#update_time").val() * 1000;
+			change_ajax = $.post("controll/tutor.php", { "mode" : "map_setting", "sub_mode" : "update_time", "data" : tmp_udate }, function(){});
+      		// change_ajax 결과 리턴
+        	$.when.apply(null, change_ajax).done(function(){
+        		// swal("성공", "현재 상황판 새로고침 주기가 변경이 완료되었습니다..", "success");
+				swal({
+	    			title: "성공",
+	    			text: "현재 상황판 새로고침 주기가 변경이 완료되었습니다..",
+					type: 'success',
+	    			showCancelButton: false,
+	    			confirmButtonText: "확인",
+	    		}, function(isConfirm){
+	    			if(isConfirm){
+						location.reload();
+	    			}
+	    		});
+        	});
+    	});
+
 		// 현재 중심 좌표 및 줌레벨 저장
 		$("#btn_setting").click(function(){
 			var change_ajax = [];
