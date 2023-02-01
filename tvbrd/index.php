@@ -46,7 +46,10 @@ require_once "./head.php";
 	          <li class="p8 bB_1gry w100 bg_lgr_d">
               <span class="fL w50">상황판 새로고침 주기 : &nbsp;&nbsp;&nbsp;</span>
               <span class="fL w50">
-              		<input type="text" id="update_time" name="update_time"> 초
+					<select id="update_time">
+						<option value="30">30초</option>
+						<option value="60">60초</option>
+					</select>
 					<button id="update_button" class="update_button">확인</button>
               </span>
               </li>
