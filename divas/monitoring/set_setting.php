@@ -969,7 +969,8 @@ $(document).ready(function(){
 	// 폼 체크
 	function form_check(kind){
 		var ipPattern = /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(:?[0-9]{1,5})$/;
-		var urlPattern = /^([^\/]*)(\.)(com|net|kr|my|shop)/;
+		// var urlPattern = /^([^\/]*)(\.)(com|net|kr|my|shop|php|html|htm)/;
+		var urlPattern = /([0-9a-zA-Z\-]+\.)+[a-zA-Z]{2,6}(\:[0-9]+)?(\/\S*)?/;
 
 		if(kind == "I"){
 			if( $("#load_time").val() < 10 ){
