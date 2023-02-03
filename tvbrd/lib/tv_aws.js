@@ -726,7 +726,12 @@ function aws(kind, arr_area_code){ // AWS - AWS 장비
 										$("#wind_"+item.area_code+" .dat_right").html('<span style="font-size: 25px; letter-spacing: 0; font-weight: 600 !important;">-</span>');
 									}else{
 //										$("#wind_"+item.area_code+" .dat_right").html(item.deg+", "+item.day);
-										$("#wind_"+item.area_code+" .dat_right").html("<img src='img/wind/"+item.deg+"' /> "+item.day);
+										if($("#wind_"+item.area_code+" .dat_right img").length == 1){
+											$("#wind_"+item.area_code+" .dat_right").attr("src", "img/wind/"+item.deg);
+											$("#wind_"+item.area_code+" .dat_right div").attr('text', item.day);
+										}else{
+											$("#wind_"+item.area_code+" .dat_right").html("<img src='img/wind/"+item.deg+"' /> <div>"+item.day+"</div>");
+										}
 									}
 								});
 							}, "json");
