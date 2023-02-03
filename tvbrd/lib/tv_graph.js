@@ -130,7 +130,7 @@
 						tmp_html += '<tr>';
 						tmp_html += '	<td class="gbg name Lh63">'+tmp_date+'</td>';
 						if(get_kind == "wind"){
-							tmp_html += '	<td><img src="img/wind/'+tmp_deg+'"/>'+tmp_data+'</td>';
+							tmp_html += '	<td><img class="windImg" src="img/wind/'+tmp_deg+'"/>'+tmp_data+'</td>';
 						}else{
 							tmp_html += '	<td>'+tmp_data+'</td>';
 						}
