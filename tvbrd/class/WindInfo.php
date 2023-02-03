@@ -195,6 +195,41 @@ function windAngle($degree) {
 	}
 	return $dispDeg;
 }	
+
+/* 풍향 */
+function windAngleOri($degree) {
+
+	if($degree=='-'){
+		$dispDeg = "-";
+	}else{
+		/*
+		 * NewDeg = cint((deg/100 + 3) / 22.5)
+		 * num = NewDeg mod 16
+		*/
+		$tmp_degree	= (int)((($degree/100)+3)/22.5);
+		$num = (int)(fmod($tmp_degree,16));
+		switch		($num) {
+			case 0	:	$dispDeg = "북";				break;
+			case 1	:	$dispDeg = "북북동";			break;
+			case 2	:	$dispDeg = "북동";			break;
+			case 3	:	$dispDeg = "동북동";			break;
+			case 4	:	$dispDeg = "동";				break;
+			case 5	:	$dispDeg = "동남동";			break;
+			case 6	:	$dispDeg = "남동";			break;
+			case 7	:	$dispDeg = "남남동";			break;
+			case 8	:	$dispDeg = "남";				break;
+			case 9	:	$dispDeg = "남남서";			break;
+			case 10	:	$dispDeg = "남서";			break;
+			case 11	:	$dispDeg = "서남서";			break;
+			case 12	:	$dispDeg = "서";				break;
+			case 13	:	$dispDeg = "서북서";			break;
+			case 14	:	$dispDeg = "북서";			break;
+			case 15	:	$dispDeg = "북북서";			break;
+		default:	$dispDeg = "-";				break;
+		}
+	}
+	return $dispDeg;
+}	
 	
 
 	/* 쿼리실행 */
