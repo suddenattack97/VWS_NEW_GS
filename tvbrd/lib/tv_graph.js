@@ -101,6 +101,7 @@
 				$.each(hour, function(index, item){
 					var tmp_num = Number(hour.length - (index+1)); // 그래프 인덱스 거꾸로
 					var tmp_date = item['date'];
+					var tmp_deg = item['deg_data'];
 					// tmp_date = (tmp_num < 10) ? "0"+item['num'] : item['num'];
 					var tmp_data = item['data'] == "-" ? "-" : Number(item['data']);
 
@@ -128,7 +129,11 @@
 						
 						tmp_html += '<tr>';
 						tmp_html += '	<td class="gbg name Lh63">'+tmp_date+'</td>';
-						tmp_html += '	<td>'+tmp_data+'</td>';
+						if(get_kind == "wind"){
+							tmp_html += '	<td><img src="img/wind/'+tmp_deg+'"/>'+tmp_data+'</td>';
+						}else{
+							tmp_html += '	<td>'+tmp_data+'</td>';
+						}
 						tmp_html += '</tr>';
 					}
 				});

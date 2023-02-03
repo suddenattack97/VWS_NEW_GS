@@ -86,26 +86,26 @@ $dvUtil   = new Divas_Util();
 					if( $data[0]['wind_date'] < $DM->getMinDisTime()){
 					}else{
 					
-					$tmp_deg = $data[0]['avr_deg1'];
+					$tmp_deg = $data[1]['avr_vel1'];
 					$tmp_deg = (int)((($tmp_deg/100)+3)/22.5);
 					$num = (int)(fmod($tmp_deg,16));
 					switch($num){
-						case 0	:	$tmp_deg = "북";				break;
-						case 1	:	$tmp_deg = "북북동";			break;
-						case 2	:	$tmp_deg = "북동";			break;
-						case 3	:	$tmp_deg = "동북동";			break;
-						case 4	:	$tmp_deg = "동";				break;
-						case 5	:	$tmp_deg = "동남동";			break;
-						case 6	:	$tmp_deg = "남동";			break;
-						case 7	:	$tmp_deg = "남남동";			break;
-						case 8	:	$tmp_deg = "남";				break;
-						case 9	:	$tmp_deg = "남남서";			break;
-						case 10	:	$tmp_deg = "남서";			break;
-						case 11	:	$tmp_deg = "서남서";			break;
-						case 12	:	$tmp_deg = "서";				break;
-						case 13	:	$tmp_deg = "서북서";			break;
-						case 14	:	$tmp_deg = "북서";			break;
-						case 15	:	$tmp_deg = "북북서";			break;
+						case 0	:	$tmp_deg = "buk.png";				break;
+						case 1	:	$tmp_deg = "bukbukdong.png";			break;
+						case 2	:	$tmp_deg = "bukdong.png";			break;
+						case 3	:	$tmp_deg = "dongbukdong.png";			break;
+						case 4	:	$tmp_deg = "dong.png";				break;
+						case 5	:	$tmp_deg = "dongnamdong.png";			break;
+						case 6	:	$tmp_deg = "namdong.png";			break;
+						case 7	:	$tmp_deg = "namnamdong.png";			break;
+						case 8	:	$tmp_deg = "nam.png";				break;
+						case 9	:	$tmp_deg = "namnamseo.png";			break;
+						case 10	:	$tmp_deg = "namseo.png";			break;
+						case 11	:	$tmp_deg = "seonamseo.png";			break;
+						case 12	:	$tmp_deg = "seo.png";				break;
+						case 13	:	$tmp_deg = "seobukseo.png";			break;
+						case 14	:	$tmp_deg = "bukseo.png";			break;
+						case 15	:	$tmp_deg = "bukbukseo.png";			break;
 						default:	$tmp_deg = "-";				break;
 					}
 					$arr_data[$key]['deg'] = $tmp_deg;

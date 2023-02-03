@@ -115,6 +115,7 @@ $dvUtil   = new Divas_Util();
 					$arr_data[$i]['num'] = $tmpInfo->Num[$i];
 					$arr_data[$i]['date'] = $tmpInfo->TimeListDateValue[$i];
 					$arr_data[$i]['data'] = $tmpInfo->TimeListValue[$i];
+					if($kind == "wind") $arr_data[$i]['deg_data'] = $tmpInfo->TimeListDegValue[$i];
 				}
 			}
 			// if(count($arr_data) % 2 == 0) {

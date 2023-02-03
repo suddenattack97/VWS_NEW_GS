@@ -21,6 +21,7 @@ Class WindInfo {
 	public $AVR_DEG1;	  //풍향1
 	public $WIND_DATE;	//시간
 	public $TimeListValue;	 // 시간 단위 데이터
+	public $TimeListDegValue;	 // 시간 단위 데이터
 	public $TimeListDateValue; // 시간 단위 날짜
 
 	private $DB;
@@ -112,6 +113,7 @@ Class WindInfo {
 	
 		for($i=0; $i<$this->DB->NUM_ROW(); $i++){
 			$this->TimeListValue[$i]     = ($rs[$i]['avr_vel1'] != "-") ? $rs[$i]['avr_vel1']*$this->getCalc : "-";
+			$this->TimeListDegValue[$i]     = ($this->windAngle($rs[$i]['avr_deg1']) != "-") ? ($this->windAngle($rs[$i]['avr_deg1'])) : "-";
 			$this->TimeListDateValue[$i] = $rs[$i]['wind_date'];
 			$this->Num[$i] 				 = $rs[$i]['numC'];
 		}
@@ -172,22 +174,22 @@ function windAngle($degree) {
 		$tmp_degree	= (int)((($degree/100)+3)/22.5);
 		$num = (int)(fmod($tmp_degree,16));
 		switch		($num) {
-		case 0	:	$dispDeg = "북";				break;
-		case 1	:	$dispDeg = "북북동";			break;
-		case 2	:	$dispDeg = "북동";			break;
-		case 3	:	$dispDeg = "동북동";			break;
-		case 4	:	$dispDeg = "동";				break;
-		case 5	:	$dispDeg = "동남동";			break;
-		case 6	:	$dispDeg = "남동";			break;
-		case 7	:	$dispDeg = "남남동";			break;
-		case 8	:	$dispDeg = "남";				break;
-		case 9	:	$dispDeg = "남남서";			break;
-		case 10	:	$dispDeg = "남서";			break;
-		case 11	:	$dispDeg = "서남서";			break;
-		case 12	:	$dispDeg = "서";				break;
-		case 13	:	$dispDeg = "서북서";			break;
-		case 14	:	$dispDeg = "북서";			break;
-		case 15	:	$dispDeg = "북북서";			break;
+		case 0	:	$dispDeg = "buk.png";				break;
+		case 1	:	$dispDeg = "bukbukdong.png";			break;
+		case 2	:	$dispDeg = "bukdong.png";			break;
+		case 3	:	$dispDeg = "dongbukdong.png";			break;
+		case 4	:	$dispDeg = "dong.png";				break;
+		case 5	:	$dispDeg = "dongnamdong.png";			break;
+		case 6	:	$dispDeg = "namdong.png";			break;
+		case 7	:	$dispDeg = "namnamdong.png";			break;
+		case 8	:	$dispDeg = "nam.png";				break;
+		case 9	:	$dispDeg = "namnamseo.png";			break;
+		case 10	:	$dispDeg = "namseo.png";			break;
+		case 11	:	$dispDeg = "seonamseo.png";			break;
+		case 12	:	$dispDeg = "seo.png";				break;
+		case 13	:	$dispDeg = "seobukseo.png";			break;
+		case 14	:	$dispDeg = "bukseo.png";			break;
+		case 15	:	$dispDeg = "bukbukseo.png";			break;
 		default:	$dispDeg = "-";				break;
 		}
 	}
