@@ -196,7 +196,7 @@ $(document).ready(function(){
 
 		// 내일로 넘어가지 않도록 제한
 		var today = new Date();
-		if(today.getDate() >= now.getDate()){
+		if(today.getTime() >= now.getTime()){
 			var sel_y = now.getFullYear();
 			var sel_m = now.getMonth() + 1;
 			var sel_d = now.getDate();
