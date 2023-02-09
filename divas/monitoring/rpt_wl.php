@@ -41,35 +41,44 @@ require_once "./head.php";
 				</div>
 		<div class="right_bg2 mT_15">
 		<ul id="search_box">
-				<form id="form_mcall" method="post">
-					<li>
+			<form id="form_mcall" method="post">
+			<li>
 					<input type="hidden" name="mode" value="mcall">
 				<input type="hidden" id="RTU_CNT" name="RTU_CNT">
 				<input type="hidden" id="STR_RTU_ID" name="STR_RTU_ID">
 				<span class="tit">검색 기간  : </span>
 				<input type="radio" class="btn_radio" name="sel_date" value="N" <?if($sel_date=="N"){echo "checked";}?>><span class="tit">연간  </span>
-					<input type="radio" class="btn_radio" name="sel_date" value="D" <?if($sel_date=="D"){echo "checked";}?>><span class="tit">월간  </span> 
-					<input type="radio" class="btn_radio" name="sel_date" value="H" <?if($sel_date==""||$sel_date=="H"){echo "checked";}?>><span class="tit">일간  </span> 
-					<input type="radio" class="btn_radio" name="sel_date" value="A" <?if($sel_date=="A"){echo "checked";}?>><span class="tit mR15">기간  </span> 
-					
-					<input type="text" name="sdate" value="<?=$sdate?>" id="sdate" class="f333_12" size="12" readonly>
-					<span class="mL3">-</span>
-					<input type="text" name="edate" value="<?=$edate?>" id="edate" class="f333_12" size="12" readonly>
+				<input type="radio" class="btn_radio" name="sel_date" value="D" <?if($sel_date=="D"){echo "checked";}?>><span class="tit">월간  </span> 
+				<input type="radio" class="btn_radio" name="sel_date" value="H" <?if($sel_date==""||$sel_date=="H"){echo "checked";}?>><span class="tit">일간  </span> 
+				<input type="radio" class="btn_radio" name="sel_date" value="A" <?if($sel_date=="A"){echo "checked";}?>><span class="tit mR15">기간  </span> 
 				
-					<span id="button" class="sel_right_n">
+				<button type="button" id="btn_left" class="tb_btn_s w25p"><i class="fa fa-angle-left"></i></button>
+				<input type="text" name="sdate" value="<?=$sdate?>" id="sdate" class="f333_12" size="12" readonly>
+				<button type="button"  id="btn_right"  class="tb_btn_s w25p"><i class="fa fa-angle-right"></i></button>
+				<img src="../images/icon_cal.png" alt="달력보기" id="btn_img1" style="margin-bottom: -8px !important;">
+				&nbsp;
+				<span class="mL3">-</span>
+				&nbsp;
+				<button type="button" id="btn_left2" class="tb_btn_s w25p"><i class="fa fa-angle-left"></i></button>
+				<input type="text" name="edate" value="<?=$edate?>" id="edate" class="f333_12" size="12" readonly>
+				<button type="button"  id="btn_right2"  class="tb_btn_s w25p"><i class="fa fa-angle-right"></i></button>
+				<img src="../images/icon_cal_r.png" alt="달력보기" id="btn_img2" style="margin-bottom: -8px !important;">
+			</li>
+			<li class="btn_area">
+				<span id="button" class="tit">
 					<!--
 					<button type="button" id="btn_search" class="btn_bb80">검색</button>
  					<button type="button" id="btn_print" class="btn_lbb80_s">인쇄</button>
  					<button type="button" id="btn_excel" class="btn_lbb80_s">엑셀변환</button> 
  					-->
 				</span>
-					</li>
-					</form>
-				</ul>
-				<ul class="stitle_box">
-		             <!-- <li><?=$sdate?></li> -->
-		             <li>[단위 : m]</li>
-		         </ul>
+			</li>
+			</form>
+		</ul>
+		<ul class="stitle_box">
+		     <!-- <li><?=$sdate?></li> -->
+		     <li>[단위 : m]</li>
+		</ul>
 
 		<ul class="set_ulwrap_nh">
 			<li class="li100_nor">
@@ -176,8 +185,8 @@ $(document).ready(function(){
 	});
 
 	// 달력 호출
-	datepicker(1, "#sdate", "../images/icon_cal.png", "yy-mm-dd", null);
-	datepicker(1, "#edate", "../images/icon_cal_r.png", "yy-mm-dd", null);
+	datepicker(2, "#sdate", "", "yy-mm-dd");
+	datepicker(2, "#edate", "", "yy-mm-dd");
 
 	// 엑셀 검색기간 추가 
 	var seText = "";
@@ -1229,47 +1238,117 @@ $(document).ready(function(){
 		}
 	}
 
+	// 좌측 버튼
+	$("#btn_left").click(function(){
+		var sdate = $("#sdate").val();
+		var now_y = sdate.substring(0, 4);
+		var now_m = sdate.substring(5, 7) - 1;
+		var now_d = sdate.substring(8, 10);
+        var now = new Date(now_y, now_m, now_d);
+        now.setDate(now.getDate() - 1);
+
+		var sel_y = now.getFullYear();
+		var sel_m = now.getMonth() + 1;
+		var sel_d = now.getDate();
+        $("#sdate").datepicker("setDate", sel_y+"-"+sel_m+"-"+sel_d);
+	});
+	
+	// 우측 버튼
+	$("#btn_right").click(function(){
+		var sdate = $("#sdate").val();
+		var now_y = sdate.substring(0, 4);
+		var now_m = sdate.substring(5, 7) - 1;
+		var now_d = sdate.substring(8, 10);
+        var now = new Date(now_y, now_m, now_d);
+        now.setDate(now.getDate() + 1);
+
+		// 내일로 넘어가지 않도록 제한
+		var today = new Date();
+		if(today.getTime() >= now.getTime()){
+			var sel_y = now.getFullYear();
+			var sel_m = now.getMonth() + 1;
+			var sel_d = now.getDate();
+			$("#sdate").datepicker("setDate", sel_y+"-"+sel_m+"-"+sel_d);
+			
+		}else{
+			swal("체크", "미래는 검색할 수 없습니다!", "warning");
+		}
+	});
+	
+	// 좌측 버튼
+	$("#btn_left2").click(function(){
+		var sdate = $("#edate").val();
+		var now_y = sdate.substring(0, 4);
+		var now_m = sdate.substring(5, 7) - 1;
+		var now_d = sdate.substring(8, 10);
+        var now = new Date(now_y, now_m, now_d);
+        now.setDate(now.getDate() - 1);
+
+		var sel_y = now.getFullYear();
+		var sel_m = now.getMonth() + 1;
+		var sel_d = now.getDate();
+        $("#edate").datepicker("setDate", sel_y+"-"+sel_m+"-"+sel_d);
+	});
+	
+	// 우측 버튼
+	$("#btn_right2").click(function(){
+		var sdate = $("#edate").val();
+		var now_y = sdate.substring(0, 4);
+		var now_m = sdate.substring(5, 7) - 1;
+		var now_d = sdate.substring(8, 10);
+        var now = new Date(now_y, now_m, now_d);
+        now.setDate(now.getDate() + 1);
+
+		// 내일로 넘어가지 않도록 제한
+		var today = new Date();
+		if(today.getTime() >= now.getTime()){
+			var sel_y = now.getFullYear();
+			var sel_m = now.getMonth() + 1;
+			var sel_d = now.getDate();
+			$("#edate").datepicker("setDate", sel_y+"-"+sel_m+"-"+sel_d);
+			
+		}else{
+			swal("체크", "미래는 검색할 수 없습니다!", "warning");
+		}
+	});
+	
+	// 달력 버튼
+	$("#btn_img1").click(function(){
+		if( $("#ui-datepicker-div").css("display") != "none" ) {
+			$("#sdate").datepicker("hide");
+		}else{
+			$("#sdate").datepicker("show");
+		}
+	});
+
+	$("#btn_img2").click(function(){
+		if( $("#ui-datepicker-div").css("display") != "none" ) {
+			$("#edate").datepicker("hide");
+		}else{
+			$("#edate").datepicker("show");
+		}
+	});
+
 	var select_obj = '';
 
 	$('.btn_radio:checked').each(function (index) {
 		select_obj += $(this).val();
 	});
-	if(select_obj ==  'N' ){
-		$("#edate").prev().hide();
-		$("#edate").next().hide();
-		$("#edate").hide();
-	}else if(select_obj == 'D'){
-		$("#edate").prev().hide();
-		$("#edate").next().hide();
-		$("#edate").hide();
-	}else if(select_obj == 'H'){
-	$("#edate").prev().hide();
-	$("#edate").next().hide();
-	$("#edate").hide();
-	}else if(select_obj == 'A'){
-		$("#edate").prev().show();
-		$("#edate").next().show();
-		$("#edate").show();
+	if(select_obj == 'A'){
+		$(".mL3").show();
+		$(".mL3").nextAll().show();
+	}else{
+		$(".mL3").nextAll().hide();
+		$(".mL3").hide();
 	}
 
-
 	$(".btn_radio").click(function(e){
-		if(e.target.value == 'N'){
-			$("#edate").prev().hide();
-			$("#edate").next().hide();
-			$("#edate").hide();
-		}else if(e.target.value == 'D'){
-			$("#edate").prev().hide();
-			$("#edate").next().hide();
-			$("#edate").hide();
-		}else if(e.target.value == 'H'){
-			$("#edate").prev().hide();
-			$("#edate").next().hide();
-			$("#edate").hide();
-		}else if(e.target.value == 'A'){
-			$("#edate").prev().show();
-			$("#edate").next().show();
-			$("#edate").show();
+		if(e.target.value == 'A'){
+			$(".mL3").show();
+			$(".mL3").nextAll().show();
+		}else{
+			$(".mL3").nextAll().hide();
+			$(".mL3").hide();
 		}
 	});
 	

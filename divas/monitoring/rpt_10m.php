@@ -52,25 +52,24 @@ require_once "./head.php";
 					<button type="button" id="btn_left" class="tb_btn_s w25p"><i class="fa fa-angle-left"></i></button>
 					<input type="text" name="sdate" value="<?=$sdate?>" id="sdate" class="f333_12" size="12" readonly>
 					<button type="button"  id="btn_right"  class="tb_btn_s w25p"><i class="fa fa-angle-right"></i></button>
-					&nbsp;&nbsp;
-					<img src="../images/icon_cal.png" alt="달력보기" id="btn_img1" style="margin-bottom: -8px !important;">
+					<img src="../images/icon_cal.png" alt="달력보기" id="btn_img1" style="margin-bottom: -9px !important;">
 					&nbsp;
-					부터
-					&nbsp;&nbsp;
+					<span class="mL3">-</span>
+					&nbsp;
 					<button type="button" id="btn_left2" class="tb_btn_s w25p"><i class="fa fa-angle-left"></i></button>
 					<input type="text" name="edate" value="<?=$edate?>" id="edate" class="f333_12" size="12" readonly>
 					<button type="button"  id="btn_right2"  class="tb_btn_s w25p"><i class="fa fa-angle-right"></i></button>
-					&nbsp;&nbsp;
-					<img src="../images/icon_cal_r.png" alt="달력보기" id="btn_img2" style="margin-bottom: -8px !important;">
-					&nbsp;
-					까지
+					<img src="../images/icon_cal_r.png" alt="달력보기" id="btn_img2" style="margin-bottom: -9px !important;">
+
 				</span>
-				<span id="button" class="sel_right_n">
+			</li>
+			<li class="btn_area">
+				<span id="button" class="tit">
 					<!--
 					<button type="button" id="btn_search" class="btn_bb80">검색</button>
- 					<button type="button" id="btn_print" class="btn_lbb80_s">인쇄</button>
- 					<button type="button" id="btn_excel" class="btn_lbb80_s">엑셀변환</button> 
- 					-->
+					 <button type="button" id="btn_print" class="btn_lbb80_s">인쇄</button>
+					 <button type="button" id="btn_excel" class="btn_lbb80_s">엑셀변환</button> 
+					 -->
 				</span>
 			</li>
 		</ul>

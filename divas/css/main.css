@@ -720,10 +720,9 @@
 /*°Ë»öbox*/
 
 /* °Ë»ö Æû */
-#search_box {width: inherit; background-color: #2B8DFC; padding: 10px 20px 10px 30px; border-radius: 10px 10px 0 0 ;}
-#search_box ul {display: inline-flex; width: 100%; align-items: center; font-size: 1.7rem; color: #fff; font-weight: 700;}
-#search_box ul li:first-child {width: 80%;}
-#search_box ul li:last-child {width: 20%; text-align: right;}
+#search_box {width: inherit; background-color: #2B8DFC; padding: 10px 20px 10px 20px; border-radius: 10px 10px 0 0 ; display: inline-flex; width: 100%; align-items: center; font-size: 1.7rem; color: #fff; font-weight: 700;}
+#search_box li:first-child {margin: 0 15px 0 10px;}
+#search_box .btn_area {margin: 0 0 -20px 15px;}
 #search_box .tit {font-size: 1.6rem; color: #fff; font-weight: 800; margin-right:10px; font-family:'NanumSquare'; vertical-align: middle;}
 #search_box .txt {font-size: 1.3rem; color: #fff; font-weight: 600; margin-right:10px;}
 
@@ -824,7 +823,7 @@ div#top_img img{padding: 5px;} */
 	.title_locate{font-size: 31px; float: left; margin-right: 10px; letter-spacing: -2px; margin-top: -10px; color: #2861c0;}
 	.main_contitle .tit{width: 40%; padding-left: 0.7rem;  display: inline-flex; align-items: center;}
 	
-	.main_contitle .tit span {padding:2px 5px 0 6px; color:#000; font-family: 'nanumsquare'; font-weight:800; font-size: 2rem;  }
+	.main_contitle .tit span {padding:2px 5px 0 6px; color:#000; font-family: 'nanumsquare'; font-weight:800; font-size: 2rem; display: inline-flex;}
 	.main_contitle .sub_tit {color: #143b83 !important; font-weight: 700 !important;  margin-right: 5px;}
 	.main_contitle .tab {font-size: 15px;color: #ffffff;font-weight: 700 !important;background: #3f83df;border-radius: 10px 10px 0 0;height: 32px;padding-top: 7px;margin: 0 4px;width: 140px;text-align: center; cursor: pointer;}
 	.main_contitle .tab:hover {color: #1a70e3; background: #ffffff;}

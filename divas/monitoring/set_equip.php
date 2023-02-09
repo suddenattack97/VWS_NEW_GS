@@ -38,7 +38,7 @@ require_once "./head.php";
 					&nbsp;&nbsp;
 					<button type="button" id="btn_search" class="btn_bb80 mL_10"><i class="fa fa-search mR_5 font15"></i>조회</button>
 					<button type="button" id="btn_search_all" class="btn_lbb80_s w90p"><i class="fa fa-list-alt mR_5 font15"></i>전체목록</button>
-					<span id="button" class="sel_right_n">
+					<span id="button" class="sel_right_n mL5">
 					<!--
  					<button type="button" id="btn_print" class="btn_lbs">인쇄</button>
  					<button type="button" id="btn_excel" class="btn_lbs">엑셀변환</button> 
