@@ -727,12 +727,21 @@ function aws(kind, arr_area_code){ // AWS - AWS 장비
 									}else{
 //										$("#wind_"+item.area_code+" .dat_right").html(item.deg+", "+item.day);
 										if($("#wind_"+item.area_code+" .dat_right img").length == 1){
-											$("#wind_"+item.area_code+" .dat_right").attr("src", "img/wind/"+item.deg);
 											$("#wind_"+item.area_code+" .dat_right div").attr('text', item.day);
+											if(item.deg == "-"){
+												$("#wind_"+item.area_code+" .dat_right").attr("src", "");
+											}else{
+												$("#wind_"+item.area_code+" .dat_right").attr("src", "img/wind/"+item.deg);
+											}
 										}else{
-											$("#wind_"+item.area_code+" .dat_right").html("<img class='sidr-class-mT5' src='img/wind/"+item.deg+"' /> <div>"+item.day+"</div>");
+											if(item.deg == "-"){
+												$("#wind_"+item.area_code+" .dat_right").html("<img class='sidr-class-mT5' src='' /> <div>"+item.day+"</div>");
+											}else{
+												$("#wind_"+item.area_code+" .dat_right").html("<img class='sidr-class-mT5' src='img/wind/"+item.deg+"' /> <div>"+item.day+"</div>");
+											}
 										}
 									}
+									
 								});
 							}, "json");
 						}else if(i == "damp"){
