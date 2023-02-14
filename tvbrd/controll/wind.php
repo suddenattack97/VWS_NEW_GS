@@ -80,15 +80,18 @@ $dvUtil   = new Divas_Util();
 				$arr_data[$key]['deg'] = "-";
 				$arr_data[$key]['day'] = "-";
 				$arr_data[$key]['date'] = "-";
-				
 				if( isset($data[0]['wind_date']) ){
 					
 					if( $data[0]['wind_date'] < $DM->getMinDisTime()){
 					}else{
 					
 					$tmp_deg = $data[1]['avr_vel1'];
-					$tmp_deg = (int)((($tmp_deg/100)+3)/22.5);
-					$num = (int)(fmod($tmp_deg,16));
+					if($tmp_deg == '-' || $tmp_deg == NULL){
+						$num = 99;
+					}else{
+						$tmp_deg = (int)((($tmp_deg/100)+3)/22.5);
+						$num = (int)(fmod($tmp_deg,16));
+					}
 					switch($num){
 						case 0	:	$tmp_deg = "buk.png";				break;
 						case 1	:	$tmp_deg = "bukbukdong.png";			break;
