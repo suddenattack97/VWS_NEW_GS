@@ -84,7 +84,11 @@ require_once "./head.php";
 						<tr>
 							<th class="li69">그래프</th>
 							<th class="li13 bL_1gry">시간</th>
-							<th class="li14 bL_1gry">자료</th>
+							<?if($option == "4"){ ?>
+								<th class="li14 bL_1gry">풍향/풍속(m/s)</th>
+								<? }else{ ?>
+								<th class="li14 bL_1gry">자료</th>
+							<? } ?>
 						</tr>
 					</thead>
 				</table>
@@ -112,7 +116,12 @@ require_once "./head.php";
 							<? } else { ?>
 								<td class="li50 bL_1gry">
 							<? } ?>
-								<span class="effect"><?=$val['DATA']?></span>
+								<span class="effect">
+									<?if($option == "4"){ ?>
+										<img src="<?=$val['DEG']?>"/>
+									<? } ?>
+									<?=$val['DATA']?>
+								</span>
 							</td>
 						</tr>
 						<? 

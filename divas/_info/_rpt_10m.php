@@ -105,6 +105,7 @@ if($option == "0"){
 		foreach($ClassAwsInfo->rsWind10m as $key => $val) {
 			$data_list[ $val['WIND_DATE'] ]['DATE'] = $val['WIND_DATE'];
 			$data_list[ $val['WIND_DATE'] ]['DATA'] = round_data($val['VEL'], 0.01, 10);
+			$data_list[ $val['WIND_DATE'] ]['DEG'] = "../../tvbrd/img/wind/".$val['DEG_EN'];
 		}
 	}
 }else if($option == "5"){

@@ -1391,6 +1391,7 @@ Class ClassAwsInfo {
 				$data[$i]['VEL'] = $rs[$i]['VEL'] == "-" ? "-" : $rs[$i]['VEL'];
 				$data[$i]['VEL_MAX'] = $rs[$i]['VEL_MAX'] == "-" ? "-" : $rs[$i]['VEL_MAX'];
 				$data[$i]['DEG'] = $rs[$i]['DEG'] == "-" ? "-" : $this->getDegreeString($rs[$i]['DEG']);
+				$data[$i]['DEG_EN'] = $rs[$i]['DEG'] == "-" ? "-" : $this->getDegreeEnString($rs[$i]['DEG']);
 				$data[$i]['DEG_MAX'] = $rs[$i]['DEG_MAX'] == "-" ? "-" : $this->getDegreeString($rs[$i]['DEG_MAX']);
 				$data[$i]['WIND_DATE'] = $rs[$i]['WIND_DATE'];
 			}
@@ -1527,6 +1528,35 @@ Class ClassAwsInfo {
 				case 13	:	$dispDeg = "서북서";		break;
 				case 14	:	$dispDeg = "북서";		break;
 				case 15	:	$dispDeg = "북북서";		break;
+				default:	$dispDeg = "-";			break;
+			}
+		}
+		return $dispDeg;
+	}
+	function getDegreeEnString($degree){
+		$degree = (string)$degree;
+		if($degree == '-'){
+			$dispDeg = '-';
+		}else{
+			$tmp_degree	= (int)((($degree/100)+3)/22.5);
+			$num = (int)(fmod($tmp_degree,16));
+			switch($num){
+				case 0	:	$dispDeg = "buk.png";				break;
+				case 1	:	$dispDeg = "bukbukdong.png";			break;
+				case 2	:	$dispDeg = "bukdong.png";			break;
+				case 3	:	$dispDeg = "dongbukdong.png";			break;
+				case 4	:	$dispDeg = "dong.png";				break;
+				case 5	:	$dispDeg = "dongnamdong.png";			break;
+				case 6	:	$dispDeg = "namdong.png";			break;
+				case 7	:	$dispDeg = "namnamdong.png";			break;
+				case 8	:	$dispDeg = "nam.png";				break;
+				case 9	:	$dispDeg = "namnamseo.png";			break;
+				case 10	:	$dispDeg = "namseo.png";			break;
+				case 11	:	$dispDeg = "seonamseo.png";			break;
+				case 12	:	$dispDeg = "seo.png";				break;
+				case 13	:	$dispDeg = "seobukseo.png";			break;
+				case 14	:	$dispDeg = "bukseo.png";			break;
+				case 15	:	$dispDeg = "bukbukseo.png";			break;
 				default:	$dispDeg = "-";			break;
 			}
 		}
