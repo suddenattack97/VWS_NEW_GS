@@ -11,7 +11,12 @@ require_once "./head.php";
 // 	$_UpdateData->setDateLog($log_path);
 // 	$_UpdateData->AutoRtuUpdate();
 // }
+$option = $_REQUEST['option'] ? $_REQUEST['option'] : "0"; // 구분
+$area_code = $_REQUEST['area_code'] ? $_REQUEST['area_code'] : ""; // 구분
 $url = $_REQUEST['url'] ? $_REQUEST['url'] : ($_REQUEST['target'] ? $_REQUEST['target'] : "tms_main.php");
+if($url == "rpt_10m.php"){
+	$url = $url."?option=".$option."&area_code=".$area_code;
+}
 $num = $_REQUEST['num'] ? $_REQUEST['num'] : "1";
 ?>
 
