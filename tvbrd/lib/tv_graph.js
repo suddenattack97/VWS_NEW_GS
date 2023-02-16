@@ -81,7 +81,12 @@
 					$("#sidr-id-btn_graph_detail").attr("href", "../divas/monitoring/main.php?url=rpt_10m.php&option=6&area_code="+get_area_code);
 				}
 				$("#sidr-id-chart_title").html(tmp_title);
-
+				
+				var tmp_len = tmp_name.replace(/ /g,"").length + tmp_title.length;
+				if(tmp_len > 9){
+					$('#sidr-id-chart_name').css('font-size', (28-tmp_len)+'px');
+					$('#sidr-id-chart_title').css('font-size', (27-tmp_len)+'px');
+				}
 				if($("#changeOption").length > 0) $("#sidr-id-btn_graph_detail").nextAll().remove();
 
 				if(get_option == "M"){
