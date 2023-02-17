@@ -83,10 +83,12 @@ require_once "./head.php";
 					<thead class="tb_data_tbg">
 						<tr>
 							<th class="li69">그래프</th>
-							<th class="li13 bL_1gry">시간</th>
 							<?if($option == "4"){ ?>
-								<th class="li14 bL_1gry">풍향/풍속(m/s)</th>
-								<? }else{ ?>
+								<th class="li9 bL_1gry">시간</th>
+								<th class="li9 bL_1gry">풍향</th>
+								<th class="li9 bL_1gry">풍향/풍속(m/s)</th>
+							<? }else{ ?>
+								<th class="li13 bL_1gry">시간</th>
 								<th class="li14 bL_1gry">자료</th>
 							<? } ?>
 						</tr>
@@ -100,6 +102,9 @@ require_once "./head.php";
 				<table id="list_table" class="tb_data pB0 lbdg">
 					<thead>
 						<tr>
+							<?if($option == "4"){ ?>
+								<th class="dp0"></th>
+							<? } ?>
 							<th class="dp0"></th>
 							<th class="dp0"></th>
 						</tr>
@@ -110,16 +115,22 @@ require_once "./head.php";
 							foreach($data_list as $key => $val){ 
 						?>
 						<tr class="hh" id="<?=$val['DATE']?>">
-							<td id="date" class="li50"><?=$val['DATE']?></td>
+							<td id="date" class="li<?=$option == '4' ? "9" : "50"?>"><?=$val['DATE']?></td>
 							<? if($val['DATA'] > 0 && ($option == "0" || $option == "2")){ ?>
 								<td class="li50 bL_1gry txtcolor_r">
 							<? } else { ?>
-								<td class="li50 bL_1gry">
+								<?if($option == "4"){ ?>
+									<td class="li9_5 bL_1gry">
+										<span class="effect">
+											<img src="<?=$val['DEG']?>"/>
+										</span>
+									</td>
+									<td class="li8_5 bL_1gry">
+								<? }else{?>
+									<td class="li50 bL_1gry">
+								<? } ?>
 							<? } ?>
 								<span class="effect">
-									<?if($option == "4"){ ?>
-										<img src="<?=$val['DEG']?>"/>
-									<? } ?>
 									<?=$val['DATA']?>
 								</span>
 							</td>

@@ -56,7 +56,17 @@
 	  /* em {
 		font-weight: normal;
 	  } */
-	  
+	  ::-webkit-scrollbar {
+		width: 19px;  /* ������ ��ũ�ѹ� ���� */
+	  }
+	  ::-webkit-scrollbar-thumb {
+		border-radius: 5px;
+		background-color: rgba(0,0,0,0.3);
+	  }
+	  ::-webkit-scrollbar-track {
+		background-color: transparent;
+	  }
+
 	  @keyframes blink-effect {
 		50% {
 		  opacity: 0;
@@ -1180,9 +1190,12 @@ div#top_img img{padding: 5px;} */
 	.li6_92{width:6.92%;}
 	.li7 {width:7% !important;}
 	.li8 {width:8% !important;}
-	.li9   {width:9%;}
+	.li8_5 {width:8.5% !important;}
+	.li9   {width:9% !important;}
+	.li9_5   {width:9.5% !important;}
 	.li100 .li10  {width:10% !important;float:left; display:inline-table; vertical-align:middle;}
 	.li10  {width:10% !important;}
+	.li12_6  {width:12.6% !important;}
 	.li13  {width:13% !important;}
 	.li14  {width:14% !important;}
 	.li15  {width:15% !important;}
