@@ -1287,7 +1287,18 @@ $(document).ready(function(){
 		var sel_y = now.getFullYear();
 		var sel_m = now.getMonth() + 1;
 		var sel_d = now.getDate();
-        $("#edate").datepicker("setDate", sel_y+"-"+sel_m+"-"+sel_d);
+        
+		var s_sdate = $("#sdate").val();
+		var s_now_y = s_sdate.substring(0, 4);
+		var s_now_m = s_sdate.substring(5, 7) - 1;
+		var s_now_d = s_sdate.substring(8, 10);
+        var s_now = new Date(s_now_y, s_now_m, s_now_d);
+
+		if(s_now.getTime() <= now.getTime()){
+			$("#edate").datepicker("setDate", sel_y+"-"+sel_m+"-"+sel_d);
+		}else{
+			swal("체크", "이전 날짜는 검색할 수 없습니다!", "warning");
+		}
 	});
 	
 	// 우측 버튼
