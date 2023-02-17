@@ -27,7 +27,7 @@ require_once "./head.php";
 						<option value="1" <?if($option == "1"){echo "selected";}?>>수위</option>
 						<option value="2" <?if($option == "2"){echo "selected";}?>>적설</option>
 						<option value="3" <?if($option == "3"){echo "selected";}?>>온도</option>
-						<option value="4" <?if($option == "4"){echo "selected";}?>>풍속</option>
+						<option value="4" <?if($option == "4"){echo "selected";}?>>풍향/풍속</option>
 						<option value="5" <?if($option == "5"){echo "selected";}?>>습도</option>
 					</select>
 					&nbsp;&nbsp;
