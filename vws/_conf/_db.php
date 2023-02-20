@@ -20,7 +20,7 @@ define('DB_DATABASE',	"divas");
 */
 
 
-define('DB_HOST',		"localhost");
+define('DB_HOST',		"192.168.1.8");
 define('DB_USER',		"root");  
 define('DB_PASSWORD',	"123456");
 define('DB_DATABASE',	"vws"); 

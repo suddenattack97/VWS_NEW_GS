@@ -9,11 +9,11 @@ if(ROOT_USE == "0"){
 	define("ROOT", ""); // 루트
 	define("ROOT_DIR", str_replace("/", "\\", $_SERVER['DOCUMENT_ROOT'])); // 절대경로 루트(D:\\LMH_TEST\\divas_new)
 }else{
-	define("ROOT", "/divas_new");
+	define("ROOT", "/vws_new");
 	define('ROOT_DIR', "D:\\APM_Setup\\htdocs\\divas_new");
 }
-define("IMG_DIR", ROOT."/divas/images/"); // 이미지 경로
-define("IMG_DIR2", ROOT."/divas/mobile/images/"); // 이미지 경로
+define("IMG_DIR", ROOT."/vws/images/"); // 이미지 경로
+define("IMG_DIR2", ROOT."/vws/mobile/images/"); // 이미지 경로
 define("DIFF", ""); // 해당 수치만큼 뺀 기준으로 데이터 표출
 // define("DIFF", "-1 hour");
 define("TEST", "0"); // 테스트(open : 0, test : 1)
@@ -37,11 +37,11 @@ define("DEV", "7");
 
 if(DB == "0"){
 	require_once "_db.php";
-	require_once ROOT_DIR."/divas/include/DBmanager.php";
+	require_once ROOT_DIR."/vws/include/DBmanager.php";
 	$DB = new DBmanager(DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE);
 }else if(DB == "1"){
 	require_once "_db_oracle.php";
-	require_once ROOT_DIR."/divas/include/OraDBmanager.php";
+	require_once ROOT_DIR."/vws/include/OraDBmanager.php";
 	$DB = new OraDBmanager(ORA_DSN, ORA_ID, ORA_PW);
 }
 
@@ -53,7 +53,7 @@ VXEMXv4XhOQK1DuqwNEJ5X2jD1Ma/maF6BJePK9T4lA99cCAyWZ6ySSUoBVkrEL1
 wd+TfN++aIZJivncuQIDAQAB
 -----END PUBLIC KEY-----');	//공개키
 
-require_once ROOT_DIR."/divas/include/class/common.php";
+require_once ROOT_DIR."/vws/include/class/common.php";
 
 //공용
 $ClassCommon = new ClassCommon($DB);
