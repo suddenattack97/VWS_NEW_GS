@@ -86,7 +86,7 @@ require_once "./head.php";
 							<?if($option == "4"){ ?>
 								<th class="li9 bL_1gry">시간</th>
 								<th class="li9 bL_1gry">풍향&nbsp;<img src="../../tvbrd/img/wind/wind_ico.png"></th>
-								<th class="li9 bL_1gry">풍향/풍속(m/s)</th>
+								<th class="li9 bL_1gry">풍속(m/s)</th>
 							<? }else{ ?>
 								<th class="li13 bL_1gry">시간</th>
 								<th class="li14 bL_1gry">자료</th>
