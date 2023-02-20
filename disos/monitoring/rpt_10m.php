@@ -202,7 +202,10 @@ $(document).ready(function(){
 		
     	if(chart) chart.destroy();
 
-		var tempMode = ($("#option option:selected").text() == "풍향/풍속" ? "풍속" : $("#option option:selected").text());
+		// var tempMode = ($("#option option:selected").text() == "풍향/풍속" ? "풍속" : $("#option option:selected").text());
+		var tempMode = new Array();
+		tempMode.push(['풍향']);
+		tempMode.push(['풍속']);
 		var tempArea = $("#area_code").val();
 
 		$.ajax({
@@ -213,6 +216,7 @@ $(document).ready(function(){
 	        dataType: "json",
 	        success : function(data){
 				var LEGD, DATAD = new Array();
+				var DATADEG = new Array();
 				var DATA1 = new Array();
 				var DATA2 = new Array();
 				var DATA3 = new Array();
@@ -251,6 +255,10 @@ $(document).ready(function(){
 								// 	DATA5[idx] = v.DATA5;
 								// }
 								DATAD[idx] = v.DATA;
+								if(mode == 'wind'){
+									DATADEG[idx] = new Image();
+									DATADEG[idx].src = "../../tvbrd/img/wind/"+v.DATA_DEG;
+								}
 								// LEGD[idx] = tmpLeg;
 							}
 						}
@@ -277,163 +285,6 @@ $(document).ready(function(){
 		        	MIN = Number(MIN) - Number(INCRE);
 	       		}
         		MIN = MIN < 0 ? 0 : MIN;
-	       		//console.log("MAX:"+MAX, "MIN:"+MIN, "INC:"+INCRE);
-				// if(mode == 'flow'){
-					
-				// 	chart = new Chart($("#graph10m"), {
-				// 		type: 'line',
-				// 		data: {
-				// 			labels: LEGD,
-				// 			datasets: [{
-				// 	            label: '<?=level_1?>',
-				// 	            data: DATA1,
-				// 				yAxisID: 'y_flow',
-				// 	            backgroundColor: '#008000',
-				// 	            borderColor: '#008000',
-				// 	            borderWidth: 2,
-				// 				fill: false,
-				// 	            pointRadius: 0
-				// 	        }, {
-				// 	            label: '<?=level_2?>',
-				// 	            data: DATA2,
-				// 				yAxisID: 'y_flow',
-				// 	            backgroundColor: '#ff8017',
-				// 	            borderColor: '#ff8017',
-				// 	            borderWidth: 2,
-				// 				fill: false,
-				// 	            pointRadius: 0
-				// 	        }, {
-				// 	            label: '<?=level_3?>',
-				// 	            data: DATA3,
-				// 				yAxisID: 'y_flow',
-				// 	            backgroundColor: '#ff0000',
-				// 	            borderColor: '#ff0000',
-				// 	            borderWidth: 2,
-				// 				fill: false,
-				// 	            pointRadius: 0
-				// 	        }, {
-				// 	            label: '<?=level_4?>',
-				// 	            data: DATA4,
-				// 				yAxisID: 'y_flow',
-				// 	            backgroundColor: '#8b17ff',
-				// 	            borderColor: '#8b17ff',
-				// 	            borderWidth: 2,
-				// 				fill: false,
-				// 	            pointRadius: 0
-				// 	        }, {
-				// 	            label: '<?=level_5?>',
-				// 	            data: DATA5,
-				// 				yAxisID: 'y_flow',
-				// 	            backgroundColor: '#260030',
-				// 	            borderColor: '#260030',
-				// 	            borderWidth: 2,
-				// 				fill: false,
-				// 	            pointRadius: 0
-				// 	        }, {
-				// 				label: tempMode,
-				// 				data: DATAD,
-				// 				yAxisID: 'y_rain',
-				// 				backgroundColor: '#c3dcf5',
-				// 				borderColor: '#c3dcf5',
-				// 				borderWidth: 1
-				// 			}]
-				// 		},
-				// 		options: {
-				// 			onClick: function(evt, activeElements) {
-				// 				var elementIndex = activeElements[0]._index;
-				// 				// console.log(this.data.labels[elementIndex]);
-				// 				goReport(this.data.labels[elementIndex]);
-				// 			// this.data.datasets[0].backgroundColor[elementIndex] = 'red';
-				// 			// this.update();
-				// 			},
-				// 			elements: {
-				// 				line: {
-				// 					tension: 0
-				// 				}
-				// 			},
-				// 			legend: {
-				// 	            labels: {
-				// 	                generateLabels: function(chart){
-				// 	                    labels = Chart.defaults.global.legend.labels.generateLabels(chart);
-				// 	                    $.each(labels, function(i, v){
-				// 		                    // if(v.text == "수위"){
-				// 			                    labels[i].fillStyle = '#69F';
-				// 			                    labels[i].strokeStyle = '#69F';
-				// 		                    // }
-				// 	                    });
-				// 	                    return labels;
-				// 	                }
-				// 	            }
-				// 	        },
-				// 			tooltips: {
-				// 				position: 'nearest',
-				// 				mode: 'index',
-				// 				intersect: false,
-				// 				filter: function(item, data){
-				// 					data = data.datasets[item.datasetIndex].data[item.index];
-				// 					return !isNaN(data) && data !== null;
-				// 				},
-				// 				callbacks: {
-				// 					labelColor: function(tooltipItem, chart){
-				// 				        dataset = chart.config.data.datasets[tooltipItem.datasetIndex];
-				// 				        if(dataset.label == "수위"){
-				// 					        return {
-				// 			                    borderColor: '#69F',
-				// 					            backgroundColor : '#69F'
-				// 					        }
-				// 			        	}else{
-				// 					        return {
-				// 		                    	borderColor: dataset.borderColor,
-				// 				            	backgroundColor : dataset.backgroundColor
-				// 				        	}
-				// 				        }
-				// 					}
-				// 				}
-				// 			},
-				// 			scales: {
-								
-				// 				yAxes: [{
-				// 					id: 'y_left', // 좌측 여백 + 눈금
-				// 					ticks: {
-				// 						display: false
-				// 					}, 
-				// 					gridLines: {
-				// 						display: false,
-				// 						drawOnChartArea: false,
-				// 						drawTicks: false
-				// 					},
-				// 					afterFit: function(scale){
-				// 						scale.width = 20;
-				// 					}
-				// 					}, {
-				// 					id: 'y_flow', // 강우
-				// 					ticks: {
-				// 						fontColor: '#666',
-				// 						padding: 5,
-				// 						callback: function(value, index, values){
-				// 							return toFixedOf(value, 2);
-				// 						},
-				// 						beginAtZero: true,
-				// 						suggestedMin: MIN,
-				// 						suggestedMax: MAX,
-				// 						//stepSize: INCRE,
-				// 						maxTicksLimit: 10
-				// 					}, 
-				// 					gridLines: {
-				// 						display: false,
-				// 						color: '#666',
-				// 						lineWidth: 3,
-				// 						drawOnChartArea: false,
-				// 						drawTicks: false
-				// 					},
-				// 					afterFit: function(scale){
-				// 						scale.width = 30;
-				// 					}
-				// 				}]
-				// 			}
-				// 		}
-				// 	});
-				// }else{
 					chart = new Chart($("#graph10m"), {
 						type: (mode == 'rain' || mode == 'snow') ? 'bar' : 'line',
 						data: {
@@ -445,7 +296,8 @@ $(document).ready(function(){
 								backgroundColor: '#c3dcf5',
 								borderColor: '#c3dcf5',
 								borderWidth: (mode == 'flow') ? 1 : 2,
-								fill: (mode == 'flow') ? true : false
+								fill: (mode == 'flow') ? true : false,
+								pointStyle: (mode == 'wind' ? DATADEG : [])
 							}]
 						},
 						options: {

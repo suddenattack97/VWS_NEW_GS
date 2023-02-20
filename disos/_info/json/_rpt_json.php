@@ -661,6 +661,7 @@ switch($mode){
 						$sub_date = substr($val['WIND_DATE'], 8,2);
 						if($data_list[ $i ]['LEG'] == $sub_date){
 							$data_list[ $i ]['DATA'] = round_data($val['VEL'], 0.01, 10);
+							$data_list[ $i ]['DATA_DEG'] = $val['DEG_EN'];
 							$data_list[ $i ]['DATA3'] = round_data($val['VEL_MAX'], 0.01, 10);
 						};
 						if($val['VEL'] != "-"){
@@ -676,6 +677,7 @@ switch($mode){
 				foreach($ClassAwsInfo->rsWind10m as $key => $val){
 					$data_list[ $val['WIND_DATE'] ]['LEG'] = $val['WIND_DATE'];
 					$data_list[ $val['WIND_DATE'] ]['DATA'] = round_data($val['VEL'], 0.01, 10);
+					$data_list[ $val['WIND_DATE'] ]['DATA_DEG'] = $val['DEG_EN'];
 					$data_list[ $val['WIND_DATE'] ]['DATA3'] = round_data($val['VEL_MAX'], 0.01, 10);
 					if(round_data($val['VEL'], 0.01, 10) != "-"){
 						$area_data['MAX'] = ($area_data['MAX'] < round_data($val['VEL_MAX'], 0.01, 10) || !$area_data['MAX']) ? round_data($val['VEL_MAX'], 0.01, 10) : $area_data['MAX'];
@@ -1082,14 +1084,17 @@ function getDateAndArray($sdate, $edate, $area_data){
 						$tmp_date = $tmp_sdate." ".$tmp_i.":".$j."0:00";
 						$data_list[$tmp_date]['DATE'] = $tmp_date;
 						$data_list[$tmp_date]['DATA'] = "-";
+						$data_list[$tmp_date]['DATA_DEG'] = "-";
 					}else if( $j."0" < date("i") ){
 						$tmp_date = $tmp_sdate." ".$tmp_i.":".$j."0:00";
 						$data_list[$tmp_date]['DATE'] = $tmp_date;
 						$data_list[$tmp_date]['DATA'] = "-";
+						$data_list[$tmp_date]['DATA_DEG'] = "-";
 					}
 					if($area_data != null){
 						$data_list[$tmp_date]['DATA1'] = $area_data['RISK_1'];
 						$data_list[$tmp_date]['DATA2'] = $area_data['RISK_2'];
+						
 					}
 				}
 				
@@ -1107,6 +1112,7 @@ function getDateAndArray($sdate, $edate, $area_data){
 					$tmp_date = $tmp_sdate." ".$tmp_i.":".$j."0:00";
 					$data_list[$tmp_date]['DATE'] = $tmp_date;
 					$data_list[$tmp_date]['DATA'] = "-";
+					$data_list[$tmp_date]['DATA_DEG'] = "-";
 					if($area_data != null){
 						$data_list[$tmp_date]['DATA1'] = $area_data['RISK_1'];
 						$data_list[$tmp_date]['DATA2'] = $area_data['RISK_2'];
