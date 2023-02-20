@@ -18,6 +18,14 @@ $t_sdate = $sdate." 00:00:00";
 $t_edate = $edate." 23:50:00";
 $today = date("Y-m-d");
 
+if(date("i") >= 50) $min = "50";
+else if(date("i") >= 40) $min = "40";
+else if(date("i") >= 30) $min = "30";
+else if(date("i") >= 20) $min = "20";
+else if(date("i") >= 10) $min = "10";
+else $min = "00";
+$nowDate = date("Y-m-d H:").$min.":00";
+
 $eedate = true;
 $todayF = false;
 $tmp_sdate = $edate;
@@ -72,6 +80,7 @@ for($i=0; $i<$LocalDB->rsCnt; $i++) {
 }
 if(!$area_code) $area_code = $data_sel[0]['AREA_CODE'];
 
+$lastDate = '-';
 if($option == "0"){
 	//강우자료
 	$ClassRainInfo = new ClassRainInfo($DB);
@@ -82,8 +91,8 @@ if($option == "0"){
 		foreach($ClassRainInfo->rsRain10m as $key => $val) {
 			$data_list[ $val['RAIN_DATE'] ]['DATE'] = $val['RAIN_DATE'];
 			$data_list[ $val['RAIN_DATE'] ]['DATA'] = round_data($val['RAIN'], 0.01, 10);
+			$lastDate = $val['RAIN_DATE'];
 		}
-		array_reverse($data_list);
 	}
 }else if($option == "1"){
 	//수위자료
@@ -95,6 +104,7 @@ if($option == "0"){
 		foreach($ClassFlowInfo->rsFlow10m as $key => $val) {
 			$data_list[ $val['FLOW_DATE'] ]['DATE'] = $val['FLOW_DATE'];
 			$data_list[ $val['FLOW_DATE'] ]['DATA'] = round_data($val['FLOW'], 0.01, 100);
+			$lastDate = $val['FLOW_DATE'];
 		}
 	}
 }else if($option == "2"){
@@ -107,6 +117,7 @@ if($option == "0"){
 		foreach($ClassSnowInfo->rsSnow10m as $key => $val) {
 			$data_list[ $val['SNOW_DATE'] ]['DATE'] = $val['SNOW_DATE'];
 			$data_list[ $val['SNOW_DATE'] ]['DATA'] = round_data($val['SNOW'], 0.001, 10);
+			$lastDate = $val['SNOW_DATE'];
 		}
 	}
 }else if($option == "3"){
@@ -119,6 +130,7 @@ if($option == "0"){
 		foreach($ClassAwsInfo->rsTemp10m as $key => $val) {
 			$data_list[ $val['TEMP_DATE'] ]['DATE'] = $val['TEMP_DATE'];
 			$data_list[ $val['TEMP_DATE'] ]['DATA'] = round_data($val['TEMP'], 0.01, 10);
+			$lastDate = $val['TEMP_DATE'];
 		}
 	}
 }else if($option == "4"){
@@ -132,6 +144,7 @@ if($option == "0"){
 			$data_list[ $val['WIND_DATE'] ]['DATE'] = $val['WIND_DATE'];
 			$data_list[ $val['WIND_DATE'] ]['DATA'] = round_data($val['VEL'], 0.01, 10);
 			$data_list[ $val['WIND_DATE'] ]['DEG'] = "../../tvbrd/img/wind/".$val['DEG_EN'];
+			$lastDate = $val['WIND_DATE'];
 		}
 	}
 }else if($option == "5"){
@@ -144,8 +157,13 @@ if($option == "0"){
 		foreach($ClassAwsInfo->rsHumi10m as $key => $val) {
 			$data_list[ $val['HUMI_DATE'] ]['DATE'] = $val['HUMI_DATE'];
 			$data_list[ $val['HUMI_DATE'] ]['DATA'] = round_data($val['HUMI'], 0.01, 10);
+			$lastDate = $val['HUMI_DATE'];
 		}
 	}
+}
+
+if($lastDate != '-'){
+	if($lastDate < $nowDate) unset($data_list[$nowDate]);
 }
 
 $DB->CLOSE();
