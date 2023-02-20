@@ -55,7 +55,7 @@ Class ClassCommon {
 		if ($ciphertext === false) return false;
 		
 		// 개인키를 읽어온다.
-		$private_key = @file_get_contents(str_replace("/", "\\", $_SERVER['DOCUMENT_ROOT']).'/vws/_info/json/private.key');
+		$private_key = @file_get_contents(str_replace("/", "\\", $_SERVER['DOCUMENT_ROOT']).'/disos/_info/json/private.key');
 		// 개인키를 사용하여 복호화한다.
 		
 		$privkey_decoded = @openssl_pkey_get_private($private_key);
@@ -77,18 +77,18 @@ Class ClassCommon {
 	function getSession(){
 		if(MobileCheck() == "Computer"){
 			if( $_SERVER['PHP_SELF'] == ROOT."/index.php" || 
-				$_SERVER['PHP_SELF'] == ROOT."/vws/monitoring/main.php" || 
-				$_SERVER['PHP_SELF'] == ROOT."/vws/monitoring/login.php" ||
-				$_SERVER['PHP_SELF'] == ROOT."/vws/monitoring/page_out.php" ||
-				$_SERVER['PHP_SELF'] == ROOT."/vws/monitoring/page_not.php" ||
-				$_SERVER['PHP_SELF'] == ROOT."/vws/monitoring/test.php" ){
+				$_SERVER['PHP_SELF'] == ROOT."/disos/monitoring/main.php" || 
+				$_SERVER['PHP_SELF'] == ROOT."/disos/monitoring/login.php" ||
+				$_SERVER['PHP_SELF'] == ROOT."/disos/monitoring/page_out.php" ||
+				$_SERVER['PHP_SELF'] == ROOT."/disos/monitoring/page_not.php" ||
+				$_SERVER['PHP_SELF'] == ROOT."/disos/monitoring/test.php" ){
 			}else{
 				if( !preg_match("/".$_SERVER['HTTP_HOST']."/i", $_SERVER['HTTP_REFERER']) ){
 					exit("No direct access allowed.");
 				}
 				if( (!$_SESSION['is_login'] || $_SESSION['is_login'] == 0) && !strpos($_SERVER["PHP_SELF"], "_json") ){
 					// $str = ' <script> ';
-					// $str.= ' parent.document.location.href="'.ROOT.'/vws/monitoring/login.php"; ';
+					// $str.= ' parent.document.location.href="'.ROOT.'/disos/monitoring/login.php"; ';
 					// $str.= ' </script> ';
 					// echo $str;
 					// exit;
@@ -343,7 +343,7 @@ Class ClassCommon {
 	 */
 	function getMenuCheck(){
 		if(DB == "0"){
-			$front = ROOT."/vws/monitoring/";
+			$front = ROOT."/disos/monitoring/";
 			$url = explode("/", $_SERVER['PHP_SELF']);
 			$url = $url[count($url) - 1];
 			if($url == "abr_state.php") $url = "abr_common.php";
@@ -359,7 +359,7 @@ Class ClassCommon {
 			if($_SESSION['user_type'] != 0 && $_SESSION['user_type'] != 7){
 				if($rs[0]['menu_idx'] == 4 || $rs[0]['menu_idx'] == 2){
 					$str = ' <script> ';
-					$str.= ' location.href="'.ROOT.'/vws/monitoring/page_out.php"; ';
+					$str.= ' location.href="'.ROOT.'/disos/monitoring/page_out.php"; ';
 					$str.= ' </script>';
 
 					echo $str;
@@ -378,7 +378,7 @@ Class ClassCommon {
 			// if($check){
 			// 	if( !in_array($_SESSION['user_type'], $check) ){
 			// 		// $str = ' <script> ';
-			// 		// $str.= ' location.href="'.ROOT.'/vws/monitoring/page_out.php"; ';
+			// 		// $str.= ' location.href="'.ROOT.'/disos/monitoring/page_out.php"; ';
 			// 		// $str.= ' </script> ';
 					
 			// 		// echo $str;
@@ -389,7 +389,7 @@ Class ClassCommon {
 			// 	if($url == "set_setting.php"){
 			// 		if($_REQUEST['check'] != "*&32956"){
 			// 			// $str = ' <script> ';
-			// 			// $str.= ' location.href="'.ROOT.'/vws/monitoring/page_out.php"; ';
+			// 			// $str.= ' location.href="'.ROOT.'/disos/monitoring/page_out.php"; ';
 			// 			// $str.= ' </script> ';
 						
 			// 			// echo $str;
@@ -399,7 +399,7 @@ Class ClassCommon {
 			// 	}else{
 			// 		/*
 			// 		$str = ' <script> ';
-			// 		$str.= ' location.href="'.ROOT.'/vws/monitoring/page_not.php"; ';
+			// 		$str.= ' location.href="'.ROOT.'/disos/monitoring/page_not.php"; ';
 			// 		$str.= ' </script> ';
 			// 		echo $str;
 			// 		exit;
@@ -576,7 +576,7 @@ Class ClassCommon {
 			$rs = $this->DB->execute($sql);
 			
 			$tmp_top_img = "";
-			if( file_exists(ROOT_DIR."/vws/images/top/".$rs[0]['top_img']) ){
+			if( file_exists(ROOT_DIR."/disos/images/top/".$rs[0]['top_img']) ){
 				$tmp_top_img = $rs[0]['top_img'];
 			}else{
 				$tmp_top_img = "hwajin.jpg";
