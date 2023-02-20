@@ -328,7 +328,7 @@ function spot(kind){ // 현장중계 - 현장중계만 있는 장비
 } // spot() end
 
 function spot_slide(){
-	$("#sidr-id-spot_detail").attr("href", "../divas/monitoring/main.php?url=tms_spot.php&num=1");
+	$("#sidr-id-spot_detail").attr("href", "../disos/monitoring/main.php?url=tms_spot.php&num=1");
 	
 	$.post( "controll/spot.php", { "mode" : "spot_slide" }, function(response){
 		var txt = '';

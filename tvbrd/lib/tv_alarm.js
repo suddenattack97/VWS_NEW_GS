@@ -570,7 +570,7 @@ function alarm(kind, arr_area_code){ // 방송 - 방송만 있는 장비
 } // alarm() end
 
 function alarm_slide(get_rtu_id){
-	$("#sidr-id-alarm_detail").attr("href", "../divas/monitoring/main.php?url=abr_common.php&num=2");
+	$("#sidr-id-alarm_detail").attr("href", "../disos/monitoring/main.php?url=abr_common.php&num=2");
 	
     var tmp_rtu_name = arr_rtu[ arr_id[get_rtu_id] ]['rtu_name'];
     tmp_rtu_name = (tmp_rtu_name.length > 10) ? tmp_rtu_name.substring(0, 10)+".." : tmp_rtu_name;

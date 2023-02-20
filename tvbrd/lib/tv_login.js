@@ -38,7 +38,7 @@ $(document).ready(function(){
 				if(login_kind == 1){
 					location.href = "./tvbrd/index.php";
 				}else if(login_kind == 2){
-					location.href = "./divas_link.php?divas_url=./divas/template/rfmainMonitoring/all_out.php";
+					location.href = "./disos_link.php?divas_url=./disos/template/rfmainMonitoring/all_out.php";
 				}
 				return false;
 			}else{

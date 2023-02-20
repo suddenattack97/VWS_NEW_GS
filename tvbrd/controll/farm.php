@@ -17,10 +17,10 @@ require_once "../db/_Db.php";
 # class 및 function lib
 #################################################################################################################################
 require_once "../class/DateMake.php";#시간 class
-require_once "../class/Divas_Util.php";//유틸 class
+require_once "../class/divas_Util.php";//유틸 class
 require_once "../class/DBmanager.php";#DB class
 
-//require_once "../../divas/_info/_set_farm.php";//축산 Class
+//require_once "../../disos/_info/_set_farm.php";//축산 Class
 //require_once "../class/RainInfo.class";#강우 class
 #################################################################################################################################
 # 객체 생성

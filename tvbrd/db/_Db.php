@@ -1,5 +1,5 @@
 <?
-require_once "../../divas/_conf/_db.php";
+require_once "../../disos/_conf/_db.php";
 
 define('DB',            "mysql");
 

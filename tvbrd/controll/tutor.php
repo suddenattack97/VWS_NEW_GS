@@ -17,7 +17,7 @@ require_once "../_common.php";
 # class 및 function lib
 #################################################################################################################################
 require_once "../class/DateMake.php";#시간 class
-require_once "../class/Divas_Util.php";//유틸 class
+require_once "../class/divas_Util.php";//유틸 class
 require_once "../class/DBmanager.php";#DB class
 
 #################################################################################################################################

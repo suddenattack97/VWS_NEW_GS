@@ -1,5 +1,5 @@
 <?
-require_once "class/Divas_Util.php";
+require_once "class/divas_Util.php";
 session_start();
 
 $dvUtil   = new Divas_Util();

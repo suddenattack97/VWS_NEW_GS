@@ -17,13 +17,13 @@ require_once "../db/_Db.php";
 # class 및 function lib
 #################################################################################################################################
 require_once "../class/DateMake.php";#시간 class
-require_once "../class/Divas_Util.php";//유틸 class
+require_once "../class/divas_Util.php";//유틸 class
 require_once "../class/DBmanager.php";#DB class
 require_once "../class/RtuInfo.php";//지역 Class
 
 require_once "../class/AlarmInfo.php";#방송 class
 
-require_once "../../divas/include/class/setting.php";#세팅 class
+require_once "../../disos/include/class/setting.php";#세팅 class
 #################################################################################################################################
 # 객체 생성
 #################################################################################################################################
@@ -214,7 +214,7 @@ $ClassSetting = new ClassSetting($DB,$DM, $dvUtil); // 설정
 			if ($ciphertext === false) return false;
 			
 			// 개인키를 읽어온다.
-			$private_key = @file_get_contents('../../divas/_info/json/private.key');
+			$private_key = @file_get_contents('../../disos/_info/json/private.key');
 			// 개인키를 사용하여 복호화한다.
 			
 			$privkey_decoded = @openssl_pkey_get_private($private_key);

@@ -1,5 +1,5 @@
 <?
-// require_once "../divas/_conf/_common.php";
+// require_once "../disos/_conf/_common.php";
 require_once "./_common.php";
 require_once "./head_popup.php";
 ?>

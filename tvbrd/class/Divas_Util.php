@@ -529,7 +529,7 @@ function getDecodedString($str) {
 			$upload_time = time();
 			$upload_name = "file_".$upload_time.".".$file_exe;
 			//$upload_dir = "../img/state/".$upload_name;
-			$upload_dir = "../../divas/images/state/".$upload_name;
+			$upload_dir = "../../disos/images/state/".$upload_name;
 			//$db_dir = "img/state/".$upload_name;
 			$db_dir = $upload_name;
 		}
@@ -604,7 +604,7 @@ function getDecodedString($str) {
 		if ($ciphertext === false) return false;
 		
 		// 개인키를 읽어온다.
-		$private_key = @file_get_contents(str_replace("/", "\\", $_SERVER['DOCUMENT_ROOT']).'/divas/_info/json/private.key');
+		$private_key = @file_get_contents(str_replace("/", "\\", $_SERVER['DOCUMENT_ROOT']).'/disos/_info/json/private.key');
 		// 개인키를 사용하여 복호화한다.
 		
 		$privkey_decoded = @openssl_pkey_get_private($private_key);

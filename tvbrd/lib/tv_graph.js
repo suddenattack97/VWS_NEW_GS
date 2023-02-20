@@ -57,28 +57,28 @@
 
 				if(get_kind == "rain"){
 					tmp_title = "강우"; tmp_unit = "(mm)";
-					$("#sidr-id-btn_graph_detail").attr("href", "../divas/monitoring/main.php?url=rpt_10m.php&area_code="+get_area_code);
+					$("#sidr-id-btn_graph_detail").attr("href", "../disos/monitoring/main.php?url=rpt_10m.php&area_code="+get_area_code);
 				}else if(get_kind == "flow"){
 					tmp_title = "수위"; tmp_unit = "(m)";
-					$("#sidr-id-btn_graph_detail").attr("href", "../divas/monitoring/main.php?url=rpt_10m.php&option=1&area_code="+get_area_code);
+					$("#sidr-id-btn_graph_detail").attr("href", "../disos/monitoring/main.php?url=rpt_10m.php&option=1&area_code="+get_area_code);
 				}else if(get_kind == "snow"){
 					tmp_title = "적설"; tmp_unit = "(cm)";
-					$("#sidr-id-btn_graph_detail").attr("href", "../divas/monitoring/main.php?url=rpt_10m.php&option=2&area_code="+get_area_code);
+					$("#sidr-id-btn_graph_detail").attr("href", "../disos/monitoring/main.php?url=rpt_10m.php&option=2&area_code="+get_area_code);
 				}else if(get_kind == "disp"){
 					tmp_title = "변위"; tmp_unit = "( ˚ )";
-					$("#sidr-id-btn_graph_detail").attr("href", "../divas/monitoring/main.php?url=tms_displace.php&num=1&area_code="+get_area_code);
+					$("#sidr-id-btn_graph_detail").attr("href", "../disos/monitoring/main.php?url=tms_displace.php&num=1&area_code="+get_area_code);
 				}else if(get_kind == "wind"){
 					tmp_title = "풍속"; tmp_unit = "(m/s)";
-					$("#sidr-id-btn_graph_detail").attr("href", "../divas/monitoring/main.php?url=rpt_10m.php&option=4&area_code="+get_area_code);
+					$("#sidr-id-btn_graph_detail").attr("href", "../disos/monitoring/main.php?url=rpt_10m.php&option=4&area_code="+get_area_code);
 				}else if(get_kind == "damp"){
 					tmp_title = "습도"; tmp_unit = "(%)";
-					$("#sidr-id-btn_graph_detail").attr("href", "../divas/monitoring/main.php?url=rpt_10m.php&option=5&area_code="+get_area_code);
+					$("#sidr-id-btn_graph_detail").attr("href", "../disos/monitoring/main.php?url=rpt_10m.php&option=5&area_code="+get_area_code);
 				}else if(get_kind == "temp"){
 					tmp_title = "온도"; tmp_unit = "(°C)";
-					$("#sidr-id-btn_graph_detail").attr("href", "../divas/monitoring/main.php?url=rpt_10m.php&option=3&area_code="+get_area_code);
+					$("#sidr-id-btn_graph_detail").attr("href", "../disos/monitoring/main.php?url=rpt_10m.php&option=3&area_code="+get_area_code);
 				}else if(get_kind == "pres"){
 					tmp_title = "기압"; tmp_unit = "(hPa)";
-					$("#sidr-id-btn_graph_detail").attr("href", "../divas/monitoring/main.php?url=rpt_10m.php&option=6&area_code="+get_area_code);
+					$("#sidr-id-btn_graph_detail").attr("href", "../disos/monitoring/main.php?url=rpt_10m.php&option=6&area_code="+get_area_code);
 				}
 				$("#sidr-id-chart_title").html(tmp_title);
 				

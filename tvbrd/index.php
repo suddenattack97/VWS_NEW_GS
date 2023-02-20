@@ -1,5 +1,5 @@
 <?
-// require_once "../divas/_conf/_common.php";
+// require_once "../disos/_conf/_common.php";
 require_once "./_common.php";
 require_once "./head.php";
 ?>
@@ -11,7 +11,7 @@ require_once "./head.php";
 	    			<img src="img/settings.png">
 	    		</a>
 	    	</div>
-	        <div id="top_img"><img src="../divas/images/top/<?=$_SESSION['top_img']?>" alt="로고"/></div>
+	        <div id="top_img"><img src="../disos/images/top/<?=$_SESSION['top_img']?>" alt="로고"/></div>
 	        <div class="ttext">
 	        	<span id="top_text"></span> <span class="txtcolor_lb"><?=$_SESSION['top_title']?></span>
 	        </div>
@@ -291,7 +291,7 @@ function setToggle(sets){
 		if (login_token !== "1" || !login_token) {
 			swal({ 
 			title: '',
-			text: '<div><iframe width="451px" height="530px" scrolling="no" src="../divas/monitoring/login.php?target=map" style="border: 0;margin-top:-30px;margin-left: -5px;"></iframe></div>',
+			text: '<div><iframe width="451px" height="530px" scrolling="no" src="../disos/monitoring/login.php?target=map" style="border: 0;margin-top:-30px;margin-left: -5px;"></iframe></div>',
 			showConfirmButton: false,
 			html: true,
 			customClass: 'swal-wide'

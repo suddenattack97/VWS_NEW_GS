@@ -1556,7 +1556,7 @@
     	// 로그아웃
     	$("#btn_logout").click(function(){
     		$.post("controll/login.php", { "mode" : "logout" }, function(response){
-				location.href = "../divas/monitoring/login.php";
+				location.href = "../disos/monitoring/login.php";
     		}, "json");
     	});
     	

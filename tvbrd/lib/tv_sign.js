@@ -402,7 +402,7 @@ function sign(kind, arr_sub_id){ // 문자전광판
 } // sign() end
 
 function sign_slide(get_rtu_id){
-	$("#sidr-id-sign_detail").attr("href", "../divas/monitoring/main.php?url=sbd_send.php&num=6");
+	$("#sidr-id-sign_detail").attr("href", "../disos/monitoring/main.php?url=sbd_send.php&num=6");
 	$("#sidr-id-sign").attr("style", "padding:8px 0 0 0; height: 355px; overflow-y: scroll; overflow-x: hidden;");
 	$("#sidr-id-sign2").attr("style", "height: 351px; overflow-y: scroll; overflow-x: hidden;");
 	

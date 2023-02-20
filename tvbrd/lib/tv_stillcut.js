@@ -407,13 +407,13 @@ function stillcut_slide(get_area_code){
         
     	if(ltype == 0){
     		tmp_title = "수위"; tmp_unit = "(m)";
-        	$("#sidr-id-btn_graph_detail").attr("href", "../divas/monitoring/main.php?url=../../rainsv/stc_list.php&num=8");
+        	$("#sidr-id-btn_graph_detail").attr("href", "../disos/monitoring/main.php?url=../../rainsv/stc_list.php&num=8");
         }else if(ltype == 1){
         	tmp_title = "적설"; tmp_unit = "(cm)";
-        	$("#sidr-id-btn_graph_detail").attr("href", "../divas/monitoring/main.php?url=../../rainsv/stc_list.php&num=8");
+        	$("#sidr-id-btn_graph_detail").attr("href", "../disos/monitoring/main.php?url=../../rainsv/stc_list.php&num=8");
         }else if(ltype == 2){
         	tmp_title = "방송"; tmp_unit = "";
-        	$("#sidr-id-btn_graph_detail").attr("href", "../divas/monitoring/main.php?url=../../rainsv/stc_list.php&num=8");
+        	$("#sidr-id-btn_graph_detail").attr("href", "../disos/monitoring/main.php?url=../../rainsv/stc_list.php&num=8");
         }else{
         	tmp_title = "방송"; tmp_unit = "";
         }
@@ -511,7 +511,7 @@ function stillcut_slide(get_area_code){
 
 		$(".gbg").click(function(e){
 			console.log(e.target.id);
-			window.open("../divas/monitoring/main.php?url=tms_alarm.php?num="+e.target.id);
+			window.open("../disos/monitoring/main.php?url=tms_alarm.php?num="+e.target.id);
 		});
 
 		// 이미지 팝업

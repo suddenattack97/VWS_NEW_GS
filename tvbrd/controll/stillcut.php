@@ -18,7 +18,7 @@ require_once "../db/_Db.php";
 # class 및 function lib
 #################################################################################################################################
 require_once "../class/DateMake.php";#시간 class
-require_once "../class/Divas_Util.php";//유틸 class
+require_once "../class/divas_Util.php";//유틸 class
 require_once "../class/DBmanager.php";#DB class
 require_once "../class/RtuInfo.php";//지역 Class
 require_once "../class/FlowInfo.php";#수위 class
@@ -153,7 +153,7 @@ $dvUtil   = new Divas_Util();
 	    				if( file_exists("../../rainsv".$rdata[$i]['img']) ){
 	    					$tmp_img = "../rainsv/".$rdata[$i]['img'];
 	    				}else{
-	    					$tmp_img = "../divas/images/noimage.png";
+	    					$tmp_img = "../disos/images/noimage.png";
 	    				}
     				}
     				$arr_data[$i]['img'] = $tmp_img;
@@ -184,7 +184,7 @@ $dvUtil   = new Divas_Util();
 	    				if( file_exists("../../rainsv".$rdata[$i]['img']) ){
 	    					$tmp_img = "../rainsv/".$rdata[$i]['img'];
 	    				}else{
-	    					$tmp_img = "../divas/images/noimage.png";
+	    					$tmp_img = "../disos/images/noimage.png";
 	    				}
     				}
     				$arr_data[$i]['img'] = $tmp_img;
@@ -237,7 +237,7 @@ $dvUtil   = new Divas_Util();
 	    				if( file_exists("../../rainsv".$rdata[$i]['img']) ){
 	    					$tmp_img = "../rainsv/".$rdata[$i]['img'];
 	    				}else{
-	    					$tmp_img = "../divas/images/noimage.png";
+	    					$tmp_img = "../disos/images/noimage.png";
 	    				}
     				}
     				$arr_data[$i]['img'] = $tmp_img;

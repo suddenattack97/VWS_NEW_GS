@@ -5,7 +5,7 @@
 require_once "../db/_Db.php";
 
 require_once "../class/DateMake.php";#시간 class
-require_once "../class/Divas_Util.php";//유틸 class
+require_once "../class/divas_Util.php";//유틸 class
 require_once "../class/DBmanager.php";#DB class
 
 $DB       = new DBmanager(DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE);

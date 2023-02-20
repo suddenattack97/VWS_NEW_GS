@@ -17,7 +17,7 @@ require_once "../db/_Db.php";
 # class 및 function lib
 #################################################################################################################################
 require_once "../class/DateMake.php";#시간 class
-require_once "../class/Divas_Util.php";//유틸 class
+require_once "../class/divas_Util.php";//유틸 class
 require_once "../class/DBmanager.php";#DB class
 //require_once "../class/RtuInfo.class";//지역 Class
 
@@ -58,10 +58,10 @@ $dvUtil   = new Divas_Util();
     		$data_list[$i]['spot_title'] = $data[$i]['spot_title'];
     		$data_list[$i]['spot_content'] = $data[$i]['spot_content'];
     		$tmp_img = '';
-    		if( file_exists("../../divas/images/spot/".$data[$i]['spot_img']) ){
-    			$tmp_img = "../divas/images/spot/".$data[$i]['spot_img'];
+    		if( file_exists("../../disos/images/spot/".$data[$i]['spot_img']) ){
+    			$tmp_img = "../disos/images/spot/".$data[$i]['spot_img'];
     		}else{
-    			$tmp_img = "../divas/images/noimage.png";
+    			$tmp_img = "../disos/images/noimage.png";
     		}
     		$data_list[$i]['spot_img'] = $tmp_img;
     		$data_list[$i]['spot_name'] = $data[$i]['spot_name'];
@@ -90,10 +90,10 @@ $dvUtil   = new Divas_Util();
     		$data_list[$i]['spot_title'] = $data[$i]['spot_title'];
     		$data_list[$i]['spot_content'] = $data[$i]['spot_content'];
     		$tmp_img = '';
-    		if( file_exists("../../divas/images/spot/".$data[$i]['spot_img']) ){
-    			$tmp_img = "../divas/images/spot/".$data[$i]['spot_img'];
+    		if( file_exists("../../disos/images/spot/".$data[$i]['spot_img']) ){
+    			$tmp_img = "../disos/images/spot/".$data[$i]['spot_img'];
     		}else{
-    			$tmp_img = "../divas/images/noimage.png";
+    			$tmp_img = "../disos/images/noimage.png";
     		}
     		$data_list[$i]['spot_img'] = $tmp_img;
     		$data_list[$i]['spot_name'] = $data[$i]['spot_name'];

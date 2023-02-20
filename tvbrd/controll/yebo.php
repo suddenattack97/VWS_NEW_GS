@@ -7,7 +7,7 @@
 
 @header('Content-Type: application/json');
 @header("Content-Type: text/html; charset=utf-8");
-require_once "../class/Divas_Util.php";//유틸 class
+require_once "../class/divas_Util.php";//유틸 class
 $dvUtil   = new Divas_Util();
 
 $mode =  $dvUtil->xss_clean($_REQUEST["mode"]);

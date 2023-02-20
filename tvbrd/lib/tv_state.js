@@ -1,6 +1,6 @@
 var as_ajax = "";
 function state_slide(type, get_area_code){
-	$("#sidr-id-btn_state_detail").attr("href", "../divas/monitoring/main.php?url=tms_equip.php&num=1");
+	$("#sidr-id-btn_state_detail").attr("href", "../disos/monitoring/main.php?url=tms_equip.php&num=1");
 	
 	if( $(".sidr-class-equip_st").css("display") != "none" ){
 		$(".sidr-class-as_st").hide();
@@ -173,8 +173,8 @@ function state_slide(type, get_area_code){
 	        $("#sidr-id-v_addr_detail").text(addr_detail);
 	        var tmp_src = '';
 	        if(img){
-	        	tmp_src += '<a href="../../divas/images/state/'+img+'" class="magnific-popup">\n\
-	        				<img src="../../divas/images/state/'+img+'" class="equip_img" style="width: 100%; height: 220px; margin-top: 0px !important; top: 0px !important;">\n\
+	        	tmp_src += '<a href="../../disos/images/state/'+img+'" class="magnific-popup">\n\
+	        				<img src="../../disos/images/state/'+img+'" class="equip_img" style="width: 100%; height: 220px; margin-top: 0px !important; top: 0px !important;">\n\
 	        				</a>';
 	        }else{
 	        	tmp_src += '<div style="width: 100%; height: 220px; background-color: #BFD2EB; text-align: center;">\n\
@@ -277,7 +277,7 @@ function state_slide(type, get_area_code){
 	        $("#sidr-id-v_addr_detail").text(addr_detail);
 	        var tmp_src = '';
 	        if(img){
-	        	tmp_src += '<img src="../../divas/images/state/'+img+'" class="equip_img" style="width: 100%; height: 220px; margin-top: 0px !important; top: 0px !important;">';
+	        	tmp_src += '<img src="../../disos/images/state/'+img+'" class="equip_img" style="width: 100%; height: 220px; margin-top: 0px !important; top: 0px !important;">';
 	        }else{
 	        	tmp_src += '<div style="width: 100%; height: 220px; background-color: #BFD2EB; text-align: center;">\n\
 	        					<span style="position: relative; top: 100px;">이미지를 업로드 해주세요.</span>\n\
