@@ -152,14 +152,23 @@
 				
 				tmp_html += '<tr>';
 				tmp_html += '	<td class="gbg name Lh63">최고</td>';
+				if(get_kind == "wind"){
+					tmp_html += '	<td>-</td>';
+				}
 				tmp_html += '	<td>'+time_max+'</td>';
 				tmp_html += '</tr>';
 				tmp_html += '<tr>';
 				tmp_html += '	<td class="gbg name Lh63">최저</td>';
+				if(get_kind == "wind"){
+					tmp_html += '	<td>-</td>';
+				}
 				tmp_html += '	<td>'+time_min+'</td>';
 				tmp_html += '</tr>';
 				tmp_html += '<tr>';
 				tmp_html += '	<td class="gbg name Lh63">평균</td>';
+				if(get_kind == "wind"){
+					tmp_html += '	<td>-</td>';
+				}
 				tmp_html += '	<td>'+time_avg+'</td>';
 				tmp_html += '</tr>';
 				$("#sidr-id-graph_tbody").html(tmp_html);
