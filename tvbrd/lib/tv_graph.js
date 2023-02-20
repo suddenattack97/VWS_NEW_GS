@@ -68,7 +68,7 @@
 					tmp_title = "변위"; tmp_unit = "( ˚ )";
 					$("#sidr-id-btn_graph_detail").attr("href", "../divas/monitoring/main.php?url=tms_displace.php&num=1&area_code="+get_area_code);
 				}else if(get_kind == "wind"){
-					tmp_title = "풍향/풍속"; tmp_unit = "(m/s)";
+					tmp_title = "풍속"; tmp_unit = "(m/s)";
 					$("#sidr-id-btn_graph_detail").attr("href", "../divas/monitoring/main.php?url=rpt_10m.php&option=4&area_code="+get_area_code);
 				}else if(get_kind == "damp"){
 					tmp_title = "습도"; tmp_unit = "(%)";
@@ -100,7 +100,12 @@
 
 				tmp_html += '<tr>';
 				tmp_html += '	<th class="sidr-class-w50">시간</th>';
-				tmp_html += '	<th>'+tmp_title + tmp_unit+'</th>';
+				if(get_kind == "wind"){
+					tmp_html += '	<th style="width:25%">풍향</th>';
+					tmp_html += '	<th>'+tmp_title + tmp_unit+'</th>';
+				}else{
+					tmp_html += '	<th>'+tmp_title + tmp_unit+'</th>';
+				}
 				tmp_html += '</tr>';
 
 				$.each(hour, function(index, item){
@@ -135,7 +140,8 @@
 						tmp_html += '<tr>';
 						tmp_html += '	<td class="gbg name Lh63">'+tmp_date+'</td>';
 						if(get_kind == "wind"){
-							tmp_html += '	<td><img class="windImg" src="img/wind/'+tmp_deg+'"/>'+tmp_data+'</td>';
+							tmp_html += '	<td><img class="windImg" src="img/wind/'+tmp_deg+'"/></td>';
+							tmp_html += '	<td>'+tmp_data+'</td>';
 						}else{
 							tmp_html += '	<td>'+tmp_data+'</td>';
 						}
