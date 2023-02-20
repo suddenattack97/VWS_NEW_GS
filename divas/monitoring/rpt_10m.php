@@ -202,7 +202,7 @@ $(document).ready(function(){
 		
     	if(chart) chart.destroy();
 
-		var tempMode = $("#option option:selected").text();
+		var tempMode = ($("#option option:selected").text() == "풍향/풍속" ? "풍속" : $("#option option:selected").text());
 		var tempArea = $("#area_code").val();
 
 		$.ajax({
