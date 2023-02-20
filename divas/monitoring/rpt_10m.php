@@ -669,7 +669,7 @@ $(document).ready(function(){
 	        	extend: "excel",
 	            text: "엑셀변환",
 		        className: "btn_lbb80_s",
-				filename: '상세 보고서_' + timestamp, 
+				filename: '상세 보고서_'+$("#option option:selected").text()+"_"+$('#area_code option:selected').html()+'_'+timestamp, 
 	            title: "",
 				messageTop: seText,
 	            customize: function(xlsx){
