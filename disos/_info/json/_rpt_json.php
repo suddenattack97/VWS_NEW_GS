@@ -1063,29 +1063,60 @@ function getDispDateAndArray($sdate, $edate, $area_data){
 
 // data_list 배열 반환
 function getDateAndArray($sdate, $edate, $area_data){
+	$today = date("Y-m-d");
 
 	$eedate = true;
-	$tmp_sdate = $sdate;
+	$todayF = false;
+	$tmp_sdate = $edate;
 	while($eedate){
-		for($i=0; $i<=23; $i++){
-			if($i < 10){
-				$tmp_i = "0".$i;
-			}else{
-				$tmp_i = $i;
-			}
-			for($j=0; $j<=5; $j++){
+		if($today == $tmp_sdate) $todayF = true;
+		if($todayF){
+			for($i=(int)date("H"); $i>=0; $i--){
+				if($i < 10){
+					$tmp_i = "0".$i;
+				}else{
+					$tmp_i = $i;
+				}
+				for($j=5; $j>=0; $j--){
+					if($tmp_i != (int)date("H")){
+						$tmp_date = $tmp_sdate." ".$tmp_i.":".$j."0:00";
+						$data_list[$tmp_date]['DATE'] = $tmp_date;
+						$data_list[$tmp_date]['DATA'] = "-";
+					}else if( $j."0" < date("i") ){
+						$tmp_date = $tmp_sdate." ".$tmp_i.":".$j."0:00";
+						$data_list[$tmp_date]['DATE'] = $tmp_date;
+						$data_list[$tmp_date]['DATA'] = "-";
+					}
+					if($area_data != null){
+						$data_list[$tmp_date]['DATA1'] = $area_data['RISK_1'];
+						$data_list[$tmp_date]['DATA2'] = $area_data['RISK_2'];
+					}
+				}
 				
-				$tmp_date = $tmp_sdate." ".$tmp_i.":".$j."0:00";
-				$data_list[$tmp_date]['LEG'] = $tmp_date;
-				$data_list[$tmp_date]['DATA'] = "-";
-				if($area_data != null){
-					$data_list[$tmp_date]['DATA1'] = $area_data['RISK_1'];
-					$data_list[$tmp_date]['DATA2'] = $area_data['RISK_2'];
+			}
+			$todayF = false;
+		}else{
+			for($i=23; $i>=0; $i--){
+				if($i < 10){
+					$tmp_i = "0".$i;
+				}else{
+					$tmp_i = $i;
+				}
+				for($j=5; $j>=0; $j--){
+					
+					$tmp_date = $tmp_sdate." ".$tmp_i.":".$j."0:00";
+					$data_list[$tmp_date]['DATE'] = $tmp_date;
+					$data_list[$tmp_date]['DATA'] = "-";
+					if($area_data != null){
+						$data_list[$tmp_date]['DATA1'] = $area_data['RISK_1'];
+						$data_list[$tmp_date]['DATA2'] = $area_data['RISK_2'];
+					}
 				}
 			}
 		}
-		$tmp_sdate = date("Y-m-d", strtotime($tmp_sdate.' + 1 days'));
-		if($tmp_sdate > $edate) $eedate = false;
+
+		$tmp_sdate = date("Y-m-d", strtotime($tmp_sdate.' - 1 days'));
+		if($tmp_sdate < $sdate) $eedate = false;
 	}
 	
 	return $data_list;

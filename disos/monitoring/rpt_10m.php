@@ -494,30 +494,31 @@ $(document).ready(function(){
 							scales: {
 								xAxes:[{
 									ticks:{
-									autoSkip : false,
-									maxRotation :0,
-									minRotation :0,
-									fontColor: '#222'
+										autoSkip : true,
+										// maxRotation :0,
+										// minRotation :0,
+										fontColor: '#222'
 									},
 
 									display: true,
 									scaleLabel: {
 									display: true,
-									labelString: ''
+										labelString: ''
 									},
 
-									gridLines: {
-										display: false
-									},
+									// gridLines: {
+									// 	display: false
+									// },
 
 									afterTickToLabelConversion: function(data){
 										let xLabels = data.ticks;
+										// console.log(xLabels);
 										for(let i = 0; i<xLabels.length;i++){
-										if ( (i >= 1) && (i <= xLabels.length-2) )
-											xLabels[i] = '';
-										else{
-											// console.log(xLabels[i]);
-										}
+											if( i >= 1 ){
+												xLabels[i] = xLabels[i].substr(5);
+												// if ( xLabels[i].substr(3,2) != '01' )
+												// 	xLabels[i] = xLabels[i].substr(3);
+											}
 											// console.log(xLabels.length);
 										}
 									} 
@@ -649,7 +650,7 @@ $(document).ready(function(){
 					}
                 }
 	        },
-	   		{
+	   		/* {
 	        	extend: "print",
 	            text: "인쇄",
 	            className: "btn_lbb80_s",
@@ -664,7 +665,7 @@ $(document).ready(function(){
 					$(".print_hd").hide();
 					makeDivToImageFile($("#content")); // 보고서 캡쳐인쇄 함수호출
                 }
-	        },
+	        }, */
 	   		{
 	        	extend: "excel",
 	            text: "엑셀변환",

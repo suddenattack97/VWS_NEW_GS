@@ -16,26 +16,51 @@ $type = 'M';
 
 $t_sdate = $sdate." 00:00:00";
 $t_edate = $edate." 23:50:00";
+$today = date("Y-m-d");
 
 $eedate = true;
-$tmp_sdate = $sdate;
+$todayF = false;
+$tmp_sdate = $edate;
 while($eedate){
-	for($i=0; $i<=23; $i++){
-		if($i < 10){
-			$tmp_i = "0".$i;
-		}else{
-			$tmp_i = $i;
+	if($today == $tmp_sdate) $todayF = true;
+	if($todayF){
+		for($i=(int)date("H"); $i>=0; $i--){
+			if($i < 10){
+				$tmp_i = "0".$i;
+			}else{
+				$tmp_i = $i;
+			}
+			for($j=5; $j>=0; $j--){
+				if($tmp_i != (int)date("H")){
+					$tmp_date = $tmp_sdate." ".$tmp_i.":".$j."0:00";
+					$data_list[$tmp_date]['DATE'] = $tmp_date;
+					$data_list[$tmp_date]['DATA'] = "-";
+				}else if( $j."0" < date("i") ){
+					$tmp_date = $tmp_sdate." ".$tmp_i.":".$j."0:00";
+					$data_list[$tmp_date]['DATE'] = $tmp_date;
+					$data_list[$tmp_date]['DATA'] = "-";
+				}
+			}
 		}
-		for($j=0; $j<=5; $j++){
-			
-			$tmp_date = $tmp_sdate." ".$tmp_i.":".$j."0:00";
-			$data_list[$tmp_date]['DATE'] = $tmp_date;
-			$data_list[$tmp_date]['DATA'] = "-";
+		$todayF = false;
+	}else{
+		for($i=23; $i>=0; $i--){
+			if($i < 10){
+				$tmp_i = "0".$i;
+			}else{
+				$tmp_i = $i;
+			}
+			for($j=5; $j>=0; $j--){
+				
+				$tmp_date = $tmp_sdate." ".$tmp_i.":".$j."0:00";
+				$data_list[$tmp_date]['DATE'] = $tmp_date;
+				$data_list[$tmp_date]['DATA'] = "-";
+			}
 		}
 	}
 
-	$tmp_sdate = date("Y-m-d", strtotime($tmp_sdate.' + 1 days'));
-	if($tmp_sdate > $edate) $eedate = false;
+	$tmp_sdate = date("Y-m-d", strtotime($tmp_sdate.' - 1 days'));
+	if($tmp_sdate < $sdate) $eedate = false;
 }
 $sensor = $option > 3 ? 3 : $option;
 $LocalDB = new ClassRtuInfo($DB, $sensor);
@@ -58,6 +83,7 @@ if($option == "0"){
 			$data_list[ $val['RAIN_DATE'] ]['DATE'] = $val['RAIN_DATE'];
 			$data_list[ $val['RAIN_DATE'] ]['DATA'] = round_data($val['RAIN'], 0.01, 10);
 		}
+		array_reverse($data_list);
 	}
 }else if($option == "1"){
 	//수위자료
