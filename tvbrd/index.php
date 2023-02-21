@@ -16,6 +16,7 @@ require_once "./head.php";
 	        	<span id="top_text"></span> <span class="txtcolor_lb"><?=$_SESSION['top_title']?></span>
 	        </div>
 			<div id="now_date" class="date"></div>
+			<div id="main_title" class="main_title">관제상황판</div>
     	</div>
 
 	    <div id="set">
