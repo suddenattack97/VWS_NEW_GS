@@ -23,6 +23,10 @@ Class WindInfo {
 	public $TimeListValue;	 // 시간 단위 데이터
 	public $TimeListDegValue;	 // 시간 단위 데이터
 	public $TimeListDateValue; // 시간 단위 날짜
+	public $MAX_DEG; // 시간 단위 날짜
+	public $MAX_VEL; // 시간 단위 날짜
+	public $MAX_VEL_TIME; // 시간 단위 날짜
+	public $AVR_VEL; // 시간 단위 날짜
 
 	private $DB;
 	private $DM;
@@ -96,7 +100,9 @@ Class WindInfo {
 	/* 시간 범위 풍속 */
 	function getTimeListValue($area_code, $type, $startdate, $enddate) {
 		$sql = " SELECT IFNULL(b.wind_date, '-') AS wind_date, IFNULL(b.avr_deg1, '-') AS avr_deg1, IFNULL(b.avr_vel1, '-') AS avr_vel1, 
-				concat(LPAD(t1.num,2,'0'), concat(':', LPAD(t2.num,2,'0'))) as numC
+				concat(LPAD(t1.num,2,'0'), concat(':', LPAD(t2.num,2,'0'))) as numC,
+				IFNULL(b.max_deg, '-') AS max_deg ,IFNULL(b.max_vel, '-') AS max_vel,
+				IFNULL(b.max_vel_time, '-') AS max_vel_time
 				FROM (select num from statistics_tmp where type = 'H') as t1
 				join (select num from statistics_tmp where type = 'M') as t2	
 				 RIGHT JOIN (
@@ -116,7 +122,28 @@ Class WindInfo {
 			$this->TimeListDegValue[$i]     = ($this->windAngle($rs[$i]['avr_deg1']) != "-") ? ($this->windAngle($rs[$i]['avr_deg1'])) : "-";
 			$this->TimeListDateValue[$i] = $rs[$i]['wind_date'];
 			$this->Num[$i] 				 = $rs[$i]['numC'];
+
+			$this->AVR_VEL += $rs[$i]['avr_vel1'];
+
+			if($this->MAX_VEL){
+				if($rs[$i]['max_vel']*$this->getCalc > $this->MAX_VEL){
+					$this->MAX_DEG 			 = ($this->windAngle($rs[$i]['max_deg']) != "-") ? ($this->windAngle($rs[$i]['max_deg'])) : "-";
+					$this->MAX_VEL			 = $rs[$i]['max_vel']*$this->getCalc;
+					$this->MAX_VEL_TIME 	 = $rs[$i]['max_vel_time'];
+				}else if($rs[$i]['max_vel']*$this->getCalc == $this->MAX_VEL){
+					if($rs[$i]['max_vel_time'] > $this->MAX_VEL_TIME){
+						$this->MAX_DEG 			 = ($this->windAngle($rs[$i]['max_deg']) != "-") ? ($this->windAngle($rs[$i]['max_deg'])) : "-";
+						$this->MAX_VEL			 = $rs[$i]['max_vel']*$this->getCalc;
+						$this->MAX_VEL_TIME 	 = $rs[$i]['max_vel_time'];
+					}
+				}
+			}else{
+				$this->MAX_DEG 			 = ($this->windAngle($rs[$i]['max_deg']) != "-") ? ($this->windAngle($rs[$i]['max_deg'])) : "-";
+				$this->MAX_VEL			 = $rs[$i]['max_vel']*$this->getCalc;
+				$this->MAX_VEL_TIME 	 = $rs[$i]['max_vel_time'];
+			}
 		}
+		$this->AVR_VEL = $this->AVR_VEL / $this->DB->NUM_ROW() *$this->getCalc;
 	
 		unset($rs);
 		$this->rsCnt = $i;

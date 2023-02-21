@@ -117,6 +117,10 @@ $dvUtil   = new Divas_Util();
 					$arr_data[$i]['data'] = $tmpInfo->TimeListValue[$i];
 					if($kind == "wind") $arr_data[$i]['deg_data'] = $tmpInfo->TimeListDegValue[$i];
 				}
+				if($kind == "wind") $MAX_DEG = $tmpInfo->MAX_DEG;
+				if($kind == "wind") $MAX_VEL = $tmpInfo->MAX_VEL;
+				if($kind == "wind") $MAX_VEL_TIME = $tmpInfo->MAX_VEL_TIME;
+				if($kind == "wind") $AVR_VEL = $tmpInfo->AVR_VEL;
 			}
 			// if(count($arr_data) % 2 == 0) {
 				$arr_data[$i]['num'] = '';
@@ -128,7 +132,12 @@ $dvUtil   = new Divas_Util();
 	    $resultArr["rtuname"] = $RtuInfo->RTU_NAME;
 	    $resultArr["hour"] = $arr_data;
 	
-	 	$returnBody = array( 'result' => true, 'data' => $resultArr );
+	 	$returnBody = array( 'result' => true, 'data' => $resultArr,
+		'MAX_DEG' => $MAX_DEG ,
+		'MAX_VEL' => $MAX_VEL ,
+		'MAX_VEL_TIME' => $MAX_VEL_TIME ,
+		'AVR_VEL' => $AVR_VEL 
+		);
 		echo json_encode( $returnBody );
 		exit;
 	

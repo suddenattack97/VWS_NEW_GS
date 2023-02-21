@@ -31,6 +31,10 @@
             success : function(response) {
 				//console.log(response);
 				var list = response.data;
+				var MAX_DEG = response.MAX_DEG;
+				var MAX_VEL = response.MAX_VEL;
+				var MAX_VEL_TIME = response.MAX_VEL_TIME;
+				var AVR_VEL = response.AVR_VEL;
 				var hour = list.hour; // 시간 데이터
 				var hour_cnt = list.hour/length; // 시간 데이터 개수
 				var graph_leg = []; // 그래프 라벨 배열
@@ -151,25 +155,28 @@
 				time_avg = (time_cnt == 0) ? "-" : (time_sum / time_cnt).toFixedOf(2);
 				
 				tmp_html += '<tr>';
-				tmp_html += '	<td class="gbg name Lh63">최고</td>';
 				if(get_kind == "wind"){
-					tmp_html += '	<td>-</td>';
+					tmp_html += '	<td class="gbg name Lh63">최고 : 시간,풍향,풍속(m/s)</td>';
+					tmp_html += '	<td colspan=2>시간 : '+MAX_VEL_TIME+', <br> 풍향 : <img src="img/wind/'+MAX_DEG+'"/>, 풍속 : '+MAX_VEL+' (m/s)</td>';
+				}else{
+					tmp_html += '	<td class="gbg name Lh63">최고</td>';
+					tmp_html += '	<td>'+time_max+'</td>';
 				}
-				tmp_html += '	<td>'+time_max+'</td>';
 				tmp_html += '</tr>';
-				tmp_html += '<tr>';
-				tmp_html += '	<td class="gbg name Lh63">최저</td>';
-				if(get_kind == "wind"){
-					tmp_html += '	<td>-</td>';
+				if(get_kind != "wind"){
+					tmp_html += '<tr>';
+					tmp_html += '	<td class="gbg name Lh63">최저</td>';
+					tmp_html += '	<td>'+time_min+'</td>';
+					tmp_html += '</tr>';
 				}
-				tmp_html += '	<td>'+time_min+'</td>';
-				tmp_html += '</tr>';
 				tmp_html += '<tr>';
-				tmp_html += '	<td class="gbg name Lh63">평균</td>';
 				if(get_kind == "wind"){
-					tmp_html += '	<td>-</td>';
+					tmp_html += '	<td class="gbg name Lh63">평균 풍속</td>';
+					tmp_html += '	<td colspan=2>'+AVR_VEL+' (m/s)</td>';
+				}else{
+					tmp_html += '	<td class="gbg name Lh63">평균</td>';
+					tmp_html += '	<td>'+time_avg+'</td>';
 				}
-				tmp_html += '	<td>'+time_avg+'</td>';
 				tmp_html += '</tr>';
 				$("#sidr-id-graph_tbody").html(tmp_html);
 				
