@@ -99,7 +99,7 @@ require_once "./head.php";
 				<canvas id="graph10m"></canvas><!-- 그래프 -->
 			</li>
 			<li class="li100_nor_rignt">
-				<table id="list_table" class="tb_data pB0 lbdg">
+				<table id="list_table" class="tb_data pB0">
 					<thead>
 						<tr>
 							<?if($option == "4"){ ?>
@@ -115,19 +115,19 @@ require_once "./head.php";
 							foreach($data_list as $key => $val){ 
 						?>
 						<tr class="hh" id="<?=$val['DATE']?>">
-							<td id="date" class="li<?=$option == '4' ? "9" : "50"?>"><?=$val['DATE']?></td>
+							<td id="date" class="bL_1gry li<?=$option == '4' ? "9" : "50"?>"><?=$val['DATE']?></td>
 							<? if($val['DATA'] > 0 && ($option == "0" || $option == "2")){ ?>
-								<td class="li50 bL_1gry txtcolor_r">
+								<td class="li50 txtcolor_r">
 							<? } else { ?>
 								<?if($option == "4"){ ?>
-									<td class="li9_5 bL_1gry">
+									<td class="li9_5">
 										<span class="effect">
 											<img src="<?=$val['DEG']?>"/>
 										</span>
 									</td>
-									<td class="li8_5 bL_1gry">
+									<td class="li8_5">
 								<? }else{?>
-									<td class="li50 bL_1gry">
+									<td class="li50">
 								<? } ?>
 							<? } ?>
 								<span class="effect">
