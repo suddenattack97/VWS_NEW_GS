@@ -99,7 +99,7 @@ require_once "./head.php";
 				<canvas id="graph10m"></canvas><!-- 그래프 -->
 			</li>
 			<li class="li100_nor_rignt">
-				<table id="list_table" class="tb_data pB0">
+				<table id="list_table" class="tb_data pB0 lbdg">
 					<thead>
 						<tr>
 							<?if($option == "4"){ ?>
@@ -115,19 +115,19 @@ require_once "./head.php";
 							foreach($data_list as $key => $val){ 
 						?>
 						<tr class="hh" id="<?=$val['DATE']?>">
-							<td id="date" class="bL_1gry li<?=$option == '4' ? "9" : "50"?>"><?=$val['DATE']?></td>
+							<td id="date" class="li<?=$option == '4' ? "9" : "50"?>"><?=$val['DATE']?></td>
 							<? if($val['DATA'] > 0 && ($option == "0" || $option == "2")){ ?>
-								<td class="li50 txtcolor_r">
+								<td class="li50 bL_1gry txtcolor_r">
 							<? } else { ?>
 								<?if($option == "4"){ ?>
-									<td class="li9_5">
+									<td class="li9_5 bL_1gry">
 										<span class="effect">
 											<img src="<?=$val['DEG']?>"/>
 										</span>
 									</td>
-									<td class="li8_5">
+									<td class="li8_5 bL_1gry">
 								<? }else{?>
-									<td class="li50">
+									<td class="li50 bL_1gry">
 								<? } ?>
 							<? } ?>
 								<span class="effect">
@@ -202,10 +202,7 @@ $(document).ready(function(){
 		
     	if(chart) chart.destroy();
 
-		// var tempMode = ($("#option option:selected").text() == "풍향/풍속" ? "풍속" : $("#option option:selected").text());
-		var tempMode = new Array();
-		tempMode.push(['풍향']);
-		tempMode.push(['풍속']);
+		var tempMode = ($("#option option:selected").text() == "풍향/풍속" ? "풍속" : $("#option option:selected").text());
 		var tempArea = $("#area_code").val();
 
 		$.ajax({
@@ -217,6 +214,7 @@ $(document).ready(function(){
 	        success : function(data){
 				var LEGD, DATAD = new Array();
 				var DATADEG = new Array();
+				var DATADEG_TRASH = new Array();
 				var DATA1 = new Array();
 				var DATA2 = new Array();
 				var DATA3 = new Array();
@@ -255,6 +253,7 @@ $(document).ready(function(){
 								// 	DATA5[idx] = v.DATA5;
 								// }
 								DATAD[idx] = v.DATA;
+								DATADEG_TRASH[idx] = 0;
 								if(mode == 'wind'){
 									DATADEG[idx] = new Image();
 									DATADEG[idx].src = "../../tvbrd/img/wind/"+v.DATA_DEG;
@@ -289,16 +288,40 @@ $(document).ready(function(){
 						type: (mode == 'rain' || mode == 'snow') ? 'bar' : 'line',
 						data: {
 							labels: LEGD,
-							datasets: [{
-								label: tempMode,
-								data: DATAD,
-								yAxisID: 'y_rain',
-								backgroundColor: '#c3dcf5',
-								borderColor: '#c3dcf5',
-								borderWidth: (mode == 'flow') ? 1 : 2,
-								fill: (mode == 'flow') ? true : false,
-								pointStyle: (mode == 'wind' ? DATADEG : [])
-							}]
+							datasets: (mode == 'wind') ? [
+								{
+									label: tempMode,
+									data: DATAD,
+									yAxisID: 'y_rain',
+									backgroundColor: '#c3dcf5',
+									borderColor: '#c3dcf5',
+									borderWidth: (mode == 'flow') ? 1 : 2,
+									fill: (mode == 'flow') ? true : false,
+									pointRadius: 0
+								},
+								{
+									label: "풍향",
+									data: DATADEG_TRASH,
+									yAxisID: 'y_rain',
+									backgroundColor: '#c3dcf5',
+									borderColor: '#c3dcf5',
+									borderWidth: (mode == 'flow') ? 1 : 2,
+									fill: (mode == 'flow') ? true : false,
+									pointStyle: (mode == 'wind' ? DATADEG : [])
+								}
+							] : 
+							[
+								{
+									label: tempMode,
+									data: DATAD,
+									yAxisID: 'y_rain',
+									backgroundColor: '#c3dcf5',
+									borderColor: '#c3dcf5',
+									borderWidth: (mode == 'flow') ? 1 : 2,
+									fill: (mode == 'flow') ? true : false,
+									pointStyle: (mode == 'wind' ? DATADEG : [])
+								}
+							]
 						},
 						options: {
 							onClick: function(evt, activeElements) {
