@@ -355,6 +355,9 @@ $(document).ready(function(){
 								mode: 'index',
 								intersect: false,
 								filter: function(item, data){
+									if(data.datasets[item.datasetIndex].label == "풍향"){
+										return false;
+									}
 									data = data.datasets[item.datasetIndex].data[item.index];
 									return !isNaN(data) && data !== null;
 								},
