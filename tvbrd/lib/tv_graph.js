@@ -156,8 +156,8 @@
 				
 				tmp_html += '<tr>';
 				if(get_kind == "wind"){
-					tmp_html += '	<td class="gbg name Lh63">최고 : 시간,풍향,풍속(m/s)</td>';
-					tmp_html += '	<td colspan=2>시간 : '+MAX_VEL_TIME+', <br> 풍향 : <img src="img/wind/'+MAX_DEG+'"/>, 풍속 : '+MAX_VEL+' (m/s)</td>';
+					tmp_html += '	<td class="gbg name Lh63" style="vertical-align:middle;">최대 : 시간,풍향,풍속(m/s)</td>';
+					tmp_html += '	<td colspan=2>시간 : '+MAX_VEL_TIME+', <br> 풍향 : <img src="img/wind/'+MAX_DEG+'" style="margin-bottom: -3px;"/>, 풍속 : '+MAX_VEL+' (m/s)</td>';
 				}else{
 					tmp_html += '	<td class="gbg name Lh63">최고</td>';
 					tmp_html += '	<td>'+time_max+'</td>';
