@@ -172,7 +172,7 @@
 				tmp_html += '<tr>';
 				if(get_kind == "wind"){
 					tmp_html += '	<td class="gbg name Lh63">평균 풍속</td>';
-					tmp_html += '	<td colspan=2>'+AVR_VEL+' (m/s)</td>';
+					tmp_html += '	<td colspan=2>'+AVR_VEL.toFixed(2)+' (m/s)</td>';
 				}else{
 					tmp_html += '	<td class="gbg name Lh63">평균</td>';
 					tmp_html += '	<td>'+time_avg+'</td>';
