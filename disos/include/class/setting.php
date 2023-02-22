@@ -339,16 +339,15 @@ Class ClassSetting {
 			if($this->DB->html_encode($_REQUEST['mode']) == "user_in"){
 				$sql = " SELECT COUNT(*) AS CNT FROM USER_INFO ";
 
-				$sql.= " WHERE USER_ID = '".$this->DB->html_encode($_REQUEST['USER_ID'])."' ";
+				$sql.= " WHERE USER_ID = '".$this->DB->html_encode($_REQUEST['C_USER_ID'])."' ";
 				$rs = $this->DB->execute($sql);
 				$result1 = $rs[0]['CNT'] == 0 ? true : false;
 			}
 
 			unset($rs);
 			// 모바일 체크
-			$sql = " SELECT MOBILE FROM USER_INFO ";
+			$sql = " SELECT MOBILE FROM USER_INFO WHERE USER_ID != '".$this->DB->html_encode($_REQUEST['C_USER_ID'])."' ";
 			$rs = $this->DB->execute($sql);
-			
 			$cnt = 0;
 			foreach($rs as $key => $val){
 				if($this->rsa_decrypt($val['MOBILE']) == $MOBILE) $cnt++;
