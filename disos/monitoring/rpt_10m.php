@@ -117,7 +117,7 @@ require_once "./head.php";
 						<tr class="hh" id="<?=$val['DATE']?>">
 							<td id="date" class="li<?=$option == '4' ? "9" : "50"?>"><?=$val['DATE']?></td>
 							<? if($val['DATA'] > 0 && ($option == "0" || $option == "2")){ ?>
-								<td class="li50 bL_1gry txtcolor_r">
+								<td class="li50 bL_1gry txtcolor_b">
 							<? } else { ?>
 								<?if($option == "4"){ ?>
 									<td class="li9_5 bL_1gry">
@@ -256,7 +256,7 @@ $(document).ready(function(){
 								DATADEG_TRASH[idx] = 0;
 								if(mode == 'wind'){
 									DATADEG[idx] = new Image();
-									DATADEG[idx].src = "../../tvbrd/img/wind/"+v.DATA_DEG;
+									DATADEG[idx].src = "../../tvbrd/img/wind_small/"+v.DATA_DEG;
 								}
 								// LEGD[idx] = tmpLeg;
 							}
