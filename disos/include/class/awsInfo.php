@@ -1392,6 +1392,7 @@ Class ClassAwsInfo {
 				$data[$i]['VEL_MAX'] = $rs[$i]['VEL_MAX'] == "-" ? "-" : $rs[$i]['VEL_MAX'];
 				$data[$i]['DEG'] = $rs[$i]['DEG'] == "-" ? "-" : $this->getDegreeString($rs[$i]['DEG']);
 				$data[$i]['DEG_EN'] = $rs[$i]['DEG'] == "-" ? "-" : $this->getDegreeEnString($rs[$i]['DEG']);
+				$data[$i]['DEG_KO'] = $rs[$i]['DEG'] == "-" ? "-" : $this->getDegreeString($rs[$i]['DEG']);
 				$data[$i]['DEG_MAX'] = $rs[$i]['DEG_MAX'] == "-" ? "-" : $this->getDegreeString($rs[$i]['DEG_MAX']);
 				$data[$i]['WIND_DATE'] = $rs[$i]['WIND_DATE'];
 			}

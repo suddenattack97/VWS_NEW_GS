@@ -215,6 +215,7 @@ $(document).ready(function(){
 				var LEGD, DATAD = new Array();
 				var DATADEG = new Array();
 				var DATADEG_TRASH = new Array();
+				var DEG_KO = new Array();
 				var DATA1 = new Array();
 				var DATA2 = new Array();
 				var DATA3 = new Array();
@@ -254,6 +255,7 @@ $(document).ready(function(){
 								// }
 								DATAD[idx] = v.DATA;
 								DATADEG_TRASH[idx] = 0;
+								DEG_KO[idx] = v.DATA_DEG_KO;
 								if(mode == 'wind'){
 									DATADEG[idx] = new Image();
 									DATADEG[idx].src = "../../tvbrd/img/wind_small/"+v.DATA_DEG;
@@ -302,6 +304,7 @@ $(document).ready(function(){
 								{
 									label: "풍향",
 									data: DATADEG_TRASH,
+									subdata: DEG_KO,
 									yAxisID: 'y_rain',
 									backgroundColor: '#c3dcf5',
 									borderColor: '#c3dcf5',
@@ -356,13 +359,17 @@ $(document).ready(function(){
 								mode: 'index',
 								intersect: false,
 								filter: function(item, data){
-									if(data.datasets[item.datasetIndex].label == "풍향"){
-										return false;
-									}
-									data = data.datasets[item.datasetIndex].data[item.index];
+									data = (data.datasets[item.datasetIndex].subdata ? 
+									data.datasets[item.datasetIndex].subdata[item.index] : 
+									data.datasets[item.datasetIndex].data[item.index]);
 									return !isNaN(data) && data !== null;
 								},
 								callbacks: {
+									label: function(tooltipItem, data) {
+										return (mode == "wind" ? 
+										"풍속 : "+data.datasets[0].data[tooltipItem.index] + " / 풍향 : " + data.datasets[1].subdata[tooltipItem.index] :
+										data.datasets[0].label +":"+ data.datasets[0].data[tooltipItem.index]);
+									},
 									labelColor: function(tooltipItem, chart){
 										return {
 											borderColor: '#9bc9f7',

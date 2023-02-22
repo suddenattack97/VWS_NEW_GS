@@ -662,6 +662,7 @@ switch($mode){
 						if($data_list[ $i ]['LEG'] == $sub_date){
 							$data_list[ $i ]['DATA'] = round_data($val['VEL'], 0.01, 10);
 							$data_list[ $i ]['DATA_DEG'] = $val['DEG_EN'];
+							$data_list[ $i ]['DATA_DEG_KO'] = $val['DEG_KO'];
 							$data_list[ $i ]['DATA3'] = round_data($val['VEL_MAX'], 0.01, 10);
 						};
 						if($val['VEL'] != "-"){
@@ -678,6 +679,7 @@ switch($mode){
 					$data_list[ $val['WIND_DATE'] ]['LEG'] = $val['WIND_DATE'];
 					$data_list[ $val['WIND_DATE'] ]['DATA'] = round_data($val['VEL'], 0.01, 10);
 					$data_list[ $val['WIND_DATE'] ]['DATA_DEG'] = $val['DEG_EN'];
+					$data_list[ $val['WIND_DATE'] ]['DATA_DEG_KO'] = $val['DEG_KO'];
 					$data_list[ $val['WIND_DATE'] ]['DATA3'] = round_data($val['VEL_MAX'], 0.01, 10);
 					if(round_data($val['VEL'], 0.01, 10) != "-"){
 						$area_data['MAX'] = ($area_data['MAX'] < round_data($val['VEL_MAX'], 0.01, 10) || !$area_data['MAX']) ? round_data($val['VEL_MAX'], 0.01, 10) : $area_data['MAX'];
