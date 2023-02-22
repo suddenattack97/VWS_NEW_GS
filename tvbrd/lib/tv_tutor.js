@@ -282,13 +282,14 @@
 
 			if(map_control_type == 1){
 				map_type = 1;
-				$("#top").hide();
 				$("#wrapper").append("<div id='new'></div>");
 				$("#new").click( function(){
 					window.open('./index.php?','');
 				});
 				$("#sel_move").lcs_off(); // 미니모드일 경우에는 무조건 장비이동 끄도록 설정
 				// $("#sel_move").lcs_on();
+			}else{
+				$("#top").show();
 			}
 
             if( $("#tutor").length == 0 ){

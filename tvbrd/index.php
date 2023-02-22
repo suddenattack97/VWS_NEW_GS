@@ -5,7 +5,7 @@ require_once "./head.php";
 ?>
 
 	<div id="wrapper">
-	    <div id="top">
+	    <div id="top" style="display:none">
 	    	<div class="settings">
 	    		<a id="setToggle" href="#" onclick="setToggle('set'); return false">
 	    			<img src="img/settings.png">
