@@ -245,7 +245,8 @@
 									data: DATA,
 									backgroundColor: 'rgb(54, 162, 235)',
 									borderColor: 'rgb(54, 162, 235)',
-									borderWidth: 1
+									borderWidth: 1,
+									pointRadius: 0
 							}]
 						},
 						options: {
@@ -290,7 +291,8 @@
 								data: DATA,
 								backgroundColor: 'rgb(54, 162, 235)',
 								borderColor: 'rgb(54, 162, 235)',
-								borderWidth: 1
+								borderWidth: 1,
+								pointRadius: 0
 							}]
 						},
 						options: {
@@ -332,7 +334,8 @@
 								backgroundColor: 'rgb(54, 162, 235)',
 								borderColor: 'rgb(54, 162, 235)',
 								fill: false,
-								borderWidth: 2
+								borderWidth: 2,
+								pointRadius: 0
 							}]
 						},
 						options: {
