@@ -319,7 +319,8 @@ $(document).ready(function(){
 									borderColor: '#c3dcf5',
 									borderWidth: (mode == 'flow') ? 1 : 2,
 									fill: (mode == 'flow') ? true : false,
-									pointStyle: (mode == 'wind' ? DATADEG : [])
+									pointStyle: (mode == 'wind' ? DATADEG : []),
+									pointRadius: 0
 								}
 							]
 						},
