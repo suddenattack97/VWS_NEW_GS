@@ -328,7 +328,8 @@ $(document).ready(function(){
 							onClick: function(evt, activeElements) {
 								// console.log(this.data.labels[elementIndex]);
 								if(activeElements.length > 0){
-									var elementIndex = activeElements[0]._index;
+									var elementIndex = (DATAD.length - 1)- activeElements[0]._index;
+									// console.log(elementIndex);
 									goTarget(elementIndex);
 								}
 							// this.data.datasets[0].backgroundColor[elementIndex] = 'red';
