@@ -735,9 +735,9 @@ function aws(kind, arr_area_code){ // AWS - AWS 장비
 											}
 										}else{
 											if(item.deg == "-"){
-												$("#wind_"+item.area_code+" .dat_right").html("<img class='sidr-class-mT5' src='' /> <div>"+item.day+"</div>");
+												$("#wind_"+item.area_code+" .dat_right").html("<img class='sidr-class-mT8' src='' /> <div>"+item.day+"</div>");
 											}else{
-												$("#wind_"+item.area_code+" .dat_right").html("<img class='sidr-class-mT5' src='img/wind/"+item.deg+"' /> <div>"+item.day+"</div>");
+												$("#wind_"+item.area_code+" .dat_right").html("<img class='sidr-class-mT8' src='img/wind/"+item.deg+"' /> <div>"+item.day+"</div>");
 											}
 										}
 									}
