@@ -45,7 +45,7 @@ require_once "./head.php";
 				<input type="radio" class="btn_radio" name="sel_date" value="N" <?if($sel_date=="N"){echo "checked";}?>><span class="tit">연간  </span>
 				<input type="radio" class="btn_radio" name="sel_date" value="D" <?if($sel_date=="D"){echo "checked";}?>><span class="tit">월간  </span> 
 				<input type="radio" class="btn_radio" name="sel_date" value="H" <?if($sel_date==""||$sel_date=="H"){echo "checked";}?>><span class="tit">일간  </span> 
-				<input type="radio" class="btn_radio" name="sel_date" value="A" <?if($sel_date=="A"){echo "checked";}?>><span class="tit mR15">기간  </span> 
+				<input type="radio" class="btn_radio" name="sel_date" value="A" <?if($sel_date=="A"){echo "checked";}?>><span class="tit mR15">일별  </span> 
 					
 				<button type="button" id="btn_left" class="tb_btn_s w25p"><i class="fa fa-angle-left"></i></button>
 				<input type="text" name="sdate" value="<?=$sdate?>" id="sdate" class="f333_12" size="12" readonly>
@@ -757,6 +757,29 @@ $(document).ready(function(){
 
 	$(".btn_radio").click(function(e){
 		if(e.target.value == 'A'){
+			// 기간 선택시 시작일, 종료일 비교해서 7일 이상 차이 나지 않으면 시작일 변경
+			var sdate = $("#sdate").val();
+			var s_now_y = sdate.substring(0, 4);
+			var s_now_m = sdate.substring(5, 7) - 1;
+			var s_now_d = sdate.substring(8, 10);
+			var sdt = new Date(s_now_y, s_now_m, s_now_d);
+
+			var edate = $("#edate").val();
+			var now_y = edate.substring(0, 4);
+			var now_m = edate.substring(5, 7) - 1;
+			var now_d = edate.substring(8, 10);
+			var edt = new Date(now_y, now_m, now_d);
+
+			edt.setDate(edt.getDate() - 7);
+			if(sdt.getDate() > edt.getDate()){
+				// 7일전으로 변경
+				sdt.setDate(edt.getDate());
+				var sel_y = sdt.getFullYear();
+				var sel_m = sdt.getMonth() + 1;
+				var sel_d = sdt.getDate();
+				$("#sdate").datepicker("setDate", sel_y+"-"+sel_m+"-"+sel_d);
+			}
+			
 			$(".mL3").show();
 			$(".mL3").nextAll().show();
 		}else{

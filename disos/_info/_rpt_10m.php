@@ -160,6 +160,19 @@ if($option == "0"){
 			$lastDate = $val['HUMI_DATE'];
 		}
 	}
+}else if($option == "6"){
+	//기압자료
+	$ClassAwsInfo = new ClassAwsInfo($DB);
+	
+	$ClassAwsInfo->getAtmo10m($area_code, $type, $t_sdate, $t_edate);
+	
+	if($ClassAwsInfo->rsAtmo10m){
+		foreach($ClassAwsInfo->rsAtmo10m as $key => $val) {
+			$data_list[ $val['ATMO_DATE'] ]['DATE'] = $val['ATMO_DATE'];
+			$data_list[ $val['ATMO_DATE'] ]['DATA'] = round_data($val['ATMO'], 0.01, 10);
+			$lastDate = $val['ATMO_DATE'];
+		}
+	}
 }
 
 if($lastDate != '-'){
