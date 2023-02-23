@@ -268,20 +268,20 @@ document.oncontextmenu = function(){return false;}
 function setToggle(sets){
 
 	var ms_token = localStorage.getItem("ms");
-	var login_token = "<?=keyIsLogin?>";
+	// var login_token = "<?=keyIsLogin?>";
 	var sesstiontime_token = getCookie("session_time_"+ms_token);
 
-	var _vDate = new Date(sesstiontime_token); // 전달 받은 일자
-	var _vDate_stamp = new Date(sesstiontime_token).getTime(); // 전달 받은 일자
-	var _second = 1000;
-	var _minute = _second * 60;
-	var _hour = _minute * 60;
-	var _day = _hour * 24;
+	// var _vDate = new Date(sesstiontime_token); // 전달 받은 일자
+	// var _vDate_stamp = new Date(sesstiontime_token).getTime(); // 전달 받은 일자
+	// var _second = 1000;
+	// var _minute = _second * 60;
+	// var _hour = _minute * 60;
+	// var _day = _hour * 24;
 
-	var ms = new Date().getTime();
-	var now = new Date(ms);
+	// var ms = new Date().getTime();
+	// var now = new Date(ms);
 	
-	var distDt = _vDate_stamp - ms;
+	// var distDt = _vDate_stamp - ms;
 
 	// var checkLogin = getCookie("set_login");
 
@@ -289,7 +289,7 @@ function setToggle(sets){
 	if(set.style.display=="block"){
 		set.style.display="none";
 	}else{
-		if (login_token !== "1" || !login_token) {
+		if (sesstiontime_token !== "1" || !sesstiontime_token) {
 			swal({ 
 			title: '',
 			text: '<div><iframe width="451px" height="530px" scrolling="no" src="../disos/monitoring/login.php?target=map" style="border: 0;margin-top:-30px;margin-left: -5px;"></iframe></div>',
