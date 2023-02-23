@@ -2,8 +2,7 @@
 require_once "../include/class/rtuInfo.php";
 require_once "../include/class/flowInfo.php";
 
-$ott = getToken();
-$_SESSION["OTT"] = $ott;
+$ott = $_SESSION["OTT"];
 
 $scnt = 0;
 $ecnt = 23;

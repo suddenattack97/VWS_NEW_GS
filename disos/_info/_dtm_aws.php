@@ -3,8 +3,7 @@ require_once "../include/class/rtuInfo.php";
 require_once "../include/class/rainInfo.php";
 require_once "../include/class/awsInfo.php";
 
-$ott = getToken();
-$_SESSION["OTT"] = $ott;
+$ott = $_SESSION["OTT"];
 
 $scnt = 0;
 $ecnt = 23;

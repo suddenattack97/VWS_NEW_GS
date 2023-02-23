@@ -1,8 +1,7 @@
 <?
 require_once "../include/class/common.php";
 
-$ott = getToken();
-$_SESSION["OTT"] = $ott;
+$ott = $_SESSION["OTT"];
 
 $ClassCommon->getMenuList(); // 메뉴 정보 리스트
 $data_top = $ClassCommon->rsMenuTop;

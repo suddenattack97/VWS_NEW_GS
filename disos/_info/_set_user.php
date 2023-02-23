@@ -2,8 +2,7 @@
 require_once "../include/class/setting.php";
 // require_once "../include/class/broadcast.php";
 
-$ott = getToken();
-$_SESSION["OTT"] = $ott;
+$ott = $_SESSION["OTT"];
 
 $ClassSetting = new ClassSetting($DB); // 설정
 // $ClassBroadCast = new ClassBroadCast($DB); // 방송

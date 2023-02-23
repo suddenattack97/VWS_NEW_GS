@@ -1,8 +1,7 @@
 <?
 require_once "../include/class/setting.php";
 
-$ott = getToken();
-$_SESSION["OTT"] = $ott;
+$ott = $_SESSION["OTT"];
 
 $ClassSetting = new ClassSetting($DB);
 

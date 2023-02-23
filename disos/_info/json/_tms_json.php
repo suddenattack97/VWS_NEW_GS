@@ -13,36 +13,35 @@ $mode = $_REQUEST["mode"];
 switch($mode){
 	// 로그인 세션 처리
 	case 'login':
-		// 검증
-		if($_SESSION["OTT"] == $_POST["OTT"]){
-			$IdInfo = $ClassCommon->getLoginIdInfo();
-			if( $IdInfo['result'] ){
-				if(recaptcha == 0){
+		$IdInfo = $ClassCommon->getLoginIdInfo();
+		if( $IdInfo['result'] ){
+			if(recaptcha == 0){
+				if( $ClassCommon->setLogin() ){
+					$result = 0;
+				}else{
+					$result = 1;
+				}
+			}else{
+				if( $ClassCommon->setCaptcha() ){ // 리캡차 체크
 					if( $ClassCommon->setLogin() ){
 						$result = 0;
 					}else{
 						$result = 1;
 					}
 				}else{
-					if( $ClassCommon->setCaptcha() ){ // 리캡차 체크
-						if( $ClassCommon->setLogin() ){
-							$result = 0;
-						}else{
-							$result = 1;
-						}
-					}else{
-						$result = 2;
-					}
-				}
-			} else {
-				if($IdInfo['msg']){
-					$result = 4;
-				}else{
-					$result = 3;
+					$result = 2;
 				}
 			}
-		}else{
-			$result = 5;
+		} else {
+			if($IdInfo['msg']){
+				$result = 4;
+			}else{
+				$result = 3;
+			}
+		}
+		// 폼 토큰 추가
+		if($result == 0){
+			$_SESSION["OTT"] = getToken();
 		}
 		
 		$returnBody = array( 'result' => $result , "msg" => $IdInfo['msg']);
