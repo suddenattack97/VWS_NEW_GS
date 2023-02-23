@@ -125,7 +125,7 @@ CLASS DBmanager extends mysqli{
 		// $this->query_result=mysqli_query($this->db['conn'],$sql2) or die(mysqli_error($this->db['conn']));
 		
 		// 개행문자, tab 제거
-		$sql = preg_replace('/\r\n|\r|\n|\t/','',$sql);
+		$sql = preg_replace('/\r\n|\r|\n|\t/',' ',$sql);
 		$str = ss_user_id." | ".get_client_ip()." | ".addslashes($btVal)." | ".addslashes($sql)." | ".$result;
 
 		$sysIdx = strpos($btArr[count($btArr)-1]['file'], "\\APM_Setup\\");
@@ -153,9 +153,15 @@ CLASS DBmanager extends mysqli{
 	}
 	
 	public FUNCTION QUERYONE($sql) {
-		if(isset($sql))$this->query_result=mysqli_query($this->db['conn'],$sql) or die(mysqli_error($this->db['conn']));
-		$this->updaterTrace($sql, $this->query_result);
-		return $this->query_result;
+		if(isset($sql))$this->query_result=mysqli_query($this->db['conn'],$sql);
+		if(!$this->query_result){
+			$this->updaterTrace($sql, mysqli_error($this->db['conn']));
+			require_once "../../monitoring/error.html"; 
+			exit;
+		}else{
+			$this->updaterTrace($sql, $this->query_result);
+			return $this->query_result;
+		}
 	}
 
 	/******************
