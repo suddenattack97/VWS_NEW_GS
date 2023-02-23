@@ -988,9 +988,16 @@ Class ClassSetting {
 			$rs = $this->DB->execute($sql);
 			$this->DB->parseFree();
 
-			$sql = " INSERT INTO RTU_LOCATION (RTU_ID, WR_X_POINT, WR_Y_POINT, WR_EMD_CD) 
-					 VALUES ('".$this->DB->html_encode($_REQUEST['RTU_ID'])."', '".$rs[0]['X_CENT']."', '".$rs[0]['Y_CENT']."', '".$rs[0]['EMD_CD']."') ";
+			// 랜덤값 생성
+			$randX = mt_rand(-5, 5) * 0.001;
+			$randY = mt_rand(-5, 5) * 0.001;
+
+			// 좌표 값에 랜덤값 추가
+			$xPoint = $rs[0]['X_CENT'] + $randX;
+			$yPoint = $rs[0]['Y_CENT'] + $randY;
 			
+			$sql = " INSERT INTO RTU_LOCATION (RTU_ID, WR_X_POINT, WR_Y_POINT, WR_EMD_CD) 
+					 VALUES ('".$this->DB->html_encode($_REQUEST['RTU_ID'])."', '".$xPoint."', '".$yPoint."', '".$rs[0]['EMD_CD']."') ";
 			if($this->DB->QUERYONE($sql)) $sqlReturn = true;
 			$this->DB->parseFree();
 			return $sqlReturn;
