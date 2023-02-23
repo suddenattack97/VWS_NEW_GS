@@ -165,12 +165,20 @@ $(document).ready(function(){
 		$("#now_date").html(now_y+'년 '+now_m+'월 '+now_d+'일 '+now_h+'시 '+now_i+'분 '+now_s+'초');
 
 		// var checkLogin = getCookie("set_login");
+		var ms_token = localStorage.getItem("ms");
 		var session_time = getCookie("session_time_"+ms_token);
-		
+		console.log(session_time);
 		var tmp_src = $("#main").attr("src");
-
+		
+		if(session_time){
+			if($("#btn_logout").hasClass('dp0')){
+				location.href = "./main.php";
+				return false;
+			}else{
+			}
+		}
 		// countDownTimer('session_time', session_time);
-		if(login_time < Date.now()){
+		if(login_time < Date.now() || !session_time){
 			$("#btn_logout").addClass('dp0');
 			$("#btn_layout").addClass('dp0');
 			$("#user_id_front").addClass('dp0');
