@@ -207,6 +207,7 @@ require_once "./head.php";
 
 <script type="text/javascript">
 $(document).ready(function(){
+	localStorage.setItem("layout","rpt_rain.php");
 	var area_code = $("#area_code").val();
 	
 	// 그래프 호출

@@ -14,6 +14,7 @@ require_once "./head.php";
 
 <script type="text/javascript">
 $(document).ready(function(){
+	localStorage.setItem("layout","tms_rain.php");
 	table_load(); // 레이아웃 및 데이터 호출
 
 	// load_time마다 한번 데이터 업데이트

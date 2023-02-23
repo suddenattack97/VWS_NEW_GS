@@ -272,6 +272,7 @@ require_once "./head.php";
 
 <script type="text/javascript">
 $(document).ready(function(){
+	localStorage.setItem("layout","set_user.php");
 	$("#popSpc").hide();
 	
 // 객체 생성

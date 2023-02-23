@@ -167,6 +167,7 @@ require_once "./head.php";
 <script type="text/javascript">
 $(document).ready(function(){
 	// 달력 호출
+	localStorage.setItem("layout","dtm_wl.php");
 	datepicker(2, "#sdate", null, "yy-mm-dd", "#form_search");
 
 	// 좌측 버튼

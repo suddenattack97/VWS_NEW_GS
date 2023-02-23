@@ -487,6 +487,7 @@ require_once "./head.php";
 
 <script type="text/javascript">
 $(document).ready(function(){
+	localStorage.setItem("layout","set_equip.php");
 	// 조회
 	$("#btn_search").click(function(){
 		var search_col = $("#search_col").val();

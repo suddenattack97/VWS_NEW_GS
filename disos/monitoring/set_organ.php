@@ -163,7 +163,7 @@ require_once "./head.php";
 
 <script type="text/javascript">
 $(document).ready(function(){
-
+	localStorage.setItem("layout","set_organ.php");
 	// 엔터키 - 조회버튼
 	$('input[name=search_word]').keydown(function(key){
 		if(key.keyCode == 13){

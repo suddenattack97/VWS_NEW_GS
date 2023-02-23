@@ -167,7 +167,6 @@ $(document).ready(function(){
 		// var checkLogin = getCookie("set_login");
 		var ms_token = localStorage.getItem("ms");
 		var session_time = getCookie("session_time_"+ms_token);
-		console.log(session_time);
 		var tmp_src = $("#main").attr("src");
 		
 		if(session_time){
@@ -177,7 +176,12 @@ $(document).ready(function(){
 			}else{
 			}
 		}
-		// countDownTimer('session_time', session_time);
+
+		if(localStorage.getItem("layout") == "tms_main.php"){
+			$("#btn_layout").removeClass('dp0');
+		}else{
+			$("#btn_layout").addClass('dp0');
+		}
 		if(login_time < Date.now() || !session_time){
 			$("#btn_logout").addClass('dp0');
 			$("#btn_layout").addClass('dp0');

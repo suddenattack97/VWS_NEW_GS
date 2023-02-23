@@ -841,7 +841,7 @@ require_once "./head.php";
 
 <script type="text/javascript">
 $(document).ready(function(){
-
+	localStorage.setItem("layout","set_setting.php");
 	$('#list_table4 tbody tr').each(function(i,v){
 		if($(this).find('.popup_use').val() > 0){
 			$(this).find('.popup_name').attr('readonly',false).removeClass('bg_lgr_d');

@@ -185,6 +185,7 @@ require_once "./head.php";
 
 <script type="text/javascript">
 $(document).ready(function(){
+	localStorage.setItem("layout","dtm_rain.php");
 	// 달력 호출
 	datepicker(2, "#sdate", null, "yy-mm-dd", "#form_search");
 

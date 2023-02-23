@@ -372,6 +372,7 @@ require_once "./head.php";
 
 <script type="text/javascript">
 $(document).ready(function(){
+	localStorage.setItem("layout","dtm_aws.php");
 	// 지역 선택
 	$("#area_code").change(function(){
         $("#form_search").submit();
