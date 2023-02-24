@@ -4,7 +4,8 @@
 <title><?=top_title?></title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta charset="utf-8">
-
+<link rel="shortcut icon" href="../img/favicon.ico" type="image/x-icon">
+<link rel="icon" href="../img/favicon.ico" type="image/x-icon">
 <link rel="stylesheet" id="maincss" type="text/css" href="../css/main.css?time=<?=time()?>">
 <link rel="stylesheet" type="text/css" href="../css/datatables.min.css">
 <link rel="stylesheet" type="text/css" href="../css/jquery-ui-1.11.4.min.css">
