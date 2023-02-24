@@ -357,7 +357,7 @@ crypt.setKey(key);
 		bg_color("selected", "#list_table tbody tr", this); // 리스트 선택 시 배경색
 		if(this.id){
 			var l_USER_ID = $("#"+this.id+" #l_USER_ID").text();
-			
+			sessionStorage.setItem('list_user', this.id.substring(5,10));
 			var param = "mode=user&USER_ID="+l_USER_ID+"&OTT="+'<?=$ott?>';
 			$.ajax({
 				type: "POST",
@@ -431,7 +431,22 @@ crypt.setKey(key);
 			});
 		}
 	});
+	if(sessionStorage.getItem('list_user')){
+		var row_item = sessionStorage.getItem('list_user');
+		var row_item_id = "list_"+sessionStorage.getItem('list_user');
+		$("tr[id="+row_item_id+"]").addClass('selected');
+		$("tr[id="+row_item_id+"]").click();
 
+			//클릭 시 스크롤 이동
+		var firstOffset = $("#list_table tr").eq(0).offset();
+		var offset = $("#list_table tr").eq(row_item).offset();
+		$('.s_scroll').animate({scrollTop : offset.top - firstOffset.top}, 400);
+		
+		// 전체 blink 클래스 삭제 후 blink 클래스 추가
+		$("#list_table tr .effect").removeClass('blink');
+		$("#list_table tr").eq(row_item).find('.effect').addClass('blink');
+
+	  }
 	// 등록
 	$("#btn_in").click(function(){
 		if( form_check("I") ){
@@ -495,6 +510,7 @@ crypt.setKey(key);
 				        dataType: "json",
 				        success : function(data){
 					        if(data.result){
+								sessionStorage.setItem('list_user', '<?=$num+1?>');
 			                	popup_main_close(); // 레이어 좌측 및 상단 닫기
 					    		location.reload(); return false;
 					        }else{

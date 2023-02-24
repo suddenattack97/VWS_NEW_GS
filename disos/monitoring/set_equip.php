@@ -650,7 +650,7 @@ $(document).ready(function(){
 			var l_RTU_ID = $("#"+this.id+" #l_RTU_ID").text();
 	
 			var list_id = '#'+$(this).attr("id");
-			sessionStorage.setItem('list_row', list_id);
+			sessionStorage.setItem('list_rtu', $(this).attr('name').substring(5,10));
 			
 			var param = "mode=equip&RTU_ID="+l_RTU_ID+"&OTT="+'<?=$ott?>';
 			$.ajax({
@@ -949,8 +949,9 @@ $(document).ready(function(){
 				        dataType: "json",
 				        success : function(data){
 							var rtu_id = $("#RTU_ID").val();
-							var l_rtu_id = 'list_'+rtu_id;
-							sessionStorage.setItem('list_rtu', l_rtu_id);
+							// var l_rtu_id = 'list_'+rtu_id;
+							sessionStorage.setItem('list_id', rtu_id);
+							sessionStorage.setItem('list_rtu', '<?=$rowNum+1?>');
 
 					        if(data.result){
 			                	popup_main_close(); // 레이어 좌측 및 상단 닫기
@@ -1070,14 +1071,22 @@ $(document).ready(function(){
 		}
 	});
 
-	if(sessionStorage.getItem('list_row')){
-		$(sessionStorage.getItem('list_row')).addClass('selected');
-		$(sessionStorage.getItem('list_row')).click();
-	  } 
 	if(sessionStorage.getItem('list_rtu')){
-		var row_item = sessionStorage.getItem('list_rtu');
-		$("tr[name="+row_item+"]").addClass('selected');
-		$("tr[name="+row_item+"]").click();
+		var row_item_id = "list_"+sessionStorage.getItem('list_rtu');
+		$("tr[name="+row_item_id+"]").addClass('selected');
+		$("tr[name="+row_item_id+"]").click();
+		console.log($("tr[name="+row_item_id+"]").attr('id'));
+		var row_item = $("tr[name="+row_item_id+"]").attr('id').substring(5,10);
+
+			//클릭 시 스크롤 이동
+		var firstOffset = $("#list_table tr").eq(0).offset();
+		var offset = $("#list_table tr").eq(row_item).offset();
+		$('.s_scroll').animate({scrollTop : offset.top - firstOffset.top}, 400);
+		
+		// 전체 blink 클래스 삭제 후 blink 클래스 추가
+		$("#list_table tr .effect").removeClass('blink');
+		$("#list_table tr").eq(row_item).find('.effect').addClass('blink');
+
 	  }
 
 	// 삭제
