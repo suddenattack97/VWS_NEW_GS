@@ -970,7 +970,8 @@ $(document).ready(function(){
 	function form_check(kind){
 		var ipPattern = /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9]?)(:?[0-9]{1,5})$/;
 		// var urlPattern = /^([^\/]*)(\.)(com|net|kr|my|shop|php|html|htm)/;
-		var urlPattern = /([0-9a-zA-Z\-]+\.)+[a-zA-Z]{2,6}(\:[0-9]+)?(\/\S*)?/;
+		var urlPattern1 = /^(www)?(\.)+([0-9a-zA-Z\-]+\.)+[a-zA-Z]{2,6}(\:[0-9]+)?(\/\S*)?/;
+		var urlPattern2 = /^(?!www)([0-9a-zA-Z\-]+\.)+[a-zA-Z]{2,6}(\:[0-9]+)?(\/\S*)?/;
 
 		if(kind == "I"){
 			if( $("#load_time").val() < 10 ){
@@ -994,9 +995,33 @@ $(document).ready(function(){
 						$(this).find('.popup_url').focus();
 						result.push(false);
 					}else{
+						let ipTest, urlTest = false;
 						// 사이트 주소 유효성 체크
-						let ipTest = ipPattern.test($(this).find('.popup_url').val());
-						let urlTest = urlPattern.test($(this).find('.popup_url').val());
+						if($(this).find('.popup_url').val().split('/').length > 1){
+							var ip = $(this).find('.popup_url').val().split('/')[0];
+							ipTest = ipPattern.test(ip);
+							if(ipTest){
+								var url = $(this).find('.popup_url').val().replace(ip, '');
+								let urlTest = urlPattern2.test(url);
+							}else{
+								let urlTest1 = urlPattern1.test($(this).find('.popup_url').val());
+								if(!urlTest1){
+									let urlTest2 = urlPattern2.test($(this).find('.popup_url').val());
+									if(urlTest2) urlTest = true;
+								}else{
+									urlTest = true;
+								}
+							}
+						}else{
+							ipTest = ipPattern.test($(this).find('.popup_url').val());
+							let urlTest1 = urlPattern1.test($(this).find('.popup_url').val());
+							if(!urlTest1){
+								let urlTest2 = urlPattern2.test($(this).find('.popup_url').val());
+								if(urlTest2) urlTest = true;
+							}else{
+								urlTest = true;
+							}
+						}
 						if(ipTest || urlTest) {
 							result.push(true);
 						}else{
