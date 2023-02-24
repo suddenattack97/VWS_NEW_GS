@@ -78,17 +78,17 @@ require_once "./head.php";
 						<tr id="list_<?=$val['NUM']?>" name="list_<?=$val['RTU_ID']?>" class="hh">
 							<td class="li5"><?=$val['NUM']?></td>
 							<td id="l_RTU_ID" class="li5 bL_1gry"><?=$val['RTU_ID']?></td>
-							<td class="li5 bL_1gry"><?=$val['SIGNAL_ID']?></td>
+							<td id="l_SIGNAL_ID"class="li5 bL_1gry"><?=$val['SIGNAL_ID']?></td>
 							<td id="l_RTU_NAME" class="li20 bL_1gry"><?=$val['RTU_NAME']?></td>
 							<td id="l_RTU_TYPE_NAME"  class="li10 bL_1gry"><?=$val['RTU_TYPE_NAME']?></td>
 							<td id="l_AREA_CODE" class="li10 bL_1gry"><?=$val['AREA_CODE']?></td>
-							<td class="li5 bL_1gry"><?=$val['LINE_NAME']?></td>
-							<td class="li10 bL_1gry"><?=$val['MODEL_NAME']?></td>
-							<td class="li10 bL_1gry"><?=$val['CONNECTION_INFO']?></td>
-							<td class="li5 bL_1gry"><?=$val['PORT']?></td>
-							<td class="li5 bL_1gry"><?=$val['BAUDRATE']?></td>
-							<td class="li5 bL_1gry"><?=$val['FLOW_WARNING']?></td>
-							<td class="li5 bL_1gry"><?=$val['FLOW_DANGER']?></td>
+							<td id="l_LINE_NAME"class="li5 bL_1gry"><?=$val['LINE_NAME']?></td>
+							<td id="l_MODEL_NAME"class="li10 bL_1gry"><?=$val['MODEL_NAME']?></td>
+							<td id="l_CONNECTION_INFO"class="li10 bL_1gry"><?=$val['CONNECTION_INFO']?></td>
+							<td id="l_PORT"class="li5 bL_1gry"><?=$val['PORT']?></td>
+							<td id="l_BAUDRATE"class="li5 bL_1gry"><?=$val['BAUDRATE']?></td>
+							<td id="l_FLOW_WARNING"class="li5 bL_1gry"><?=$val['FLOW_WARNING']?></td>
+							<td id="l_FLOW_DANGER"class="li5 bL_1gry"><?=$val['FLOW_DANGER']?></td>
 							<!-- <td class="li5 bL_1gry">
 							<? if($val['RTU_TYPE_NAME'] == "방송(단독)"){ ?>
 								<button type="button" id="btn_sensor" class="btn_wbs" disabled>센서</button>
@@ -1054,7 +1054,23 @@ $(document).ready(function(){
 				        success : function(data){
 					        if(data.result){
 			                	popup_main_close(); // 레이어 좌측 및 상단 닫기
-					    		location.reload(); return false;
+								var list_id = sessionStorage.getItem('list_rtu');
+								$("#list_table tbody tr #list_"+list_id).click()
+								var formData = $('#set_frm').serializeArray();
+
+								$("tr[name='list_"+list_id+"'] #l_SIGNAL_ID").text(formData[3].value);
+								$("tr[name='list_"+list_id+"'] #l_RTU_NAME").text(formData[10].value);
+								$("tr[name='list_"+list_id+"'] #l_RTU_TYPE_NAME").text(formData[11].value == "R00" ? "강우계" : formData[11].value == "F00" ? "수위계" : formData[11].value == "A00" ? "AWS" : formData[11].value == "S00" ? "적설계" : "");
+								$("tr[name='list_"+list_id+"'] #l_LINE_NAME").text(formData[20].value);
+								$("tr[name='list_"+list_id+"'] #l_MODEL_NAME").text(formData[21].value);
+								$("tr[name='list_"+list_id+"'] #l_CONNECTION_INFO").text(formData[26].value);
+								$("tr[name='list_"+list_id+"'] #l_PORT").text(formData[25].value);
+								$("tr[name='list_"+list_id+"'] #l_BAUDRATE").text(formData[27].value);
+								$("tr[name='list_"+list_id+"'] #l_FLOW_WARNING").text(formData[13].value);
+								$("tr[name='list_"+list_id+"'] #l_FLOW_DANGER").text(formData[14].value);
+					    		swal.close();
+								doubleSubmitFlag = false;
+								// location.reload(); return false;
 					        }else{
 						        if(data.msg){
 							    	swal("체크", data.msg, "warning");
