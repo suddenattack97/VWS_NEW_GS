@@ -384,7 +384,8 @@ $(document).ready(function(){
 										autoSkip : true,
 										// maxRotation :0,
 										// minRotation :0,
-										fontColor: '#222'
+										fontColor: '#222',
+										maxTicksLimit : 9
 									},
 
 									display: true,
@@ -405,6 +406,9 @@ $(document).ready(function(){
 												xLabels[i] = xLabels[i].substr(5);
 												// if ( xLabels[i].substr(3,2) != '01' )
 												// 	xLabels[i] = xLabels[i].substr(3);
+											}
+											if(i == (xLabels.length-1)){
+												xLabels[i] = xLabels[(i-1)];
 											}
 											// console.log(xLabels.length);
 										}
