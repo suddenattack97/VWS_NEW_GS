@@ -119,7 +119,7 @@ require_once "./head.php";
 							<select id="SORT_BASE" name="SORT_BASE" class="f333_12" size="1">
 								<option value="2" <? if($data_list[0]['SORT_BASE'] == 2){echo "selected";} ?> >장비이름</option>
 								<option value="1" <? if($data_list[0]['SORT_BASE'] == 1){echo "selected";} ?> >행정코드</option>
-								<option value="0" <? if($data_list[0]['SORT_BASE'] == 0){echo "selected";} ?> >지정순서</option>
+								<option value="0" <? if($data_list[0]['SORT_BASE'] == 0){echo "selected";} ?> >지역정렬번호</option>
 							</select>
 						</td>
 					</tr>
