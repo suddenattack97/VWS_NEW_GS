@@ -196,7 +196,10 @@ Class ClassSetting {
 					 SORT_BASE = ".$this->DB->html_encode($_REQUEST['SORT_BASE']).", AREA_MAIN = '".$this->DB->html_encode($_REQUEST['AREA_MAIN'])."', AREA_SUB = '".$this->DB->html_encode($_REQUEST['AREA_SUB'])."'
 					 WHERE ORGAN_ID = ".$this->DB->html_encode($_REQUEST['ORGAN_ID'])." ";
 			
-			if($this->DB->QUERYONE($sql)) $sqlReturn = true;
+			if($this->DB->QUERYONE($sql)) {
+				$sqlReturn = true;
+				$_SESSION['sort_base'] = $_REQUEST['SORT_BASE'];
+			}
 			$this->DB->parseFree();
 			return $sqlReturn;
 		}else if(DB == "1"){
@@ -574,7 +577,7 @@ Class ClassSetting {
 					 FROM RTU_INFO AS a
 					 LEFT JOIN LINE_INFO AS b ON a.LINE_NO = b.LINE_TYPE
 					 LEFT JOIN MODEL_INFO AS c ON a.MODEL_NO = c.MODEL_TYPE
-					 ORDER BY ISNULL(a.".sort.") ASC , a.".sort." ASC ";
+					 ORDER BY ISNULL(a.".($_SESSION['sort_base'] == 0 ? "SORT_FLAG" : ($_SESSION['sort_base'] == 1 ? "AREA_CODE" : ($_SESSION['sort_base'] == 2 ? "RTU_NAME" : "SORT_FLAG"))).") ASC , a.".($_SESSION['sort_base'] == 0 ? "SORT_FLAG" : ($_SESSION['sort_base'] == 1 ? "AREA_CODE" : ($_SESSION['sort_base'] == 2 ? "RTU_NAME" : "SORT_FLAG")))." ASC ";
 			
 
 			//echo $sql;
