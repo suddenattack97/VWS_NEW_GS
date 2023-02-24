@@ -114,7 +114,7 @@ require_once "./head.php";
 							value="<? echo $data_list[0]['AREA_CODE'] ?>" readonly>
 							<button type="button" id="btn_area" class="btn_bbr w100p">행정구역 조회</button>
 						</td>
-						<td class="bg_lb w10 bold al_C">장비정렬기준</td>
+						<td class="bg_lb w10 bold al_C">지역 정렬 기준</td>
 						<td>
 							<select id="SORT_BASE" name="SORT_BASE" class="f333_12" size="1">
 								<option value="2" <? if($data_list[0]['SORT_BASE'] == 2){echo "selected";} ?> >장비이름</option>

@@ -619,6 +619,7 @@ Class ClassSetting {
 				$data[$i]['CONNECTION_INFO'] = $rs[$i]['decryt_con_info'];
 				$data[$i]['PORT'] = $rs[$i]['PORT'];
 				$data[$i]['BAUDRATE'] = $rs[$i]['BAUD_RATE'];
+				$data[$i]['SORT_FLAG'] = $rs[$i]['SORT_FLAG'];
 				
 			if($rs[$i]['RTU_TYPE'] == 'F00'){
 				$data[$i]['FLOW_WARNING'] = round_data($rs[$i]['FLOW_WARNING'], 0.01, 100);

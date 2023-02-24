@@ -53,13 +53,14 @@ require_once "./head.php";
 					<thead class="tb_data_tbg">
 						<tr>
 							<th class="li5">번호</th>
+							<th class="li5">지역 정렬 번호</th>
 							<th class="li5 bL_1gry">장비 ID</th>
 							<th class="li5 bL_1gry">통신 ID</th>
 							<th class="li20 bL_1gry">장비명</th>
 							<th class="li10 bL_1gry">장비 구분</th>
 							<th class="li10 bL_1gry">행정코드</th>
 							<th class="li5 bL_1gry">회선</th>
-							<th class="li10 bL_1gry">모델</th>
+							<th class="li5 bL_1gry">모델</th>
 							<th class="li10 bL_1gry">통신정보</th>
 							<th class="li5 bL_1gry">Port</th>
 							<th class="li5 bL_1gry">Baudrate</th>
@@ -77,13 +78,14 @@ require_once "./head.php";
 				?>
 						<tr id="list_<?=$val['NUM']?>" name="list_<?=$val['RTU_ID']?>" class="hh">
 							<td class="li5"><?=$val['NUM']?></td>
+							<td id="l_SORT_FLAG"class="li5"><?=$val['SORT_FLAG']?></td>
 							<td id="l_RTU_ID" class="li5 bL_1gry"><?=$val['RTU_ID']?></td>
 							<td id="l_SIGNAL_ID"class="li5 bL_1gry"><?=$val['SIGNAL_ID']?></td>
 							<td id="l_RTU_NAME" class="li20 bL_1gry"><?=$val['RTU_NAME']?></td>
 							<td id="l_RTU_TYPE_NAME"  class="li10 bL_1gry"><?=$val['RTU_TYPE_NAME']?></td>
 							<td id="l_AREA_CODE" class="li10 bL_1gry"><?=$val['AREA_CODE']?></td>
 							<td id="l_LINE_NAME"class="li5 bL_1gry"><?=$val['LINE_NAME']?></td>
-							<td id="l_MODEL_NAME"class="li10 bL_1gry"><?=$val['MODEL_NAME']?></td>
+							<td id="l_MODEL_NAME"class="li5 bL_1gry"><?=$val['MODEL_NAME']?></td>
 							<td id="l_CONNECTION_INFO"class="li10 bL_1gry"><?=$val['CONNECTION_INFO']?></td>
 							<td id="l_PORT"class="li5 bL_1gry"><?=$val['PORT']?></td>
 							<td id="l_BAUDRATE"class="li5 bL_1gry"><?=$val['BAUDRATE']?></td>
@@ -192,7 +194,7 @@ require_once "./head.php";
 							<input type="text" id="ORGAN_NAME" name="ORGAN_NAME" class="f333_12 bg_lgr_d" size="15"
 								value="<? echo $data_organ[0]['ORGAN_NAME'] ?>" readonly>
 						</td>
-						<td class="bg_lb w10 bold al_C">정렬 순서 지정</td>
+						<td class="bg_lb w10 bold al_C">지역 정렬 번호</td>
 						<td><input id="SORT_FLAG" name="SORT_FLAG" type="text" class="f333_12" size="6" value="0" oninput="inputCheck(this,'onlyNumber','1~9999')"></td>
 						<td class="bg_lb w10 bold al_C bT_1gry">회선 / 모델</td>
 						<td class="bT_1gry" colspan="3">
