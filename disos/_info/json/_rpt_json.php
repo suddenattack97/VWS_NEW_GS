@@ -1121,6 +1121,13 @@ function getDateAndArray($sdate, $edate, $area_data){
 		$tmp_sdate = date("Y-m-d", strtotime($tmp_sdate.' + 1 days'));
 		if($tmp_sdate > $edate) $eedate = false;
 	}
+
+	if($today != $edate){
+		$tmp_dt = date("Y-m-d", strtotime($edate.' + 1 days'));
+		$tmp_dt = $tmp_dt." 00:00:00";
+		$data_list[$tmp_dt]['DATE'] = $tmp_dt;
+		$data_list[$tmp_dt]['LEG'] = $tmp_dt;
+	}
 	
 	return $data_list;
 }
