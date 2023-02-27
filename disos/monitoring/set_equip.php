@@ -1066,6 +1066,13 @@ $(document).ready(function(){
 								var list_id = sessionStorage.getItem('list_rtu');
 								$("#list_table tbody tr #list_"+list_id).click();
 								var formData = $('#set_frm').serializeArray();
+								
+								// var search_cnt = 1;
+								// $.each( $("#list_table tr"), function(i, v){
+								// 		$(v).closest("tr").show();
+								// 		$(v).closest("tr").find("td:eq(0)").text(search_cnt);
+								// 		search_cnt++;
+								// });
 								if($("tr[name='list_"+list_id+"'] #l_SORT_FLAG").text() != formData[19].value){
 									sessionStorage.setItem('search_word',$("#search_word").val());
 									sessionStorage.setItem('search_col',$("#search_col").val());
@@ -1076,13 +1083,14 @@ $(document).ready(function(){
 									const rows = tbody.find("tr:visible").get();
 
 									rows.sort((a, b) => {
-									const aValue = $(a).find("td:eq(1)").text();
-									const bValue = $(b).find("td:eq(1)").text();
-									return aValue.localeCompare(bValue);
+										const aValue = parseInt($(a).find("td:eq(1)").text());
+										const bValue = parseInt($(b).find("td:eq(1)").text());
+										// return aValue.localeCompare(bValue);
+										return aValue - bValue;
 									});
-
 									$.each(rows, (i, row) => {
-									tbody.append(row);
+										tbody.append(row);
+										$(row).find("td:eq(0)").text(i + 1);
 									});
 								}
 								
