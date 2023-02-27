@@ -1063,8 +1063,27 @@ $(document).ready(function(){
 				        success : function(data){
 					        if(data.result){
 			                	popup_main_close(); // 레이어 좌측 및 상단 닫기
+								var list_id = sessionStorage.getItem('list_rtu');
+								$("#list_table tbody tr #list_"+list_id).click();
+								var formData = $('#set_frm').serializeArray();
 								if($("tr[name='list_"+list_id+"'] #l_SORT_FLAG").text() != formData[19].value){
-									location.reload(); return false;
+									sessionStorage.setItem('search_word',$("#search_word").val());
+									sessionStorage.setItem('search_col',$("#search_col").val());
+
+									$("tr[name='list_"+list_id+"'] #l_SORT_FLAG").text(formData[19].value);
+
+									const tbody = $("#list_table tbody");
+									const rows = tbody.find("tr:visible").get();
+
+									rows.sort((a, b) => {
+									const aValue = $(a).find("td:eq(1)").text();
+									const bValue = $(b).find("td:eq(1)").text();
+									return aValue.localeCompare(bValue);
+									});
+
+									$.each(rows, (i, row) => {
+									tbody.append(row);
+									});
 								}
 								
 								$("tr[name='list_"+list_id+"'] #l_SIGNAL_ID").text(formData[3].value);
