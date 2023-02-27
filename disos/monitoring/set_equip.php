@@ -1166,8 +1166,12 @@ $(document).ready(function(){
 				        success : function(data){
 					        if(data.result){
 								sessionStorage.setItem('list_row', '');
+								var del_row = "list_"+sessionStorage.getItem('list_rtu');
+								$("tr[name="+del_row+"]").remove();
 			                	popup_main_close(); // 레이어 좌측 및 상단 닫기
-					    		location.reload(); return false;
+								swal.close();
+								doubleSubmitFlag = false;
+					    		// location.reload(); return false;
 					        }else{
 							    swal("체크", "장비 삭제중 오류가 발생 했습니다.", "warning");
 								doubleSubmitFlag = false;
