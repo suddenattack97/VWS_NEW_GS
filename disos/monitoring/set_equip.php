@@ -1099,17 +1099,18 @@ $(document).ready(function(){
 		var row_item_id = "list_"+sessionStorage.getItem('list_rtu');
 		$("tr[name="+row_item_id+"]").addClass('selected');
 		$("tr[name="+row_item_id+"]").click();
-		console.log($("tr[name="+row_item_id+"]").attr('id'));
-		var row_item = $("tr[name="+row_item_id+"]").attr('id').substring(5,10);
+		if($("tr[name="+row_item_id+"]").attr('id')){
+			var row_item = $("tr[name="+row_item_id+"]").attr('id').substring(5,10);
+				//클릭 시 스크롤 이동
+			var firstOffset = $("#list_table tr").eq(0).offset();
+			var offset = $("#list_table tr").eq(row_item).offset();
+			$('.s_scroll').animate({scrollTop : offset.top - firstOffset.top}, 400);
+			
+			// 전체 blink 클래스 삭제 후 blink 클래스 추가
+			$("#list_table tr .effect").removeClass('blink');
+			$("#list_table tr").eq(row_item).find('.effect').addClass('blink');
+		}
 
-			//클릭 시 스크롤 이동
-		var firstOffset = $("#list_table tr").eq(0).offset();
-		var offset = $("#list_table tr").eq(row_item).offset();
-		$('.s_scroll').animate({scrollTop : offset.top - firstOffset.top}, 400);
-		
-		// 전체 blink 클래스 삭제 후 blink 클래스 추가
-		$("#list_table tr .effect").removeClass('blink');
-		$("#list_table tr").eq(row_item).find('.effect').addClass('blink');
 
 	  }
 
