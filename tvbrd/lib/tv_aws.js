@@ -413,6 +413,20 @@ function aws(kind, arr_area_code){ // AWS - AWS 장비
 							$("#aws_"+item+"_marker").parent().parent().css('z-index', 111);
 							$("#aws_"+item).show();
 							$("#aws_"+item).next().show();
+							if( (map_kind == 1 || map_kind == 2) && jQuery.inArray("1", map_data) != "-1" ){
+								$("#rain_"+item).show();
+							}
+							if( (map_kind == 1 || map_kind == 2) && jQuery.inArray("2", map_data) != "-1" ){
+								$("#flow_"+item).show();
+							}
+							if( (map_kind == 1 || map_kind == 2) && jQuery.inArray("3", map_data) != "-1" ){
+								$("#snow_"+item).show();
+							}
+							if( (map_kind == 1 || map_kind == 2) && jQuery.inArray("4", map_data) != "-1" ){
+								$.each(arr_rtu[item]['sensor_kind'], function(index2, item2){
+									$("#"+item2+"_"+item).show();
+								});
+							}
 						}
 					}
 				});
