@@ -978,7 +978,8 @@ $(document).ready(function(){
 	$("#btn_re").click(function(){
 		// $("#dup_check").val(0); // 행정코드 중복체크 리셋
 		// $("#dup_check2").val(0); // 계측기코드 중복체크 리셋
-
+		sessionStorage.removeItem('list_id');
+		sessionStorage.removeItem('list_rtu');
 		var C_RTU_ID = $("#C_RTU_ID").val("");
 	
 			$("#C_RTU_ID").val("");
@@ -1056,10 +1057,6 @@ $(document).ready(function(){
 				        success : function(data){
 					        if(data.result){
 			                	popup_main_close(); // 레이어 좌측 및 상단 닫기
-								var list_id = sessionStorage.getItem('list_rtu');
-								$("#list_table tbody tr #list_"+list_id).click()
-								var formData = $('#set_frm').serializeArray();
-								// console.log(formData);
 								if($("tr[name='list_"+list_id+"'] #l_SORT_FLAG").text() != formData[19].value){
 									location.reload(); return false;
 								}
@@ -1095,8 +1092,8 @@ $(document).ready(function(){
 		}
 	});
 
-	if(sessionStorage.getItem('list_rtu')){
-		var row_item_id = "list_"+sessionStorage.getItem('list_rtu');
+	if(sessionStorage.getItem('list_id')){
+		var row_item_id = "list_"+sessionStorage.getItem('list_id');
 		$("tr[name="+row_item_id+"]").addClass('selected');
 		$("tr[name="+row_item_id+"]").click();
 		if($("tr[name="+row_item_id+"]").attr('id')){
