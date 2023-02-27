@@ -169,13 +169,13 @@ $(document).ready(function(){
 		var session_time = getCookie("session_time_"+ms_token);
 		var tmp_src = $("#main").attr("src");
 		
-		if(session_time){
-			if($("#btn_logout").hasClass('dp0')){
-				location.href = "./main.php";
-				return false;
-			}else{
-			}
-		}
+		// if(session_time){
+		// 	if($("#btn_logout").hasClass('dp0')){
+		// 		location.href = "./main.php";
+		// 		return false;
+		// 	}else{
+		// 	}
+		// }
 
 		if(localStorage.getItem("layout") == "tms_main.php"){
 			$("#btn_layout").removeClass('dp0');
