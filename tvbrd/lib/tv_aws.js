@@ -642,10 +642,15 @@ function aws(kind, arr_area_code){ // AWS - AWS 장비
 				// 줌레벨에 따른 오버레이 표시
 				if( Number(map_level) < Number(over_level) ){
 					if(arr_rtu[item]['overlay_on']){
-						$("#aws_"+item).show();
-						$("#aws_label_"+item).show();
-						$("#aws_"+item).next().show();
-						
+						if( jQuery.inArray("4", map_data) != "-1" ){
+							$("#aws_"+item).show();
+							$("#aws_label_"+item).show();
+							$("#aws_"+item).next().show();
+						}else{
+							$("#aws_"+item).hide();
+							$("#aws_label_"+item).hide();
+							$("#aws_"+item).next().hide();
+						}
 					}else{
 						$("#aws_"+item).hide();
 						$("#aws_label_"+item).hide();
