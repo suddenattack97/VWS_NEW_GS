@@ -624,8 +624,8 @@ require_once "./head.php";
 							?>
 								<input type="hidden" name="top_use[]" value="1">
 								<select name="top_system" disabled>
-									<option value="0">미사용</option>
-									<option value="1" selected>사용</option>
+									<option value="0">설정 불가</option>
+									<option value="1" selected>설정 불가</option>
 								</select>
 							<? 
 								}
@@ -684,8 +684,8 @@ require_once "./head.php";
 							?>
 								<input type="hidden" name="sub_use[]" value="1">
 								<select name="sub_system" disabled>
-									<option value="0">미사용</option>
-									<option value="1" selected>사용</option>
+									<option value="0">설정 불가</option>
+									<option value="1" selected>설정 불가</option>
 								</select>
 							<? 
 								}else{
