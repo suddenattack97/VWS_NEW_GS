@@ -980,6 +980,9 @@ $(document).ready(function(){
 		// $("#dup_check2").val(0); // 계측기코드 중복체크 리셋
 		sessionStorage.removeItem('list_id');
 		sessionStorage.removeItem('list_rtu');
+		$("#search_word").val('');
+		$("#search_col").val(0);
+		$("#btn_search_all").click();
 		var C_RTU_ID = $("#C_RTU_ID").val("");
 	
 			$("#C_RTU_ID").val("");
