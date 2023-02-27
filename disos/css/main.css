@@ -1539,7 +1539,7 @@ filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/tvbrd_
 .d_scroll{height:530px; overflow-y:auto !important;}
 
 /*환경설정 > 사용자 설정 스크롤처리*/
-.s_scroll{height:270px; overflow-y:auto !important;}
+.s_scroll{height:335px; overflow-y:auto !important;}
 
 /*문자전광판 미리보기(캡쳐 시 스타일 가져가므로 수정 금지)*/
 /* .img_area{text-shadow: -0.1px 0 #008080, 0 0.1px #008080, 0.1px 0 #008080, 0 -0.1px #008080; font-family: Gulim !important; background-color: black; max-width: 544px; width: fit-content; min-height: 16px; color:rgb(255, 0, 0); font-size:12px !important; letter-spacing: 0.8px; line-height: 16px; padding: 0 10px 0 2px;} */
