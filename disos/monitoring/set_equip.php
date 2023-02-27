@@ -52,7 +52,7 @@ require_once "./head.php";
 				<table id="list_table" class="tb_data">
 					<thead class="tb_data_tbg">
 						<tr>
-							<th class="li5">번호</th>
+							<th class="li5">순서</th>
 							<th class="li5">지역 정렬 번호</th>
 							<th class="li5 bL_1gry">장비 ID</th>
 							<th class="li5 bL_1gry">통신 ID</th>
