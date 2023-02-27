@@ -504,11 +504,14 @@ $(document).ready(function(){
 		}
 		
 		$("#list_table .not_d").hide();
+		var search_cnt = 1;
 		$.each( $("#list_table #"+search_col_id), function(i, v){
 			if( $(v).text().indexOf(search_word) == -1 ){
 				$(v).closest("tr").hide();
 			}else{
 				$(v).closest("tr").show();
+				$(v).closest("tr").find("td:eq(0)").text(search_cnt);
+				search_cnt++;
 			}
 		});
 	});
