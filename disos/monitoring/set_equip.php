@@ -1176,6 +1176,7 @@ $(document).ready(function(){
 								sessionStorage.setItem('list_row', '');
 								var del_row = "list_"+sessionStorage.getItem('list_rtu');
 								$("tr[name="+del_row+"]").remove();
+								sessionStorage.removeItem('list_rtu');
 			                	popup_main_close(); // 레이어 좌측 및 상단 닫기
 								swal.close();
 								doubleSubmitFlag = false;
