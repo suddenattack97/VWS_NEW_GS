@@ -46,7 +46,7 @@ require_once "./head.php";
 				<table id="list_table" class="tb_data">
 					<thead class="tb_data_tbg">
 						<tr>
-							<th class="li5">번호</th>
+							<th class="li5">순서</th>
 							<th class="li15 bL_1gry">관리자 ID</th>
 							<th class="li25 bL_1gry">관리자명</th>
 							<th class="li25 bL_1gry">휴대폰 번호</th>
