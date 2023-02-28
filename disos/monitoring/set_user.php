@@ -304,17 +304,27 @@ crypt.setKey(key);
 		}
 
 		$("#list_table .not_d").hide();
+		var search_cnt = 1;
 		$.each( $("#list_table #"+search_col_id), function(i, v){
 			if( $(v).text().indexOf(search_word) == -1 ){
 				$(v).closest("tr").hide();
 			}else{
 				$(v).closest("tr").show();
+				$(v).closest("tr").find("td:eq(0)").text(search_cnt);
+				search_cnt++;
 			}
 		});
 	});
 
 	// 전체목록
 	$("#btn_search_all").click(function(){
+		const tbody = $("#list_table tbody");
+		const rows = tbody.find("tr").get();
+
+		$.each(rows, (i, row) => {
+			// tbody.append(row);
+			$(row).find("td:eq(0)").text(i + 1);
+		});
 		$("#list_table tr").show();
 	});
 
