@@ -610,6 +610,13 @@ $(document).ready(function(){
 	
 	// 전체목록
 	$("#btn_search_all").click(function(){
+		const tbody = $("#list_table tbody");
+		const rows = tbody.find("tr").get();
+
+		$.each(rows, (i, row) => {
+			// tbody.append(row);
+			$(row).find("td:eq(0)").text(i + 1);
+		});
 		$("#list_table tr").show();
 	});
 
