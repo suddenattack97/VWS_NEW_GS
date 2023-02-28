@@ -437,10 +437,12 @@ crypt.setKey(key);
 		$("tr[id="+row_item_id+"]").addClass('selected');
 		$("tr[id="+row_item_id+"]").click();
 
-			//클릭 시 스크롤 이동
+		//클릭 시 스크롤 이동
 		var firstOffset = $("#list_table tr").eq(0).offset();
 		var offset = $("#list_table tr").eq(row_item).offset();
-		$('.s_scroll').animate({scrollTop : offset.top - firstOffset.top}, 400);
+		if(offset){
+			$('.s_scroll').animate({scrollTop : offset.top - firstOffset.top}, 400);
+		}
 		
 		// 전체 blink 클래스 삭제 후 blink 클래스 추가
 		$("#list_table tr .effect").removeClass('blink');
