@@ -1385,9 +1385,9 @@ $(document).ready(function(){
 		var cid_arr = [];
 		var code_arr = [];
 		$.each($('#list_table tbody tr'), function(i,v){
-			id_arr.push($(v).find('td').eq(1).text());
-			cid_arr.push($(v).find('td').eq(2).text());
-			code_arr.push($(v).find('td').eq(5).text());
+			id_arr.push($(v).find('td').eq(2).text());
+			cid_arr.push($(v).find('td').eq(3).text());
+			code_arr.push($(v).find('td').eq(6).text());
 		});
 		
 		if(kind == "I"){
