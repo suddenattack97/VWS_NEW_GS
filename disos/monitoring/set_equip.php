@@ -1105,8 +1105,8 @@ $(document).ready(function(){
 								$("tr[name='list_"+list_id+"'] #l_SORT_FLAG").text(formData[19].value);
 								$("tr[name='list_"+list_id+"'] #l_RTU_NAME").text(formData[10].value);
 								$("tr[name='list_"+list_id+"'] #l_RTU_TYPE_NAME").text(formData[11].value == "R00" ? "강우계" : formData[11].value == "F00" ? "수위계" : formData[11].value == "A00" ? "AWS" : formData[11].value == "S00" ? "적설계" : "");
-								$("tr[name='list_"+list_id+"'] #l_LINE_NAME").text(formData[20].value);
-								$("tr[name='list_"+list_id+"'] #l_MODEL_NAME").text(formData[21].value);
+								$("tr[name='list_"+list_id+"'] #l_LINE_NAME").text(formData[20].value == "0" ? "TCP/IP" : formData[20].value == "3" ? "ODBC" : "");
+								$("tr[name='list_"+list_id+"'] #l_MODEL_NAME").text(formData[21].value == "0" ? "HS920M" : "");
 								$("tr[name='list_"+list_id+"'] #l_CONNECTION_INFO").text(formData[26].value);
 								$("tr[name='list_"+list_id+"'] #l_PORT").text(formData[25].value);
 								$("tr[name='list_"+list_id+"'] #l_BAUDRATE").text(formData[27].value);
