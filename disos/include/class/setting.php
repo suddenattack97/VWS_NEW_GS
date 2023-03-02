@@ -228,9 +228,9 @@ Class ClassSetting {
 	 */
 	function getUserList(){
 		if(DB == "0"){
-			$sql = " SELECT a.USER_ID, a.USER_NAME, (SELECT ORGAN_NAME FROM ORGAN_INFO WHERE ORGAN_ID = a.ORGAN_ID) AS ORGAN_NAME,
+			$sql = " SELECT a.USER_IDX, a.USER_ID, a.USER_NAME, (SELECT ORGAN_NAME FROM ORGAN_INFO WHERE ORGAN_ID = a.ORGAN_ID) AS ORGAN_NAME,
 							a.USER_TYPE, a.IS_PERMIT , a.MOBILE
-					 FROM USER_INFO AS a ";
+					 FROM USER_INFO AS a";
 			if(ss_user_type == "1"){
 				$sql.= " WHERE (a.USER_TYPE != 0 AND a.USER_TYPE != 1) OR a.USER_ID = '".$_SESSION['user_id']."' ";
 			}else if(ss_user_type == "3"){
@@ -238,11 +238,14 @@ Class ClassSetting {
 			}else if(ss_user_type == "4"){
 				$sql.= " WHERE a.USER_ID = '".$_SESSION['user_id']."' ";
 			}
+			$sql.= " ORDER BY USER_IDX ASC ";
+
 			
 			$rs = $this->DB->execute($sql);
 			
 			for($i=0; $i<$this->DB->NUM_ROW(); $i++){
 				$data[$i]['NUM'] = $i + 1;
+				$data[$i]['USER_IDX'] = $rs[$i]['USER_IDX'];
 				$data[$i]['USER_ID'] = $rs[$i]['USER_ID'];
 				$data[$i]['USER_NAME'] = $rs[$i]['USER_NAME'];
 				$data[$i]['ORGAN_NAME'] = $rs[$i]['ORGAN_NAME'];
@@ -850,7 +853,6 @@ Class ClassSetting {
 					 '".$CALL_LAST."', '".$this->DB->html_encode($_REQUEST['SORT_FLAG'])."', '".$this->DB->html_encode($_REQUEST['PORT'])."', '".$this->DB->html_encode($_REQUEST['BAUDRATE'])."', '".$this->DB->html_encode($_REQUEST['VHF_USE'])."', 
 					 '".$this->DB->html_encode($_REQUEST['VHF_SYSTEM_ID'])."', '".$this->DB->html_encode($_REQUEST['VHF_RTU_ID'])."', '".$this->DB->html_encode($_REQUEST['VHF_TRANS_ID'])."',
 					 NOW(), '".$FLOW_DANGER."', '".$FLOW_WARNING."', '".$FLOW_DANGER_OFF."', '".$FLOW_WARNING_OFF."', '".$this->DB->html_encode($_REQUEST['DANGER_USE'])."') ";
-			
 			if($this->DB->QUERYONE($sql)) $sqlReturn = true;
 			$this->DB->parseFree();
 			return $sqlReturn;

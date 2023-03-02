@@ -62,8 +62,8 @@ require_once "./head.php";
 					foreach($data_list as $key => $val){ 
 							$num++;
 							?>
-						<tr id="list_<?=$num?>">
-							<td class="li5"><?=$num?></td>
+						<tr id="list_<?=$val['USER_IDX']?>">
+							<td class="li5"><?=$val['USER_IDX']?></td>
 							<td id="l_USER_ID" class="li15 bL_1gry"><?=$val['USER_ID']?></td>
 							<td id="l_USER_NAME" class="li25 bL_1gry"><?=$val['USER_NAME']?></td>
 							<td class="li25 bL_1gry"><?=$val['MOBILE']?></td>
