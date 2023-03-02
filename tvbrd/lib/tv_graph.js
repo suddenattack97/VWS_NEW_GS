@@ -72,7 +72,7 @@
 					tmp_title = "변위"; tmp_unit = "( ˚ )";
 					$("#sidr-id-btn_graph_detail").attr("href", "../disos/monitoring/main.php?url=tms_displace.php&num=1&area_code="+get_area_code);
 				}else if(get_kind == "wind"){
-					tmp_title = "풍속"; tmp_unit = "(m/s)";
+					tmp_title = "풍향/풍속"; tmp_unit = "(m/s)";
 					$("#sidr-id-btn_graph_detail").attr("href", "../disos/monitoring/main.php?url=rpt_10m.php&option=4&area_code="+get_area_code);
 				}else if(get_kind == "damp"){
 					tmp_title = "습도"; tmp_unit = "(%)";
@@ -329,7 +329,7 @@
 						data: {
 							labels: LEG,
 							datasets: [{
-								label: tmp_title,
+								label: (get_kind == "wind" ? "풍속" : tmp_title),
 								data: DATA,
 								backgroundColor: 'rgb(54, 162, 235)',
 								borderColor: 'rgb(54, 162, 235)',
