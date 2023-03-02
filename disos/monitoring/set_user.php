@@ -62,8 +62,8 @@ require_once "./head.php";
 					foreach($data_list as $key => $val){ 
 							$num++;
 							?>
-						<tr id="list_<?=$val['USER_IDX']?>">
-							<td class="li5"><?=$val['USER_IDX']?></td>
+						<tr id="list_<?=$num?>" name="<?=$val['USER_ID']?>">
+							<td class="li5"><?=$num?></td>
 							<td id="l_USER_ID" class="li15 bL_1gry"><?=$val['USER_ID']?></td>
 							<td id="l_USER_NAME" class="li25 bL_1gry"><?=$val['USER_NAME']?></td>
 							<td class="li25 bL_1gry"><?=$val['MOBILE']?></td>
@@ -443,20 +443,22 @@ crypt.setKey(key);
 	});
 	if(sessionStorage.getItem('list_user')){
 		var row_item = sessionStorage.getItem('list_user');
-		var row_item_id = "list_"+sessionStorage.getItem('list_user');
-		$("tr[id="+row_item_id+"]").addClass('selected');
-		$("tr[id="+row_item_id+"]").click();
-
-		//클릭 시 스크롤 이동
-		var firstOffset = $("#list_table tr").eq(0).offset();
-		var offset = $("#list_table tr").eq(row_item).offset();
-		if(offset){
-			$('.s_scroll').animate({scrollTop : offset.top - firstOffset.top}, 400);
+		if($("tr[name="+row_item+"]").attr('id')){
+			var row_item_idx = $("tr[name="+row_item+"]").attr('id').substring(5,10);
+			$("tr[name="+row_item+"]").addClass('selected');
+			$("tr[name="+row_item+"]").click();
+	
+			//클릭 시 스크롤 이동
+			var firstOffset = $("#list_table tr").eq(0).offset();
+			var offset = $("#list_table tr").eq(row_item_idx).offset();
+			if(offset){
+				$('.s_scroll').animate({scrollTop : offset.top - firstOffset.top}, 400);
+			}
+			
+			// 전체 blink 클래스 삭제 후 blink 클래스 추가
+			$("#list_table tr .effect").removeClass('blink');
+			$("#list_table tr").eq(row_item_idx).find('.effect').addClass('blink');
 		}
-		
-		// 전체 blink 클래스 삭제 후 blink 클래스 추가
-		$("#list_table tr .effect").removeClass('blink');
-		$("#list_table tr").eq(row_item).find('.effect').addClass('blink');
 
 	  }
 	// 등록
@@ -522,7 +524,8 @@ crypt.setKey(key);
 				        dataType: "json",
 				        success : function(data){
 					        if(data.result){
-								sessionStorage.setItem('list_user', '<?=$num+1?>');
+								var formData = $('#set_frm').serializeArray();
+								sessionStorage.setItem('list_user', formData[8].value);
 			                	popup_main_close(); // 레이어 좌측 및 상단 닫기
 					    		location.reload(); return false;
 					        }else{
@@ -544,7 +547,7 @@ crypt.setKey(key);
 	$("#btn_re").click(function(){
 		// $("#tree").jstree("deselect_all"); // jstree 전체 체크 해제
 		$("#dup_check").val(0); // 아이디 중복체크 리셋
-
+		sessionStorage.removeItem('list_user');
 		var C_USER_ID = $("#C_USER_ID").val("");
 			btn = document.getElementById('USER_ID');
 			btn.removeAttribute('disabled');	
@@ -637,6 +640,9 @@ crypt.setKey(key);
 				        dataType: "json",
 				        success : function(data){
 					        if(data.result){
+								var formData = $('#set_frm').serializeArray();
+								sessionStorage.setItem('list_user', formData[1].value);
+
 			                	popup_main_close(); // 레이어 좌측 및 상단 닫기
 					    		location.reload(); return false;
 					        }else{
