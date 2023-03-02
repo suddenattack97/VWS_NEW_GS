@@ -1101,7 +1101,7 @@ $(document).ready(function(){
 									});
 								}
 								
-								$("tr[name='list_"+list_id+"'] #l_SIGNAL_ID").text(formData[3].value);
+								$("tr[name='list_"+list_id+"'] #l_SIGNAL_ID").text(formData[9].value);
 								$("tr[name='list_"+list_id+"'] #l_SORT_FLAG").text(formData[19].value);
 								$("tr[name='list_"+list_id+"'] #l_RTU_NAME").text(formData[10].value);
 								$("tr[name='list_"+list_id+"'] #l_RTU_TYPE_NAME").text(formData[11].value == "R00" ? "강우계" : formData[11].value == "F00" ? "수위계" : formData[11].value == "A00" ? "AWS" : formData[11].value == "S00" ? "적설계" : "");
